@@ -1,0 +1,2833 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Proactive Debt Collection and Contention resolution">
+      
+      
+        <meta name="author" content="Luis Garcia Delgado, Juan Corral, Sebastian Hernandez, Stephanie Ross">
+      
+      
+        <link rel="canonical" href="https://cx-partner.github.io/bootcamp2026/labs/lab3_human_ai_assist/">
+      
+      
+        <link rel="prev" href="../lab2_debt_ai_agent/">
+      
+      
+        <link rel="next" href="../lab4_ai_agent_transfer/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../template_assets/webex75.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Human escalation &amp; RT Assist - 2026 Webex Contact Center Partner Bootcamp</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-3-human-escalation-and-rt-assist" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="2026 Webex Contact Center Partner Bootcamp" class="md-header__button md-logo" aria-label="2026 Webex Contact Center Partner Bootcamp" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            2026 Webex Contact Center Partner Bootcamp
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Human escalation &amp; RT Assist
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../overview/" class="md-tabs__link">
+          
+  
+  
+  Readme
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../pre_req_wxcc/" class="md-tabs__link">
+          
+  
+  
+  Pre-requisites
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../lab1_campaign_manager/" class="md-tabs__link">
+          
+  
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../lab_pods/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Lab Pods
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../bcamp_files/Webex_Bank_Rewards_Program/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Webex Bank Rewards Program
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="2026 Webex Contact Center Partner Bootcamp" class="md-nav__button md-logo" aria-label="2026 Webex Contact Center Partner Bootcamp" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    2026 Webex Contact Center Partner Bootcamp
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Readme
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Readme
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026 WxCC Bootcamp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-requisites
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Pre-requisites
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1">
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Partner Tenant
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Partner Tenant
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pre_req_wxcc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Partner Lab Tenant Capabilities &amp; Pre-requisites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2">
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Channels
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Digital Channels
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pre_req_email_channel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Email
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auxiliary Applications
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Auxiliary Applications
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pre_req_airtable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Airtable Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Labs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Labs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1">
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1_campaign_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proactive Outbound Reach
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2">
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2_debt_ai_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automated Debt collection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Human escalation &amp; RT Assist
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Human escalation &amp; RT Assist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#lab-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab Purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-requisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab Overview 📌
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-31-configure-alex-to-transfer-to-a-fraud-specialist-with-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 3.1 Configure Alex to transfer to a fraud specialist with context.
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-32-setup-call-flow-ai-agent-context-queue-escalation-and-rtt-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 3.2 Setup Call Flow - AI Agent context, Queue escalation and RTT configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-33-control-hub-configuration-of-contact-center-ai-assistant-and-desktop-layout-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 3.3 Control Hub Configuration of Contact Center AI Assistant and Desktop Layout Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-34-setup-an-ai-assistant-skill-for-real-time-assist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 3.4 Setup an AI Assistant skill for Real-Time Assist.
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inboundoutbound-detection-for-faster-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inbound/Outbound Detection for Faster Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-completion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab Completion ✅
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 4
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab 4
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab4_ai_agent_transfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cross-skill multi-agent orchestration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5">
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extra Lab
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extra Lab
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_novapay/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NovaPay payment service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_pods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab Pods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bcamp_files/Webex_Bank_Rewards_Program/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Webex Bank Rewards Program
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lab-3-human-escalation-and-rt-assist">Lab 3 - Human Escalation and RT Assist<a class="headerlink" href="#lab-3-human-escalation-and-rt-assist" title="Permanent link">¶</a></h1>
+<h2 id="lab-purpose">Lab Purpose<a class="headerlink" href="#lab-purpose" title="Permanent link">¶</a></h2>
+<p>In <strong>Lab 2</strong>, you successfully configured a <strong>Webex AI Agent</strong> to automate the collection of debts and handle customer inquiries regarding their accounts. </p>
+<p>In this lab we will focus on the transition from the Webex AI Agent to a fraud specialist, ensuring that the full context of the interaction is preserved during the transfer. We will explore key <strong>Webex Contact Center AI Assistant</strong> features, including <strong>Summarization</strong>, <strong>Real-Time Assist (RTA)</strong>, and <strong>Real-Time Transcription (RTT)</strong>. This guide covers the configuration required to extract data from the AI Agent metadata at the time of escalation, enable summarization and RTT, and configure an AI Assistant skill to support the agent during a fraud-related scenario.</p>
+<details class="purpose" open="open">
+<summary>Lab Objectives</summary>
+<p>The purpose of this lab is to escalate a call from an AI Agent to a fraud specialist while maintaining full context and providing the agent with the tools necessary to deliver a consistent, seamless customer experience. </p>
+<p>Key objectives include:</p>
+<ul>
+<li><strong>Context Management:</strong> Configuring the flow to extract context from the AI Agent metadata and pass it to the fraud specialist, including a Virtual Agent (VA) transfer summary.</li>
+<li><strong>Enable RTT and Summarization Features:</strong> Enhancing the fraud specialist workflow by enabling advanced AI-driven features.</li>
+<li><strong>Handle a Credit Card Fraud Scenario:</strong> Providing real-time guidance based on the live conversation. This includes automating backend actions such as opening a case and locking a card, as well as retrieving relevant information from a Knowledge Base (KB).</li>
+</ul>
+</details>
+<details class="challenge" open="open">
+<summary>Lab Outcome</summary>
+<p>By the end of this lab, you will have successfully implemented a sophisticated escalation workflow. Specifically, you will be able to:</p>
+<ul>
+<li><strong>Verify Contextual Handoff:</strong> Confirm that the fraud specialist receives the full interaction history, including the VA transfer summary and relevant customer metadata, immediately upon call arrival.</li>
+<li><strong>Validate AI Assistant Functionality:</strong> Observe the Real-Time Transcription (RTT) and Summarization features in action within the Agent Desktop, ensuring they accurately capture and distill the conversation.</li>
+<li><strong>Demonstrate Real-Time Guidance:</strong> Successfully trigger and view automated guidance prompts when the conversation shifts to a "fraud" scenario, assisting the agent in taking the correct next steps.</li>
+<li><strong>Automate In-Call Actions:</strong> Ensure that the system triggers backend workflows—such as case creation and card locking—in real-time during the conversation, reducing manual effort and improving response speed for the agent.</li>
+</ul>
+</details>
+<hr>
+<h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permanent link">¶</a></h2>
+<p>In order to be able to complete this lab, you must: </p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Have your <strong>Airtable repositories</strong> completed for the <em>Customer</em> and <em>Transactions</em> data.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Have completed <a href="../lab2_debt_ai_agent/">Lab 2 - Automating Debt Collection</a></li>
+</ul>
+<hr>
+<h2 id="lab-overview">Lab Overview 📌<a class="headerlink" href="#lab-overview" title="Permanent link">¶</a></h2>
+<p>In this lab you will perform the following tasks:</p>
+<ol>
+<li>Configure Alex to transfer to a fraud specialist with context. </li>
+<li>Setup the call flow to extract context from the AI Agent metadata, escalate to a queue and configure Real-Time Transcription. </li>
+<li>Setup AI Assistant features in Control Hub. </li>
+<li>Confirm your Desktop Layout is setup correctly for AI Assistant. </li>
+<li>Setup an AI Assistant skill for Real-Time Assist. </li>
+<li>Test the complete scenario </li>
+</ol>
+<hr>
+<h2 id="lab-31-configure-alex-to-transfer-to-a-fraud-specialist-with-context">Lab 3.1 Configure Alex to transfer to a fraud specialist with context.<a class="headerlink" href="#lab-31-configure-alex-to-transfer-to-a-fraud-specialist-with-context" title="Permanent link">¶</a></h2>
+<p>Our AI Agent for debt collection (Alex) can perform multiple tasks (check balance, authentication, check recent transaction, etc), when transferring to a human agent, its essential to make sure the data collected by Alex is not lost during the transfer. We will setup a custom transfer action and pass data in the form of entities into the flow. </p>
+<details class="webex" open="open">
+<summary>Alex Setup</summary>
+<ol>
+<li>From <a href="https://admin.webex.com">Control Hub</a> navigate to <strong>Contact Center</strong> and under <strong>Quick Links</strong> click on the <strong>Webex AI Agent</strong> link. The Webex AI Agent studio will open in a new window. </li>
+<li>In the <strong>AI Agent Studio</strong>, select your <em>Finance Debt Collection Agent</em>. </li>
+<li>Go to the <strong>Actions</strong> tab, click on <strong>+ Add Actions</strong> and select <strong>Transfer</strong></li>
+<li>Fill in the <strong>General information</strong> of your action<ul>
+<li><strong>Action name</strong>: <copy>fraud_transfer</copy></li>
+<li><strong>Action description</strong>: <copy>Action to transfer the call to a fraud specialist when a customer has concerns about a suspicious transaction</copy>
+<!-- - **Transfer visibility**: You can either enable or disable the **Announce transfer** toggle. --></li>
+</ul>
+</li>
+<li>
+<p>Select the <strong>+New input entity</strong> option, fill out the entity details with this information: </p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Entity Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Value</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Example</th>
+<th style="text-align: left;">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><copy><code>ivr_verified</code></copy></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><copy><code>Send a true or false value depending if the user was successfully authenticated before executing this action.</code></copy></td>
+<td style="text-align: left;"><copy><code>True, False</code></copy></td>
+<td style="text-align: left;"><code>Yes</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><copy><code>debt_balance</code></copy></td>
+<td style="text-align: left;"><code>Number</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><copy><code>User's debt balance. The value needs to include at least 2 decimals. If the value is 1000, we should use 1000.00</code></copy></td>
+<td style="text-align: left;"><copy><code>10000.00</code></copy></td>
+<td style="text-align: left;"><code>No</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><copy><code>susp_transaction</code></copy></td>
+<td style="text-align: left;"><code>Number</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><copy><code>Amount of the transaction identified as suspicious. The value needs to include at least 2 decimals. If the value is 1000, we should use 1000.00</code></copy></td>
+<td style="text-align: left;"><copy><code>10000.00</code></copy></td>
+<td style="text-align: left;"><code>No</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><copy><code>susp_vendor</code></copy></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><copy><code>Vendor of the transaction identified as suspicious</code></copy></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><code>No</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><copy><code>susp_date</code></copy></td>
+<td style="text-align: left;"><code>Date</code></td>
+<td style="text-align: left;"><code>mm/dd/YY</code></td>
+<td style="text-align: left;"><copy><code>Date of the transaction identified as suspicious</code></copy></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><code>No</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Click <strong>Add</strong>.</p>
+</li>
+<li>Go back to the <strong>Profile</strong> tab and add the following into the <strong>Instructions</strong>: 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>**Fraud Escalation Logic:**
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>If fraud is suspected, pull the recent transactions using the **[fetch_transactions]** actions. Attempt to identify the suspicious transaction before escalating to a Fraud Specialist by using the **[fraud_transfer]** transfer action.
+</span></code></pre></div></li>
+<li>Click <strong>Save Changes</strong> and <strong>Publish</strong>. </li>
+</ol>
+<details class="gif" open="open">
+<summary>Transfer Action Setup</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_transfer_action.gif" data-title="Alt Text" data-desc-position="top"><img alt="Alt Text" src="../assets/lab3_transfer_action.gif"></a>
+<figcaption>Transfer Action Configuration</figcaption>
+</figure><p></p>
+</details>
+</details>
+<h2 id="lab-32-setup-call-flow-ai-agent-context-queue-escalation-and-rtt-configuration">Lab 3.2 Setup Call Flow - AI Agent context, Queue escalation and RTT configuration<a class="headerlink" href="#lab-32-setup-call-flow-ai-agent-context-queue-escalation-and-rtt-configuration" title="Permanent link">¶</a></h2>
+<p>In Lab 2, the <em>Escalated</em> outcome of the <strong>Virtual Agent V2</strong> node was connected to a temporary <strong>Play Message</strong> node. In this section, you will replace that temporary path with a production-ready escalation flow. This involves extracting the contextual data that Alex collected during the conversation, passing it to the human agent via the queue, and enabling Real-Time Transcription so the fraud specialist has a live view of the conversation from the moment it arrives</p>
+<details class="webex" open="open">
+<summary>Prepare Call Flow</summary>
+<p>When Alex triggers the <code>fraud_transfer</code> action, the entities defined in that action (e.g., <code>ivr_verified</code>, <code>debt_balance</code>, <code>susp_transaction</code>) are passed into the flow within the metadata output variable from <strong>Virtual Agent V2</strong> node. You need to capture these into flow variables so they can be presented to the agent. </p>
+<ol>
+<li>Go to <strong>Control Hub</strong> -&gt; <strong>Contact Center</strong> -&gt; <strong>Flows</strong></li>
+<li>Open your flow <strong>AI_Agent_DebtCollection</strong></li>
+<li>First, we need to create the flow variables that will hold the context from Alex. Click on the <strong>Global Flow Properties</strong> panel (the gear icon in the top-right of the flow editor).</li>
+<li>
+<p>Under <strong>Custom Flow Variables</strong>, click the option <strong>Create flow variable</strong> and create the following variables:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Variable Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Default Value</th>
+<th style="text-align: left;">Agent Viewable</th>
+<th style="text-align: left;">Desktop Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><copy><code>transfer_type</code></copy></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;"><copy><code>agent_transfer</code></copy></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">N/A</td>
+</tr>
+<tr>
+<td style="text-align: left;"><copy><code>ivr_verified</code></copy></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;"><copy><code>False</code></copy></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;"><copy><code>IVR Verified</code></copy></td>
+</tr>
+<tr>
+<td style="text-align: left;"><copy><code>debt_balance</code></copy></td>
+<td style="text-align: left;"><code>Decimal</code></td>
+<td style="text-align: left;"><copy><code>0.0</code></copy></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;"><copy><code>Debt Balance</code></copy></td>
+</tr>
+<tr>
+<td style="text-align: left;"><copy><code>susp_transaction</code></copy></td>
+<td style="text-align: left;"><code>Decimal</code></td>
+<td style="text-align: left;"><copy><code>0.0</code></copy></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;"><copy><code>Transaction Amount</code></copy></td>
+</tr>
+<tr>
+<td style="text-align: left;"><copy><code>susp_vendor</code></copy></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;"><copy><code>Unknown</code></copy></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;"><copy><code>Transaction Vendor</code></copy></td>
+</tr>
+<tr>
+<td style="text-align: left;"><copy><code>susp_date</code></copy></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;"><copy><code>N/A</code></copy></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;"><copy><code>Transaction Date</code></copy></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Validate and save the flow, then select the <strong>Publish Flow</strong> option. A window to publish the flow will open up, simply click again on the <strong>Publish Flow</strong> button. </p>
+</li>
+</ol>
+<details class="gif" open="open">
+<summary>Create Flow Variables</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_flow_variable.gif" data-title="Create Flow Variables" data-desc-position="top"><img alt="Create Flow Variables" src="../assets/lab3_flow_variable.gif"></a>
+<figcaption>Creating flow variables</figcaption>
+</figure><p></p>
+</details>
+</details>
+<details class="webex" open="open">
+<summary>Extract AI Agent Context</summary>
+<p>Now, you will extract the output from the <strong>Virtual Agent V2</strong> node and map it into the flow variables you just created.</p>
+<ol>
+<li>
+<p>In your flow, click on the <strong>Virtual Agent V2</strong> node (named <code>DebtCollectionAgent</code>).</p>
+<details class="inline end" open="open">
+<summary>Initial - Flow View</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_before_flow.png" data-title="Initial - Flow View" data-desc-position="top"><img alt="Initial - Flow View" src="../assets/lab3_before_flow.png"></a>
+</figure><p></p>
+</details>
+</li>
+<li>
+<p>In the <strong>Activity Settings</strong> panel on the right, scroll down to the <strong>Output Variables</strong> section. You will see the variables that the AI Agent passes back upon escalation, the MetaData variable contains the transfer action details. </p>
+</li>
+<li>Delete the temporary <strong>Play Message</strong> node connected to the <em>Escalated</em> outlet and connec the <strong>Error Message</strong> node to the <strong>End Flow</strong> node. </li>
+<li>Drag and drop a <strong>Parse</strong> node onto the canvas and connect it to the <em>Escalated</em> path of the VAV2 node.</li>
+<li>Click the <strong>Parse</strong> node and rename it <copy><code>Parse_Transfer</code></copy>. </li>
+<li>In the Description of the node, add the following: <copy><code>Collects the transfer type.</code></copy></li>
+<li>Configure the Parse Settings: <ul>
+<li>Input Variable = DebtCollection_Agent.MetaData</li>
+<li>Content Type = JSON</li>
+<li>Output Variable = transfer_type</li>
+<li>Path Expression = <copy><code>$.escalation_trigger</code></copy></li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">AI Agent MetaData</p>
+<p>The AI Agent MetaData variable contains the executed actions and collected variables during a session. When the AI Agent escalates the call, the <strong>escalation_trigger</strong> variable in the metadata will match the name of the
+transfer action used. In the previous step, we are collecting this value to decide how the call escalation needs to be routed. </p>
+</div>
+</li>
+<li>Drag and drop a <strong>Case</strong> node in the canvas and connect it to the output of the <strong>Parse</strong> node.</li>
+<li>Rename it <copy><code>Transfer_Check</code></copy> and in the Description of the node, add the following: <copy><code>Checks the transfer_type variable to route accordingly</code></copy></li>
+<li>Configure the <strong>Case</strong> node settings:<ul>
+<li>Variable = transfer_type</li>
+<li>Case 1 = <copy><code>agent_transfer</code></copy></li>
+<li>Case 2 = <copy><code>fraud_transfer</code></copy></li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Queue Setup</p>
+<p>In the next steps you will be adding <strong>Queue Contact</strong> nodes to your flow. The queue you select is not critical for this lab, we simply need the call to be routed to an agent that can receive your call.</p>
+</div>
+</li>
+<li>Add a <strong>Queue Contact</strong> node for the standard agent_transfer and rename it <copy><code>Generic_Queue</code></copy>. </li>
+<li>Connect the <strong>agent_transfer</strong> path from the <strong>Case</strong> node to the <strong>Generic_Queue</strong> node. </li>
+<li>Click the <strong>Generic_Queue</strong> node and select any Queue in your tenant that routes to the agents you want to use for this lab. </li>
+<li>Connect the <strong>Generic_Queue</strong> node output to the <strong>End Flow</strong> node. </li>
+<li>Drag and drop a <strong>Parse</strong> node onto the canvas.</li>
+<li>Connect the <em>fraud_transfer</em> path of the <strong>Case</strong> node to the new <strong>Parse</strong> node. </li>
+<li>Click the <strong>Parse</strong> node and rename it to <copy><code>Fraud_Context</code></copy> </li>
+<li>
+<p>Map your custom variables to a JSON path location from the Virtual Agent MetaData, you need to add a new variable and path expression for each one:</p>
+<ul>
+<li>Input Variable = DebtCollection_Agent.MetaData</li>
+<li>Content Type = JSON</li>
+<li>Output Variable = ivr_verified</li>
+<li>Path Expression = <copy><code>$.actions.fraud_transfer[0].input.ivr_verified</code></copy></li>
+<li>Output Variable = debt_balance</li>
+<li>Path Expression = <copy><code>$.actions.fraud_transfer[0].input.debt_balance</code></copy></li>
+<li>Output Variable = susp_transaction</li>
+<li>Path Expression = <copy><code>$.actions.fraud_transfer[0].input.susp_transaction</code></copy></li>
+<li>Output Variable = susp_vendor</li>
+<li>Path Expression = <copy><code>$.actions.fraud_transfer[0].input.susp_vendor</code></copy></li>
+<li>Output Variable = susp_date</li>
+<li>Path Expression = <copy><code>$.actions.fraud_transfer[0].input.susp_date</code></copy></li>
+</ul>
+<details class="inline end" open="open">
+<summary>Final - Flow View</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_after_flow.png" data-title="Final - Flow View" data-desc-position="top"><img alt="Final - Flow View" src="../assets/lab3_after_flow.png"></a>
+</figure><p></p>
+</details>
+<details class="tip" open="open">
+<summary>Understanding the JSON Path</summary>
+<p>The path <code>$.actions.fraud_transfer[0].input.ivr_verified</code> tells the Parse node to navigate the MetaData JSON structure as follows:</p>
+<ul>
+<li><code>$.actions</code> → The collection of all actions executed during the AI Agent session.</li>
+<li><code>.fraud_transfer[0]</code> → The first instance of the <code>fraud_transfer</code> action.</li>
+<li><code>.input.ivr_verified</code> → The value of the <code>ivr_verified</code> entity that was passed into that action.</li>
+</ul>
+<p>This structure is consistent across all Webex AI Agent transfer actions.</p>
+</details>
+</li>
+<li>
+<p>Add a <strong>Queue Contact</strong> node for the custom <strong>fraud_transfer</strong> and rename it <copy><code>Fraud_Queue</code></copy>. </p>
+</li>
+<li>Connect the <strong>Parse</strong> node output to the <strong>Fraud_Queue</strong> node. Connect the <strong>Fraud_Queue</strong> node output to the <strong>End Flow</strong> node.</li>
+<li>Click the <strong>Fraud_Queue</strong> node and select any Queue in your tenant that routes to the agents you want to use for this lab.</li>
+<li>Connect the <em>Default</em> path of the <strong>Case</strong> node to the <strong>Generic_Queue</strong> node.</li>
+<li>Validate and save the flow, then select the <strong>Publish Flow</strong> option. A window to publish the flow will open up, simply click again on the <strong>Publish Flow</strong> button. </li>
+</ol>
+<details class="gif" open="open">
+<summary>Extract AI Agent Context</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_ai_context.gif" data-title="Set Escalation Context" data-desc-position="top"><img alt="Set Escalation Context" src="../assets/lab3_ai_context.gif"></a>
+<figcaption>Extract AI Agent Context</figcaption>
+</figure><p></p>
+</details>
+</details>
+<details class="webex" open="open">
+<summary>Configure Real-Time Transcription</summary>
+<p>Real-Time Transcription(RTT) provides a live text feed of the conversation to the agent. This is essential for the fraud specialist, as it allows them to review what was said even if the audio quality is poor or the customer speaks quickly.
+In order to configure RTT, we will need to both enable the AI Assistant configuration in Control Hub and setup the flow to stream the media to the transcription service. In this section, we will focus on the flow configuration.</p>
+<ol>
+<li>In your flow, move from the <strong>Main Flow</strong> tab to the <strong>Event Flows</strong> tab. </li>
+<li>Drag and drop the <strong>Start Media Stream</strong> node to the canvas. </li>
+<li>Connect the <strong>AgentAnswered</strong> event node to the <strong>Start Media Stream</strong> node. </li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Event Flow Nodes</p>
+<p>Flow Designer is releasing an updated UX among other features, these new UX renamed the <strong>AgentAnswered</strong> event to <strong>AgentAccepted</strong>. Use either one of those events to start the media stream required for RTT. </p>
+</div>
+<ol>
+<li>Drag and drop an <strong>End Flow</strong> node to the canvas and connect it to the output path of the <strong>Start Media Stream</strong> node.</li>
+<li>Validate and save the flow, then select the <strong>Publish Flow</strong> option. A window to publish the flow will open up, simply click again on the <strong>Publish Flow</strong> button. </li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">RTT Conditional Enablement</p>
+<p>In this lab we are enabling RTT for all the queue or agents involved in this flow, but you can also add a condition to control which queues within a flow get access to the RTT feature. You can find a step by step guide <a href="https://help.webex.com/en-us/article/n5jhgdi/Enabling-media-streaming-for-specific-queues">HERE</a>.</p>
+</div>
+<details class="gif" open="open">
+<summary>Configure RTT in Event Flows</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_flow_RTT.gif" data-title="Set Escalation Context" data-desc-position="top"><img alt="Set Escalation Context" src="../assets/lab3_flow_RTT.gif"></a>
+<figcaption>Real-Time Trancript Flow Configuration</figcaption>
+</figure><p></p>
+</details>
+</details>
+<h2 id="lab-33-control-hub-configuration-of-contact-center-ai-assistant-and-desktop-layout-requirements">Lab 3.3 Control Hub Configuration of Contact Center AI Assistant and Desktop Layout Requirements<a class="headerlink" href="#lab-33-control-hub-configuration-of-contact-center-ai-assistant-and-desktop-layout-requirements" title="Permanent link">¶</a></h2>
+<p>There are several features associated with the Contact Center AI Assistant (AutoCSAT, Summarization, Agent Wellness, Real-Time Transcription, Real-Time Assist and Topic Analytics), and all of these features can easily be enabled from Control Hub. 
+ In this lab, we will focus on the <strong>Summarization</strong>, <strong>Real-Time Transcript</strong> and  <strong>Real-Time Assist</strong> configuration. </p>
+<details class="webex" open="open">
+<summary>WxCC AI Assistant Configuration</summary>
+<ol>
+<li>Open <strong>Control Hub</strong> and navigate to Contact Center &gt; AI Features. In some tenants the <strong>AI Features</strong> menu card might still show up as <strong>AI Assistant</strong>, the following configuration still applies. </li>
+<li>The options for <strong>Agent Wellbeing</strong> and <strong>AutoCSAT</strong>, are not relevant for this lab. </li>
+<li>Enable the <strong>Generated Summaries</strong>  toggle and select the check box for all of the different summarization types. </li>
+<li>
+<p>Summarization types are enabled at the global level, for the purpose of this lab, you can either select the <strong>All queues</strong> option or specify the <strong>Individual queue</strong> you will be using in this lab.</p>
+<details class="tip" open="open">
+<summary>Summarization Scope</summary>
+<p>Selecting <strong>All queues</strong> is the quickest option for a lab environment. In a production deployment, you would typically scope summarization to specific queues to control costs and ensure relevance.</p>
+</details>
+</li>
+<li>
+<p>Enable the Real-Time Transcription and the Real-Time Assist toggles. </p>
+</li>
+<li>Before we can <strong>Assign AI Assistant skills</strong> to a queue, we need to create the skill in the AI Agent studio. We will cover this topic in lab 3.4. </li>
+</ol>
+<details class="gif" open="open">
+<summary>AI Assistant Configuration in Control Hub</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_ai_assistant_config_new.gif" data-title="AI Assistant Configuration" data-desc-position="top"><img alt="AI Assistant Configuration" src="../assets/lab3_ai_assistant_config_new.gif"></a>
+<figcaption>Enabling Summarization, RTT, and RTA in Control Hub</figcaption>
+</figure><p></p>
+</details>
+</details>
+<details class="webex" open="open">
+<summary>Desktop Layout Setup</summary>
+<p>The AI Assistant is part of the default Desktop layout, however we understand that you might have your own layout that has been previously customized to include other widgets. 
+We will review the steps to make the necessary changes to a Desktop layout for the AI Assistant and the Real-Time Transcription window to show up on the Agent Desktop. </p>
+<div class="admonition download">
+<p class="admonition-title">Desktop Layout</p>
+<p>If you don't need to update your own Desktop Layout, download a template <a download="Finance_Desktop.json" href="../bcamp_files/Finance_Desktop.json">HERE</a> and ignore the next steps. </p>
+</div>
+<ol>
+<li>Open your JSON layout file using a text editor (Sublime, Notepad++, etc) or IDE (VS Code, etc). </li>
+<li>Find the area section for each relevant persona (agent, supervisor, agent-supervisor). Inside the area section, locate the advancedHeader array.</li>
+<li>
+<p>Add the AI Assistant component(<strong>"comp": "ai-assistant"</strong>) to the <strong>advancedHeader</strong> section, here's an example: </p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>"advancedHeader": [
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    {
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>      "comp": "digital-outbound",
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>      "script": "https://wc.imiengage.io/AIC/engage_aic.js",
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>      "attributes": {
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        "darkmode": "$STORE.app.darkMode",
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        "accessToken": "$STORE.auth.accessToken",
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        "orgId": "$STORE.agent.orgId",
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        "dataCenter": "$STORE.app.datacenter",
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        "emailCount": "$STORE.agent.channels.emailCount",
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        "socialCount": "$STORE.agent.channels.socialCount"
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>      }
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    },
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    {
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>      "comp": "agentx-webex"
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    },
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    {
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>      "comp": "ai-assistant"
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    },
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    {
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>      "comp": "agentx-outdial"
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>    },
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    {
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>      "comp": "agentx-notification"
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    },
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>    {
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>      "comp": "agentx-state-selector"
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>    }
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>  ],
+</span></code></pre></div>
+</li>
+<li>
+<p>Now let's add the RTT window. Find the area section for each relevant persona (agent, supervisor, agent-supervisor). Inside the area section, locate the panel section.</p>
+</li>
+<li>
+<p>Within the panel section, ensure that the following code snippet (or a similar configuration for real-time transcription) is present:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>{
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>        "comp": "md-tab",
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        "attributes": {
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>          "slot": "tab",
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>          "class": "widget-pane-tab"
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        },
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        "children": [
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>          {
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>            "comp": "slot",
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>            "attributes": {
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>              "name": "RT_TRANSCRIPT_TAB"
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>            }
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>          }
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        ],
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>        "visibility": "RT_TRANSCRIPT"
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>      },
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>      {
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>        "comp": "md-tab-panel",
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>        "attributes": {
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>          "slot": "panel",
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>          "class": "widget-pane"
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>        },
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>        "children": [
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>          {
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>            "comp": "slot",
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>            "attributes": {
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>              "name": "RT_TRANSCRIPT"
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>            }
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>          }
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>        ],
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>        "visibility": "RT_TRANSCRIPT"
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>      },
+</span></code></pre></div>
+</li>
+<li>
+<p>Assign the Desktop Layout to the Team of the agent you will be using to receive the call. </p>
+</li>
+</ol>
+</details>
+<h2 id="lab-34-setup-an-ai-assistant-skill-for-real-time-assist">Lab 3.4 Setup an AI Assistant skill for Real-Time Assist.<a class="headerlink" href="#lab-34-setup-an-ai-assistant-skill-for-real-time-assist" title="Permanent link">¶</a></h2>
+<p>Now that the AI Assistant features are enabled we can proceed with the configuration of Real-Time Assist (RTA). This feature monitors the live transcription of the call and, when specific keywords or intents are detected, it presents the agent with suggestions from a KB or triggers automated actions. 
+During this lab section we will focus on how to effectively setup an AI Assistant Skill, including how to define the prompt and how to setup actions.</p>
+<details class="webex" open="open">
+<summary>Configure Knowledge Base for Real-Time Assist</summary>
+<p>Before creating the AI Assistant skill, you need a Knowledge Base that contains the fraud-handling policies and procedures that the skill will reference when providing guidance to the agent.</p>
+<div class="admonition download">
+<p class="admonition-title">Knowledge base document</p>
+<p>Download the Knowledge Base file from <a href="../bcamp_files/Fraud_KB.docx">HERE</a>.</p>
+</div>
+<ol>
+<li>In the <strong>AI Agent Studio</strong>, click on the <strong>Knowledge</strong> icon in the left navigation panel.</li>
+<li>Click the <strong>+ Create Knowledge base</strong> option on the top right corner. </li>
+<li>Enter the name <copy><code>Fraud_KB</code></copy> and a brief description. </li>
+<li>Click on <strong>Add source</strong> in the top-right and select <strong>Files</strong></li>
+<li>Drag and drop or use the <strong>Add File</strong> option to upload the <code>Fraud_KB.docx</code> document.</li>
+<li>Click on <strong>Process Files</strong></li>
+<li>
+<p>The system will take some minutes to process the file. Once completed, you can see your KB file under the <strong>Processed files</strong> section in the next window. Meanwhile, click on <strong>Close and keep processing</strong> to return to your Knowledge Base configuration page. </p>
+<details class="tip" open="open">
+<summary>What to include in a Fraud KB</summary>
+<p>The Knowledge Base should include information such as:</p>
+<ul>
+<li>Fraud dispute procedures and timelines.</li>
+<li>Card locking and replacement policies.</li>
+<li>Customer communication guidelines during fraud scenarios.</li>
+<li>Escalation paths for high-value fraud cases.</li>
+<li>Regulatory requirements for fraud reporting.</li>
+</ul>
+<p>Consider this if you want to create your own Fraud KB. </p>
+</details>
+</li>
+<li>
+<p>Wait for the source to reach the <strong>Processed</strong> state before proceeding.</p>
+</li>
+</ol>
+<details class="gif" open="open">
+<summary>Configure Fraud Knowledge Base</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_ai_assistant_kb.gif" data-title="Fraud KB" data-desc-position="top"><img alt="Fraud KB" src="../assets/lab3_ai_assistant_kb.gif"></a>
+<figcaption>Creating a Knowledge Base for fraud handling policies</figcaption>
+</figure><p></p>
+</details>
+</details>
+<details class="webex" open="open">
+<summary>Configure Fulfillment Actions for Real-Time Assist</summary>
+<p>In this section, you will build the Webex Connect flow that the AI Assistant's <code>open_case</code> action will trigger. This flow receives the Customer ID and Transaction ID from the AI Assistant, generates a unique Case ID, and creates a new fraud case record in your Airtable base.</p>
+<ol>
+<li>Go to your <em>Webex Finance Bootcamp</em> Service in Webex Connect</li>
+<li>
+<p>Click on <strong>Flows</strong> to create your new flow</p>
+<ul>
+<li>Click on <strong>Create Flow</strong></li>
+<li>Give your flow a name <copy><code>open_case</code></copy></li>
+<li>Select <strong>New Flow</strong> under <strong>Method</strong></li>
+<li>Select <strong>Start from Scratch</strong></li>
+<li>Click on <strong>Create</strong></li>
+</ul>
+</li>
+<li>
+<p>Configure the <strong>Start Node</strong> to trigger the flow from the AI Agent</p>
+<ul>
+<li>Select the <strong>AI Agent Event</strong></li>
+<li>Set the <strong>SAMPLE JSON</strong> to the below one
+    <div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nt">"CustomerID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUST-001"</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">"TransactionID"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">}</span>
+</span></code></pre></div></li>
+</ul>
+<details class="info" open="open">
+<summary>Info</summary>
+<p>The variable names in the JSON sample must match the corresponding entity names in the AI Assistant skill action (<code>CustomerID</code> and <code>TransactionID</code>).</p>
+</details>
+<ul>
+<li>Click on <strong>[Parse]</strong></li>
+<li>Click on <strong>[Save]</strong></li>
+<li>Save the flow</li>
+</ul>
+</li>
+<li>
+<p>Next, we need to generate a unique Case ID for the fraud case. We will use an <strong>Evaluate</strong> node.</p>
+<ul>
+<li>Drag and drop an <strong>Evaluate</strong> node to the canvas beside the <strong>Start Node</strong></li>
+<li>Connect the green outlet of the <strong>Start Node</strong> to the new <strong>Evaluate</strong> node.</li>
+<li>Double click on the <strong>Evaluate</strong> node</li>
+<li>Rename the node to <copy><code>Generate Case ID</code></copy></li>
+<li>
+<p>Copy the below JavaScript code in the code editor of the node:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">var</span><span class="w"> </span><span class="nx">randomId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="mf">100000</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">900000</span><span class="p">);</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">// This variable can be used in subsequent nodes</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nx">caseID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">randomId</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="mf">1</span><span class="p">;</span>
+</span></code></pre></div>
+<details class="info" open="open">
+<summary>Info</summary>
+<p>This code generates a random 6-digit number between 100000 and 999999 and converts it to a string. The resulting <code>caseID</code> variable will be passed to the Airtable API in the next step to create the fraud case record.</p>
+</details>
+</li>
+<li>
+<p>Set the <strong>Script Output</strong> value to <code>1</code></p>
+</li>
+<li>Set the <strong>Branch Name</strong> value to <copy><code>Success</code></copy></li>
+<li>Click on <strong>[Save]</strong></li>
+<li>Save the flow</li>
+</ul>
+</li>
+<li>
+<p>Now we will create the fraud case record in your Airtable base using an <strong>HTTP Request</strong> node.</p>
+<details class="important" open="open">
+<summary>Important</summary>
+<p>This step uses the Airtable API to create a new record in a <strong>FraudCases</strong> table. Before proceeding, ensure you have:</p>
+<ul>
+<li>A <strong>FraudCases</strong> table created in your Airtable base with the following fields: <code>CaseID</code> (Single line text), <code>Status</code> (Single Select), <code>CustomerID</code> (Link to Customers table), and <code>TransactionID</code> (Link to Transactions table).</li>
+<li>Your <a href="https://airtable.com/developers/web/api/introduction">Airtable API</a> base ID handy.</li>
+<li>Your <a href="https://airtable.com/create/tokens">Personal Access Token</a> created with write permissions.</li>
+</ul>
+</details>
+<ul>
+<li>Drag and drop an <strong>HTTP Request</strong> node to the canvas beside the <strong>Evaluate</strong> node</li>
+<li>Connect the green outlet of the <strong>Evaluate</strong> node to the new <strong>HTTP Request</strong> node.</li>
+<li>Double click on the <strong>HTTP Request</strong> node</li>
+<li>Rename the node to <copy><code>Create Fraud Case</code></copy></li>
+<li>
+<p>Fill in the parameters as follows:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: left;">Value</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Method</strong></td>
+<td style="text-align: left;"><code>POST</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Endpoint URL</strong></td>
+<td style="text-align: left;"><copy><code>https://api.airtable.com/v0/&lt;yourBaseID&gt;/FraudCases</code></copy></td>
+<td style="text-align: left;">Replace <code>&lt;yourBaseID&gt;</code> with the value of your Airtable Base</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Header</strong></td>
+<td style="text-align: left;"><copy><code>Authorization</code></copy></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Value</strong></td>
+<td style="text-align: left;"><code>Bearer &lt;yourPersonalToken&gt;</code></td>
+<td style="text-align: left;">Enter <code>yourPersonalToken</code> from <a href="https://airtable.com/create/tokens">Airtable</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Header</strong></td>
+<td style="text-align: left;"><copy><code>Content-Type</code></copy></td>
+<td style="text-align: left;">Click <strong>+ Add Another Header</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Value</strong></td>
+<td style="text-align: left;"><copy><code>application/json</code></copy></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Body</strong></td>
+<td style="text-align: left;">See below</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Connection Timeout</strong></td>
+<td style="text-align: left;"><copy><code>10000</code></copy></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Request Timeout</strong></td>
+<td style="text-align: left;"><copy><code>10000</code></copy></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Copy the following into the <strong>Body</strong> field:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">"CaseID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$(caseID)"</span><span class="p">,</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="nt">"Status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New"</span><span class="p">,</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="nt">"CustomerID"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">      </span><span class="s2">"$(n2.aiAgent.CustomerID)"</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="p">],</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="nt">"TransactionID"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">      </span><span class="s2">"$(n2.aiAgent.TransactionID)"</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="p">]</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">  </span><span class="nt">"typecast"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="p">}</span>
+</span></code></pre></div>
+<details class="warning" open="open">
+<summary>Warning</summary>
+<p>Make sure the variables <code>$(n2.aiAgent.CustomerID)</code>, and <code>$(n2.aiAgent.TransactionID)</code> correspond to the correct node numbers in your flow. You can verify them by selecting the variables from the <strong>Input Variables</strong> right panel:</p>
+<ul>
+<li><code>$(n2.aiAgent.CustomerID)</code> → from the <strong>Start</strong> node</li>
+<li><code>$(n2.aiAgent.TransactionID)</code> → from the <strong>Start</strong> node</li>
+</ul>
+</details>
+<details class="info" open="open">
+<summary>Why <code>typecast: true</code>?</summary>
+<p>The <code>typecast</code> parameter tells the Airtable API to automatically convert the input values to match the field types in your table. This is particularly important for the <code>CustomerID</code> and <code>TransactionID</code> fields, which are <strong>Link to another record</strong> fields in Airtable. By passing them as arrays and enabling typecast, Airtable will correctly resolve the record links.</p>
+</details>
+</li>
+<li>
+<p>Click on <strong>[Save]</strong></p>
+</li>
+<li>
+<p>To complete the node, click on the green outlet at the right and drag it to the canvas. Release it to open the <strong>End</strong> dialogue:</p>
+<ul>
+<li>Set the <strong>Node Event</strong> value to <code>onSuccess</code></li>
+<li>Set the <strong>Flow Result</strong> value to <code>101 - Successfully completed flow [Success]</code></li>
+<li>Click on <strong>[Save]</strong></li>
+</ul>
+</li>
+<li>
+<p>Save the flow!</p>
+</li>
+</ul>
+</li>
+<li>
+<p>To finish the flow, pass the Case ID back to the AI Assistant through the <strong>Flow Outcomes</strong>.</p>
+<details class="inline end" open="open">
+<summary>Final - Flow View</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_open_case_view.png" data-title="Final - Flow View" data-desc-position="top"><img alt="Final - Flow View" src="../assets/lab3_open_case_view.png"></a>
+</figure><p></p>
+</details>
+<ul>
+<li>Click on the <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M195.1 9.5c3-14.8 16.1-25.5 31.3-25.5h59.8c15.2 0 28.3 10.7 31.3 25.5l14.5 70c14.1 6 27.3 13.7 39.3 22.8l67.8-22.5c14.4-4.8 30.2 1.2 37.8 14.4l29.9 51.8c7.6 13.2 4.9 29.8-6.5 39.9L447 233.3c.9 7.4 1.3 15 1.3 22.7s-.5 15.3-1.3 22.7l53.4 47.5c11.4 10.1 14 26.8 6.5 39.9L477 417.9c-7.6 13.1-23.4 19.2-37.8 14.4l-67.8-22.5c-12.1 9.1-25.3 16.7-39.3 22.8l-14.4 69.9c-3.1 14.9-16.2 25.5-31.3 25.5h-59.8c-15.2 0-28.3-10.7-31.3-25.5l-14.4-69.9c-14.1-6-27.2-13.7-39.3-22.8l-68.1 22.5c-14.4 4.8-30.2-1.2-37.8-14.4L5.8 366.1c-7.6-13.2-4.9-29.8 6.5-39.9l53.4-47.5c-.9-7.4-1.3-15-1.3-22.7s.5-15.3 1.3-22.7l-53.4-47.5C.9 175.7-1.7 159 5.8 145.9l29.9-51.8c7.6-13.2 23.4-19.2 37.8-14.4l67.8 22.5c12.1-9.1 25.3-16.7 39.3-22.8zM256.3 336a80 80 0 1 0-.6-160 80 80 0 1 0 .6 160"></path></svg></span> button at the top right of the flow editor.</li>
+<li>Click on the <strong>Flow Outcomes</strong> tab</li>
+<li>Open the <code>Last Execution Status</code> Outcome. The <code>Notify AI Agent</code> radio button is enabled by default for the start node with <code>AI Agent</code> as the trigger.</li>
+<li>
+<p>Click on <strong>+ Add New</strong> to add another entry, in the Key field type <strong>Response</strong>. Click the Value field and select the <strong>http.responseBody</strong> variable from the HTTP Request section in the Input Variables. </p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Key</th>
+<th style="text-align: left;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><copy><code>Response</code></copy></td>
+<td style="text-align: left;"><copy><code>$(n4.http.responseBody)</code></copy></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Click on <strong>[Save]</strong></p>
+</li>
+<li>Save the flow!!</li>
+</ul>
+</li>
+</ol>
+<p>Your <strong>open_case</strong> flow is now completed.
+Before leaving the flow editor, make sure you <strong>[Make Live]</strong> the flow, otherwise it will not be visible to the AI Agent Studio.</p>
+<details class="gif" open="open">
+<summary>Complete open_case Flow</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_open_case_action.gif" data-title="Complete Flow" data-desc-position="top"><img alt="Complete Flow" src="../assets/lab3_open_case_action.gif"></a>
+<figcaption>The completed open_case fulfillment flow</figcaption>
+</figure><p></p>
+</details>
+</details>
+<details class="webex" open="open">
+<summary>Configure Real-Time Assist</summary>
+<p>This feature is what makes our WxCC AI Assistant an Agentic AI solution, this is why you will find it very similar to our Webex AI Agents. The configuration is done in the same portal, our AI Agent Studio, and most of the settings are the same. However, the way to write the prompts between an AI Agent and 
+an AI Assistant is very different. On the AI Agent side you have to ask tell it how to reply to a customer, in the AI Assistant you have to tell it how to guide the agent. This is a key difference to keep in mind as you are building your instructions. Let's start the configuration: </p>
+<ol>
+<li>From <a href="https://admin.webex.com">Control Hub</a> navigate to <strong>[Contact Center]</strong> and under <strong>Quick Links</strong> click on the <strong>Webex AI Agent</strong> link. The Webex AI Agent studio will open in a new window. </li>
+<li>On the left navigation menu, the name of each option shows up when you hover over the icons, select the AI Assistant Skill icon. </li>
+<li>Click the option <strong>+ Create Skill</strong>. Select the option <strong>Start from scratch</strong> and click <strong>Next</strong>. </li>
+<li>
+<p>Enter the <strong>Skill name</strong> <copy><code>Counter_Fraud_Assistant</code></copy> and enter the following in the <strong>Goal</strong> section: 
+    <copy><code>You are an ai assistant working for Webex Financial Group. You will be assisting human agents that are specialized in handling fraud scenarios for our customers. Provide timely recommendations about our fraud prevention and dispute transaction policies.</code></copy></p>
+<details class="tip" open="open">
+<summary>Best Practices for AI Assistant Instructions</summary>
+<p>To ensure your AI Assistant provides high-quality, reliable guidance, follow these guidelines:</p>
+<ol>
+<li><strong>Agent-Guidance Style</strong>: Frame instructions as guidance for the human agent (e.g., "Guide the agent to collect the customer ID") rather than direct commands.</li>
+<li><strong>Be Specific and Unambiguous</strong>: Clearly state the assistant's role, required fields, and the exact conditions under which an action should be triggered.</li>
+<li><strong>Define Required Fields</strong>: Specify the exact fields needed for each action; avoid vague terms like "relevant information."</li>
+<li><strong>Validation Rules</strong>: Define formats (e.g., regex) and validation logic clearly. If a field has a specific pattern (like a Customer ID), state it so the assistant can validate it before triggering an action.</li>
+</ol>
+</details>
+</li>
+<li>
+<p>Click <strong>Create</strong> and the main configuration page for the AI Assistant skill comes up, add the following prompt to the <strong>Instructions</strong> section: 
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a># AI Assistant Action Orchestration
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Before asking the AGENT to collect any data from the CUSTOMER, check the conversation history. If the data was already provided, reuse it instead of asking again.
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>If the AGENT has acknowledged the CUSTOMER's intent but has not yet asked for the specific required data, do not repeat or pre-empt the suggestion. Allow the conversation to progress.
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>When calling tools: Use ONLY values the customer explicitly provided. NEVER infer, construct, extract digits from other fields, use example values, add UNKNOWN or use default/placeholder values (like "00:00", "0", etc.). Missing required parameter = ASK user. Missing optional parameter = OMIT it entirely. NO exceptions.
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>The CustomerID format is CUST-001, agent only needs to collect the last 3 digits. 
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>## Collect Recent Transactions
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>**Always follow these instructions before moving to the "Identify Fraudulent Transaction" section.**: 
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>1. **Fetch Recent Transactions**: Ask the AGENT to get the CUSTOMER ID at the beginning of the call. Use the CUSTOMER ID  to execute [fetch_transactions] action to get the recent transactions. 
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>2. **Provide Transaction Details**: Once transactions are fetched, provide the AGENT with the following details for each transaction:
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>   - Transaction Amount
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>   - Transaction Vendor
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>   - Transaction City
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>   - Transaction Date
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>3. **Error Handling**: If there are no transactions available, instruct the AGENT to check the banking system manually. If the banking system is unresponsive, advise the agent to escalate the issue.
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>## Identify Fraudulent Transaction
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>1. **Guide the AGENT**: Confirm if the transaction identified as suspicious could have been made by someone else with access to the account or if the CUSTOMER recognizes the amount but not the vendor. Prompt the agent to ask the customer if they have any recent transactions that they do recognize.
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>2. **CUSTOMER confirms the transaction is fraudulent**: Explain to the AGENT that they need to open a dispute case to investigate the transaction. Guide the agent to inform the customer that opening the case will automatically lock the CUSTOMER's credit card and ship a new one to the address on file. The AGENT needs to get confirmation from the CUSTOMER before the case is opened.
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>3. **Once the CUSTOMER confirms**: Execute the [open_case] action. **If the CUSTOMER declines**: If the CUSTOMER has a reason to decline their card getting locked, guide the agent to ask them to provide a reason and look for alternative options.. Shipment of the credit card can be expedited from 5 days to 2 days in case of travel or other time sensitive activities.
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>4. **Provide Case ID**: Once the case is opened, provide the AGENT with the case ID that is returned by the action. Guide the agent to share the case ID to the customer and explain its important to keep track of their dispute.
+</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>
+</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>### Additional Considerations
+</span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>
+</span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>- **User Experience**: Ensure that the language used is empathetic and supportive, as customers may be distressed about potential fraud.
+</span></code></pre></div><p></p>
+</li>
+<li>Go to the <strong>Knowledge</strong> tab and select the <strong>FraudKB</strong> you created. Click <strong>Save Changes</strong>. </li>
+<li>Navigate to the <strong>Actions</strong> tab and click on <strong>+ New Action</strong>.</li>
+<li>Fill in the <strong>General information</strong> of your action<ul>
+<li><strong>Action name</strong>: <copy><em>fetch_transactions</em></copy></li>
+<li><strong>Action description</strong>: copy and paste the following description.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Use this action to get recent transactions on the account by providing the CustomerID. 
+</span></code></pre></div></li>
+<li><strong>Action Scope</strong>: Slot filling and fulfillment</li>
+</ul>
+</li>
+<li>Under <strong>Slot filling</strong> click on <strong>[New input entity]</strong></li>
+<li>
+<p>In the <strong>Add a new input entity</strong> dialogue window, populate: </p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Entity Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Value</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Example</th>
+<th style="text-align: left;">Display Name</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Agent Review</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><copy><code>CustomerID</code></copy></td>
+<td style="text-align: left;"><code>regex</code></td>
+<td style="text-align: left;"><copy><code>CUST-\d{3}</code></copy></td>
+<td style="text-align: left;"><copy>CustomerID provided by the customer or agent during the call. Always starts with "CUST-", only need to collect the last 3 digits.</copy></td>
+<td style="text-align: left;"><copy><code>CUST-001</code></copy></td>
+<td style="text-align: left;">Customer ID</td>
+<td style="text-align: left;"><code>Yes</code></td>
+<td style="text-align: left;"><code>Yes</code></td>
+</tr>
+</tbody>
+</table>
+<details class="info" open="open">
+<summary>Agent Review</summary>
+<p>Setting <strong>Agent Review</strong> to <code>Yes</code> means the AI Assistant will present the value to the human agent for confirmation before executing the action. This is a critical safety mechanism—it ensures the agent can verify the Customer ID before a database query is made, preventing accidental lookups on the wrong account.</p>
+</details>
+</li>
+<li>
+<p>Associate the action flow in the <strong>Webex Connect Flow Builder Fulfillment</strong> section:</p>
+<ul>
+<li>Select the Webex Connect Service <code>Webex Finance Bootcamp</code></li>
+<li>Select the flow <code>fetch_transactions</code></li>
+</ul>
+</li>
+<li>Click on <strong>Add</strong></li>
+<li>Select the <strong>+ New Action</strong> option.</li>
+<li>Fill in the <strong>General information</strong> of your action<ul>
+<li><strong>Action name</strong>: <copy><em>open_case</em></copy></li>
+<li><strong>Action description</strong>: copy and paste the following description.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Opens a fraud case, locks the customer card and ships a new card.
+</span></code></pre></div></li>
+<li><strong>Action Scope</strong>: Slot filling and fulfillment</li>
+</ul>
+</li>
+<li>Under <strong>Slot filling</strong> click on <strong>[New input entity]</strong></li>
+<li>
+<p>In the <strong>Add a new input entity</strong> dialogue window, populate: </p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Entity Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Value</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Example</th>
+<th style="text-align: left;">Required</th>
+<th style="text-align: left;">Agent Review</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><copy><code>CustomerID</code></copy></td>
+<td style="text-align: left;"><code>regex</code></td>
+<td style="text-align: left;"><copy><code>CUST-\d{3}</code></copy></td>
+<td style="text-align: left;"><copy><code>CustomerID provided by the customer or agent.</code></copy></td>
+<td style="text-align: left;"><copy><code>CUST-020</code></copy></td>
+<td style="text-align: left;"><code>Yes</code></td>
+<td style="text-align: left;"><code>No</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><copy><code>TransactionID</code></copy></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"><copy><code>**Do not request this value from the Agent or Customer**. This is the TransactionID received when the [fetch_transactions] actions was executed. Each pending transaction had a unique TransactionID.</code></copy></td>
+<td style="text-align: left;"><copy><code>101010</code></copy></td>
+<td style="text-align: left;"><code>Yes</code></td>
+<td style="text-align: left;"><code>No</code></td>
+</tr>
+</tbody>
+</table>
+<details class="warning" open="open">
+<summary>TransactionID Entity Description</summary>
+<p>Pay close attention to the description of the <code>TransactionID</code> entity. The instruction <strong>"Do not request this value from the Agent or Customer"</strong> is a guardrail embedded directly into the entity definition. This tells the LLM to extract the TransactionID from the output of the previous <code>fetch_transactions</code> action rather than asking the human agent to provide it manually. This reduces friction and prevents errors.</p>
+</details>
+</li>
+<li>
+<p>Associate the action flow in the <strong>Webex Connect Flow Builder Fulfillment</strong> section:</p>
+<ul>
+<li>Select the Webex Connect Service <code>Webex Finance Bootcamp</code></li>
+<li>Select the flow <code>open_case</code></li>
+</ul>
+</li>
+<li>Click on <strong>Add</strong>. </li>
+<li>You are ready to Publish your skill. Select the <strong>Publish</strong> option and enter a comment in the Publish window. Click <strong>Publish</strong> again. </li>
+</ol>
+<details class="gif" open="open">
+<summary>AI Assistant Skill Configuration</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_ai_assistant_skill.gif" data-title="Set Escalation Context" data-desc-position="top"><img alt="Set Escalation Context" src="../assets/lab3_ai_assistant_skill.gif"></a>
+<figcaption>AI Assistant Skill Configuration</figcaption>
+</figure><p></p>
+</details>
+</details>
+<details class="webex" open="open">
+<summary>Assign AI Assistant Skill to a Queue</summary>
+<p>With the skill created, you need to assign it to the queue that your fraud specialists are monitoring.</p>
+<ol>
+<li>Go back to <strong>Control Hub</strong> &gt; <strong>Contact Center</strong> &gt; <strong>AI Features</strong>.</li>
+<li>Click on the <strong>Queue</strong> tab and then click the queue you are using for this lab.</li>
+<li>Scroll down to the Real-Time Assist section. Enable the <strong>Apply Real-time Assist</strong> and select the <strong>Counter_Fraud_Assistant</strong> skill. </li>
+<li>Click <strong>Save</strong>. </li>
+</ol>
+<details class="info" open="open">
+<summary>Skill-to-Queue Mapping</summary>
+<p>AI Assistant skills are assigned at the <strong>queue level</strong>, not at the agent level. This means any agent who receives a call from the assigned queue will automatically have the RTA skill active during that interaction. If an agent handles calls from multiple queues, different skills can be applied depending on which queue the call originated from.</p>
+</details>
+<details class="gif" open="open">
+<summary>Assign Skill to Queue</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_assistant_skill_queue_new.gif" data-title="Assign Skill" data-desc-position="top"><img alt="Assign Skill" src="../assets/lab3_assistant_skill_queue_new.gif"></a>
+<figcaption>Assigning the Counter Fraud Assistant skill to the Fraud Queue</figcaption>
+</figure><p></p>
+</details>
+</details>
+<h2 id="testing">Testing <img alt="🧪" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f9ea.svg" title=":test_tube:"><a class="headerlink" href="#testing" title="Permanent link">¶</a></h2>
+<h3 id="inboundoutbound-detection-for-faster-testing">Inbound/Outbound Detection for Faster Testing<a class="headerlink" href="#inboundoutbound-detection-for-faster-testing" title="Permanent link">¶</a></h3>
+<p>During the outbound campaign flow, calls are initiated by the Campaign Manager and can take 2-5 minutes to be generated. To speed up testing during this lab, you will define and inbound entry point to your flow and you will add a simple check at the start of the flow to detect whether the call is outbound (initiated by the campaign) or inbound (you calling the entry point directly from your phone). This allows you to test the AI Agent immediately without waiting for the dialer.</p>
+<p>The logic is straightforward: if the ANI (the number that initiated the call) matches the campaign outdial number, the call is outbound and we use the DNIS (the customer's number) as the phone number sent to the AI Agent. If it does not match, the call is inbound and we use the ANI (your phone number) instead.</p>
+<p>Remember you need to define an Inbound telephony entry point under Channels in Control Hub, assign a DN to the channel and configure your <em>AI_Agent_DebtCollection</em> flow as the Routing flow in the Channel.</p>
+<figure style="width: 70%;">
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_inbound_test1.png" data-title="Inbound Test - Entry Point" data-desc-position="top"><img alt="Inbound Test - Entry Point" src="../assets/lab3_inbound_test1.png"></a></p>
+</figure>
+<details class="webex" open="open">
+<summary>Configure Call Direction Detection</summary>
+<ol>
+<li>In the <code>AI_Agent_DebtCollection</code> flow, click on <strong>Global Flow Properties</strong> (gear icon).</li>
+<li>
+<p>Under <strong>Custom Flow Variables</strong>, click <strong>Create flow variable</strong> and add:</p>
+<table>
+<thead>
+<tr>
+<th>Variable Name</th>
+<th>Type</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>phone_number</code></td>
+<td><code>String</code></td>
+<td><em>(empty)</em></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>On the canvas, drag a <strong>Condition</strong> node immediately after the <code>NewPhoneContact</code> start node.</p>
+<blockquote>
+<p>Note the start node might appear as <em>StartFlow</em> in your flow.</p>
+</blockquote>
+</li>
+<li>
+<p>Rename the node to <copy><code>Detect_Call_Direction</code></copy>.</p>
+</li>
+<li>
+<p>Configure the condition expression:</p>
+<ul>
+<li><strong>Expression</strong>: <copy><code>{{NewPhoneContact.ANI=="+XXXXXXXXXXX"}}</code></copy></li>
+</ul>
+<p>Replace <code>+XXXXXXXXXXX</code> with the outdial ANI number configured in your campaign (Lab 1.5). </p>
+</li>
+<li>
+<p><strong>True Path (Outbound)</strong>:</p>
+<ul>
+<li>Drag a <strong>Set Variable</strong> node onto the canvas and connect it to the <strong>True</strong> output of the Condition node.</li>
+<li>Rename the node to <copy><code>Set_Outbound_Phone</code></copy>.</li>
+<li><strong>Variable</strong>: select <code>phone_number</code></li>
+<li><strong>Set Value</strong>: <code>{{NewPhoneContact.DNIS}}</code></li>
+</ul>
+</li>
+<li>
+<p><strong>False Path (Inbound)</strong>:</p>
+<details class="inline end" open="open">
+<summary>Inbound Test - Flow View</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_inbound_test2.png" data-title="Inbound Test - Flow View" data-desc-position="top"><img alt="Inbound Test - Flow View" src="../assets/lab3_inbound_test2.png"></a>
+</figure><p></p>
+</details>
+<ul>
+<li>Drag a <strong>Set Variable</strong> node onto the canvas and connect it to the <strong>False</strong> output of the Condition node.</li>
+<li>Rename the node to <copy><code>Set_Inbound_Phone</code></copy>.</li>
+<li>
+<p>Configure the following variables within this node:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Set Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>phone_number</code></td>
+<td><code>{{NewPhoneContact.ANI}}</code></td>
+</tr>
+<tr>
+<td><code>firstName</code></td>
+<td><code>John</code></td>
+</tr>
+<tr>
+<td><code>lastName</code></td>
+<td><code>Doe</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<p>Replace <code>John</code> and <code>Doe</code> with the first name and last name of the test customer in your Airtable Customers table.</p>
+</li>
+<li>
+<p>Connect both <strong>Set Variable</strong> nodes to the <strong>Virtual Agent V2</strong> node (<code>DebtCollectionAgent</code>).</p>
+</li>
+<li>
+<p>To complete your test environment, make sure you update the <strong>State Event</strong> data in the <strong>Virtual Agent V2</strong> node to pass on the new <em>phone_number</em> variable. </p>
+<p>In the <em>State Event</em> section, change the json structure to the below one in the <em>Event Data</em> field:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">{</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="nt">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="p">{{</span><span class="err">pho</span><span class="kc">ne</span><span class="err">_</span><span class="kc">nu</span><span class="err">mber</span><span class="p">}}</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nt">"firstName"</span><span class="p">:</span><span class="err">'</span><span class="p">{{</span><span class="kc">f</span><span class="err">irs</span><span class="kc">t</span><span class="err">Name</span><span class="p">}}</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="nt">"lastName"</span><span class="p">:</span><span class="err">'</span><span class="p">{{</span><span class="err">las</span><span class="kc">t</span><span class="err">Name</span><span class="p">}}</span><span class="err">'</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Dynamic Customer Lookup for Inbound Calls</p>
+<p>For this lab, hardcoding the customer name is sufficient for testing. In a production environment, you would add an <strong>HTTP Request</strong> node after this Set Variable node to dynamically fetch the customer name from Airtable using the <code>phone_number</code> variable. The configuration would be similar to the <code>Fetch Customer Info</code> HTTP Request node used in the <code>fetch_balance</code> Webex Connect flow (Lab 2.3):</p>
+<ul>
+<li><strong>Method</strong>: <code>GET</code></li>
+<li><strong>Endpoint URL</strong>: <code>https://api.airtable.com/v0/&lt;yourBaseID&gt;/Customers?filterByFormula={PhoneNumber}="{{phone_number}}"</code></li>
+<li><strong>Header</strong>: <code>Authorization</code> â <code>Bearer &lt;yourPersonalToken&gt;</code></li>
+</ul>
+<p>You would then use the <strong>Parse</strong> settings within the <strong>HTTP Request</strong> node to map the response values to the <code>firstName</code> and <code>lastName</code> global variables.</p>
+</div>
+</li>
+</ol>
+</details>
+<details class="webex" open="open">
+<summary>Preparation</summary>
+<p>Before testing, ensure the following:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Your <strong>AI Agent</strong> (Alex) has been published with the <code>fraud_transfer</code> action (Lab 3.1).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Your <strong>flow</strong> has been published with the escalation path, context parsing, and RTT enabled (Lab 3.2).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> The <strong>AI Assistant</strong> features (Summarization, RTT, RTA) are enabled in Control Hub (Lab 3.3).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Your <strong>Desktop Layout</strong> includes the AI Assistant and RTT components (Lab 3.3).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> The <strong>Counter_Fraud_Assistant</strong> skill is assigned to the correct queue (Lab 3.4).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> A fraud specialist agent is <strong>logged into the Agent Desktop</strong> and is in an <strong>Available</strong> state.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Your <strong>Airtable</strong> has a test customer with transaction data.</li>
+</ul>
+</details>
+<details class="webex" open="open">
+<summary>Execute the Test</summary>
+<ol>
+<li><strong>Initiate the Call</strong>: Trigger an outbound call via the Campaign Manager, or call directly into your entry point to reach Alex.</li>
+<li><strong>Authenticate with Alex</strong>: Go through the standard name verification and PIN authentication flow.</li>
+<li>
+<p><strong>Trigger the Fraud Scenario</strong>: Once authenticated, ask Alex about your recent transactions. When Alex presents them, say something like:</p>
+<p><copy>"I don't recognize that transaction."</copy></p>
+</li>
+<li>
+<p><strong>Observe Alex's Behavior</strong>: Alex should:</p>
+<ul>
+<li>Acknowledge the concern.</li>
+<li>Collect the suspicious transaction details (amount, vendor, date).</li>
+<li>Execute the <code>fraud_transfer</code> action, passing all collected entities.</li>
+<li>Inform the customer that they are being transferred to a specialist.</li>
+</ul>
+</li>
+<li>
+<p><strong>Accept the Call as the Fraud Specialist</strong>: Switch to your Agent Desktop.</p>
+<ul>
+<li><strong>VA Transfer Summary</strong>: Check the AI Assistant widget for the Virtual Agent conversation summary. This gives you the full history of what Alex discussed with the customer.</li>
+<li><strong>Real-Time Transcription</strong>: As you speak with the customer, verify that the live transcript appears in the transcript tab.</li>
+<li><strong>Real-Time Assist</strong>: During the conversation, when fraud-related topics come up, observe the AI Assistant widget for guidance cards from the <code>Counter_Fraud_Assistant</code> skill.</li>
+</ul>
+</li>
+<li>
+<p><strong>Follow the RTA Guidance</strong>: The AI Assistant should prompt you to:</p>
+<ul>
+<li>Fetch the customer's recent transactions (triggering the <code>fetch_transactions</code> action).</li>
+<li>Confirm the fraudulent transaction with the customer.</li>
+<li>Open a fraud case (triggering the <code>open_case</code> action).</li>
+<li>Communicate the Case ID to the customer.</li>
+</ul>
+</li>
+<li>
+<p><strong>Wrap Up</strong>: End the call and check the <strong>Conversation Summary</strong> in the wrap-up panel.</p>
+</li>
+</ol>
+</details>
+<details class="webex" open="open">
+<summary>Validation Checklist</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Step</th>
+<th style="text-align: left;">Expected Result</th>
+<th style="text-align: left;">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Alex collects fraud details</td>
+<td style="text-align: left;">Entities are populated with transaction info</td>
+<td style="text-align: left;">☐</td>
+</tr>
+<tr>
+<td style="text-align: left;">Alex triggers <code>fraud_transfer</code></td>
+<td style="text-align: left;">Call is escalated to the Fraud Queue</td>
+<td style="text-align: left;">☐</td>
+</tr>
+<tr>
+<td style="text-align: left;">VA Transfer Summary displayed</td>
+<td style="text-align: left;">Full AI Agent conversation history visible</td>
+<td style="text-align: left;">☐</td>
+</tr>
+<tr>
+<td style="text-align: left;">RTT active during human call</td>
+<td style="text-align: left;">Live transcript visible in the Transcript tab</td>
+<td style="text-align: left;">☐</td>
+</tr>
+<tr>
+<td style="text-align: left;">RTA skill provides guidance</td>
+<td style="text-align: left;">Counter Fraud Assistant suggests next steps</td>
+<td style="text-align: left;">☐</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>fetch_transactions</code> action executes</td>
+<td style="text-align: left;">Agent sees recent transactions in the RTA widget</td>
+<td style="text-align: left;">☐</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>open_case</code> action executes</td>
+<td style="text-align: left;">Case ID is returned and communicated to customer</td>
+<td style="text-align: left;">☐</td>
+</tr>
+<tr>
+<td style="text-align: left;">Conversation Summary generated</td>
+<td style="text-align: left;">Accurate summary appears at wrap-up</td>
+<td style="text-align: left;">☐</td>
+</tr>
+</tbody>
+</table>
+</details>
+<hr>
+<h2 id="lab-completion">Lab Completion ✅<a class="headerlink" href="#lab-completion" title="Permanent link">¶</a></h2>
+<p>At this point, you have successfully:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Configured a contextual transfer action in Alex with fraud-specific entities.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Built an escalation flow that extracts AI Agent MetaData and routes based on the transfer type.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Enabled Real-Time Transcription (RTT) in both the flow and Control Hub.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Configured Summarization and Real-Time Assist in Control Hub.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Verified the Agent Desktop Layout includes the AI Assistant and RTT components.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Created a Real-Time Assist skill (<code>Counter_Fraud_Assistant</code>) with fraud-handling instructions, a Knowledge Base, and fulfillment actions.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Assigned the AI Assistant skill to the appropriate queue.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Tested the complete end-to-end scenario from AI Agent escalation to human-assisted fraud resolution.</li>
+</ul>
+<p><strong>Congratulations!</strong> You have successfully completed Lab 3 You are now ready to move on to the next section.</p>
+<p><a class="md-button md-button--primary" href="../lab4_ai_agent_transfer/">Next Lab: Lab 4 - Cross-skill multi-agent orchestration</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../lab2_debt_ai_agent/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Automated Debt collection">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Automated Debt collection
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab4_ai_agent_transfer/" class="md-footer__link md-footer__link--next" aria-label="Next: Cross-skill multi-agent orchestration">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Cross-skill multi-agent orchestration
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 Cisco
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexesmkd", "navigation.instant", "navigation.top", "navigation.footer", "search.suggest", "content.code.copy", "toc.follow", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../template_assets/js/newLoad.js"></script>
+      
+        <script src="../template_assets/js/setInfo.js"></script>
+      
+        <script src="../javascripts/extra.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "fade", "closeEffect": "fade", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

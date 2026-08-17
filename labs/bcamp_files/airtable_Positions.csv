@@ -1,0 +1,4 @@
+﻿Position_ID,Investment_Acct,Stock_Ticker,Quantity,Purchase_Price,Current_Price,Position Value
+POS-001,,MOON,10,40,42.69,427
+POS-002,,YLO,100,8.5,8.05,805
+POS-003,,CATV,50,14,15.2,760

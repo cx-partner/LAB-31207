@@ -1,0 +1,2225 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Proactive Debt Collection and Contention resolution">
+      
+      
+        <meta name="author" content="Luis Garcia Delgado, Juan Corral, Sebastian Hernandez, Stephanie Ross">
+      
+      
+        <link rel="canonical" href="https://cx-partner.github.io/bootcamp2026/labs/lab_novapay_copy/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../template_assets/webex75.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Extra Lab: NovaPay Payment Service - 2026 Webex Contact Center Partner Bootcamp</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#extra-lab-novapay-payment-service" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="2026 Webex Contact Center Partner Bootcamp" class="md-header__button md-logo" aria-label="2026 Webex Contact Center Partner Bootcamp" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            2026 Webex Contact Center Partner Bootcamp
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Extra Lab: NovaPay Payment Service
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../overview/" class="md-tabs__link">
+          
+  
+  
+  Readme
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../pre_req_wxcc/" class="md-tabs__link">
+          
+  
+  
+  Pre-requisites
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../lab1_campaign_manager/" class="md-tabs__link">
+          
+  
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../lab_pods/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Lab Pods
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../bcamp_files/Webex_Bank_Rewards_Program/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Webex Bank Rewards Program
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="2026 Webex Contact Center Partner Bootcamp" class="md-nav__button md-logo" aria-label="2026 Webex Contact Center Partner Bootcamp" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    2026 Webex Contact Center Partner Bootcamp
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Readme
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Readme
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026 WxCC Bootcamp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-requisites
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Pre-requisites
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1">
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Partner Tenant
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Partner Tenant
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pre_req_wxcc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Partner Lab Tenant Capabilities &amp; Pre-requisites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2">
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Channels
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Digital Channels
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pre_req_email_channel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Email
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auxiliary Applications
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Auxiliary Applications
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pre_req_airtable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Airtable Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Labs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Labs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1">
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1_campaign_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proactive Outbound Reach
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2">
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2_debt_ai_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automated Debt collection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3">
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3_human_ai_assist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Human escalation &amp; RT Assist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 4
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab 4
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab4_ai_agent_transfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cross-skill multi-agent orchestration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5">
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extra Lab
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extra Lab
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_novapay/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NovaPay payment service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_pods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab Pods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bcamp_files/Webex_Bank_Rewards_Program/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Webex Bank Rewards Program
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="extra-lab-novapay-payment-service">Extra Lab: NovaPay Payment Service<a class="headerlink" href="#extra-lab-novapay-payment-service" title="Permanent link">¶</a></h1>
+<p>During the Bootcamp, you have used a NovaPay mock-payment service provided by Cisco. As this service is not guaranteed to be maintained beyond the Bootcamp, this lab will allow you to build your own fake payment service for demo purposes. The outcome of this lab is twofod: </p>
+<ol>
+<li>
+<p>A mockpayment frontend web site that mimics a typical payment user interface. The frontend offers a user interface to enter the payment data: amount, card option (visa, master card...) and  card details (name, number, expiration date and cvv). It allows a user to enter the data and click on a pay button to confirm the payment. The web site responds with a confirmation message that the payment has been completed. The user will see the amount payed, the last 4 digits of its credit card and a mock confirmation number.</p>
+<details class="warning" open="open">
+<summary>Warning</summary>
+<p>This is a UI simulation only. It does not process real payments, store data, or connect to any backend.</p>
+<p>Note: The application does not run any format validation on the input data</p>
+</details>
+</li>
+<li>
+<p>A web service that exposes an API to allow a third party to open a payment session for the customer to pay and complete the payment. It also provides the session status to check whether the payment has been completed. </p>
+</li>
+</ol>
+<p>This lab provides a <strong>step-by-step guide</strong> to replicate and deploy your own version of the <strong>NovaPay Payment Service</strong> using the existing implementation available in the <a href="https://github.com/cx-partner/NovaPay">Novapay</a> GitHub repository.</p>
+<hr>
+<h2 id="pre-requisites">Pre-Requisites<a class="headerlink" href="#pre-requisites" title="Permanent link">¶</a></h2>
+<p>This section outlines the required technologies, platforms, and applications needed to build, deploy, and operate the NovaPay Mock Payment Service.</p>
+<p>The implementation of the service relies on a lightweight web-based architecture composed of a hosted frontend, a backend API layer, a persistent session store, and an external Desktop Agent application capable of invoking REST APIs.</p>
+<h3 id="required-components">Required components<a class="headerlink" href="#required-components" title="Permanent link">¶</a></h3>
+<p>The following table summarizes the core components required to implement the NovaPay payment service:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Component</th>
+<th>Role in NovaPay</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GitHub</td>
+<td>Frontend</td>
+<td>Hosting the static payment page and version control for the entire codebase.</td>
+</tr>
+<tr>
+<td>Render</td>
+<td>Backend</td>
+<td>Cloud hosting for the Node.js/Express API (Session management &amp; processing).</td>
+</tr>
+<tr>
+<td>Redis Cloud</td>
+<td>Database</td>
+<td>Providing a managed Key-Value store for persistent, fast session storage.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="required-applications-and-accounts">Required Applications and Accounts<a class="headerlink" href="#required-applications-and-accounts" title="Permanent link">¶</a></h3>
+<p>In order to successfully deploy the NovaPay service, the following applications and user accounts must be available:</p>
+<ol>
+<li>
+<p>Development Environment</p>
+<ul>
+<li>
+<p>Node.js (v18 or later recommended) - Required to run the backend API locally. Includes npm for dependency management</p>
+</li>
+<li>
+<p>Git - Required for source code version control, Used to push backend and frontend code to GitHub</p>
+</li>
+<li>
+<p>Code Editor - Recommended: Visual Studio Code (VSCode). Used to develop and modify backend and frontend files</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Hosting &amp; Deployment Platforms</p>
+<ul>
+<li>
+<p>GitHub Account: Host the frontend payment page via GitHub Pages. Store backend implementation code</p>
+</li>
+<li>
+<p>Render Account: Deploy the NovaPay Backend API as a Web Service and deploy the Redis Key-Value Store instance. It also manages environment variables</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Testing Tools</p>
+<ul>
+<li>Postman (or Bruno or similar API client) - Test NovaPay REST APIs. Simulates client app behavior and validates session creation and payment confirmation.</li>
+</ul>
+</li>
+</ol>
+<h2 id="general-overview-of-the-novapay-payment-service">General overview of the NovaPay payment service.<a class="headerlink" href="#general-overview-of-the-novapay-payment-service" title="Permanent link">¶</a></h2>
+<p><strong>NovaPay</strong> is a mock payment service designed for developer testing and integration purposes. It provides a simple, secure payment flow where an agent can generate a payment session, share a frontend URL with a customer, and confirm the payment. The service stores session data in Redis and allows polling from a desktop or web application to verify payment completion.</p>
+<h3 id="architecture-overview">Architecture Overview<a class="headerlink" href="#architecture-overview" title="Permanent link">¶</a></h3>
+<pre class="mermaid"><code>flowchart LR
+    A[Client App]
+    B[NovaPay API, Node.js + Express]
+    C[Redis DB, Session Store]
+    D[Customer Frontend, GitHub Pages]
+
+    A --&gt;|Create session and poll status| B
+    B --&gt;|Store session| C
+    B --&gt;|Respond with session status| A
+    A --&gt;|Send payment URL| D
+    D --&gt;|Submit payment info| B
+    B --&gt;|Update session in Redis| C
+</code></pre>
+<hr>
+<h2 id="lab-overview">Lab Overview 📌<a class="headerlink" href="#lab-overview" title="Permanent link">¶</a></h2>
+<p>In this lab you will perform the following tasks:</p>
+<ol>
+<li>Replicate the NovaPay GitHub Repository  </li>
+<li>Configure GitHub Pages to host the payment frontend  </li>
+<li>Deploy the Backend API on Render  </li>
+<li>Deploy the Redis Key-Value Store on Render  </li>
+<li>Configure environment variables  </li>
+<li>Test NovaPay APIs using Postman  </li>
+</ol>
+<hr>
+<h2 id="step-1-replicate-the-novapay-repository">🔹 STEP 1 — Replicate the NovaPay Repository<a class="headerlink" href="#step-1-replicate-the-novapay-repository" title="Permanent link">¶</a></h2>
+<p>You will create your own copy of the NovaPay implementation in your own repository. Currently, all the assets for the service are located in a GitHub hosted repository: <a href="https://github.com/cx-partner/NovaPay">Novapay</a>, owned by Cisco.</p>
+<details class="webex" open="open">
+<summary>Import NovaPay GitHub Repository</summary>
+<ol>
+<li>Log in to your <strong>GitHub Account</strong></li>
+<li>Navigate to: <a href="https://github.com/new/import">Import Repository</a> </li>
+<li>Populate the fields as follows:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Repository URL</td>
+<td>https://github.com/cx-partner/NovaPay</td>
+</tr>
+<tr>
+<td>Owner</td>
+<td>Your GitHub Username</td>
+</tr>
+<tr>
+<td>Repository Name</td>
+<td>NovaPay</td>
+</tr>
+</tbody>
+</table>
+<details class="gif" open="open">
+<summary>Import the Repository to GitHub</summary>
+<p></p><figure markdown="">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Import%20GitHub%20Repository.gif" data-title="Import GitHub repository" data-desc-position="top"><img alt="Import GitHub repository" src="../assets/Import%20GitHub%20Repository.gif"></a>
+    </figure><p></p>
+</details>
+<ol>
+<li>Click: <strong><em>Begin Import</em></strong></li>
+</ol>
+<p>GitHub will start importing the repository. After completion, you will have your own NovaPay repository in GitHub:</p>
+<div class="language-text highlight"><pre><span></span><code>https://github.com/&lt;your-username&gt;/NovaPay
+</code></pre></div>
+</details>
+<hr>
+<h2 id="step-2-configure-github-pages-frontend-hosting">🔹 STEP 2 — Configure GitHub pages (Frontend Hosting)<a class="headerlink" href="#step-2-configure-github-pages-frontend-hosting" title="Permanent link">¶</a></h2>
+<p>The NovaPay frontend that hosts the user interface is hosted publicly using GitHub Pages.</p>
+<details class="webex" open="open">
+<summary>Enable GitHub Pages</summary>
+<p>Let´s first enable GitHub Pages in your new repository. </p>
+<ol>
+<li>
+<p>Navigate to your repository in GitHub</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>NovaPay → Settings → Pages
+</span></code></pre></div>
+</li>
+<li>
+<p>Under <strong>Source</strong>, select: <em>Deploy from Branch</em></p>
+</li>
+<li>
+<p>Under <strong>Branch</strong>, select: </p>
+<ul>
+<li>Branch: <em>main</em></li>
+<li>Folder: <em>/(root)</em></li>
+</ul>
+</li>
+<li>
+<p>Click on <strong>Save</strong></p>
+</li>
+</ol>
+<details class="gif" open="open">
+<summary>Enable GitHub Pages</summary>
+<p></p><figure markdown="">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Enable%20GitHub%20Pages.gif" data-title="Enable GitHub Pages" data-desc-position="top"><img alt="Enable GitHub Pages" src="../assets/Enable%20GitHub%20Pages.gif"></a>
+    </figure><p></p>
+</details>
+</details>
+<details class="webex" open="open">
+<summary>Obtain your Frontend URL</summary>
+<p>Once GitHub pages is deployed, GitHub generates a public URL for you: </p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>https://&lt;your-username&gt;.github.io/NovaPay/backend/frontend/index.html
+</span></code></pre></div>
+<p>If you try this URL, you will get to the NovaPay payment service web site. Try it!</p>
+<p>Take note of this URL. You will need it later. </p>
+<details class="example" open="open">
+<summary>The NovaPay payment Website</summary>
+<p></p><figure markdown="">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/NovaPay%20Website.png" data-title="NovaPay website" data-desc-position="top"><img alt="NovaPay website" src="../assets/NovaPay%20Website.png"></a>
+    </figure><p></p>
+</details>
+</details>
+<hr>
+<h2 id="step-3-deploy-backend-api-on-render">🔹 STEP 3 — Deploy Backend API on Render<a class="headerlink" href="#step-3-deploy-backend-api-on-render" title="Permanent link">¶</a></h2>
+<details class="webex" open="open">
+<summary>Create Render Account</summary>
+<p>If you do not have a Render account, navigate to:</p>
+<p><a href="https://render.com" target="_blank">Render</a> </p>
+<p>Create an account:<br>
+    1. Click on <em>Start for free</em>
+    2. Create your render account</p>
+<details class="tip" open="open">
+<summary>Leverage your GitHub user</summary>
+<p>Select the GitHub option and enter yout GitHub credentials. That will connect your render workspace with your GitHub environment.</p>
+</details>
+<details class="gif" open="open">
+<summary>Create a Render user</summary>
+<p></p><figure markdown="">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Create%20Render%20User.gif" data-title="Render User" data-desc-position="top"><img alt="Render User" src="../assets/Create%20Render%20User.gif"></a>
+    </figure><p></p>
+</details>
+</details>
+<details class="webex" open="open">
+<summary>Create your Web Service</summary>
+<ol>
+<li>
+<p>Select:
+    </p><div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>New -&gt; Web Service
+</span></code></pre></div><p></p>
+</li>
+<li>
+<p>Under Git Provider, select your NovaPay Repository</p>
+<h2 id="-select-github">- Select GitHub<a class="headerlink" href="#-select-github" title="Permanent link">¶</a></h2>
+</li>
+<li>
+<p>Populate the configuration</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>NovaPay</td>
+</tr>
+<tr>
+<td>Region</td>
+<td>Select the region that best suits you</td>
+</tr>
+<tr>
+<td>Root Directory</td>
+<td>backend</td>
+</tr>
+<tr>
+<td>Environment</td>
+<td>Node</td>
+</tr>
+<tr>
+<td>Build Command</td>
+<td>npm install</td>
+</tr>
+<tr>
+<td>Start Command</td>
+<td>node server.js</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Select the Instance Type (free will work) and Click on <strong>Create Web Service</strong></p>
+</li>
+</ol>
+<p>Render will start building your service and then it will be deployed. After a while, you will see your service <strong>Live</strong></p>
+<details class="warning" open="open">
+<summary>Warning</summary>
+<p>With the free instance option, your free instance will spin down with inactivity, which can delay requests by 50 seconds or more.</p>
+</details>
+<details class="gif" open="open">
+<summary>Create a Render Web Service</summary>
+<p></p><figure markdown="">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Create%20Render%20User.gif" data-title="Render Web Service creation" data-desc-position="top"><img alt="Render Web Service creation" src="../assets/Create%20Render%20User.gif"></a>
+    </figure><p></p>
+</details>
+</details>
+<hr>
+<h2 id="step-4-deploy-redis-key-value-store">🔹 STEP 4 — Deploy Redis Key-Value Store<a class="headerlink" href="#step-4-deploy-redis-key-value-store" title="Permanent link">¶</a></h2>
+<details class="webex" open="open">
+<summary>Create Redis Instance</summary>
+<p>As we are implementing a polling architecture, we need something that can persist payment session state outside of the API process and make it quickly retrievable across multiple stateless requests. Our backend service running in Render is stateless, containerized and restartable at any moment, so we cannot store session state in memory inside Node.js. That’s exactly why Redis is required.</p>
+<ol>
+<li>In Render, add a new Key Value
+    <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>+ New -&gt; Key Value
+</span></code></pre></div></li>
+<li>
+<p>Populate: </p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>novapay_redis</td>
+</tr>
+<tr>
+<td>Region</td>
+<td>same as for the Web Service</td>
+</tr>
+<tr>
+<td>Plan</td>
+<td>Free</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Click <strong>Create Key Value Instance</strong></p>
+</li>
+</ol>
+<details class="gif" open="open">
+<summary>Create Redis Instance</summary>
+<p></p><figure markdown="">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Create%20Redis%20instance.gif" data-title="Create Redis instance" data-desc-position="top"><img alt="Create Redis instance" src="../assets/Create%20Redis%20instance.gif"></a>
+    </figure><p></p>
+</details>
+</details>
+<details class="webex" open="open">
+<summary>Obtain Redis Internal URL</summary>
+<ol>
+<li>
+<p>After creation, navigate to </p>
+<p><code>novapay-redis → Info</code> </p>
+</li>
+<li>
+<p>Scroll down to the <strong>Internal Key Value URL</strong></p>
+<p><code>Example: redis://red-d6g98xxxxxxc73daj4vg:6379</code></p>
+</li>
+<li>
+<p>Copy it, you will need it later. </p>
+</li>
+</ol>
+<details class="example" open="open">
+<summary>Redis internal URL</summary>
+<p></p><figure markdown="">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Redis%20URL.png" data-title="Redis URL" data-desc-position="top"><img alt="Redis URL" src="../assets/Redis%20URL.png"></a>
+    </figure><p></p>
+</details>
+</details>
+<hr>
+<h2 id="step-5-configure-environment-variables">🔹 STEP 5 — Configure Environment Variables<a class="headerlink" href="#step-5-configure-environment-variables" title="Permanent link">¶</a></h2>
+<p>We need to define a couple of environmental variables. Navigate to your workspace. You should see your two active services now.</p>
+<details class="example" open="open">
+<summary>NovaPay services in Render</summary>
+<p></p><figure markdown="">
+        <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Render%20Workspace.png" data-title="NovaPay services in Render" data-desc-position="top"><img alt="NovaPay services in Render" src="../assets/Render%20Workspace.png"></a>
+        </figure><p></p>
+</details>
+<details class="webex" open="open">
+<summary>Novapay Environment Variables</summary>
+<ol>
+<li>Click on the Novapay service</li>
+<li>In the Left Navigation menu, click on <strong>Environment</strong></li>
+<li>
+<p>Under Environment Variables, add the following variables:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>REDIS_URL</td>
+<td>The Internal Redis URL you copied above</td>
+</tr>
+<tr>
+<td>FRONTEND_URL</td>
+<td>https://<your-github-username>.github.io/NovaPay/backend/frontend</your-github-username></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Click on <strong>Save, Rebuild and Deploy</strong></p>
+</li>
+</ol>
+<details class="gif" open="open">
+<summary>Novapay Environment Variables</summary>
+<p></p><figure markdown="">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Novapay%20environment%20variables.gif" data-title="NovaPay environment variables" data-desc-position="top"><img alt="NovaPay environment variables" src="../assets/Novapay%20environment%20variables.gif"></a>
+    </figure><p></p>
+</details>
+</details>
+<hr>
+<h2 id="step-6-verify-deployment">🔹 STEP 6 — Verify Deployment<a class="headerlink" href="#step-6-verify-deployment" title="Permanent link">¶</a></h2>
+<p>Once deployed, your NovaPay API will be accessible via:</p>
+<p><code>https://&lt;your-render-url&gt;.onrender.com</code></p>
+<p>where your-render-url is of the type <em>novapay-xxxx</em></p>
+<p>Verify the backend health: </p>
+<p><code>GET https://&lt;your-render-url&gt;.onrender.com/health</code></p>
+<p>Expected response:   <em>Backend is running</em></p>
+<hr>
+<h2 id="step-7-frontend-configuration-changes-indexhtml">🔹 STEP 7 — Frontend Configuration Changes (index.html)<a class="headerlink" href="#step-7-frontend-configuration-changes-indexhtml" title="Permanent link">¶</a></h2>
+<p>Your frontend is hosted using GitHub Pages, but it still references the old backend endpoint from the original service. You must update the NovaPay API URL in the payment page to your own API.</p>
+<details class="webex" open="open">
+<summary>Frontend adaptation</summary>
+<ol>
+<li>in GitHub, navigate to 
+    <code>backend/frontend/index.html</code></li>
+<li>
+<p>Locate the Backend API reference in the file. Find the section in the javascript code where the backend Novapay API is called. </p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s2">"https://novapay-2590.onrender.com/api/pay"</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Replace the API URL with the URL of your own NovaPay API. (you simply need to replay the four characters following <em>novapay-</em>)</p>
+</li>
+</ol>
+</details>
+<details class="warning" open="open">
+<summary>Warning</summary>
+<p>Do not forget to commit and push any change in GitHub. Render will automatically trigger a new deployment for the service. </p>
+</details>
+<hr>
+<h2 id="step-8-test-apis-using-postman">🔹 STEP 8 — Test APIs Using Postman<a class="headerlink" href="#step-8-test-apis-using-postman" title="Permanent link">¶</a></h2>
+<details class="warning" open="open">
+<summary>Warning</summary>
+<p>Test can be done with Bruno or Postman clients. In any case, make sure the desktop versions are installed in the laptop, do not use any web versions. </p>
+</details>
+<details class="webex" open="open">
+<summary>Create a Payment session</summary>
+<ul>
+<li>Request: 
+    <code>POST /api/create-session</code></li>
+<li>URL: 
+    <code>https://novapay-xxxx.onrender.com/api/create-session</code></li>
+<li>Body:
+    <div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">"customerEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@test.com"</span><span class="p">,</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="nt">"agentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"agent01"</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">}</span>
+</span></code></pre></div></li>
+<li>Response:
+    <div class="language-json highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="nt">"sessionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxx"</span><span class="p">,</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">"paymentUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;your-username&gt;.github.io/NovaPay/backend/frontend/index.html?sessionId=xxxxxx&amp;amount=xxx"</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">}</span>
+</span></code></pre></div></li>
+</ul>
+</details>
+<details class="webex" open="open">
+<summary>Verify Payment status</summary>
+<ul>
+<li>Request: 
+    <code>GET /api/session-status</code></li>
+<li>URL: 
+    <code>https://novapay-xxxx.onrender.com/api/session-status?sessionId=xxxx</code></li>
+<li>
+<p>Response:
+    Payment pending: 
+    </p><div class="language-json highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="nt">"agentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"agent123"</span><span class="p">,</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2500</span><span class="p">,</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="nt">"customerEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jucorral@cisco.com"</span><span class="p">,</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">}</span>
+</span></code></pre></div><p></p>
+<p>Payment completed:
+</p><div class="language-json highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">{</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="nt">"agentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"agent123"</span><span class="p">,</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2500</span><span class="p">,</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="nt">"customerEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jucorral@cisco.com"</span><span class="p">,</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="p">,</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="nt">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="nt">"confirmationCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NP-47QXLJCS"</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="p">}</span>
+</span></code></pre></div><p></p>
+</li>
+</ul>
+</details>
+<details class="webex" open="open">
+<summary>Execute Payment</summary>
+<ul>
+<li>Request: 
+    <code>POST /api/pay</code></li>
+<li>URL: 
+    <code>https://novapay-xxxx.onrender.com/api/pay</code></li>
+<li>Request:
+    <div class="language-json highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">{</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="nt">"sessionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123434523452345"</span><span class="p">,</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">432421</span><span class="p">,</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span><span class="nt">"cardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234123412341234"</span><span class="p">,</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="nt">"cardName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span><span class="nt">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/27"</span><span class="p">,</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">  </span><span class="nt">"cvv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="p">}</span>
+</span></code></pre></div></li>
+<li>Response:
+    <div class="language-json highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">{</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2500</span><span class="p">,</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="nt">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="nt">"confirmationCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NP-47QXLJCS"</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="p">}</span>
+</span></code></pre></div></li>
+</ul>
+</details>
+<details class="webex" open="open">
+<summary>Server Healthcheck</summary>
+<ul>
+<li>Request: 
+    <code>GET /health</code></li>
+<li>URL: 
+    <code>https://novapay-xxxx.onrender.com/health</code></li>
+<li>Response:
+    <code>Backend is running</code></li>
+</ul>
+</details>
+<hr>
+<h2 id="lab-completion">Lab Completion ✅<a class="headerlink" href="#lab-completion" title="Permanent link">¶</a></h2>
+<p>At this point, you have successfully:</p>
+<ul class="task-list">
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Replicated the NovaPay Service</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Hosted the Payment Frontend via GitHub Pages</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Deployed the Backend API on Render</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Configured Redis for Persistent Sessions</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Tested Payment Session Creation</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Completed a Mock Payment Transaction</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Retrieved Payment Confirmation via API</p>
+</li>
+</ul>
+<p>You now have a fully operational NovaPay Mock Payment Service running on the Internet.</p>
+<hr>
+<h2 id="troubleshooting-guide">Troubleshooting Guide 🛠️<a class="headerlink" href="#troubleshooting-guide" title="Permanent link">¶</a></h2>
+<p>This section describes the most common issues encountered during the deployment and testing of the NovaPay Payment Service, along with recommended solutions.</p>
+<details open="open">
+<summary>❌ 1. GitHub Pages Payment Page Shows 404 Error</summary>
+<p>🔍 Symptoms</p>
+<p>When accessing the payment URL:</p>
+<div class="language-text highlight"><pre><span></span><code>https://&lt;yourusername&gt;.github.io/novapay/?sessionId=12345
+</code></pre></div>
+<p>You receive:</p>
+<div class="language-text highlight"><pre><span></span><code>404 Page Not Found
+</code></pre></div>
+<p>✅ Possible Causes &amp; Solutions</p>
+<table>
+<thead>
+<tr>
+<th>Cause</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GitHub Pages not enabled</td>
+<td>Go to Repository → Settings → Pages and enable deployment from <code>main</code> branch</td>
+</tr>
+<tr>
+<td>Wrong folder selected</td>
+<td>Ensure GitHub Pages is configured to deploy from <code>/root</code></td>
+</tr>
+<tr>
+<td>Repository renamed but URL not updated</td>
+<td>Update payment URL in <code>server.js</code></td>
+</tr>
+<tr>
+<td>Changes not committed</td>
+<td>Commit and push latest changes to GitHub</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details open="open">
+<summary>❌ 2. Payment Page Loads but Shows "Session Not Found"</summary>
+<p>🔍 Symptoms</p>
+<p>The payment page opens correctly but displays:</p>
+<div class="language-text highlight"><pre><span></span><code>Session Not Found
+</code></pre></div>
+<p>✅ Possible Causes &amp; Solutions</p>
+<table>
+<thead>
+<tr>
+<th>Cause</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Backend API URL still pointing to MockPayment</td>
+<td>Update API endpoint in <code>/frontend/index.html</code></td>
+</tr>
+<tr>
+<td>Backend service not running in Render</td>
+<td>Verify deployment status in Render dashboard</td>
+</tr>
+<tr>
+<td>Session expired in Redis</td>
+<td>Recreate payment session via Postman</td>
+</tr>
+<tr>
+<td>Incorrect <code>sessionId</code> in URL</td>
+<td>Ensure sessionId is passed correctly</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details open="open">
+<summary>❌ 3. Backend Fails to Connect to Redis</summary>
+<p>🔍 Symptoms</p>
+<p>Render logs show:</p>
+<div class="language-text highlight"><pre><span></span><code>Error: connect ECONNREFUSED 127.0.0.1:6379
+</code></pre></div>
+<p>✅ Possible Causes &amp; Solutions</p>
+<table>
+<thead>
+<tr>
+<th>Cause</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Redis URL still set to localhost</td>
+<td>Replace Redis config in <code>/backend/server.js</code></td>
+</tr>
+<tr>
+<td>Missing environment variable</td>
+<td>Add <code>REDIS_URL</code> in Render Environment settings</td>
+</tr>
+<tr>
+<td>Redis instance not created</td>
+<td>Create Redis service in Render dashboard</td>
+</tr>
+<tr>
+<td>Using External instead of Internal URL</td>
+<td>Use Internal Redis URL from Render</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details open="open">
+<summary>❌ 4. CORS Error When Loading Payment Session</summary>
+<p>🔍 Symptoms</p>
+<p>Browser developer console shows:</p>
+<div class="language-text highlight"><pre><span></span><code>Access to fetch at 'https://novapay-api.onrender.com' from origin 'https://yourusername.github.io' has been blocked by CORS policy
+</code></pre></div>
+<p>✅ Solution</p>
+<p>Ensure CORS is enabled in your backend.</p>
+<p>Install CORS middleware:</p>
+<div class="language-text highlight"><pre><span></span><code>npm install cors
+</code></pre></div>
+<p>Add the following to your server.js:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">cors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s2">"cors"</span><span class="p">);</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cors</span><span class="p">());</span>
+</span></code></pre></div>
+<p>Commit and push changes to redeploy in Render.</p>
+</details>
+<details open="open">
+<summary>❌ 5. Render Deployment Fails During Build</summary>
+<p>🔍 Symptoms</p>
+<p>Deployment logs show:</p>
+<div class="language-text highlight"><pre><span></span><code>npm ERR! missing script: start
+</code></pre></div>
+<p>✅ Solution</p>
+<p>Ensure your /backend/package.json includes:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"node server.js"</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Commit and push changes to GitHub to trigger a new deployment.</p>
+</details>
+<details open="open">
+<summary>❌ 6. Postman API Tests Fail</summary>
+<p>🔍 Symptoms</p>
+<p>Requests to create or retrieve payment sessions return:</p>
+<div class="language-text highlight"><pre><span></span><code>500 Internal Server Error
+</code></pre></div>
+<p>✅ Possible Causes &amp; Solutions</p>
+<table>
+<thead>
+<tr>
+<th>Cause</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Backend not deployed</td>
+<td>Verify Render deployment</td>
+</tr>
+<tr>
+<td>Redis not connected</td>
+<td>Check REDIS_URL environment variable</td>
+</tr>
+<tr>
+<td>Incorrect API endpoint</td>
+<td>Confirm Postman uses Render backend URL</td>
+</tr>
+<tr>
+<td>Missing headers</td>
+<td>Add <code>Content-Type: application/json</code></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details open="open">
+<summary>❌ 7. Payment Status Never Updates (Desktop Polling)</summary>
+<p>🔍 Symptoms</p>
+<p>Desktop agent keeps polling but always receives:</p>
+<div class="language-text highlight"><pre><span></span><code>status: pending
+</code></pre></div>
+<p>✅ Possible Causes &amp; Solutions</p>
+<table>
+<thead>
+<tr>
+<th>Cause</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Payment not submitted</td>
+<td>Click "Confirm Payment" in frontend</td>
+</tr>
+<tr>
+<td>Frontend not updating session</td>
+<td>Verify POST <code>/pay</code> request is sent</td>
+</tr>
+<tr>
+<td>Backend Redis write failing</td>
+<td>Check Render logs</td>
+</tr>
+<tr>
+<td>Polling wrong sessionId</td>
+<td>Confirm same sessionId used</td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>🔎 Useful Debugging Tips</p>
+<ul>
+<li>
+<p>Check Render Logs under:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>NovaPay Service → Logs
+</span></code></pre></div>
+</li>
+<li>
+<p>Use browser Developer Tools → Network Tab to inspect API calls.</p>
+</li>
+<li>
+<p>Validate Redis connectivity from backend logs.</p>
+</li>
+<li>
+<p>Confirm GitHub Pages URL loads without query parameters first.</p>
+</li>
+</ul>
+<p>✅ After resolving these issues, your NovaPay service should be fully operational and ready for Desktop polling integration and API testing.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 Cisco
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexesmkd", "navigation.instant", "navigation.top", "navigation.footer", "search.suggest", "content.code.copy", "toc.follow", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../template_assets/js/newLoad.js"></script>
+      
+        <script src="../template_assets/js/setInfo.js"></script>
+      
+        <script src="../javascripts/extra.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "fade", "closeEffect": "fade", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

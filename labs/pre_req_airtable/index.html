@@ -1,0 +1,3400 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Proactive Debt Collection and Contention resolution">
+      
+      
+        <meta name="author" content="Luis Garcia Delgado, Juan Corral, Sebastian Hernandez, Stephanie Ross">
+      
+      
+        <link rel="canonical" href="https://cx-partner.github.io/bootcamp2026/labs/pre_req_airtable/">
+      
+      
+        <link rel="prev" href="../pre_req_email_channel/">
+      
+      
+        <link rel="next" href="../lab1_campaign_manager/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../template_assets/webex75.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Airtable Base - 2026 Webex Contact Center Partner Bootcamp</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#airtable-base" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="2026 Webex Contact Center Partner Bootcamp" class="md-header__button md-logo" aria-label="2026 Webex Contact Center Partner Bootcamp" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            2026 Webex Contact Center Partner Bootcamp
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Airtable Base
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../overview/" class="md-tabs__link">
+          
+  
+  
+  Readme
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../pre_req_wxcc/" class="md-tabs__link">
+          
+  
+  
+  Pre-requisites
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../lab1_campaign_manager/" class="md-tabs__link">
+          
+  
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../lab_pods/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Lab Pods
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../bcamp_files/Webex_Bank_Rewards_Program/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Webex Bank Rewards Program
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="2026 Webex Contact Center Partner Bootcamp" class="md-nav__button md-logo" aria-label="2026 Webex Contact Center Partner Bootcamp" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    2026 Webex Contact Center Partner Bootcamp
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Readme
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Readme
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026 WxCC Bootcamp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-requisites
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Pre-requisites
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1">
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Partner Tenant
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Partner Tenant
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pre_req_wxcc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Partner Lab Tenant Capabilities &amp; Pre-requisites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2">
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Channels
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Digital Channels
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pre_req_email_channel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Email
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auxiliary Applications
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Auxiliary Applications
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Airtable Base
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Airtable Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-data-repositories-airtable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction to Data Repositories: Airtable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webex-bank-airtable-database-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Webex Bank — Airtable Database Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Webex Bank — Airtable Database Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entity-relationship-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entity Relationship Diagram
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relationship-overview-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship Overview Diagram
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table References
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#computed-derived-fields-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computed &amp; Derived Fields Summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airtable-api-usage-in-the-bootcamp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Airtable API Usage in the Bootcamp
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-population-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Population Guidelines
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-your-airtable-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build your Airtable base
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Build your Airtable base">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-your-bootcamp-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create your Bootcamp Base
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-customers-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create the Customers table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-transactions-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create the Transactions table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-fraudcases-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create the FraudCases table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-investment-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create the Investment table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-positions-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create the Positions table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-your-airtable-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up your Airtable API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-lab-check-verifying-airtable-field-name-integrity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-Lab Check: Verifying Airtable Field Name Integrity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pre-Lab Check: Verifying Airtable Field Name Integrity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-problem-hidden-characters-in-csv-imported-field-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Problem: Hidden Characters in CSV-Imported Field Names
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-solution-a-pre-flight-checker-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Solution: A Pre-Flight Checker Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#understanding-the-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding the Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-reference-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick-Reference Cheat Sheet
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Labs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Labs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1">
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1_campaign_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proactive Outbound Reach
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2">
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2_debt_ai_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automated Debt collection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3">
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3_human_ai_assist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Human escalation &amp; RT Assist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 4
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab 4
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab4_ai_agent_transfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cross-skill multi-agent orchestration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5">
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extra Lab
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extra Lab
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_novapay/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NovaPay payment service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_pods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab Pods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bcamp_files/Webex_Bank_Rewards_Program/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Webex Bank Rewards Program
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="airtable-base">Airtable Base<a class="headerlink" href="#airtable-base" title="Permanent link">¶</a></h1>
+<h2 id="introduction-to-data-repositories-airtable">Introduction to Data Repositories: Airtable<a class="headerlink" href="#introduction-to-data-repositories-airtable" title="Permanent link">¶</a></h2>
+<p><a href="https://airtable.com/">Airtable</a> is a cloud-based platform that blends the intuitive interface of a spreadsheet with the advanced capabilities of a relational database. It allows users to create <strong>Bases</strong>—highly customizable databases—to organize, manage, and collaborate on complex data sets. For our purposes, Airtable provides a robust <strong>REST API</strong> that enables the AI Agent to programmatically access and manipulate data in real-time.</p>
+<p>During this bootcamp, you will implement a financial service use case for <strong>Webex Bank</strong>. Airtable serves as our centralized <em>"Headless Database"</em>, providing the backend logic required to power the AI Agent’s decision-making. </p>
+<p>Rather than just manual data entry, you will leverage the <strong>Airtable API</strong> to transform static records into dynamic conversational triggers. This allows your AI Agent to perform sophisticated logic—such as verifying a caller's identity or fetching a 7-day transaction history—effectively bridging the gap between AI orchestration and external data repositories.</p>
+<p>Each Airtable base includes interactive, auto-generated API documentation tailored to its specific structure. For the scope of these labs:</p>
+<ul>
+<li>Authentication: Access is secured via <strong>Personal Access Tokens</strong> (PAT).</li>
+<li>Capacity: The Airtable Free Plan supports up to 1,000 records and 1GB of storage per base.</li>
+<li>API Limits: The workspace supports up to 1,000 API calls per month, which is ample for our lab exercises.</li>
+</ul>
+<p>The following sections will guide you through constructing your Airtable base and optionally configuring Postman to validate that your API collection is ready for integration.</p>
+<details class="tip" open="open">
+<summary>Tip</summary>
+<p>Airtable is a versatile asset for customer demonstrations, enabling you to build bespoke datasets that align perfectly with a client's specific use case. By integrating this data, you can demonstrate highly personalized Webex Contact Center (WxCC) flows that not only retrieve information in real-time but also dynamically update the database based on customer interactions. With its ready-to-use API, Airtable allows you to visualize and prove the power of a data-driven customer experience with minimal configuration.</p>
+</details>
+<hr>
+<h2 id="webex-bank-airtable-database-documentation">Webex Bank — Airtable Database Documentation<a class="headerlink" href="#webex-bank-airtable-database-documentation" title="Permanent link">¶</a></h2>
+<h3 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">¶</a></h3>
+<p>The <strong>Webex Bank</strong> Airtable base is the data backbone for the CX Bootcamp 2026 use cases. It stores all customer, financial transaction, and investment portfolio data required to build the use case.</p>
+<p>The base consists of <strong>five tables</strong> with two primary relationship chains. </p>
+<ul>
+<li><strong>Customers</strong>: For identity verification, profile management and debt status.</li>
+<li><strong>Transactions</strong>: For retrieving recent account activity and resolving disputes.</li>
+<li><strong>Investment</strong>: For providing real-time portfolio updates and financial advice.</li>
+<li><strong>Positions</strong>: For investment positions containing the individual stock positions.</li>
+<li><strong>FraudCases</strong>: For logging fraud cases and its status.</li>
+</ul>
+<p>The relationships are the following: </p>
+<ul>
+<li><strong>Customers ↔ Transactions ↔ FraudCases</strong> — a one-to-many relationship tracking account activity and fraudulent transacions.</li>
+<li><strong>Customers ↔ Investment ↔ Positions</strong> — a two-level hierarchy linking customers to their investment accounts and individual stock positions.</li>
+</ul>
+<hr>
+<h3 id="entity-relationship-diagram">Entity Relationship Diagram<a class="headerlink" href="#entity-relationship-diagram" title="Permanent link">¶</a></h3>
+<pre class="mermaid"><code>erDiagram
+
+    CUSTOMERS {
+        string  CustomerID PK "Single Line Text"
+        string  FirstName       "Long Text"
+        string  LastName        "Long Text"
+        string  PIN             "Single Line Text"
+        date    DOB             "Date"
+        string  SocialSecurity  "Long Text"
+        string  PhoneNumber     "Long Text"
+        number  Balance         "Currency"
+        date    MaturityDate    "Date"
+        number  CashBackBalance "Currency"
+        email   Email           "Email"
+        string  Address         "Long Text"
+        string  RewardsTier     "Single Select: Basic | Standard | Elite"
+        string  CreditCard      "Single Select: Travel Rewards | Standard Cashback | Platinum"
+    }
+
+    TRANSACTIONS {
+        number  TransactionID   PK "Long Text"
+        string  CustomerID      FK "Link → Customers"
+        string  FirstName           "Lookup → Customers.FirstName"
+        string  LastName            "Lookup → Customers.LastName"
+        number  Amount              "Currency"
+        string  Vendor              "Single Line Text"
+        string  City                "Single Line Text"
+        date    Date                "Date"
+    }
+
+    FRAUDCASES {
+        string  CaseID          PK "Single Line Text"
+        string  CustomerID      FK "Link → Customers"
+        string  TransactionID   FK "Link → Transactions"
+        number  Amount              "Lookup → Transactions.Amount"
+        string  Vendor              "Lookup → Transactions.Vendor"
+        string  City                "Lookup → Transactions.City"
+        string  Status              "Single Select: New | To do | In progress | Done |"
+    }
+
+    INVESTMENT {
+        string  Investment_Acct PK "Long Text"
+        string  CustomerID      FK "Link → Customers"
+        string  FirstName           "Lookup → Customers.FirstName"
+        string  LastName            "Lookup → Customers.LastName"
+        number  Total_Investment_Balance "Rollup → SUM(Positions.PositionValue)"
+        string  Risk_Tolerance      "Single Select: Low | Medium | High"
+        string  Preferred_Sector    "Single Select: Tech | Finance | Retail | Entertainment"
+    }
+
+    POSITIONS {
+        string  Position_ID     PK "Long Text"
+        string  Investment_Acct FK "Link → Investment"
+        string  Stock_Ticker        "Long Text"
+        number  Quantity            "Number"
+        number  Purchase_Price      "Number"
+        number  Current_Price       "Number"
+        number  Position_Value      "Formula: Current_Price × Quantity"
+    }
+
+    CUSTOMERS ||--o{ TRANSACTIONS : "has many"
+    CUSTOMER ||--o{ FRAUDCASES : "may have many"
+    TRANSACTIONS ||--o{ FRAUDCASES : "may have one"
+    CUSTOMERS ||--o{ INVESTMENT   : "has many"
+    INVESTMENT ||--o{ POSITIONS   : "contains"</code></pre>
+<hr>
+<h3 id="relationship-overview-diagram">Relationship Overview Diagram<a class="headerlink" href="#relationship-overview-diagram" title="Permanent link">¶</a></h3>
+<pre class="mermaid"><code>flowchart TD
+    C["🧑 CUSTOMERS\n─────────────────\nCustomerID 🔑\nFirstName / LastName\nPIN · DOB · SSN\nPhoneNumber · Email\nBalance · MaturityDate\nCashBackBalance · Address\nRewardsTier · CreditCard"]
+
+    T["💳 TRANSACTIONS\n─────────────────\nTransactionID 🔑\nCustomerID 🔗\nFirstName · LastName ⬡\nAmount · Vendor\nCity · Date"]
+
+    F["🚨 FRAUDCASES\n─────────────────\nCaseID 🔑\nCustomerID 🔗\TransactionID 🔗\nAmount · Vendor · City ⬡\nStatus"]
+
+    I["📈 INVESTMENT\n─────────────────\nInvestment_Acct 🔑\nCustomerID 🔗\nFirstName · LastName ⬡\nTotal_Investment_Balance Σ\nRisk_Tolerance\nPreferred_Sector"]
+
+    P["📊 POSITIONS\n─────────────────\nPosition_ID 🔑\nInvestment_Acct 🔗\nStock_Ticker · Quantity\nPurchase_Price\nCurrent_Price\nPosition_Value = Current_Price × Quantity"]
+
+    C -- "1 : N\n(Transactions link)" --&gt; T
+    T -- "1 : 1\n(FraudCases link)" --&gt; F
+    C -- "1 : N\n(FraudCases link)" --&gt; F
+    C -- "1 : N\n(Investment link)" --&gt; I
+    I -- "1 : N\n(Positions link)\nRollup → Total_Investment_Balance" --&gt; P
+
+    style C fill:#164D90,color:#fff,stroke:#0A58CA
+    style T fill:#198754,color:#fff,stroke:#146C43
+    style F fill:#BF792C,color:#fff,stroke:#4E8400
+    style I fill:#7030A0,color:#fff,stroke:#59359A
+    style P fill:#BF005F,color:#000,stroke:#DC6A0D</code></pre>
+<hr>
+<h3 id="table-references">Table References<a class="headerlink" href="#table-references" title="Permanent link">¶</a></h3>
+<details class="info" open="open">
+<summary>Customers</summary>
+<p>The central table of the base. Every other table links back to a <strong>Customers</strong> record. It holds all personal, financial, and account preference data needed by the AI Agent to authenticate, inform, and serve the customer.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>CustomerID</code></td>
+<td style="text-align: left;">Single Line Text</td>
+<td style="text-align: left;"><strong>Primary key.</strong> Unique identifier for each customer record. Referenced by Transactions and Investment as a foreign key.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>FirstName</code></td>
+<td style="text-align: left;">Long Text</td>
+<td style="text-align: left;">Customer's first name. Looked up by child tables to avoid duplication.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>LastName</code></td>
+<td style="text-align: left;">Long Text</td>
+<td style="text-align: left;">Customer's last name. Looked up by child tables to avoid duplication.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PIN</code></td>
+<td style="text-align: left;">Single Line Text</td>
+<td style="text-align: left;">4-digit PIN used for the challenge-response authentication in the <code>authenticate_user</code> action. <strong>Never disclosed to the customer.</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>DOB</code></td>
+<td style="text-align: left;">Date</td>
+<td style="text-align: left;">Date of birth. Used for identity verification.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>SocialSecurity</code></td>
+<td style="text-align: left;">Long Text</td>
+<td style="text-align: left;">Social security number. Sensitive field — handle with care.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PhoneNumber</code></td>
+<td style="text-align: left;">Long Text</td>
+<td style="text-align: left;">Primary contact number. Used by the <code>fetch_balance</code> action to look up the customer record from the outbound call's DNIS.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Balance</code></td>
+<td style="text-align: left;">Currency</td>
+<td style="text-align: left;">Current outstanding debt balance. Disclosed to the customer after authentication and used in the payment negotiation step.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>MaturityDate</code></td>
+<td style="text-align: left;">Date</td>
+<td style="text-align: left;">The date the debt matures. Used to communicate urgency during the debt collection call.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>CashBackBalance</code></td>
+<td style="text-align: left;">Currency</td>
+<td style="text-align: left;">Accumulated cashback reward balance. Provided on request via <code>fetch_balance</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Email</code></td>
+<td style="text-align: left;">Email</td>
+<td style="text-align: left;">Customer email address. Used by <code>payment_session</code> to deliver the NovaPay payment URL.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Address</code></td>
+<td style="text-align: left;">Long Text</td>
+<td style="text-align: left;">Registered address. Available for identity verification purposes.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>RewardsTier</code></td>
+<td style="text-align: left;">Single Select</td>
+<td style="text-align: left;">Rewards programme tier: <strong>Basic</strong>, <strong>Standard</strong>, or <strong>Elite</strong>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>CreditCard</code></td>
+<td style="text-align: left;">Single Select</td>
+<td style="text-align: left;">Card type held by the customer: <strong>Travel Rewards</strong>, <strong>Standard Cashback</strong>, or <strong>Platinum</strong>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Transactions</code></td>
+<td style="text-align: left;">Link</td>
+<td style="text-align: left;">Linked records in the <strong>Transactions</strong> table. One customer → many transactions.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>FraudCases</code></td>
+<td style="text-align: left;">Link</td>
+<td style="text-align: left;">Linked records in the <strong>FraudCases</strong> table. One customer → many fraud cases.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Investment</code></td>
+<td style="text-align: left;">Link</td>
+<td style="text-align: left;">Linked records in the <strong>Investment</strong> table. One customer → many investment accounts.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<hr>
+<details class="info" open="open">
+<summary>Transactions</summary>
+<p>Records individual card transactions associated with a customer account. </p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>TransactionID</code></td>
+<td style="text-align: left;">Long Text</td>
+<td style="text-align: left;"><strong>Primary key.</strong> Unique identifier for each transaction.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>CustomerID</code></td>
+<td style="text-align: left;">Link → Customers</td>
+<td style="text-align: left;"><strong>Foreign key.</strong> Links this transaction to the parent customer record.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>FirstName</code></td>
+<td style="text-align: left;">Lookup → Customers</td>
+<td style="text-align: left;">Pulled automatically from the linked Customers record. Read-only in this table.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>LastName</code></td>
+<td style="text-align: left;">Lookup → Customers</td>
+<td style="text-align: left;">Pulled automatically from the linked Customers record. Read-only in this table.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Amount</code></td>
+<td style="text-align: left;">Currency</td>
+<td style="text-align: left;">Transaction amount.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Vendor</code></td>
+<td style="text-align: left;">Single Line Text</td>
+<td style="text-align: left;">Merchant or vendor name (e.g. <code>Amazon</code>, <code>Shell</code>, <code>Tesco</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>City</code></td>
+<td style="text-align: left;">Single Line Text</td>
+<td style="text-align: left;">City where the transaction occurred.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Date</code></td>
+<td style="text-align: left;">Date</td>
+<td style="text-align: left;">Date of the transaction.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>FraudCases</code></td>
+<td style="text-align: left;">Link</td>
+<td style="text-align: left;">Linked records in the <strong>FraudCases</strong> table. One transaction → one fraud cases.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<hr>
+<details class="info" open="open">
+<summary>FraudCases</summary>
+<p>Records logged fraud casess for contested card transactions associated with a customer account. </p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>CaseID</code></td>
+<td style="text-align: left;">Single Line Text</td>
+<td style="text-align: left;"><strong>Primary key.</strong> Unique identifier for each fraud case.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>CustomerID</code></td>
+<td style="text-align: left;">Link → Customers</td>
+<td style="text-align: left;"><strong>Foreign key.</strong> Links this fraud case to the parent customer record.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>TransactionID</code></td>
+<td style="text-align: left;">Link → Transactions</td>
+<td style="text-align: left;"><strong>Foreign key.</strong> Links this fraud case to the contested transaction.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Amount</code></td>
+<td style="text-align: left;">Lookup → Transactions</td>
+<td style="text-align: left;">Pulled automatically from the linked Transaction record. Read-only in this table.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Vendor</code></td>
+<td style="text-align: left;">Lookup → Transactions</td>
+<td style="text-align: left;">Pulled automatically from the linked Transaction record. Read-only in this table.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>City</code></td>
+<td style="text-align: left;">Lookup → Transactions</td>
+<td style="text-align: left;">Pulled automatically from the linked Transaction record. Read-only in this table.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Status</code></td>
+<td style="text-align: left;">Single Select</td>
+<td style="text-align: left;">Case status: <strong>New</strong>, <strong>To do</strong>, <strong>In Progress</strong> or <strong>Done</strong>.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<hr>
+<details class="info" open="open">
+<summary>Investment</summary>
+<p>Represents an investment account linked to a customer. A customer may hold multiple investment accounts. The <code>Total_Investment_Balance</code> field is automatically computed as the sum of all linked <strong>Positions</strong> values.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>Investment_Acct</code></td>
+<td style="text-align: left;">Long Text</td>
+<td style="text-align: left;"><strong>Primary key.</strong> Unique investment account identifier.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>CustomerID</code></td>
+<td style="text-align: left;">Link → Customers</td>
+<td style="text-align: left;"><strong>Foreign key.</strong> Links this account to the parent customer record.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>FirstName</code></td>
+<td style="text-align: left;">Lookup → Customers</td>
+<td style="text-align: left;">Pulled automatically from the linked Customers record.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>LastName</code></td>
+<td style="text-align: left;">Lookup → Customers</td>
+<td style="text-align: left;">Pulled automatically from the linked Customers record.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Total_Investment_Balance</code></td>
+<td style="text-align: left;">Rollup</td>
+<td style="text-align: left;"><strong>Computed field.</strong> Aggregates <code>Position_Value</code> across all linked Positions records using <code>SUM(values)</code>. Updates automatically when any linked position changes.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Risk_Tolerance</code></td>
+<td style="text-align: left;">Single Select</td>
+<td style="text-align: left;">Investment risk profile: <strong>Low</strong>, <strong>Medium</strong>, or <strong>High</strong>. Used to tailor investment-related conversations.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Preferred_Sector</code></td>
+<td style="text-align: left;">Single Select</td>
+<td style="text-align: left;">Customer's preferred investment sectors: <strong>Tech</strong>, <strong>Finance</strong>, <strong>Retail</strong>, <strong>Entertainment</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Positions</code></td>
+<td style="text-align: left;">Link</td>
+<td style="text-align: left;">Linked records in the <strong>Positions</strong> table. One investment account → many positions.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<hr>
+<details class="info" open="open">
+<summary>Positions</summary>
+<p>Represents an individual stock holding within an investment account. The <code>Position_Value</code> is a computed formula field that reflects the current market value of the holding.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>Position_ID</code></td>
+<td style="text-align: left;">Long Text</td>
+<td style="text-align: left;"><strong>Primary key.</strong> Unique identifier for each position.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Investment_Acct</code></td>
+<td style="text-align: left;">Link → Investment</td>
+<td style="text-align: left;"><strong>Foreign key.</strong> Links this position to its parent investment account.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Stock_Ticker</code></td>
+<td style="text-align: left;">Long Text</td>
+<td style="text-align: left;">Stock ticker symbol (e.g. <code>AAPL</code>, <code>MSFT</code>, <code>NVDA</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Quantity</code></td>
+<td style="text-align: left;">Number</td>
+<td style="text-align: left;">Number of shares held.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Purchase_Price</code></td>
+<td style="text-align: left;">Number</td>
+<td style="text-align: left;">Price per share at time of purchase (cost basis).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Current_Price</code></td>
+<td style="text-align: left;">Number</td>
+<td style="text-align: left;">Current market price per share. Updated to reflect current valuation.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Position_Value</code></td>
+<td style="text-align: left;">Formula</td>
+<td style="text-align: left;"><strong>Computed field.</strong> <code>{Current_Price} × {Quantity}</code>. Represents the current market value of the holding. This value is rolled up into <code>Total_Investment_Balance</code> in the parent Investment record.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<hr>
+<h3 id="computed-derived-fields-summary">Computed &amp; Derived Fields Summary<a class="headerlink" href="#computed-derived-fields-summary" title="Permanent link">¶</a></h3>
+<p>The following fields are automatically maintained by Airtable — they should never be manually edited:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Table</th>
+<th style="text-align: left;">Field</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Derivation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Transactions</td>
+<td style="text-align: left;"><code>FirstName</code></td>
+<td style="text-align: left;">Lookup</td>
+<td style="text-align: left;">Pulled from linked <code>Customers.FirstName</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Transactions</td>
+<td style="text-align: left;"><code>LastName</code></td>
+<td style="text-align: left;">Lookup</td>
+<td style="text-align: left;">Pulled from linked <code>Customers.LastName</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Investment</td>
+<td style="text-align: left;"><code>FirstName</code></td>
+<td style="text-align: left;">Lookup</td>
+<td style="text-align: left;">Pulled from linked <code>Customers.FirstName</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Investment</td>
+<td style="text-align: left;"><code>LastName</code></td>
+<td style="text-align: left;">Lookup</td>
+<td style="text-align: left;">Pulled from linked <code>Customers.LastName</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Investment</td>
+<td style="text-align: left;"><code>Total_Investment_Balance</code></td>
+<td style="text-align: left;">Rollup</td>
+<td style="text-align: left;"><code>SUM(Positions.Position_Value)</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Positions</td>
+<td style="text-align: left;"><code>Position_Value</code></td>
+<td style="text-align: left;">Formula</td>
+<td style="text-align: left;"><code>{Current_Price} × {Quantity}</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="airtable-api-usage-in-the-bootcamp">Airtable API Usage in the Bootcamp<a class="headerlink" href="#airtable-api-usage-in-the-bootcamp" title="Permanent link">¶</a></h3>
+<p>During the Bootocamp, you will create a number of action flows that will enable the interaction with this Airtable base via the REST API. Some examples below:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">Table</th>
+<th style="text-align: left;">Operation</th>
+<th style="text-align: left;">Filter / Key</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>fetch customer balance</code></td>
+<td style="text-align: left;">Customers</td>
+<td style="text-align: left;"><code>GET</code></td>
+<td style="text-align: left;"><code>filterByFormula={PhoneNumber}="&lt;normalized_number&gt;"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>confirm debt payment</code></td>
+<td style="text-align: left;">Customers</td>
+<td style="text-align: left;"><code>PATCH</code></td>
+<td style="text-align: left;">Record ID from Customers — updates <code>Balance</code> field</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>fetch card transactions</code></td>
+<td style="text-align: left;">Transactions</td>
+<td style="text-align: left;"><code>GET</code></td>
+<td style="text-align: left;"><code>filterByFormula={CustomerID}="&lt;id&gt;"</code> + sort by Date desc + maxRecords=5</td>
+</tr>
+</tbody>
+</table>
+<details class="warning" open="open">
+<summary>API Credentials</summary>
+<p>Each flow requires your <strong>Airtable Personal Access Token</strong> and <strong>Base ID</strong>. Once the Airtable base is created, you can find your Base API documentation at:
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>https://airtable.com/&lt;yourBaseID&gt;/api/docs
+</span></code></pre></div>
+Personal Access Tokens are created at <a href="https://airtable.com/create/tokens">https://airtable.com/create/tokens</a>.<p></p>
+</details>
+<hr>
+<h3 id="data-population-guidelines">Data Population Guidelines<a class="headerlink" href="#data-population-guidelines" title="Permanent link">¶</a></h3>
+<p>When populating the base for Bootcamp testing, observe the following rules:</p>
+<ul>
+<li>
+<p><strong>Customers table</strong>: Every customer record must have a valid <code>PhoneNumber</code> (the number you will call from the Contact Center) and a working <code>Email</code> (where the Contact Center can send information to the customer). All other fields can use realistic but fake data.</p>
+<ul>
+<li><strong>PIN field</strong>: Set a 4-digit PIN for each test customer. This value is used to authenticate users before any query or any operation on their account can be done.</li>
+</ul>
+</li>
+<li>
+<p><strong>Transactions table</strong>: Populate at least 1 transaction per test customer to enable meaningful <code>fetch transactions</code> responses during the call.</p>
+</li>
+<li><strong>Investment &amp; Positions tables</strong>: Populate at least 1 investment entry with one position for the test customer. Required to test investment-related customer queries.</li>
+</ul>
+<hr>
+<h2 id="build-your-airtable-base">Build your Airtable base<a class="headerlink" href="#build-your-airtable-base" title="Permanent link">¶</a></h2>
+<p>Let´s start building your Airtable Base</p>
+<details class="webex" open="open">
+<summary>Create your free account in Airtable</summary>
+<p><strong>You can skip this step if you have already an account</strong>.</p>
+<p>Go to <a href="https://www.airtable.com/">https://www.airtable.com/</a> and click on "Sign up for free".</p>
+<details class="inline end" open="open">
+<summary>Create Airtable account</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/airtable1.png" data-title="Create Airtable Account" data-desc-position="top"><img alt="Create Airtable Account" src="../assets/airtable1.png"></a>
+</figure><p></p>
+</details>
+<p>Complete the steps to create your new account. You can skip creating your first app with the Assistant by clicking on
+the "x" at the upper-right corner of the screen and move to create a blank app. </p>
+<p>After all this process, you will land into a brand new empty Base. A <strong>Base</strong> is the fundamental organizational unit---think of it as a database for a specific project or purpose. A Base is a container that holds all the tables, fields, records, views, and automations related to a single project or workflow. It\'s similar to a spreadsheet
+workbook or a relational database, but with a more visual and user-friendly interface.</p>
+<details class="inline end" open="open">
+<summary>Create Airtable Base</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/airtable2.png" data-title="Create Airtable Base" data-desc-position="top"><img alt="Create Airtable Base" src="../assets/airtable2.png"></a>
+</figure><p></p>
+</details>
+<p>Before building our Base, we will setup some other entities in Airtable. Click on the upper-left Airtable logo to "go home".</p>
+</details>
+<details class="webex" open="open">
+<summary>Create your first Workspace</summary>
+<details class="inline end" open="open">
+<summary>Create Workspace</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/airtable3.png" data-title="Create Workspace" data-desc-position="top"><img alt="Create Workspace" src="../assets/airtable3.png"></a>
+</figure><p></p>
+</details>
+<p>Click on the "+" sign besides the "All workspaces"</p>
+<p>In the next window, give your Workspace a name. Say "WxCC Bootcamp".
+Then click on <strong>[+ Create]</strong> and in the next dialogue select <strong>Build an app on your own</strong>. Your are now ready to create your Base. </p>
+</details>
+<h3 id="create-your-bootcamp-base">Create your <strong>Bootcamp Base</strong><a class="headerlink" href="#create-your-bootcamp-base" title="Permanent link">¶</a></h3>
+<details class="gif inline end" open="open">
+<summary>Create your Base</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/airtable6.gif" data-title="Create Base" data-desc-position="top"><img alt="Create Base" src="../assets/airtable6.gif"></a>
+</figure><p></p>
+</details>
+<p>Let´s build our base. After the previous step, you land into an empty grid view.</p>
+<p>First, give it a name, changing the "Untitled Base" into a meaningful name: "Webex Bank". For that, click in the "Untitle Base" and provide the new name. </p>
+<p>Next we will need to create four tables for our Webex Bank: <strong>Customers</strong>, <strong>Transactions</strong>, <strong>Investment</strong> and <strong>Positions</strong>. We will proceed the same way for all of them: </p>
+<ol>
+<li>Import a csv file with the table template</li>
+<li>Rename the table</li>
+<li>Change the field types to the appropiate ones (the export to csv and import process converts all field types into simple data types and removes some complex types)</li>
+</ol>
+<h3 id="create-the-customers-table">Create the <strong>Customers</strong> table<a class="headerlink" href="#create-the-customers-table" title="Permanent link">¶</a></h3>
+<details class="webex" open="open">
+<summary><strong><em>Customers</em></strong> table</summary>
+<div class="admonition download">
+<p class="admonition-title">Customers Table</p>
+<p>Download the csv file for the <a href="../bcamp_files/airtable_Customers.csv">Customers Table</a>.</p>
+</div>
+<ol>
+<li>
+<p>Once you have downloaded your .csv file, click on <strong>+ Add or import</strong> and select <strong>CSV file</strong>. Drop or select your <code>airtable_Customers.csv</code> file and click <strong>[Upload 1 file]</strong></p>
+</li>
+<li>
+<p>In the <strong>Import your file</strong> dialogue, select <em>+ Create a new table</em> and click <strong>[Next]</strong></p>
+<details class="info" open="open">
+<summary>Note on Sample Data</summary>
+<p>Each table includes pre-populated sample records to demonstrate the required data formats and schema standards. For security and flexibility, the <strong>PhoneNumber</strong> and <strong>Email</strong> fields have been intentionally left blank. You may populate these with your own test credentials during the Bootcamp; this allows you to leverage the existing example data for testing without the need to create a new customer profile from scratch.</p>
+</details>
+</li>
+<li>
+<p>In the next window, you will need to adjust the type of some of the fields. Click the chevron next to the field name to expand the properties menu, then select the correct field type for the following fields: </p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">CustomerID</td>
+<td style="text-align: left;"><code>Single line text</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">PIN</td>
+<td style="text-align: left;"><code>Single line text</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Balance</td>
+<td style="text-align: left;"><code>Currency</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">CashbackBalance</td>
+<td style="text-align: left;"><code>Currency</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Email</td>
+<td style="text-align: left;"><code>Email</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">RewardsTier</td>
+<td style="text-align: left;"><code>Single select</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">CreditCard</td>
+<td style="text-align: left;"><code>Single select</code></td>
+</tr>
+</tbody>
+</table>
+<p>Now, click <strong>[Import]</strong></p>
+</li>
+<li>
+<p>Change the name of the Imported table to <strong>Customers</strong>: click on the chevron <code>v</code> besides the <strong>Imported table</strong> table name  and select <em>Rename table</em>. Type <strong>Customers</strong> and click <strong>[Save]</strong></p>
+</li>
+<li>
+<p>Make sure the Date type fields have a proper date configuration (<strong>DOB</strong> and <strong>MaturityDate</strong>). Click  the chevron in the field, select <strong>Edit field</strong> and under <strong>Date format</strong> select <em>Local</em> and make sure the <strong>include time* option is deactivated. Click </strong>[Save]*</p>
+</li>
+<li>
+<p>Now populate the values for the <em>Single select</em> field types: </p>
+<ul>
+<li>
+<p>Click the chevron besides the <strong>RewardsTier</strong> field, click <strong>Edit field</strong> and then <strong>+ Add option</strong> to add the following options:   </p>
+<p><br><copy>Basic</copy>
+<br><copy>Standard</copy>
+<br><copy>Elite</copy></p>
+<p><br>Select <em>Basic</em> as the <strong>Default</strong> value and click <strong>[Save]</strong></p>
+</li>
+<li>
+<p>Do the same for the <strong>CreditCard</strong> field with the following values: </p>
+<p><br><copy>Standard Cashback</copy>
+<br><copy>Travel Rewards Card</copy>
+<br><copy>Platinum Card</copy></p>
+<p><br>Select <em>Standard Cashback</em> as the <strong>Default</strong> value and click <strong>[Save]</strong> </p>
+</li>
+</ul>
+</li>
+</ol>
+<p>Your <strong>Customers</strong> table is ready.     </p>
+</details>
+<h3 id="create-the-transactions-table">Create the <strong>Transactions</strong> table<a class="headerlink" href="#create-the-transactions-table" title="Permanent link">¶</a></h3>
+<details class="webex" open="open">
+<summary><strong><em>Transactions</em></strong> table</summary>
+<div class="admonition download">
+<p class="admonition-title">Transactions Table</p>
+<p>Download the csv file for the <a href="../bcamp_files/airtable_Transactions.csv">Transactions Table</a>.</p>
+</div>
+<p>Now proceed as in the <strong>Customers</strong> table to import the csv file of the <strong>Transactions</strong> table.</p>
+<ol>
+<li>
+<p>Once you have downloaded your .csv file, click on <strong>+ Add or import</strong> and select <strong>CSV file</strong>. Drop or select your <code>airtable_Transactions.csv</code> file and click <strong>[Upload 1 file]</strong></p>
+</li>
+<li>
+<p>In the <strong>Import your file</strong> dialogue, select <em>+ Create a new table</em> and click <strong>[Next]</strong> and adjust the field types for the following fields: </p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Amount</td>
+<td style="text-align: left;"><code>Currency</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Vendor</td>
+<td style="text-align: left;"><code>Single line text</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">City</td>
+<td style="text-align: left;"><code>Single line text</code></td>
+</tr>
+</tbody>
+</table>
+<p>Click <strong>[Import]</strong></p>
+<ol>
+<li>Change the name of the Imported table to <strong>Transactions</strong>: Click on the chevron besides the table name <em>Imported table</em> and select <em>Rename table</em>. Type <strong>Transactions</strong> and click <strong>[Save]</strong></li>
+</ol>
+<p>We still need to adjust a few fields: </p>
+<ul>
+<li>In the <strong>CustomerID</strong> field, click the chevron, select <strong>Edit field</strong> and change the type to <em>Link to another record</em>. From the existing tables list, select <strong>Customers</strong> and click <strong>[Save]</strong>.<ul>
+<li>In the next dialogue window, select the fields we want to import from the <strong>Customers</strong> table: <strong>FirstName</strong> and <strong>LastName</strong>. Click <strong>[Add 2 fields]</strong>. This will create two new columns in your table.</li>
+</ul>
+</li>
+</ul>
+<p>This will keep both tables connected and consistent. You will see in your Customers table a new field called <strong>Transactions</strong>. it will contain links to all the transactions associated to the customer. </p>
+<details class="example" open="open">
+<summary>Example population</summary>
+<p>To complete the example population, add the transaction to the customer profile: </p>
+<p>In the <strong>Customers</strong> table, click the <code>+</code>symbol in the <em>Transactions</em> empty cell of the customer record and add the <em>TRAN-001</em> to the customer record. </p>
+<p>If you come back to the <strong>Transactions</strong> table, you will see the CustomerID, the FirstName and the LastName of the customer populated in the transaction record. </p>
+</details>
+<p>Your <strong>Transactions</strong> table is now ready.</p>
+</details>
+<h3 id="create-the-fraudcases-table">Create the <strong>FraudCases</strong> table<a class="headerlink" href="#create-the-fraudcases-table" title="Permanent link">¶</a></h3>
+<details class="webex" open="open">
+<summary><strong><em>FraudCases</em></strong> table</summary>
+<div class="admonition download">
+<p class="admonition-title">FraudCases Table</p>
+<p>Download the csv file for the <a href="../bcamp_files/airtable_FraudCases.csv">FraudCases Table</a>.</p>
+</div>
+<p>Now proceed as in previous table to import the csv file of the <strong>FraudCases</strong> table.</p>
+<ol>
+<li>
+<p>Once you have downloaded your .csv file, click on <strong>+ Add or import</strong> and select <strong>CSV file</strong>. Drop or select your <code>airtable_FraudCases.csv</code> file and click <strong>[Upload 1 file]</strong></p>
+</li>
+<li>
+<p>In the <strong>Import your file</strong> dialogue, select <em>+ Create a new table</em> and click <strong>[Next]</strong> and adjust the field types for the following fields: </p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">CaseID</td>
+<td style="text-align: left;"><code>Single Line Text</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Status</td>
+<td style="text-align: left;"><code>Single Select</code></td>
+</tr>
+</tbody>
+</table>
+<p>Click <strong>[Import]</strong></p>
+<ol>
+<li>Change the name of the Imported table to <strong>FraudCases</strong>: Click on the chevron besides the table name <em>Imported table</em> and select <em>Rename table</em>. Type <strong>FraudCases</strong> and click <strong>[Save]</strong></li>
+</ol>
+<p>We still need to adjust a few fields: </p>
+<ul>
+<li>
+<p>In the <strong>CustomerID</strong> field, click the chevron, select <strong>Edit field</strong> and change the type to <em>Link to another record</em>. From the existing tables list, select <strong>Customers</strong> and click <strong>[Save]</strong>.</p>
+<ul>
+<li>In the next dialogue window, click <strong>[Skip]</strong>. We are not importing any field from the Customer table in this one. </li>
+</ul>
+</li>
+<li>
+<p>In the <strong>TransactionID</strong> field, click the chevron, select <strong>Edit field</strong> and change the type to <em>Link to another record</em>. From the existing tables list, select <strong>Transactions</strong> and click <strong>[Save]</strong>.</p>
+<ul>
+<li>In the next dialogue window, select the fields we want to import from the <strong>Transactions</strong> table: <strong>Amount</strong>, <strong>Vendor</strong> and <strong>City</strong>. Click <strong>[Add 3 fields]</strong>. This will create three new columns in your table.</li>
+</ul>
+</li>
+</ul>
+<p>This will keep the tables connected and consistent. You will see in your Customers and Transactions tables a new field called <strong>FraudCases</strong>. it will contain links to all the fraud cases associated to the customer and its transactions. </p>
+<ul>
+<li>
+<p>In the <strong>Status</strong> field, click the chevron to edit the field and then click <strong>+ Add option</strong> to add the following options: New, To do, In Progress or Done</p>
+<p><br><copy>New</copy>
+<br><copy>To do</copy>
+<br><copy>In Progress</copy>
+<br><copy>Done</copy></p>
+<p>Select <em>New</em> as the <strong>Default</strong> value and click <strong>[Save]</strong></p>
+</li>
+</ul>
+<details class="example" open="open">
+<summary>Example population</summary>
+<p>To complete the example population, add the customer and the transaction to the fraud case: </p>
+<p>In the <strong>Customers</strong> table, click the <code>+</code>symbol in the <em>FraudCases</em> empty cell of the customer record and add the <em>805615</em> to the customer record. </p>
+<p>Proceed the same in the <strong>Transactions</strong> table. </p>
+<p>If you come back to the <strong>FraudCases</strong> table, you will see the CustomerID, the TransactionID and the imported Ammount, Vendor and City values populated in the fraud case record. </p>
+</details>
+<p>Your <strong>FraudCase</strong> table is now ready.</p>
+</details>
+<h3 id="create-the-investment-table">Create the <strong>Investment</strong> table<a class="headerlink" href="#create-the-investment-table" title="Permanent link">¶</a></h3>
+<details class="webex" open="open">
+<summary><strong><em>Investment</em></strong> table</summary>
+<div class="admonition download">
+<p class="admonition-title">Investment Table</p>
+<p>Download the csv file for the <a href="../bcamp_files/airtable_Investment.csv">Investment Table</a>.</p>
+</div>
+<ol>
+<li>
+<p>Once you have downloaded your .csv file, click on <strong>+ Add or import</strong> and select <strong>CSV file</strong>. Drop or select your <code>airtable_Investment.csv</code> file and click <strong>[Upload 1 file]</strong></p>
+</li>
+<li>
+<p>In the <strong>Import your file</strong> dialogue, select <em>+ Create a new table</em> and click <strong>[Next]</strong></p>
+</li>
+<li>
+<p>Now click the chevron beside the imported fields to edit the field data type and change the type to the below values for the following fields: </p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Risk_Tolerance</td>
+<td style="text-align: left;"><code>Single select</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Preferred_Sector</td>
+<td style="text-align: left;"><code>Single select</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Click <strong>[Import]</strong></p>
+</li>
+<li>
+<p>Change the name of the Imported table to <strong>Investment</strong>: Click on the chevron besides the table name <em>Imported table</em> and select <em>Rename table</em>. Type <strong>Investment</strong> and click <strong>[Save]</strong></p>
+</li>
+</ol>
+<p>Now proceed as in the previous tables to adjust the field types for the following fields: </p>
+<ul>
+<li>
+<p>In the <strong>CustomerID</strong> field, click the chevron, select <strong>Edit field</strong> and change the type to <em>Link to another record</em>. From the existing tables list, select <strong>Customers</strong> and click <strong>[Save]</strong>.  </p>
+<ul>
+<li>In the next dialogue window, select the fields we want to import from the <strong>Customers</strong> table: <strong>FirstName</strong> and <strong>LastName</strong>. Click <strong>[Add 2 fields]</strong>. This will create two new columns in your table.
+This will keep both tables connected and consistent. You will see in your Customers table a new field called <strong>Investment</strong> that will contain links to all the investments associated to the customer. </li>
+</ul>
+</li>
+<li>
+<p>In the <strong>Risk_Tolerance</strong> field, click the chevron to edit the field and then click <strong>+ Add option</strong> to add the following options: </p>
+<p><br><copy>Low</copy>
+<br><copy>Medium</copy>
+<br><copy>High</copy></p>
+<p>Select <em>Medium</em> as the <strong>Default</strong> value and click <strong>[Save]</strong></p>
+</li>
+<li>
+<p>In the <strong>Preferred_Sector</strong> field, click the chevron to edit the field and then click <strong>+ Add option</strong> to add the following options: </p>
+<p><br><copy>Tech</copy>
+<br><copy>Finance</copy>
+<br><copy>Retail</copy>
+<br><copy>Entertainment</copy></p>
+<p>Select <em>Tech</em> as the <strong>Default</strong> value and click <strong>[Save]</strong></p>
+</li>
+</ul>
+<p>The Investment table is not yet fully configured. You will need to return to it later to set the <strong>Total_Investment_Balance</strong> with the correct data type.</p>
+<p>However, since the field value depends on the <strong>Positions</strong> table content, you must first create the <strong>Positions</strong> table before completing this configuration.</p>
+<details class="example" open="open">
+<summary>Example population</summary>
+<p>To complete the example population in your Investment table, you can link the investment account to the customer: </p>
+<p>In the <strong>Investment</strong> table, click the <code>+</code>symbol in the <em>CustomerID</em> empty cell of the investment record and add the <em>CUST-001</em> to the investment record. </p>
+<p>That will populate the CustomerID, and import the FirstName and the LastName of the customer from the Customer table. </p>
+</details>
+</details>
+<h3 id="create-the-positions-table">Create the <strong>Positions</strong> table<a class="headerlink" href="#create-the-positions-table" title="Permanent link">¶</a></h3>
+<details class="webex" open="open">
+<summary><strong><em>Positions</em></strong> table</summary>
+<div class="admonition download">
+<p class="admonition-title">Positions Table</p>
+<p>Download the csv file for the <a href="../bcamp_files/airtable_Positions.csv">Positions Table</a>.</p>
+</div>
+<ol>
+<li>
+<p>Once you have downloaded your .csv file, click on <strong>+ Add or import</strong> and select <strong>CSV file</strong>. Drop or select your <code>airtable_Positions.csv</code> file and click <strong>[Upload 1 file]</strong></p>
+</li>
+<li>
+<p>In the <strong>Import your file</strong> dialogue, select <em>+ Create a new table</em> and click <strong>[Next]</strong></p>
+</li>
+<li>
+<p>Click <strong>[Import]</strong></p>
+</li>
+<li>
+<p>Change the name of the Imported table to <strong>Positions</strong>: Click on the chevron besides the table name <em>Imported table</em> and select <em>Rename table</em>. Type <strong>Positions</strong> and click <strong>[Save]</strong></p>
+<p>Now you need to adjust the field types for the following fields: </p>
+</li>
+<li>
+<p>In the <strong>Investment_Acct</strong> field, edit the field and change the data type to <em>Link to another record</em>. From the existing tables list, select <strong>Investment</strong> and click <strong>[Save]</strong>.  If you are asked to confirm the change, click <strong>[Confirm change]</strong>.</p>
+<ul>
+<li>In the next dialogue window where you are asked to <strong>Add lookup fields</strong>, just <strong>[Skip]</strong>. We do not need additional fields here. </li>
+</ul>
+<p>This will keep both tables connected and consistent. You will see in your <strong>Investment</strong> table a new field called <strong>Positions</strong> that contains links to all the investment positions associated to the investment account.</p>
+</li>
+<li>
+<p>In the <strong>Position Value</strong> field, change the field data type to <em>Formula</em>. Then, set the <strong>Formula</strong> to: </p>
+<p></p><div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>{Current_Price} * {Quantity}
+</span></code></pre></div>
+If you are asked for confirmation, <strong>[Confirm change]</strong><p></p>
+</li>
+</ol>
+<p>Your <strong>Positions</strong> table is ready. </p>
+<p>Now you need to come back to your <strong>Investment</strong> table to complete the configuration of the pending field data types. </p>
+<ul>
+<li>
+<p>Edit the <strong>Total_Investment_Balance</strong> field and change the data type to <em>Rollup</em>. In the <strong>rollup source</strong> field, select the field <strong>Positions</strong>, and in the <strong>Positions field you want to roll up</strong> option, select the field <strong>Position Value</strong>. </p>
+<ul>
+<li>Leave the <strong>Aggregation formula</strong> at the end as <code>SUM(values)</code>. This field calculates the total value of all the investment positions of the customer. </li>
+</ul>
+</li>
+</ul>
+<p>Click <strong>[Save]</strong>.</p>
+<p>Now your <strong>Investment</strong> table is also completed. </p>
+<details class="example" open="open">
+<summary>Example population</summary>
+<p>To complete the example population in your Investments and Positions tables, you must link the positions to the investment account: </p>
+<p>In the <strong>Investment</strong> table, click the <code>+</code>symbol in the <em>Positions</em> empty cell of the investment record and add the <em>POS-001</em> to the investment record. Repeate the process and add <em>POS-002</em>. </p>
+<p>You will see now those two positions linked to the investment record in the <strong>Positions</strong> field and the <strong>Total_Investment_Balance</strong> value updated. </p>
+<p>In the <strong>Positions</strong> table, you will see the <strong>Investment_Acc</strong> field updated with the investment record linked to every position. </p>
+</details>
+</details>
+<p>Your Airtable Base is now ready for the Bootcamp!!! Let´s now setup the API that will allow you to access your data from your flows.</p>
+<h2 id="setting-up-your-airtable-api">Setting up your Airtable API<a class="headerlink" href="#setting-up-your-airtable-api" title="Permanent link">¶</a></h2>
+<p>Airtable's API uses token-based authentication, allowing users to
+authenticate API requests by inputting their tokens into the HTTP
+authorization bearer token header. Two type of tokens are supported:
+personal access tokens and OAuth access tokens. As this is for a demo
+environment, we will use <a href="https://airtable.com/developers/web/guides/personal-access-tokens">Personal Access
+Tokens</a>
+(PAT).</p>
+<details class="webex" open="open">
+<summary>Create a Personal Access Token</summary>
+<ol>
+<li>To create your PAT, go to <a href="https://airtable.com/create/tokens">https://airtable.com/create/tokens</a> and click
+on "Create token".</li>
+</ol>
+<details class="gif inline end" open="open">
+<summary>Create your Token</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/airtable7.gif" data-title="Create Token" data-desc-position="top"><img alt="Create Token" src="../assets/airtable7.gif"></a>
+</figure><p></p>
+</details>
+<ol>
+<li>
+<p>Give your token a name: "Webex Bank PAT".</p>
+</li>
+<li>
+<p>Define the Scope for your token. You will need to select <strong>data.records:read</strong> and <strong>data.records:write</strong>, as we will need R/W access to the data.</p>
+</li>
+<li>
+<p>Click <strong>+ Add a base</strong> and select your workspace to enable API access to your database.</p>
+</li>
+<li>
+<p>Click on "Create Token"</p>
+</li>
+<li>
+<p>You should see a confirmation panel with your newly created token. This   will be the only time you will see your token, it will never be shown again, so make sure you copy it in a safe place for further use. Once saved, you can click on "Done".</p>
+</li>
+</ol>
+<p>Now you will see your new token in your Personal access token site:</p>
+</details>
+<details class="webex" open="open">
+<summary>APi Documentation</summary>
+<details class="inline end" open="open">
+<summary>Create your Token</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/airtable16.png" data-title="Create Token" data-desc-position="top"><img alt="Create Token" src="../assets/airtable16.png"></a>
+</figure><p></p>
+</details>
+<p>Let's now generate the API documentation for your Airtable Base:</p>
+<ol>
+<li>
+<p>Go to <a href="https://airtable.com/api">https://airtable.com/api</a>. This is Airtable's official API documentation portal.</p>
+</li>
+<li>
+<p>Log into your Airtable account (if you're not already logged in).</p>
+</li>
+<li>
+<p>You'll see the list of <strong>Bases</strong> you have access to. Click on your <strong>Base</strong>.</p>
+</li>
+<li>
+<p>Airtable will generate <strong>auto-documented API reference</strong> for that Base, which includes:</p>
+<ul>
+<li>
+<p>Authentication setup</p>
+</li>
+<li>
+<p>Endpoints for each <strong>Table</strong></p>
+</li>
+<li>
+<p>Example <strong>GET</strong>, <strong>POST</strong>, <strong>PATCH</strong>, and <strong>DELETE</strong> requests</p>
+</li>
+<li>
+<p>Field names and data types</p>
+</li>
+<li>
+<p>Sample code snippets (e.g., using curl, JavaScript, etc.)</p>
+</li>
+</ul>
+</li>
+</ol>
+<details class="inline end" open="open">
+<summary>API Documentation</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/airtable17.png" data-title="API Documentation" data-desc-position="top"><img alt="API Documentation" src="../assets/airtable17.png"></a>
+</figure><p></p>
+</details>
+<details class="tip" open="open">
+<summary>Tip</summary>
+<p>Make sure you have populated at least one entry in your tables so that the API documentation includes examples.</p>
+</details>
+<p>Bookmark this page as it will be your API reference for your base.</p>
+<p>As you can see on the documentation, The <strong>Airtable API URL</strong> to access a base's content is constructed using a specific format that includes your <strong>Base ID</strong>, <strong>Table Name (or ID)</strong>, and the <strong>API version</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code>https://api.airtable.com/v0/{{baseId}}/{{tableId}}
+</code></pre></div>
+<ul>
+<li>
+<p>{{baseId}} -- A unique identifier for your base (e.g. app1234567890abcdef).</p>
+</li>
+<li>
+<p>{{tableId}} -- The unique identity of the table. (e.g., tblABCDsGD34DS49J2). The tableId can be replaced by the
+{{tableName}}. If the table name contains spaces or special characters, it should be <strong>URL-encoded</strong> (e.g., My%20Table). To avoid formatting issues, we recommend you to use {{tableld}}</p>
+</li>
+</ul>
+<details class="inline end" open="open">
+<summary>API URL components</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/airtable18.png" data-title="API URL" data-desc-position="top"><img alt="API URL" src="../assets/airtable18.png"></a>
+</figure><p></p>
+</details>
+<p>Where you can find this information? This is detailed in the generated API documentation for your base, but it is also available in your base page. See the picture on the right.</p>
+<p>Take note of those values.</p>
+</details>
+<hr>
+<details class="challenge" open="open">
+<summary>Test your Airtable API with Postman</summary>
+<p>While you can manage records and visualize data directly through the Airtable Web Interface (GUI), defining an Airtable API collection in Postman is a valuable step for this Bootcamp. Although not strictly required for basic data entry, a Postman collection allows you to verify your API configuration and ensure your endpoints are responsive. Since our automated flows will rely on this API to read and write data, setting up your collection now will guarantee your base is fully optimized and "integration-ready."</p>
+</details>
+<h2 id="pre-lab-check-verifying-airtable-field-name-integrity">Pre-Lab Check: Verifying Airtable Field Name Integrity<a class="headerlink" href="#pre-lab-check-verifying-airtable-field-name-integrity" title="Permanent link">¶</a></h2>
+<p>Before starting any lab exercise that interacts with Airtable tables via the API, it is essential to verify that all field names in your base are free of <strong>hidden special characters</strong>. These characters are silently introduced when tables are created by importing CSV files, and while they are invisible in the Airtable UI, they cause hard-to-diagnose errors when accessing or modifying data through the API. Although the .csv files have been cleaned up, the problem may exist in your Airtable base if you created it before the clean up. </p>
+<p>This guide explains the problem, how to detect it, and how to fix it automatically — with a step-by-step setup guide for both macOS and Windows.</p>
+<hr>
+<h3 id="the-problem-hidden-characters-in-csv-imported-field-names">The Problem: Hidden Characters in CSV-Imported Field Names<a class="headerlink" href="#the-problem-hidden-characters-in-csv-imported-field-names" title="Permanent link">¶</a></h3>
+<p>When Airtable tables are created by importing CSV files, column headers are used as field names. CSV files — especially those exported from Excel, Google Sheets, or other tools — frequently embed invisible characters in those headers without any visible indication. The most common offenders are:</p>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Unicode</th>
+<th>Typical origin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Byte Order Mark (BOM)</td>
+<td><code>U+FEFF</code></td>
+<td>Excel / CSV exports</td>
+</tr>
+<tr>
+<td>Non-breaking space</td>
+<td><code>U+00A0</code></td>
+<td>Copy-paste from web or Word</td>
+</tr>
+<tr>
+<td>Zero-width space</td>
+<td><code>U+200B</code></td>
+<td>Web copy-paste</td>
+</tr>
+<tr>
+<td>Zero-width non-joiner</td>
+<td><code>U+200C</code></td>
+<td>Word processors</td>
+</tr>
+<tr>
+<td>Zero-width joiner</td>
+<td><code>U+200D</code></td>
+<td>Word processors</td>
+</tr>
+<tr>
+<td>Soft hyphen</td>
+<td><code>U+00AD</code></td>
+<td>Word processors</td>
+</tr>
+<tr>
+<td>Left-to-right mark</td>
+<td><code>U+200E</code></td>
+<td>RTL/LTR mixed text</td>
+</tr>
+<tr>
+<td>Right-to-left mark</td>
+<td><code>U+200F</code></td>
+<td>RTL/LTR mixed text</td>
+</tr>
+<tr>
+<td>ASCII control characters</td>
+<td><code>U+0000</code>–<code>U+001F</code></td>
+<td>Corrupt or malformed CSV</td>
+</tr>
+<tr>
+<td>Leading / trailing whitespace</td>
+<td>space, tab, newline</td>
+<td>CSV column header formatting</td>
+</tr>
+</tbody>
+</table>
+<p>These characters are <strong>completely invisible</strong> in the Airtable interface. A field named <code>Temperature</code> and a field named <code>​Temperature</code> (with a hidden BOM at the start) look identical on screen. However, when your code references the field by name — for example, when filtering records, updating values, or building formulas — Airtable treats them as different names and the API call fails or returns unexpected results.</p>
+<hr>
+<h3 id="the-solution-a-pre-flight-checker-script">The Solution: A Pre-Flight Checker Script<a class="headerlink" href="#the-solution-a-pre-flight-checker-script" title="Permanent link">¶</a></h3>
+<p>A Python script is provided that connects to the Airtable <strong>Metadata API</strong>, inspects every field name in every table of your base, detects any hidden or non-printable characters, and optionally renames the offending fields automatically.</p>
+<p>The script has two modes:</p>
+<ul>
+<li><strong>Check mode</strong> (read-only, safe): scans all field names and reports any issues without making changes.</li>
+<li><strong>Fix mode</strong>: automatically renames all dirty fields to their clean equivalents.</li>
+</ul>
+<details class="recommendation" open="open">
+<summary>Recommendation</summary>
+<p>Run the script in <strong>Check mode</strong> at the start of the Bootcamp. Only use <strong>Fix mode</strong> if issues are found.</p>
+</details>
+<hr>
+<details class="webex" open="open">
+<summary>Prerequisites</summary>
+<ol>
+<li>
+<p>Python 3.10 or higher</p>
+<p><strong>macOS</strong> — open Terminal and run:
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>python3<span class="w"> </span>--version
+</span></code></pre></div><p></p>
+<p><strong>Windows</strong> — open Command Prompt or PowerShell and run:
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>python --version
+</span></code></pre></div><p></p>
+<p>If no version is shown, download and install Python from <a href="https://python.org/downloads">python.org/downloads</a>.  </p>
+<blockquote>
+<p><br> ⚠️ <strong>Windows users:</strong> during installation, make sure to tick <strong>"Add Python to PATH"</strong>.
+<br>
+<br></p>
+</blockquote>
+</li>
+<li>
+<p>The <code>requests</code> library</p>
+<p><strong>macOS:</strong>
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pip3<span class="w"> </span>install<span class="w"> </span>requests
+</span></code></pre></div><p></p>
+<p><strong>Windows:</strong>
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pip install requests
+</span></code></pre></div><p></p>
+</li>
+<li>
+<p>The checker script</p>
+<div class="admonition download check script">
+<p class="admonition-title">Download</p>
+<p>Download the <a download="check_airtable_fields.py" href="../bcamp_files/check_airtable_fields.py">Check Airtable Fields</a> file and save it into a folder you can easily navigate to, for example:</p>
+<ul>
+<li>macOS: <code>~/Documents/lab-tools/</code></li>
+<li>Windows: <code>C:\Users\YourName\Documents\lab-tools\</code></li>
+</ul>
+</div>
+</li>
+<li>
+<p>Setting Up Airtable Credentials</p>
+<p>The script requires two credentials: the <strong>Personal Access Token</strong> (PAT) and your <strong>Base ID</strong>.</p>
+<p>Remember the Base ID is visible in the URL:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>https://airtable.com/appXXXXXXXXXXXXXX/tblYYYYYYYYYYYYYY/...
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>                     ^^^^^^^^^^^^^^^^^
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>                     This is your Base ID (starts with "app")
+</span></code></pre></div>
+<details class="info inline end" open="open">
+<summary>Update Token scope</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Airtable%20Token%20scope.png" data-title="Update token" data-desc-position="top"><img alt="Update token" src="../assets/Airtable%20Token%20scope.png"></a>
+</figure> <p></p>
+</details>
+<p>At this stage you have already created your PAT and saved it. In order to make sure we can access the metadata API, you need to add a new scope to your token: </p>
+<ol>
+<li>Go to <a href="https://airtable.com/create/tokens">airtable.com/create/tokens</a></li>
+<li>Click on your token</li>
+<li>Click on <strong>+ Add a scope</strong> and add:<ul>
+<li><code>schema:bases:read</code> — required to inspect field names</li>
+<li><code>schema:bases:write</code> — required only if you want to auto-fix field names</li>
+</ul>
+</li>
+<li>
+<p>Click <strong>[Save changes]</strong></p>
+<blockquote>
+<p>⚠️ <strong>Important:</strong> Both scopes and base access must be configured. A token that is missing either will be rejected with a <code>403</code> error, even if the token itself is valid. See the <a href="#troubleshooting">Troubleshooting</a> section for details.</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ol>
+<p>Now you have everything you need for your verification script. </p>
+</details>
+<details class="webex" open="open">
+<summary>Configuring the Script</summary>
+<p>The script reads your credentials from <strong>environment variables</strong>. Set them as follows before running the script. Use your Airtable Base ID and PAT. </p>
+<p><strong>macOS (Terminal)</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AIRTABLE_TOKEN</span><span class="o">=</span><span class="s2">"patXXXXXXXXXXXXXX"</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AIRTABLE_BASE_ID</span><span class="o">=</span><span class="s2">"appXXXXXXXXXXXXXX"</span>
+</span></code></pre></div>
+<blockquote>
+<p>These variables last only for the current Terminal session. </p>
+</blockquote>
+<p><strong>Windows — Command Prompt</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>set AIRTABLE_TOKEN=patXXXXXXXXXXXXXX
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>set AIRTABLE_BASE_ID=appXXXXXXXXXXXXXX
+</span></code></pre></div>
+<p><strong>Windows — PowerShell</strong></p>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nv">$env:AIRTABLE_TOKEN</span><span class="p">=</span><span class="s2">"patXXXXXXXXXXXXXX"</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nv">$env:AIRTABLE_BASE_ID</span><span class="p">=</span><span class="s2">"appXXXXXXXXXXXXXX"</span>
+</span></code></pre></div>
+</details>
+<hr>
+<details class="webex" open="open">
+<summary>Running the Script</summary>
+<p>Open a terminal, navigate to the folder where <code>check_airtable_fields.py</code> is saved, and run the appropriate command.</p>
+<ol>
+<li>
+<p>Navigate to the script folder</p>
+<p><strong>macOS:</strong>
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span>~/Documents/lab-tools
+</span></code></pre></div><p></p>
+<p><strong>Windows:</strong>
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>cd C:\Users\YourName\Documents\lab-tools
+</span></code></pre></div><p></p>
+</li>
+<li>
+<p>Check mode (always run this first)</p>
+<p><strong>macOS:</strong>
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>python3<span class="w"> </span>check_airtable_fields.py
+</span></code></pre></div><p></p>
+<p><strong>Windows:</strong>
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>python check_airtable_fields.py
+</span></code></pre></div><p></p>
+</li>
+<li>
+<p>Fix mode (only if issues are found)</p>
+<p><strong>macOS:</strong>
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>python3<span class="w"> </span>check_airtable_fields.py<span class="w"> </span>--fix
+</span></code></pre></div><p></p>
+<p><strong>Windows:</strong>
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>python check_airtable_fields.py --fix
+</span></code></pre></div><p></p>
+</li>
+</ol>
+</details>
+<hr>
+<h3 id="understanding-the-output">Understanding the Output<a class="headerlink" href="#understanding-the-output" title="Permanent link">¶</a></h3>
+<p>For clean tables, the output from the check script will look like: </p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>==============================================================
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>  Airtable field-name checker  |  base: appcyTYF3nQqgReHR
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>  Mode: CHECK only (read-only)
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>==============================================================
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>Found 5 table(s).
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>  Table: 'Customers'  (17 fields)
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>  -------------------------------
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>    ✓  'CustomerID'
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>    ✓  'FirstName'
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>    ✓  'LastName'
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>    ✓  'PIN'
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>    ✓  'DOB'
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>    ✓  'SocialSecurity'
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>    ✓  'PhoneNumber'
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>    ✓  'Balance'
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>    ✓  'MaturityDate'
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>    ✓  'CashbackBalance'
+</span><span id="__span-16-20"><a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>    ✓  'Email'
+</span><span id="__span-16-21"><a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>    ✓  'Address'
+</span><span id="__span-16-22"><a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a>    ✓  'RewardsTier'
+</span><span id="__span-16-23"><a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a>    ✓  'CreditCard'
+</span><span id="__span-16-24"><a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a>    ✓  'Transactions'
+</span><span id="__span-16-25"><a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a>    ✓  'InvestmentAccount'
+</span><span id="__span-16-26"><a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a>    ✓  'FraudCases'
+</span><span id="__span-16-27"><a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a>    All fields look clean.
+</span><span id="__span-16-28"><a id="__codelineno-16-28" name="__codelineno-16-28" href="#__codelineno-16-28"></a>
+</span><span id="__span-16-29"><a id="__codelineno-16-29" name="__codelineno-16-29" href="#__codelineno-16-29"></a>  Table: 'Transactions'  (9 fields)
+</span><span id="__span-16-30"><a id="__codelineno-16-30" name="__codelineno-16-30" href="#__codelineno-16-30"></a>  ---------------------------------
+</span><span id="__span-16-31"><a id="__codelineno-16-31" name="__codelineno-16-31" href="#__codelineno-16-31"></a>    ✓  'TransactionID'
+</span><span id="__span-16-32"><a id="__codelineno-16-32" name="__codelineno-16-32" href="#__codelineno-16-32"></a>    ✓  'CustomerID'
+</span><span id="__span-16-33"><a id="__codelineno-16-33" name="__codelineno-16-33" href="#__codelineno-16-33"></a>    ✓  'Amount'
+</span><span id="__span-16-34"><a id="__codelineno-16-34" name="__codelineno-16-34" href="#__codelineno-16-34"></a>    ✓  'Vendor'
+</span><span id="__span-16-35"><a id="__codelineno-16-35" name="__codelineno-16-35" href="#__codelineno-16-35"></a>    ✓  'City'
+</span><span id="__span-16-36"><a id="__codelineno-16-36" name="__codelineno-16-36" href="#__codelineno-16-36"></a>    ✓  'FirstName (from FirstName)'
+</span><span id="__span-16-37"><a id="__codelineno-16-37" name="__codelineno-16-37" href="#__codelineno-16-37"></a>    ✓  'LastName'
+</span><span id="__span-16-38"><a id="__codelineno-16-38" name="__codelineno-16-38" href="#__codelineno-16-38"></a>    ✓  'Date'
+</span><span id="__span-16-39"><a id="__codelineno-16-39" name="__codelineno-16-39" href="#__codelineno-16-39"></a>    ✓  'FraudCases'
+</span><span id="__span-16-40"><a id="__codelineno-16-40" name="__codelineno-16-40" href="#__codelineno-16-40"></a>    All fields look clean.
+</span><span id="__span-16-41"><a id="__codelineno-16-41" name="__codelineno-16-41" href="#__codelineno-16-41"></a>
+</span><span id="__span-16-42"><a id="__codelineno-16-42" name="__codelineno-16-42" href="#__codelineno-16-42"></a>  Table: 'Investment'  (8 fields)
+</span><span id="__span-16-43"><a id="__codelineno-16-43" name="__codelineno-16-43" href="#__codelineno-16-43"></a>  -------------------------------
+</span><span id="__span-16-44"><a id="__codelineno-16-44" name="__codelineno-16-44" href="#__codelineno-16-44"></a>    ✓  'Investment_Acct'
+</span><span id="__span-16-45"><a id="__codelineno-16-45" name="__codelineno-16-45" href="#__codelineno-16-45"></a>    ✓  'CustomerID'
+</span><span id="__span-16-46"><a id="__codelineno-16-46" name="__codelineno-16-46" href="#__codelineno-16-46"></a>    ✓  'FirstName (from CustomerID)'
+</span><span id="__span-16-47"><a id="__codelineno-16-47" name="__codelineno-16-47" href="#__codelineno-16-47"></a>    ✓  'LastName (from CustomerID)'
+</span><span id="__span-16-48"><a id="__codelineno-16-48" name="__codelineno-16-48" href="#__codelineno-16-48"></a>    ✓  'Total_Investment_Balance'
+</span><span id="__span-16-49"><a id="__codelineno-16-49" name="__codelineno-16-49" href="#__codelineno-16-49"></a>    ✓  'Risk_Tolerance'
+</span><span id="__span-16-50"><a id="__codelineno-16-50" name="__codelineno-16-50" href="#__codelineno-16-50"></a>    ✓  'Preferred_Sector'
+</span><span id="__span-16-51"><a id="__codelineno-16-51" name="__codelineno-16-51" href="#__codelineno-16-51"></a>    ✓  'Positions'
+</span><span id="__span-16-52"><a id="__codelineno-16-52" name="__codelineno-16-52" href="#__codelineno-16-52"></a>    All fields look clean.
+</span><span id="__span-16-53"><a id="__codelineno-16-53" name="__codelineno-16-53" href="#__codelineno-16-53"></a>
+</span><span id="__span-16-54"><a id="__codelineno-16-54" name="__codelineno-16-54" href="#__codelineno-16-54"></a>  Table: 'Positions'  (7 fields)
+</span><span id="__span-16-55"><a id="__codelineno-16-55" name="__codelineno-16-55" href="#__codelineno-16-55"></a>  ------------------------------
+</span><span id="__span-16-56"><a id="__codelineno-16-56" name="__codelineno-16-56" href="#__codelineno-16-56"></a>    ✓  'Position_ID'
+</span><span id="__span-16-57"><a id="__codelineno-16-57" name="__codelineno-16-57" href="#__codelineno-16-57"></a>    ✓  'Investment_Acct'
+</span><span id="__span-16-58"><a id="__codelineno-16-58" name="__codelineno-16-58" href="#__codelineno-16-58"></a>    ✓  'Stock_Ticker'
+</span><span id="__span-16-59"><a id="__codelineno-16-59" name="__codelineno-16-59" href="#__codelineno-16-59"></a>    ✓  'Quantity'
+</span><span id="__span-16-60"><a id="__codelineno-16-60" name="__codelineno-16-60" href="#__codelineno-16-60"></a>    ✓  'Purchase_Price'
+</span><span id="__span-16-61"><a id="__codelineno-16-61" name="__codelineno-16-61" href="#__codelineno-16-61"></a>    ✓  'Current_Price'
+</span><span id="__span-16-62"><a id="__codelineno-16-62" name="__codelineno-16-62" href="#__codelineno-16-62"></a>    ✓  'Position_Value'
+</span><span id="__span-16-63"><a id="__codelineno-16-63" name="__codelineno-16-63" href="#__codelineno-16-63"></a>    All fields look clean.
+</span><span id="__span-16-64"><a id="__codelineno-16-64" name="__codelineno-16-64" href="#__codelineno-16-64"></a>
+</span><span id="__span-16-65"><a id="__codelineno-16-65" name="__codelineno-16-65" href="#__codelineno-16-65"></a>  Table: 'FraudCases'  (7 fields)
+</span><span id="__span-16-66"><a id="__codelineno-16-66" name="__codelineno-16-66" href="#__codelineno-16-66"></a>  -------------------------------
+</span><span id="__span-16-67"><a id="__codelineno-16-67" name="__codelineno-16-67" href="#__codelineno-16-67"></a>    ✓  'CaseID'
+</span><span id="__span-16-68"><a id="__codelineno-16-68" name="__codelineno-16-68" href="#__codelineno-16-68"></a>    ✓  'CustomerID'
+</span><span id="__span-16-69"><a id="__codelineno-16-69" name="__codelineno-16-69" href="#__codelineno-16-69"></a>    ✓  'TransactionID'
+</span><span id="__span-16-70"><a id="__codelineno-16-70" name="__codelineno-16-70" href="#__codelineno-16-70"></a>    ✓  'Amount (from Assignee)'
+</span><span id="__span-16-71"><a id="__codelineno-16-71" name="__codelineno-16-71" href="#__codelineno-16-71"></a>    ✓  'Vendor (from Assignee)'
+</span><span id="__span-16-72"><a id="__codelineno-16-72" name="__codelineno-16-72" href="#__codelineno-16-72"></a>    ✓  'City (from Assignee)'
+</span><span id="__span-16-73"><a id="__codelineno-16-73" name="__codelineno-16-73" href="#__codelineno-16-73"></a>    ✓  'Status'
+</span><span id="__span-16-74"><a id="__codelineno-16-74" name="__codelineno-16-74" href="#__codelineno-16-74"></a>    All fields look clean.
+</span><span id="__span-16-75"><a id="__codelineno-16-75" name="__codelineno-16-75" href="#__codelineno-16-75"></a>
+</span><span id="__span-16-76"><a id="__codelineno-16-76" name="__codelineno-16-76" href="#__codelineno-16-76"></a>==============================================================
+</span><span id="__span-16-77"><a id="__codelineno-16-77" name="__codelineno-16-77" href="#__codelineno-16-77"></a>SUMMARY
+</span><span id="__span-16-78"><a id="__codelineno-16-78" name="__codelineno-16-78" href="#__codelineno-16-78"></a>==============================================================
+</span><span id="__span-16-79"><a id="__codelineno-16-79" name="__codelineno-16-79" href="#__codelineno-16-79"></a>  Tables checked  : 5
+</span><span id="__span-16-80"><a id="__codelineno-16-80" name="__codelineno-16-80" href="#__codelineno-16-80"></a>  Fields checked  : 48
+</span><span id="__span-16-81"><a id="__codelineno-16-81" name="__codelineno-16-81" href="#__codelineno-16-81"></a>  Dirty fields    : 0
+</span><span id="__span-16-82"><a id="__codelineno-16-82" name="__codelineno-16-82" href="#__codelineno-16-82"></a>
+</span><span id="__span-16-83"><a id="__codelineno-16-83" name="__codelineno-16-83" href="#__codelineno-16-83"></a>✔  All field names are clean. Safe to start lab exercises.
+</span></code></pre></div>
+<p>In case of dirty fields are present in any of the tables, the output of the script will look like: </p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>==============================================================
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>  Airtable field-name checker  |  base: appcyTYF3nQqgReHR
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>  Mode: CHECK only (read-only)
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>==============================================================
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>Found 5 table(s).
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>  Table: 'Customers'  (17 fields)
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>  -------------------------------
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>    ✓  'CustomerID'
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>    ✓  'FirstName'
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>    ✓  'LastName'
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>    ✓  'PIN'
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>    ✓  'DOB'
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>    ✓  'SocialSecurity'
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>    ✓  'PhoneNumber'
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>    ✓  'Balance'
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>    ✓  'MaturityDate'
+</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>    ✓  'CashbackBalance'
+</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>    ✓  'Email'
+</span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>    ✓  'Address'
+</span><span id="__span-17-22"><a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a>    ✓  'RewardsTier'
+</span><span id="__span-17-23"><a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a>    ✗  '\ufeffCreditCard'
+</span><span id="__span-17-24"><a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a>       ↳ U+FEFF (ZERO WIDTH NO-BREAK SPACE)
+</span><span id="__span-17-25"><a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a>       → suggested clean name: 'CreditCard'
+</span><span id="__span-17-26"><a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a>    ✓  'Transactions'
+</span><span id="__span-17-27"><a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>    ✓  'InvestmentAccount'
+</span><span id="__span-17-28"><a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a>    ✓  'FraudCases'
+</span><span id="__span-17-29"><a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a>
+</span><span id="__span-17-30"><a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a>  Table: 'Transactions'  (9 fields)
+</span><span id="__span-17-31"><a id="__codelineno-17-31" name="__codelineno-17-31" href="#__codelineno-17-31"></a>  ---------------------------------
+</span><span id="__span-17-32"><a id="__codelineno-17-32" name="__codelineno-17-32" href="#__codelineno-17-32"></a>    ✓  'TransactionID'
+</span><span id="__span-17-33"><a id="__codelineno-17-33" name="__codelineno-17-33" href="#__codelineno-17-33"></a>    ✓  'CustomerID'
+</span><span id="__span-17-34"><a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a>    ✓  'Amount'
+</span><span id="__span-17-35"><a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a>    ✓  'Vendor'
+</span><span id="__span-17-36"><a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a>    ✓  'City'
+</span><span id="__span-17-37"><a id="__codelineno-17-37" name="__codelineno-17-37" href="#__codelineno-17-37"></a>    ✓  'FirstName (from FirstName)'
+</span><span id="__span-17-38"><a id="__codelineno-17-38" name="__codelineno-17-38" href="#__codelineno-17-38"></a>    ✓  'LastName'
+</span><span id="__span-17-39"><a id="__codelineno-17-39" name="__codelineno-17-39" href="#__codelineno-17-39"></a>    ✓  'Date'
+</span><span id="__span-17-40"><a id="__codelineno-17-40" name="__codelineno-17-40" href="#__codelineno-17-40"></a>    ✓  'FraudCases'
+</span><span id="__span-17-41"><a id="__codelineno-17-41" name="__codelineno-17-41" href="#__codelineno-17-41"></a>    All fields look clean.
+</span><span id="__span-17-42"><a id="__codelineno-17-42" name="__codelineno-17-42" href="#__codelineno-17-42"></a>
+</span><span id="__span-17-43"><a id="__codelineno-17-43" name="__codelineno-17-43" href="#__codelineno-17-43"></a>  Table: 'Investment'  (8 fields)
+</span><span id="__span-17-44"><a id="__codelineno-17-44" name="__codelineno-17-44" href="#__codelineno-17-44"></a>  -------------------------------
+</span><span id="__span-17-45"><a id="__codelineno-17-45" name="__codelineno-17-45" href="#__codelineno-17-45"></a>    ✓  'Investment_Acct'
+</span><span id="__span-17-46"><a id="__codelineno-17-46" name="__codelineno-17-46" href="#__codelineno-17-46"></a>    ✓  'CustomerID'
+</span><span id="__span-17-47"><a id="__codelineno-17-47" name="__codelineno-17-47" href="#__codelineno-17-47"></a>    ✓  'FirstName (from CustomerID)'
+</span><span id="__span-17-48"><a id="__codelineno-17-48" name="__codelineno-17-48" href="#__codelineno-17-48"></a>    ✓  'LastName (from CustomerID)'
+</span><span id="__span-17-49"><a id="__codelineno-17-49" name="__codelineno-17-49" href="#__codelineno-17-49"></a>    ✓  'Total_Investment_Balance'
+</span><span id="__span-17-50"><a id="__codelineno-17-50" name="__codelineno-17-50" href="#__codelineno-17-50"></a>    ✓  'Risk_Tolerance'
+</span><span id="__span-17-51"><a id="__codelineno-17-51" name="__codelineno-17-51" href="#__codelineno-17-51"></a>    ✓  'Preferred_Sector'
+</span><span id="__span-17-52"><a id="__codelineno-17-52" name="__codelineno-17-52" href="#__codelineno-17-52"></a>    ✓  'Positions'
+</span><span id="__span-17-53"><a id="__codelineno-17-53" name="__codelineno-17-53" href="#__codelineno-17-53"></a>    All fields look clean.
+</span><span id="__span-17-54"><a id="__codelineno-17-54" name="__codelineno-17-54" href="#__codelineno-17-54"></a>
+</span><span id="__span-17-55"><a id="__codelineno-17-55" name="__codelineno-17-55" href="#__codelineno-17-55"></a>  Table: 'Positions'  (7 fields)
+</span><span id="__span-17-56"><a id="__codelineno-17-56" name="__codelineno-17-56" href="#__codelineno-17-56"></a>  ------------------------------
+</span><span id="__span-17-57"><a id="__codelineno-17-57" name="__codelineno-17-57" href="#__codelineno-17-57"></a>    ✓  'Position_ID'
+</span><span id="__span-17-58"><a id="__codelineno-17-58" name="__codelineno-17-58" href="#__codelineno-17-58"></a>    ✓  'Investment_Acct'
+</span><span id="__span-17-59"><a id="__codelineno-17-59" name="__codelineno-17-59" href="#__codelineno-17-59"></a>    ✓  'Stock_Ticker'
+</span><span id="__span-17-60"><a id="__codelineno-17-60" name="__codelineno-17-60" href="#__codelineno-17-60"></a>    ✓  'Quantity'
+</span><span id="__span-17-61"><a id="__codelineno-17-61" name="__codelineno-17-61" href="#__codelineno-17-61"></a>    ✓  'Purchase_Price'
+</span><span id="__span-17-62"><a id="__codelineno-17-62" name="__codelineno-17-62" href="#__codelineno-17-62"></a>    ✓  'Current_Price'
+</span><span id="__span-17-63"><a id="__codelineno-17-63" name="__codelineno-17-63" href="#__codelineno-17-63"></a>    ✓  'Position_Value'
+</span><span id="__span-17-64"><a id="__codelineno-17-64" name="__codelineno-17-64" href="#__codelineno-17-64"></a>    All fields look clean.
+</span><span id="__span-17-65"><a id="__codelineno-17-65" name="__codelineno-17-65" href="#__codelineno-17-65"></a>
+</span><span id="__span-17-66"><a id="__codelineno-17-66" name="__codelineno-17-66" href="#__codelineno-17-66"></a>  Table: 'FraudCases'  (7 fields)
+</span><span id="__span-17-67"><a id="__codelineno-17-67" name="__codelineno-17-67" href="#__codelineno-17-67"></a>  -------------------------------
+</span><span id="__span-17-68"><a id="__codelineno-17-68" name="__codelineno-17-68" href="#__codelineno-17-68"></a>    ✓  'CaseID'
+</span><span id="__span-17-69"><a id="__codelineno-17-69" name="__codelineno-17-69" href="#__codelineno-17-69"></a>    ✓  'CustomerID'
+</span><span id="__span-17-70"><a id="__codelineno-17-70" name="__codelineno-17-70" href="#__codelineno-17-70"></a>    ✓  'TransactionID'
+</span><span id="__span-17-71"><a id="__codelineno-17-71" name="__codelineno-17-71" href="#__codelineno-17-71"></a>    ✓  'Amount (from Assignee)'
+</span><span id="__span-17-72"><a id="__codelineno-17-72" name="__codelineno-17-72" href="#__codelineno-17-72"></a>    ✓  'Vendor (from Assignee)'
+</span><span id="__span-17-73"><a id="__codelineno-17-73" name="__codelineno-17-73" href="#__codelineno-17-73"></a>    ✓  'City (from Assignee)'
+</span><span id="__span-17-74"><a id="__codelineno-17-74" name="__codelineno-17-74" href="#__codelineno-17-74"></a>    ✓  'Status'
+</span><span id="__span-17-75"><a id="__codelineno-17-75" name="__codelineno-17-75" href="#__codelineno-17-75"></a>    All fields look clean.
+</span><span id="__span-17-76"><a id="__codelineno-17-76" name="__codelineno-17-76" href="#__codelineno-17-76"></a>
+</span><span id="__span-17-77"><a id="__codelineno-17-77" name="__codelineno-17-77" href="#__codelineno-17-77"></a>==============================================================
+</span><span id="__span-17-78"><a id="__codelineno-17-78" name="__codelineno-17-78" href="#__codelineno-17-78"></a>SUMMARY
+</span><span id="__span-17-79"><a id="__codelineno-17-79" name="__codelineno-17-79" href="#__codelineno-17-79"></a>==============================================================
+</span><span id="__span-17-80"><a id="__codelineno-17-80" name="__codelineno-17-80" href="#__codelineno-17-80"></a>  Tables checked  : 5
+</span><span id="__span-17-81"><a id="__codelineno-17-81" name="__codelineno-17-81" href="#__codelineno-17-81"></a>  Fields checked  : 48
+</span><span id="__span-17-82"><a id="__codelineno-17-82" name="__codelineno-17-82" href="#__codelineno-17-82"></a>  Dirty fields    : 1
+</span><span id="__span-17-83"><a id="__codelineno-17-83" name="__codelineno-17-83" href="#__codelineno-17-83"></a>
+</span><span id="__span-17-84"><a id="__codelineno-17-84" name="__codelineno-17-84" href="#__codelineno-17-84"></a>⚠  1 dirty field(s) found. Re-run with --fix to rename them automatically.
+</span><span id="__span-17-85"><a id="__codelineno-17-85" name="__codelineno-17-85" href="#__codelineno-17-85"></a>
+</span><span id="__span-17-86"><a id="__codelineno-17-86" name="__codelineno-17-86" href="#__codelineno-17-86"></a>  Detailed report written to: field_issues_report.txt
+</span></code></pre></div>
+<h4 id="clean-field">Clean field<a class="headerlink" href="#clean-field" title="Permanent link">¶</a></h4>
+<figure>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Airtable_clean_field.png" data-title="Clean Field" data-desc-position="top"><img alt="Clean Field" src="../assets/Airtable_clean_field.png"></a></p>
+</figure>
+<p>A green tick means the field name contains no hidden characters and is safe to use.</p>
+<h4 id="dirty-field">Dirty field<a class="headerlink" href="#dirty-field" title="Permanent link">¶</a></h4>
+<figure>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Airtable_dirty_field.png" data-title="Dirty Field" data-desc-position="top"><img alt="Dirty Field" src="../assets/Airtable_dirty_field.png"></a></p>
+</figure>
+<p>A red cross means the field name contains one or more hidden characters. The script shows the exact character(s) found and the suggested clean name.</p>
+<h4 id="summary-block">Summary block<a class="headerlink" href="#summary-block" title="Permanent link">¶</a></h4>
+<figure>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Airtable_summary_dirty.png" data-title="Summary dirty" data-desc-position="top"><img alt="Summary dirty" src="../assets/Airtable_summary_dirty.png"></a></p>
+</figure>
+<p>If you get dirty fields reported, either re-run the script with the --fix option or manually remove and re-edit the field name in your Airtable. </p>
+<p>If all fields are clean, you will see:</p>
+<figure>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Airtable_summary_clean.png" data-title="Summary clean" data-desc-position="top"><img alt="Summary clean" src="../assets/Airtable_summary_clean.png"></a></p>
+</figure>
+<p>In this case, you are good to go with the Bootcamp labs!!!!</p>
+<h4 id="report-file">Report file<a class="headerlink" href="#report-file" title="Permanent link">¶</a></h4>
+<p>If any issues are found, the script also writes a plain-text file called <code>field_issues_report.txt</code> in the same folder, which lists every problem found — useful to keep as an audit record.</p>
+<hr>
+<h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">¶</a></h3>
+<h4 id="403-invalid_permissions_or_model_not_found"><code>403 INVALID_PERMISSIONS_OR_MODEL_NOT_FOUND</code><a class="headerlink" href="#403-invalid_permissions_or_model_not_found" title="Permanent link">¶</a></h4>
+<p>This is the most common error. It means the token reached Airtable but was rejected. It does <strong>not</strong> mean the token is invalid. Check the following on your token settings page at <a href="https://airtable.com/create/tokens">airtable.com/create/tokens</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>What to look for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scopes</td>
+<td><code>schema:bases:read</code> must be listed</td>
+</tr>
+<tr>
+<td>Access</td>
+<td>Your base ID must be explicitly added</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> The Metadata API (<code>/v0/meta/bases/...</code>) requires <code>schema:bases:read</code> specifically. A token that works on the regular data API (<code>/v0/{baseId}/{tableName}</code>) — for example one tested in Postman — will still fail on the Metadata API if this scope is missing.</p>
+</blockquote>
+<hr>
+<h4 id="environment-variable-not-set">Environment variable not set<a class="headerlink" href="#environment-variable-not-set" title="Permanent link">¶</a></h4>
+<p>If the script exits with <code>ERROR: Set AIRTABLE_TOKEN</code>, the variable was not found in the environment. This commonly happens after opening a new Terminal window.</p>
+<p>Verify the variable is set:
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># macOS / Linux</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$AIRTABLE_TOKEN</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="c1"># Windows Command Prompt</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="nb">echo</span><span class="w"> </span>%AIRTABLE_TOKEN%
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="c1"># Windows PowerShell</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$env</span>:AIRTABLE_TOKEN
+</span></code></pre></div><p></p>
+<p>If nothing is printed, re-run the <code>export</code> / <code>set</code> command from the <strong>Configuring the Script</strong> section.</p>
+<hr>
+<h4 id="token-contains-hidden-characters">Token contains hidden characters<a class="headerlink" href="#token-contains-hidden-characters" title="Permanent link">¶</a></h4>
+<p>If the token was copy-pasted with surrounding spaces or invisible characters, the script will be sending a malformed <code>Authorization</code> header. Run the debug snippet below to inspect it:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">TOKEN</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"AIRTABLE_TOKEN"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Length : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">TOKEN</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Repr   : </span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="n">TOKEN</span><span class="p">[:</span><span class="mi">15</span><span class="p">])</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span></code></pre></div>
+<p>A valid token should look like:
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>Length : 82
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>Repr   : 'patHV74kWm....'
+</span></code></pre></div><p></p>
+<p>If <code>repr()</code> shows any <code>\n</code>, <code>\r</code>, <code>\ufeff</code>, or unexpected spaces around the value, unset the variable and re-set it carefully.</p>
+<hr>
+<h4 id="modulenotfounderror-no-module-named-requests"><code>ModuleNotFoundError: No module named 'requests'</code><a class="headerlink" href="#modulenotfounderror-no-module-named-requests" title="Permanent link">¶</a></h4>
+<p>The <code>requests</code> library is not installed. Run:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># macOS</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>pip3<span class="w"> </span>install<span class="w"> </span>requests
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># Windows</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>pip<span class="w"> </span>install<span class="w"> </span>requests
+</span></code></pre></div>
+<hr>
+<h3 id="quick-reference-cheat-sheet">Quick-Reference Cheat Sheet<a class="headerlink" href="#quick-reference-cheat-sheet" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>macOS</th>
+<th>Windows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Check Python</td>
+<td><code>python3 --version</code></td>
+<td><code>python --version</code></td>
+</tr>
+<tr>
+<td>Install library</td>
+<td><code>pip3 install requests</code></td>
+<td><code>pip install requests</code></td>
+</tr>
+<tr>
+<td>Set token</td>
+<td><code>export AIRTABLE_TOKEN="..."</code></td>
+<td><code>set AIRTABLE_TOKEN=...</code></td>
+</tr>
+<tr>
+<td>Set base ID</td>
+<td><code>export AIRTABLE_BASE_ID="..."</code></td>
+<td><code>set AIRTABLE_BASE_ID=...</code></td>
+</tr>
+<tr>
+<td>Run check</td>
+<td><code>python3 check_airtable_fields.py</code></td>
+<td><code>python check_airtable_fields.py</code></td>
+</tr>
+<tr>
+<td>Run fix</td>
+<td><code>python3 check_airtable_fields.py --fix</code></td>
+<td><code>python check_airtable_fields.py --fix</code></td>
+</tr>
+<tr>
+<td>Verify env var</td>
+<td><code>echo $AIRTABLE_TOKEN</code></td>
+<td><code>echo %AIRTABLE_TOKEN%</code></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../pre_req_email_channel/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Email">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Email
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab1_campaign_manager/" class="md-footer__link md-footer__link--next" aria-label="Next: Proactive Outbound Reach">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Proactive Outbound Reach
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 Cisco
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexesmkd", "navigation.instant", "navigation.top", "navigation.footer", "search.suggest", "content.code.copy", "toc.follow", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../template_assets/js/newLoad.js"></script>
+      
+        <script src="../template_assets/js/setInfo.js"></script>
+      
+        <script src="../javascripts/extra.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "fade", "closeEffect": "fade", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

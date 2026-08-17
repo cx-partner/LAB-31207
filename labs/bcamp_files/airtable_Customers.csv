@@ -1,0 +1,2 @@
+﻿CustomerID,FirstName,LastName,PIN,DOB,SocialSecurity,PhoneNumber,Balance,MaturityDate,CashbackBalance,Email,Address,RewardsTier,CreditCard
+CUST-001,John,Doe,1234,3/16/00,432-23-4231,,3500,5/30/26,750,,"4722 North Maplewood Avenue, Suite 300, Chicago, IL 60625",Standard,Standard Cashback
