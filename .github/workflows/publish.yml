@@ -1,11 +1,13 @@
-name: ci 
+name: Publish MkDocs Site
+
 on:
   push:
     branches:
-      - master 
       - main
+
 permissions:
   contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -18,31 +20,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
       - uses: actions/cache@v4
         with:
           key: mkdocs-material-${{ env.cache_id }}
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - run: pip install -r requirements.txt 
-
-# --- NEW LOGIC STARTS HERE ---
-
-      # 1. Build the Full Site (Audience A) into the root of the 'site' folder
-      # Accessible at: https://cx-partner.github.io/bootcamp2026/labs
-      - name: Build Full Site
-        run: mkdocs build -f mkdocs.yml -d site/labs
-
-      # 2. Build the Limited Site (Audience B) into a subfolder named 'pre-req'
-      # Accessible at: https://cx-partner.github.io/bootcamp2026/pre-req/
-      - name: Build Limited Site
-        run: mkdocs build -f mkdocs-prereq.yml -d site/pre-req
-
-      # 3. Deploy the entire 'site' folder to the gh-pages branch
+      - run: pip install -r requirements.txt
+      - name: Build Site
+        run: mkdocs build -f mkdocs.yml -d site
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
-          

@@ -1,3 +1,6 @@
-# Lab Guide for Bootcamp 2026
+# LAB-31207 Lab Guide
 
-Web guide link: https://cx-partner.github.io/bootcamp2026
+Local MkDocs guide for the 4-hour LAB-31207 Webex Contact Center lab.
+
+Planned site URL: https://cx-partner.github.io/LAB-31207/
+

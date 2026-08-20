@@ -1,4 +1,4 @@
-# Lab 1 - Proactive Outbound Reach 📞
+# Lab 1 - Native Campaign Manager
 
 ## Lab Purpose
 
@@ -67,7 +67,7 @@ Even we won't use any agent to run the IVR campaign, the creation of a **team or
 
         | Field | Value |
         |---|---|
-        | **Name** | `Bootcamp_Team` |
+        | **Name** | `LAB31207_Team` |
         | **Parent site** | `Site-1` |
         | **Team type** | `Agent-based` |
         | **Multimedia profile** | `Default_Multimedia_Profile` |
@@ -77,7 +77,7 @@ Even we won't use any agent to run the IVR campaign, the creation of a **team or
 
     <figure markdown>
     ![Create Team dialog](./assets/lab1_p3_img2.png)
-    <figcaption>Creating Bootcamp_Team with Agent-based type and Default Multimedia Profile</figcaption>
+    <figcaption>Creating LAB31207_Team with Agent-based type and Default Multimedia Profile</figcaption>
     </figure>
 
 ---
@@ -93,11 +93,11 @@ The outdial queue is what connects your outbound campaign to the agent pool. It 
 
         | Field | Value |
         |---|---|
-        | **Name** | `Bootcamp_OutVoiceQueue` |
+        | **Name** | `LAB31207_OutVoiceQueue` |
         | **Contact direction** | `Outbound queue` |
         | **Channel type** | `Telephony` |
         | **Outbound campaign** | Enabled (toggle ON) |
-        | **Agent assignment** | `Teams` → select `Bootcamp_Team` |
+        | **Agent assignment** | `Teams` → select `LAB31207_Team` |
 
     3. Under **Call distribution**, click **Create a group**, expand it, and select your Team.
     4. Fill in the mandatory **Advanced settings**:
@@ -114,7 +114,7 @@ The outdial queue is what connects your outbound campaign to the agent pool. It 
 
     <figure markdown style="width: 70%;">
     ![Create Outdial Queue2](./assets/lab1_p4_img3.png)
-    <figcaption>Creating the Bootcamp_OutVoiceQueue with Outbound queue direction and Outbound campaign enabled</figcaption>
+    <figcaption>Creating the LAB31207_OutVoiceQueue with Outbound queue direction and Outbound campaign enabled</figcaption>
     </figure>
     
 
@@ -352,13 +352,13 @@ The Entry Point (Channel) is the outbound telephony channel that ties together t
         | **Routing flow** | `Outbound_DebtCollection` |
         | **Music on hold** | `defaultmusic_on_hold.wav` |
         | **Version label** | `Latest` |
-        | **Outdial queue** | `Bootcamp_OutVoiceQueue` |
+        | **Outdial queue** | `LAB31207_OutVoiceQueue` |
 
     3. Click **Create**.
 
     <figure markdown>
     ![Entry Point configuration](./assets/lab1_p11_img1.png)
-    <figcaption>Campaign_EP entry point configured with Outbound telephony, pointing to the Outbound_DebtCollection flow and Bootcamp_OutVoiceQueue</figcaption>
+    <figcaption>Campaign_EP entry point configured with Outbound telephony, pointing to the Outbound_DebtCollection flow and LAB31207_OutVoiceQueue</figcaption>
     </figure>
 
 ### Configure Outdial ANI
@@ -369,14 +369,14 @@ The Outdial ANI is the caller ID displayed to customers when they receive the ou
 
     1. In Control Hub, navigate to **Contact Center** → **Outdial ANI**.
     2. Click **Create** and configure:
-        - **Name**: `Bootcamp_outANI`
+        - **Name**: `LAB31207_outANI`
     3. Under **Entry list**, click **Add More** and add your PSTN numbers
 
     4. Click **Save**.
 
     <figure markdown style="width: 70%;">
-    ![Bootcamp_outANI configuration](./assets/lab1_p12_img1.png)
-    <figcaption>BootcampOutdialANI configured for outdial caller ID</figcaption>
+    ![LAB31207_outANI configuration](./assets/lab1_p12_img1.png)
+    <figcaption>LAB-31207OutdialANI configured for outdial caller ID</figcaption>
     </figure>
 
 ---
@@ -465,14 +465,14 @@ Before creating the field mapping, create your contact list file.
 
 ???+ webex "Create Contact List CSV"
 
-    Create or [download](./bcamp_files/contact_list_bootcamp.csv) a CSV file named `contact_list_bootcamp.csv` with the following header structure:
+    Create or [download](./bcamp_files/contact_list_lab31207.csv) a CSV file named `contact_list_lab31207.csv` with the following header structure:
 
     ```csv
     firstName,lastName,phoneNumber
     John,Smith,+442012345678
     ```
 
-    Populate your own customer firstname, lastname and phoneNumber. This will be the customer in your Airtable with the pending debt.
+    Populate your own customer `firstName`, `lastName`, and `phoneNumber`. Use the test customer details provided for LAB-31207 [VERIFY: confirm test customer source].
 
     !!! note
         - All phone numbers must use the E.164 format with the `+` prefix and country code (e.g. `+442012345678`).
@@ -481,7 +481,7 @@ Before creating the field mapping, create your contact list file.
 
     <figure markdown>
     ![Contact list CSV structure](./assets/lab1_p16_img2.png)
-    <figcaption>contact_list_bootcamp.csv showing the three-column header: firstName, lastName, phoneNumber</figcaption>
+    <figcaption>contact_list_lab31207.csv showing the three-column header: firstName, lastName, phoneNumber</figcaption>
     </figure>
 
 #### Create the Field Mapping
@@ -490,15 +490,15 @@ Before creating the field mapping, create your contact list file.
 
     1. Navigate to **Voice campaigns administration** → **Field mappings**.
     2. Click **Create field mapping**.
-    3. Enter a **Field mapping name**: `Bootcamp_field_mapping`
+    3. Enter a **Field mapping name**: `LAB31207_field_mapping`
 
     **Step 1 — Upload sample file:**
 
-    Click **Choose file** and select your `contact_list_bootcamp.csv`. Once uploaded, the system displays the detected headers: `firstName`, `lastName`, `phoneNumber`.
+    Click **Choose file** and select your `contact_list_lab31207.csv`. Once uploaded, the system displays the detected headers: `firstName`, `lastName`, `phoneNumber`.
 
     <figure markdown>
     ![Field mapping upload](./assets/lab1_p17_img1.png)
-    <figcaption>Field mapping showing Bootcamp_field_mapping with the uploaded CSV and 3 detected headers</figcaption>
+    <figcaption>Field mapping showing LAB31207_field_mapping with the uploaded CSV and 3 detected headers</figcaption>
     </figure>
 
     **Step 2 — Map contact modes:**
@@ -617,30 +617,30 @@ Suppression rules prevent calls from being made to contacts during restricted ti
 
     1. Navigate to **Voice campaigns administration** → **Suppression rule sets**.
     2. Click **Create suppression rule set**.
-    3. Enter the name: `Bootcamp_rule`
+    3. Enter the name: `LAB31207_rule`
     4. Click **Save rule set**.
 
     <figure markdown>
     ![Suppression rule sets](./assets/lab1_p20_img2.png)
-    <figcaption>Creating the Bootcamp_rule suppression rule set</figcaption>
+    <figcaption>Creating the LAB31207_rule suppression rule set</figcaption>
     </figure>
 
-    Once saved, the rule set appears in the list. Click the **⋮ Actions** menu on the `Bootcamp_rule` row to access the option to create a rule within it.
+    Once saved, the rule set appears in the list. Click the **⋮ Actions** menu on the `LAB31207_rule` row to access the option to create a rule within it.
 
     <figure markdown>
     ![Suppression rule set created](./assets/lab1_p20_img3.jpeg)
-    <figcaption>Bootcamp_rule suppression rule set listed with Voice channel. Use the Actions menu to select "Create suppression rule"</figcaption>
+    <figcaption>LAB31207_rule suppression rule set listed with Voice channel. Use the Actions menu to select "Create suppression rule"</figcaption>
     </figure>
 
     **Step 2 — Create the rule under the set:**
 
-    1. Click on the **Bootcamp_rule** set.
+    1. Click on the **LAB31207_rule** set.
     2. Click **Create suppression rule** and configure:
 
         | Field | Value |
         |---|---|
-        | **Rule name** | `Bootcamp_rule1` |
-        | **Description** | `Bootcamp_rule1` |
+        | **Rule name** | `LAB31207_rule1` |
+        | **Description** | `LAB31207_rule1` |
         | **Suppression rule based on** | `Contact attempt timing window` |
         | **Applicable channels** | `Voice` |
 
@@ -668,7 +668,7 @@ The system provides a **primary (read-only) outcome set**. You must **duplicate*
 
     1. Navigate to **Voice campaigns administration** → **Telephony outcome sets**.
     2. On the `Primary_telephony_outcome_set` row, click the **⋮ Actions** menu and select **Duplicate**.
-    3. Enter the new name: `Bootcamp_Primary_telephony_outcome_set`
+    3. Enter the new name: `LAB31207_Primary_telephony_outcome_set`
     4. Click **Duplicate**.
 
     <figure markdown>
@@ -678,16 +678,16 @@ The system provides a **primary (read-only) outcome set**. You must **duplicate*
 
     <figure markdown>
     ![Duplicate outcome set dialog](./assets/lab1_p22_img1.png)
-    <figcaption>Duplicate dialog creating Bootcamp_Primary_telephony_outcome_set from the system primary set</figcaption>
+    <figcaption>Duplicate dialog creating LAB31207_Primary_telephony_outcome_set from the system primary set</figcaption>
     </figure>
 
-    The duplicated set will appear in your list. You can click on it to view all 20 telephony outcomes. For this bootcamp, **leave all outcome values at their defaults**.
+    The duplicated set will appear in your list. You can click on it to view all 20 telephony outcomes. For this lab, **leave all outcome values at their defaults**.
 
     <figure markdown>
     ![Telephony outcomes](./assets/lab1_p22_img2.jpeg)
 
     ![Telephony outcomes list](./assets/lab1_p23_img1.png)
-    <figcaption>Bootcamp_Primary_telephony_outcome_set showing all 20 telephony outcomes including AMD, ABANDONED, LIVE_VOICE, BUSY, INVALID_NUMBER, and others</figcaption>
+    <figcaption>LAB31207_Primary_telephony_outcome_set showing all 20 telephony outcomes including AMD, ABANDONED, LIVE_VOICE, BUSY, INVALID_NUMBER, and others</figcaption>
     </figure>
 
 ### UI Users
@@ -744,7 +744,7 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
 
     1. In Campaign Manager's left navigation panel, navigate to **Campaign management** → **Campaign groups**.
     2. Click **Create campaign group** and enter:
-        - **Campaign group name**: `Bootcamp2026`
+        - **Campaign group name**: `LAB-31207`
         - *(All other fields are optional)*
     3. Click **Save & proceed**.
 
@@ -762,7 +762,7 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
 
 ???+ webex "Create Campaign"
 
-    1. Click on the **Bootcamp2026** campaign group.
+    1. Click on the **LAB-31207** campaign group.
     2. Click **Create campaign** in the top-right corner.
 
         <figure markdown>
@@ -801,7 +801,7 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
 
     1. Click the **Contact list source** node.
     2. The **Select contact list source** is by default set to the options *File* and *API*. We will use manual file upload.
-    3. Set **Select field mapping** to the field mapping you created before: `Bootcamp_field_mapping`.
+    3. Set **Select field mapping** to the field mapping you created before: `LAB31207_field_mapping`.
     4. Set the contact expiration to 10 days.
     4. Click **Save changes**.
 
@@ -823,7 +823,7 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
 
     1. Click the **Daily schedule** node.
     2. Configure the calling window using your local timezone.
-    3. A typical bootcamp schedule runs:
+    3. A typical lab schedule runs:
         - **Start time**: `09:00`
         - **End time**: `21:00`
     4. Click **Save changes**.
@@ -842,7 +842,7 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
     4. Click **Save changes**.
 
     !!! Note
-        Note you can define specific campaign exclusion dates that would only apply for the current campaign. We will not use it in this bootcamp.
+        Note you can define specific campaign exclusion dates that would only apply for the current campaign. We will not use it in this lab.
 
 
     <figure markdown>
@@ -866,7 +866,7 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
     | Field | Value |
     |---|---|
     | **Wrap-up code set** | `Finance` (with 1 wrap-up code) |
-    | **Telephony outcome set** | `Bootcamp_Primary_telephony_outcome_set` |
+    | **Telephony outcome set** | `LAB31207_Primary_telephony_outcome_set` |
 
 
     **Section 2 — Contact mode priority:**
@@ -898,7 +898,7 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
 ???+ webex "Configure Suppression Rules"
 
     1. Click the **Suppression rule sets** node.
-    2. Under **Suppression rule sets**, select `Bootcamp_rule` (which includes `Bootcamp_rule1`).
+    2. Under **Suppression rule sets**, select `LAB31207_rule` (which includes `LAB31207_rule1`).
     3. Click **Save changes**.
 
     <figure markdown>
@@ -911,7 +911,7 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
 
     1. Click **Save & exit** (top right of the campaign flow canvas).
     2. In the **Save campaign** dialog, fill in:
-        - **Campaign name**: `Bootcamp_campaign`
+        - **Campaign name**: `LAB31207_campaign`
         - **P&L meta-tag**: `debt`
         - **Purpose meta-tag**: `debt`
         - **Applicable DNC lists**: `None`
@@ -930,7 +930,7 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
 
         The field mapping can be changed while the campaign is in **Draft** status.
     
-    1. Back in the Campaign group list, locate **Bootcamp_campaign** (status: **Draft**).
+    1. Back in the Campaign group list, locate **LAB31207_campaign** (status: **Draft**).
     2. Click the **⋮ Actions** menu and select **Activate**.
     3. In the confirmation dialog, click **Confirm**.
 
@@ -953,7 +953,7 @@ Now that the campaign is active, upload your contact list CSV to trigger the out
 
 ???+ webex "Upload Contact List"
 
-    1. In the campaign list, click the **⋮ Actions** menu on **Bootcamp_campaign** and select **Manage contact lists**.
+    1. In the campaign list, click the **⋮ Actions** menu on **LAB31207_campaign** and select **Manage contact lists**.
         
         <figure markdown>
         ![Manage contact lists panel](./assets/lab1_p31_img3.png)
@@ -968,8 +968,8 @@ Now that the campaign is active, upload your contact list CSV to trigger the out
     3. In the **Contact list from file upload** dialog:
         - **Supported channels**: Voice (pre-selected)
         - **Contact list type**: Static
-        - **Field mapping**: `Bootcamp_field_mapping` (pre-selected)
-        - Click **Browse** and select your `contact_list_bootcamp.csv`
+        - **Field mapping**: `LAB31207_field_mapping` (pre-selected)
+        - Click **Browse** and select your `contact_list_lab31207.csv`
         - **Automatically activate**: Immediately after upload
         - **In case of record issues**: Skip the particular record
     4. Click **Save and proceed**.
@@ -1036,7 +1036,7 @@ At this point, you have successfully:
 - [x] Built the `Outbound_DebtCollection` campaign flow with CPA-based routing (AMD, Abandoned, Live Voice)
 - [x] Configured the outdial Entry Point (Channel) and Outdial ANI
 - [x] Completed all Campaign Manager prerequisites (, contact modes, field mappings, suppression rules, telephony outcomes, wrap-up codes, meta-tags)
-- [x] Created, configured, and activated the `Bootcamp_campaign` Progressive IVR campaign
+- [x] Created, configured, and activated the `LAB31207_campaign` Progressive IVR campaign
 - [x] Uploaded a contact list and received a live test call
 
 **Congratulations!** You have completed Lab 1. The outbound campaign infrastructure is fully operational and ready to connect to the AI Agent in Lab 2.

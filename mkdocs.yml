@@ -1,15 +1,15 @@
 ---
-site_name: "2026 Webex Contact Center Partner Bootcamp" 
-site_description: "Proactive Debt Collection and Contention resolution"
+site_name: "LAB-31207 - Campaign Manager and AI Agent with MCP"
+site_description: "Four-hour Webex Contact Center lab for native Campaign Manager, Webex AI Agent, MCP tools, and Real-Time Assist"
 site_author: Luis Garcia Delgado, Juan Corral, Sebastian Hernandez, Stephanie Ross
-site_url: https://cx-partner.github.io/bootcamp2026/labs/
+site_url: https://cx-partner.github.io/LAB-31207/
 copyright: Copyright &copy; 2026 Cisco
 theme:
   name: material
   features:
     - navigation.tabs
     - navigation.tabs.sticky
-    - navigation.indexesmkd
+    - navigation.indexes
     - navigation.instant
     - navigation.top
     - navigation.footer
@@ -17,17 +17,14 @@ theme:
     - content.code.copy
     - toc.follow
     - toc.integrate
-   
   custom_dir: docs/overrides
   palette:
-    # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: custom
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
-    # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: custom
@@ -38,23 +35,17 @@ theme:
   favicon: template_assets/webex75.png
 extra:
   generator: false
-  repo: "https://github.com/cx-partner/bootcamp2026"
-  site_event: test
+  repo: "https://github.com/cx-partner/LAB-31207"
+  site_event: lab31207
 extra_css:
   - stylesheets/extra.css
-  
   - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css
 extra_javascript:
   - template_assets/js/newLoad.js
   - template_assets/js/setInfo.js
-  - javascripts/extra.js 
+  - javascripts/extra.js
 plugins:
   - search
-  
-  # - with-pdf:
-  #     cover_title: LABXXX-1234
-  #     cover_subtitle: My famous WebexOne Lab
-  #     cover_logo: template_assets/Wx1_25_PDF_image.jpg
   - glightbox:
       touchNavigation: true
       loop: false
@@ -65,7 +56,7 @@ plugins:
       zoomable: true
       draggable: false
       skip_classes:
-      - custom-skip-class-name
+        - custom-skip-class-name
       auto_caption: true
       caption_position: top
 markdown_extensions:
@@ -79,7 +70,7 @@ markdown_extensions:
   - tables
   - pymdownx.details
   - pymdownx.tasklist:
-      custom_checkbox: true  # Makes them look much better (Material style)
+      custom_checkbox: true
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
@@ -90,7 +81,7 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.tabbed:
-      alternate_style: true    
+      alternate_style: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -104,39 +95,10 @@ markdown_extensions:
   - toc:
       permalink: true
       toc_depth: 3
-
 nav:
   - Home: index.md
-  - Readme:
-      - 2026 WxCC Bootcamp: overview.md
-  - Pre-requisites: 
-    - Partner Tenant: 
-      - pre_req_wxcc.md
-    - Digital Channels: 
-      - pre_req_email_channel.md
-    - Auxiliary Applications: 
-      - pre_req_airtable.md
+  - Overview: overview.md
   - Labs:
-    - Lab 1:
-      - Proactive Outbound Reach: lab1_campaign_manager.md
-    - Lab 2: 
-      - Automated Debt collection: lab2_debt_ai_agent.md
-    - Lab 3: 
-      - Human escalation & RT Assist: lab3_human_ai_assist.md
-    - Lab 4: 
-      - Cross-skill multi-agent orchestration: lab4_ai_agent_transfer.md
-    - Extra Lab: 
-      - NovaPay payment service: lab_novapay.md
-
-  - Lab Pods : lab_pods.md
-#  - How to use this guide:
-#      - Setting up and using the tool:
-#        - Initial Setup: howToUse/initialSetup.md
-#        - Using the tool after the initial setup: howToUse/postInitial.md
-#        - Publishing your changes: howToUse/syncChanges.md
-#      - Styling and Advanced Features:
-#        - Markdown and Other References: howToUse/references.md
-#        - Custom Features: howToUse/customFeatures.md
-#        - Custom Admonitions: howToUse/admonition.md
-
-  - Webex Bank Rewards Program: ./bcamp_files/Webex_Bank_Rewards_Program.md
+      - Lab 1 - Native Campaign Manager: lab1_campaign_manager.md
+      - Lab 2 - AI Agent with MCP: lab2_debt_ai_agent.md
+      - Lab 3 - Real-Time Assist: lab3_human_ai_assist.md
