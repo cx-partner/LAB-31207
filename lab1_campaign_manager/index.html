@@ -1,0 +1,2431 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Four-hour Webex Contact Center lab for native Campaign Manager, Webex AI Agent, MCP tools, and Real-Time Assist">
+      
+      
+        <meta name="author" content="Luis Garcia Delgado, Juan Corral, Sebastian Hernandez, Stephanie Ross">
+      
+      
+        <link rel="canonical" href="https://cx-partner.github.io/LAB-31207/lab1_campaign_manager/">
+      
+      
+        <link rel="prev" href="../overview/">
+      
+      
+        <link rel="next" href="../lab2_debt_ai_agent/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../template_assets/webex75.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Lab 1 - Native Campaign Manager - LAB-31207 - Campaign Manager and AI Agent with MCP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-1-native-campaign-manager" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="LAB-31207 - Campaign Manager and AI Agent with MCP" class="md-header__button md-logo" aria-label="LAB-31207 - Campaign Manager and AI Agent with MCP" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LAB-31207 - Campaign Manager and AI Agent with MCP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 1 - Native Campaign Manager
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../overview/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LAB-31207 - Campaign Manager and AI Agent with MCP" class="md-nav__button md-logo" aria-label="LAB-31207 - Campaign Manager and AI Agent with MCP" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    LAB-31207 - Campaign Manager and AI Agent with MCP
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Labs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Labs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 1 - Native Campaign Manager
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 1 - Native Campaign Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#lab-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab Purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-requisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab Overview 📌
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-11-configure-a-team" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 1.1 - Configure a Team
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 1.1 - Configure a Team">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-team" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a Team
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-12-create-an-outdial-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 1.2 - Create an Outdial Queue
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-13-configure-global-variables-and-wrap-up-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 1.3 - Configure Global Variables and Wrap-up Codes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 1.3 - Configure Global Variables and Wrap-up Codes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-global-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Global Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-wrap-up-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a Wrap-up Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-14-build-the-flows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 1.4 - Build the Flows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 1.4 - Build the Flows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-the-lab2-dummy-test-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create the "Lab2" Dummy Test Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-outbound-campaign-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create the Outbound Campaign Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-15-create-the-outdial-entry-point-channel-and-outdial-ani" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 1.5 - Create the Outdial Entry Point (Channel) and Outdial ANI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 1.5 - Create the Outdial Entry Point (Channel) and Outdial ANI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-the-outdial-entry-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create the Outdial Entry Point
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-outdial-ani" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Outdial ANI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-16-campaign-manager-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 1.6 - Campaign Manager Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 1.6 - Campaign Manager Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#business-days" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business Days
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contact-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contact Modes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dnc-lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DNC Lists
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Mappings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#org-exclusion-dates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Org Exclusion Dates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#purpose-meta-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose Meta-tags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pl-meta-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        P&amp;L Meta-tags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#suppression-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suppression Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#telephony-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Telephony Outcomes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ui-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UI Users
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wrap-up-code-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wrap-up Code Sets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-17-campaign-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 1.7 - Campaign Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 1.7 - Campaign Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-campaign-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a Campaign Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-and-configure-the-campaign" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create and Configure the Campaign
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-and-activate-the-campaign" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save and Activate the Campaign
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-18-upload-contact-list-and-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 1.8 - Upload Contact List and Test
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 1.8 - Upload Contact List and Test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upload-the-contact-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upload the Contact List
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitor-upload-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitor Upload Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-the-campaign-is-running" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify the Campaign is Running
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-completion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab Completion ✅
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2_debt_ai_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2 - AI Agent with MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3_human_ai_assist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3 - Real-Time Assist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lab-1-native-campaign-manager">Lab 1 - Native Campaign Manager<a class="headerlink" href="#lab-1-native-campaign-manager" title="Permanent link">¶</a></h1>
+<h2 id="lab-purpose">Lab Purpose<a class="headerlink" href="#lab-purpose" title="Permanent link">¶</a></h2>
+<p>Proactive outbound communication is a key pillar of modern customer engagement. Rather than waiting for customers to call in, organisations can leverage <strong>Webex Contact Center Campaign Manager</strong> to initiate timely, context-rich outbound calls — automatically, at scale, and in full compliance with regulatory requirements.</p>
+<p>In this lab, you will configure an <strong>end-to-end outbound IVR campaign</strong> using Webex Campaign Management. This includes setting up the necessary WxCC infrastructure (agents, teams, queues, flows, entry points) and then configuring all Campaign Manager prerequisites before launching a live Progressive IVR campaign targeting a debt collection use case.</p>
+<details class="purpose" open="open">
+<summary>Lab Objectives</summary>
+<p>By the end of this lab, you will have configured the full stack required to run an outbound IVR campaign in Webex Contact Center. Key objectives include:</p>
+<ul>
+<li><strong>WxCC Infrastructure Setup:</strong> Configure teams, outdial queues, global variables, and entry points on Control Hub.</li>
+<li><strong>Flow Design:</strong> Build an outbound campaign flow with CPA-based routing and event flows, including Answer Machine Detection (AMD) and Live Voice handling.</li>
+<li><strong>Campaign Manager Configuration:</strong> Complete all prerequisite campaign administration settings including business days, contact modes, field mappings, suppression rules, and telephony outcomes.</li>
+<li><strong>Campaign Activation:</strong> Create a campaign group, configure and activate the campaign, and upload a contact list to trigger live calls.</li>
+</ul>
+</details>
+<details class="challenge" open="open">
+<summary>Lab Outcome</summary>
+<p>By the end of Lab 1, you will have a fully operational outbound IVR campaign that:</p>
+<ol>
+<li><strong>Dials contacts</strong> from an uploaded CSV contact list using Progressive IVR mode.</li>
+<li><strong>Detects call outcomes</strong> (AMD, Abandoned, Live Voice) and routes them appropriately.</li>
+<li><strong>Plays a congratulatory message</strong> ("Congratulations, you have completed Lab 1") to live voice contacts — confirming the end-to-end campaign flow is working.</li>
+<li><strong>Passes customer data</strong> (first name, last name) as global variables to the destination flow, ready for Lab 2's AI Agent integration.</li>
+</ol>
+</details>
+<hr>
+<h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permanent link">¶</a></h2>
+<p>In order to complete this lab, you must have:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Access to <strong>Webex Control Hub</strong> with Full Admin permissions</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> A <strong>Webex Contact Center</strong> tenant provisioned and licensed</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Access to the <strong>Webex Campaign Management</strong> portal</li>
+</ul>
+<hr>
+<h2 id="lab-overview">Lab Overview 📌<a class="headerlink" href="#lab-overview" title="Permanent link">¶</a></h2>
+<p>The diagram below illustrates the high-level architecture and the sequence of configuration steps you will follow throughout this lab:</p>
+<figure>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p2_img1.png" data-title="Lab 1 Architecture Overview" data-desc-position="top"><img alt="Lab 1 Architecture Overview" src="../assets/lab1_p2_img1.png"></a></p>
+<figcaption>High-level outbound campaign configuration workflow</figcaption>
+</figure>
+<p>In this lab you will perform the following tasks:</p>
+<ol>
+<li>Configure a team</li>
+<li>Create an Outdial Queue</li>
+<li>Configure Global Variables and Wrap-up Codes</li>
+<li>Build the Outbound Campaign Flow (Main + Event flows)</li>
+<li>Create the Outdial Entry Point (Channel) and Outdial ANI</li>
+<li>Complete Campaign Manager prerequisites</li>
+<li>Create, activate, and upload contacts to the Campaign</li>
+</ol>
+<hr>
+<h2 id="lab-11-configure-a-team">Lab 1.1 - Configure a Team<a class="headerlink" href="#lab-11-configure-a-team" title="Permanent link">¶</a></h2>
+<h3 id="create-a-team">Create a Team<a class="headerlink" href="#create-a-team" title="Permanent link">¶</a></h3>
+<p>Even we won't use any agent to run the IVR campaign, the creation of a <strong>team or agent</strong> to assign to an <strong>outdial queue</strong> is mandatory. The <strong>Entry Point</strong> need to have that queue associated.</p>
+<details class="webex" open="open">
+<summary>Create Team</summary>
+<ol>
+<li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Teams</strong>.</li>
+<li>
+<p>Click <strong>Create a team</strong> and fill in the following:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td><code>LAB31207_Team</code></td>
+</tr>
+<tr>
+<td><strong>Parent site</strong></td>
+<td><code>Site-1</code></td>
+</tr>
+<tr>
+<td><strong>Team type</strong></td>
+<td><code>Agent-based</code></td>
+</tr>
+<tr>
+<td><strong>Multimedia profile</strong></td>
+<td><code>Default_Multimedia_Profile</code></td>
+</tr>
+<tr>
+<td><strong>Desktop layout</strong></td>
+<td><code>Global Layout</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Click <strong>Create</strong>.</p>
+</li>
+</ol>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p3_img2.png" data-title="Create Team dialog" data-desc-position="top"><img alt="Create Team dialog" src="../assets/lab1_p3_img2.png"></a>
+<figcaption>Creating LAB31207_Team with Agent-based type and Default Multimedia Profile</figcaption>
+</figure><p></p>
+</details>
+<hr>
+<h2 id="lab-12-create-an-outdial-queue">Lab 1.2 - Create an Outdial Queue<a class="headerlink" href="#lab-12-create-an-outdial-queue" title="Permanent link">¶</a></h2>
+<p>The outdial queue is what connects your outbound campaign to the agent pool. It must be set to <strong>Outbound queue</strong> type and have the <strong>Outbound campaign</strong> toggle enabled.</p>
+<details class="webex" open="open">
+<summary>Create Outdial Queue</summary>
+<ol>
+<li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Queues</strong>.</li>
+<li>
+<p>Click <strong>Create a queue</strong> and configure:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td><code>LAB31207_OutVoiceQueue</code></td>
+</tr>
+<tr>
+<td><strong>Contact direction</strong></td>
+<td><code>Outbound queue</code></td>
+</tr>
+<tr>
+<td><strong>Channel type</strong></td>
+<td><code>Telephony</code></td>
+</tr>
+<tr>
+<td><strong>Outbound campaign</strong></td>
+<td>Enabled (toggle ON)</td>
+</tr>
+<tr>
+<td><strong>Agent assignment</strong></td>
+<td><code>Teams</code> → select <code>LAB31207_Team</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Under <strong>Call distribution</strong>, click <strong>Create a group</strong>, expand it, and select your Team.</p>
+</li>
+<li>
+<p>Fill in the mandatory <strong>Advanced settings</strong>:</p>
+<ul>
+<li><strong>Service level threshold</strong>: <em>200</em></li>
+<li><strong>Maximum time in queue</strong>: <em>120</em></li>
+<li><strong>Default music in queue</strong>: <em>defaultmusic_on_hold.wav</em></li>
+</ul>
+</li>
+<li>
+<p>Click <strong>Create</strong>.</p>
+</li>
+</ol>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p4_img2.png" data-title="Create Outdial Queue" data-desc-position="top"><img alt="Create Outdial Queue" src="../assets/lab1_p4_img2.png"></a>
+</figure><p></p>
+<p></p><figure markdown="" style="width: 70%;">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p4_img3.png" data-title="Create Outdial Queue2" data-desc-position="top"><img alt="Create Outdial Queue2" src="../assets/lab1_p4_img3.png"></a>
+<figcaption>Creating the LAB31207_OutVoiceQueue with Outbound queue direction and Outbound campaign enabled</figcaption>
+</figure><p></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <strong>Contact direction</strong> and <strong>Channel type</strong> fields cannot be changed after the queue is created. Double-check these values before clicking Create.</p>
+</div>
+</details>
+<hr>
+<h2 id="lab-13-configure-global-variables-and-wrap-up-codes">Lab 1.3 - Configure Global Variables and Wrap-up Codes<a class="headerlink" href="#lab-13-configure-global-variables-and-wrap-up-codes" title="Permanent link">¶</a></h2>
+<h3 id="create-global-variables">Create Global Variables<a class="headerlink" href="#create-global-variables" title="Permanent link">¶</a></h3>
+<p>Global Variables are used to carry customer data (from the contact list) through the campaign flow and display it on the Agent Desktop. You must create two variables: <code>firstName</code> and <code>lastName</code>.</p>
+<details class="webex" open="open">
+<summary>Create Global Variables</summary>
+<ol>
+<li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Flows</strong> → <strong>Global Variables</strong>.</li>
+<li>
+<p>Click <strong>Create a global variable</strong> and configure the <strong>firstName</strong> variable:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td><code>firstName</code></td>
+</tr>
+<tr>
+<td><strong>Description</strong></td>
+<td><code>firstName</code></td>
+</tr>
+<tr>
+<td><strong>Variable type</strong></td>
+<td><code>String</code></td>
+</tr>
+<tr>
+<td><strong>Make reportable</strong></td>
+<td>Enabled</td>
+</tr>
+<tr>
+<td><strong>Make agent viewable</strong></td>
+<td>Enabled</td>
+</tr>
+<tr>
+<td><strong>Desktop label</strong></td>
+<td><code>First Name</code></td>
+</tr>
+<tr>
+<td><strong>Edit on desktop</strong></td>
+<td>Disabled</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Click <strong>Create</strong>.</p>
+</li>
+<li>Repeat the process to create the <strong>lastName</strong> variable with the Desktop label <code>Last Name</code>.</li>
+</ol>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p5_img2.png" data-title="Create firstName global variable" data-desc-position="top"><img alt="Create firstName global variable" src="../assets/lab1_p5_img2.png"></a>
+<figcaption>Creating the firstName global variable with agent viewable and reportable settings enabled</figcaption>
+</figure><p></p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Both <code>firstName</code> and <code>lastName</code> must be added to all flows in this lab — both the dummy test flow and the outbound campaign flow — under <strong>Global Flow Properties</strong> → <strong>Global Variables</strong>.</p>
+</div>
+</details>
+<h3 id="create-a-wrap-up-code">Create a Wrap-up Code<a class="headerlink" href="#create-a-wrap-up-code" title="Permanent link">¶</a></h3>
+<p>A wrap-up code is required by Campaign Manager when configuring the contact attempt strategy.</p>
+<details class="webex" open="open">
+<summary>Create Wrap-up Code</summary>
+<ol>
+<li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Idle/wrap-up codes</strong>.</li>
+<li>
+<p>Click <strong>Create</strong> and configure:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td><code>debt</code></td>
+</tr>
+<tr>
+<td><strong>Description</strong></td>
+<td><code>Debt Collection</code></td>
+</tr>
+<tr>
+<td><strong>Make it default</strong></td>
+<td>Enabled</td>
+</tr>
+<tr>
+<td><strong>Code type</strong></td>
+<td><code>Default Wrapup Work Type</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Click <strong>Save</strong>.</p>
+</li>
+</ol>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p6_img1.png" data-title="Debt wrap-up code" data-desc-position="top"><img alt="Debt wrap-up code" src="../assets/lab1_p6_img1.png"></a>
+<figcaption>The debt wrap-up code configured in Control Hub</figcaption>
+</figure><p></p>
+</details>
+<hr>
+<h2 id="lab-14-build-the-flows">Lab 1.4 - Build the Flows<a class="headerlink" href="#lab-14-build-the-flows" title="Permanent link">¶</a></h2>
+<h3 id="create-the-lab2-dummy-test-flow">Create the "Lab2" Dummy Test Flow<a class="headerlink" href="#create-the-lab2-dummy-test-flow" title="Permanent link">¶</a></h3>
+<p>Before building the full outbound campaign flow, create a simple <strong>dummy flow</strong> to validate the end-to-end campaign configuration. This same flow will be used as the starting point for <strong>Lab 2</strong> so name it as <strong>AI_Agent_DebtCollection</strong></p>
+<p>The flow plays a congratulatory TTS message when a live voice contact is detected, confirming Lab 1 is fully operational.</p>
+<details class="webex" open="open">
+<summary>Create Lab2 dummy flow</summary>
+<ol>
+<li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Flows</strong>.</li>
+<li>Click <strong>Manage Flows -&gt; Create Flows</strong> </li>
+<li>Select <strong>Flow</strong> and <strong>Start from scratch</strong> and click <strong>Next</strong></li>
+<li>Name the flow <copy><code>AI_Agent_DebtCollection</code></copy> and select <strong>Voice</strong> as the channel type.</li>
+<li>In the <strong>Global Flow Properties</strong> panel on the right:<ul>
+<li>Under <strong>Global Variables</strong>, click <strong>Add global variables</strong> and add both <code>firstName</code> and <code>lastName</code>.</li>
+</ul>
+</li>
+<li>
+<p>From the <strong>Activities Library</strong>, drag a <strong>Play Message</strong> node onto the canvas and connect it to the <strong>NewPhoneContact</strong> Start node.</p>
+<details class="warning" open="open">
+<summary>Warning</summary>
+<p>The <strong>NewPhoneContact</strong> event is being renamed into <strong>StartFlow</strong>, so this might be the name you see in your start node.</p>
+</details>
+</li>
+<li>
+<p>Configure the <strong>Play Message</strong> node:</p>
+<ul>
+<li><strong>Activity Label</strong>: <code>EndOfLab1</code></li>
+<li>Enable <strong>Text-to-Speech</strong></li>
+<li><strong>Connector</strong>: <code>Cisco Cloud Text-to-Speech</code></li>
+<li>Add <strong>Text-to-Speech Message</strong>: <copy><code>Congratulations, You have completed lab 1</code></copy></li>
+<li>Remove the <strong>Audio file</strong> field.</li>
+</ul>
+</li>
+<li>Drag and drop an <strong>End Flow</strong> node and connect the <strong>Play Message</strong> node to it.</li>
+<li>Enable the <strong>Validation</strong> slider at the bottom-right of the editor to validate the flow and then click <strong>Publish Flow</strong> (select <strong>Latest</strong> as the version label).</li>
+</ol>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p6_img2.png" data-title="Lab1_completed flow with TTS message" data-desc-position="top"><img alt="Lab1_completed flow with TTS message" src="../assets/lab1_p6_img2.png"></a>
+<figcaption>Lab1_completed flow showing the Play Message node with the congratulatory TTS message and Global Variables added</figcaption>
+</figure><p></p>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p7_img1.png" data-title="Play Message TTS configuration" data-desc-position="top"><img alt="Play Message TTS configuration" src="../assets/lab1_p7_img1.png"></a>
+<figcaption>Play Message node configured with Cisco Cloud Text-to-Speech playing "Congratulations, You have completed lab 1"</figcaption>
+</figure><p></p>
+</details>
+<h3 id="create-the-outbound-campaign-flow">Create the Outbound Campaign Flow<a class="headerlink" href="#create-the-outbound-campaign-flow" title="Permanent link">¶</a></h3>
+<p>Now create the main outbound campaign flow. This flow handles the outbound dialling logic and routes calls based on the CPA (Call Progress Analysis) result.</p>
+<details class="webex" open="open">
+<summary>Create Outbound_DebtCollection Flow</summary>
+<ol>
+<li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Flows</strong>.</li>
+<li>Click <strong>Manage Flows -&gt; Create Flows</strong> and select <strong>Flow</strong> and <strong>Start from scratch</strong> in the next window. Click <strong>Next</strong></li>
+<li>Name it <copy><code>Outbound_DebtCollection</code></copy> and select <strong>Voice</strong> as the channel type.</li>
+<li>In the <strong>Global Flow Properties</strong> panel:<ul>
+<li>Under <strong>Global Variables</strong>, add both <code>firstName</code> and <code>lastName</code>.</li>
+</ul>
+</li>
+<li>
+<p>The Main flow canvas starts with a <strong>NewPhoneContact</strong> Start node.</p>
+<blockquote>
+<p>Note the Start node might be <strong>StartFlow</strong> instead.</p>
+</blockquote>
+<p>Connect it to an <strong>End Flow</strong> node as a placeholder — the actual logic is handled in Event flows.</p>
+</li>
+</ol>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p7_img2.png" data-title="Outbound_DebtCollection flow global variables" data-desc-position="top"><img alt="Outbound_DebtCollection flow global variables" src="../assets/lab1_p7_img2.png"></a>
+<figcaption>Outbound_DebtCollection flow showing firstName and lastName Global Variables added to the flow configuration</figcaption>
+</figure><p></p>
+</details>
+<h4 id="configure-event-flows">Configure Event Flows<a class="headerlink" href="#configure-event-flows" title="Permanent link">¶</a></h4>
+<p>The campaign logic is driven by <strong>Event flows</strong>. Click on <strong>Event flows</strong> at the top of the flow builder to switch to the event flow canvas. You will configure one key event:</p>
+<p><strong>OutboundCampaignCallResult</strong></p>
+<p>This event triggers when the dialler receives a CPA result for an outbound call attempt. It determines whether the call reached an answering machine, was abandoned, or reached a live conversation.</p>
+<details class="webex" open="open">
+<summary>Configure OutboundCampaignCallResult Event</summary>
+<ol>
+<li>On the Event flows canvas, locate the <strong>OutboundCampaignCallResult</strong> event handler node.</li>
+<li>Drag a <strong>Case</strong> node onto the canvas and connect the <strong>OutboundCampaignCallResult</strong> event handler to it.</li>
+<li>Configure the <strong>Case</strong> node:<ul>
+<li><strong>Activity Label</strong>: <copy><code>Campaign_Results</code></copy></li>
+<li><strong>Case variable</strong>: <code>OutboundCampaignCallResult.CPAResult</code></li>
+<li>
+<p>Add the following case outputs:</p>
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AMD</strong></td>
+<td><copy><code>AMD</code></copy></td>
+</tr>
+<tr>
+<td><strong>ABANDONED</strong></td>
+<td><copy><code>ABANDONED</code></copy></td>
+</tr>
+<tr>
+<td><strong>LIVE_VOICE_IVR_CAMPAIGN</strong></td>
+<td><copy><code>LIVE_VOICE_IVR_CAMPAIGN</code></copy></td>
+</tr>
+<tr>
+<td><strong>Default</strong></td>
+<td>(default fallthrough)</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ol>
+<p></p><figure markdown="" style="width: 70%;">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p8_img1.png" data-title="Event flows overview" data-desc-position="top"><img alt="Event flows overview" src="../assets/lab1_p8_img1.png"></a>
+<figcaption>Case node configured with CPAResult variable showing AMD, ABANDONED, and LIVE_VOICE outputs</figcaption>
+</figure><p></p>
+</details>
+<p><strong>Handling AMD and Abandoned outcomes:</strong></p>
+<details class="webex" open="open">
+<summary>Configure AMD and Abandoned Routing</summary>
+<ol>
+<li>Drag a <strong>Play Message</strong> node onto the canvas.</li>
+<li>Connect both the <strong>AMD</strong> and <strong>ABANDONED</strong> outputs of the Case node to this Play Message node.</li>
+<li>Configure the Play Message node:<ul>
+<li>Enable <strong>Text-to-Speech</strong></li>
+<li><strong>Connector</strong>: <code>Cisco Cloud Text-to-Speech</code></li>
+<li><strong>Text-to-Speech Message</strong>: <code>Goodbye</code></li>
+</ul>
+</li>
+<li>Drag and <strong>End Flow</strong> message to the canvas and connect the <strong>Play Message</strong> node to an <strong>End Flow</strong> node.</li>
+</ol>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p9_img2.png" data-title="Play Message Goodbye configuration" data-desc-position="top"><img alt="Play Message Goodbye configuration" src="../assets/lab1_p9_img2.png"></a>
+<figcaption>Play Message node configured with TTS "Goodbye" for AMD and Abandoned call outcomes</figcaption>
+</figure><p></p>
+</details>
+<p><strong>Handling Live Voice outcome:</strong></p>
+<details class="webex" open="open">
+<summary>Configure Live Voice Routing</summary>
+<ol>
+<li>Drag a <strong>Go To</strong> node onto the canvas.</li>
+<li>Connect the <strong>LIVE_VOICE_IVR_CAMPAIGN</strong> output of the <strong>Case</strong> node to the <strong>Go To</strong> node.</li>
+<li>Connect also the <strong>Default</strong> output of the <strong>Case</strong> node to the <strong>Go To</strong> node.</li>
+<li>Configure the <strong>Go To</strong> node:<ul>
+<li><strong>Activity Label</strong>: <code>GoTo_AIAgent</code></li>
+<li><strong>Destination type</strong>: <code>Flow</code></li>
+<li><strong>Flow type</strong>: <code>Static Flow</code></li>
+<li><strong>Flow</strong>: <code>AI_Agent_DebtCollection</code> <em>(this will be used in Lab 2)</em></li>
+<li><strong>Version Label</strong>: <code>Latest</code></li>
+</ul>
+</li>
+<li>
+<p>Under <strong>Flow Variable Mapping</strong>, map the global variables from the current flow to the destination flow:</p>
+<table>
+<thead>
+<tr>
+<th>Current variable</th>
+<th>Destination variable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>firstName</code></td>
+<td><code>firstName</code></td>
+</tr>
+<tr>
+<td><code>lastName</code></td>
+<td><code>lastName</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Connect the <strong>Undefined Errors</strong> outlet of the <strong>GoTo</strong> node to the <strong>End Flow</strong> node.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The <strong>Flow Variable Mapping</strong> is critical for Lab 2. This ensures that the customer's first and last name (loaded from the campaign contact list) are passed to the destination flow where the AI Agent will use them.</p>
+</div>
+<p></p><figure markdown="">
+    <figure markdown="" style="width: 80%;">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p10_img1.png" data-title="GoTo AIAgent node configuration" data-desc-position="top"><img alt="GoTo AIAgent node configuration" src="../assets/lab1_p10_img1.png"></a>
+    <figure markdown="" style="width: 30%;">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p10_img2.png" data-title="GoTo AIAgent flow variable mapping" data-desc-position="top"><img alt="GoTo AIAgent flow variable mapping" src="../assets/lab1_p10_img2.png"></a>
+    <figcaption>Go To node pointing to the AI_Agent_DebtCollection flow with firstName and lastName mapped across flows</figcaption>
+</figure><p></p>
+</figure></figure></li>
+<li>
+<p>Connect the <strong>Undefined Errors</strong> output of the <strong>Case</strong> node to the <strong>End Flow</strong> node.</p>
+</li>
+<li>
+<p>Enable the <strong>Validation</strong> slider to validate the flow and once validated, click <strong>Publish Flow</strong> to publish it. </p>
+</li>
+</ol>
+<p>Your <strong>Outbound DebtCollection</strong> flow is ready.  </p>
+</details>
+<hr>
+<h2 id="lab-15-create-the-outdial-entry-point-channel-and-outdial-ani">Lab 1.5 - Create the Outdial Entry Point (Channel) and Outdial ANI<a class="headerlink" href="#lab-15-create-the-outdial-entry-point-channel-and-outdial-ani" title="Permanent link">¶</a></h2>
+<h3 id="create-the-outdial-entry-point">Create the Outdial Entry Point<a class="headerlink" href="#create-the-outdial-entry-point" title="Permanent link">¶</a></h3>
+<p>The Entry Point (Channel) is the outbound telephony channel that ties together the flow, the outdial queue, and the dialling configuration.</p>
+<details class="webex" open="open">
+<summary>Create Outdial Entry Point</summary>
+<ol>
+<li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Channels</strong>.</li>
+<li>
+<p>Click <strong>Create a channel</strong> and configure:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td><code>Campaign_EP</code></td>
+</tr>
+<tr>
+<td><strong>Channel type</strong></td>
+<td><code>Outbound telephony</code></td>
+</tr>
+<tr>
+<td><strong>Service level threshold</strong></td>
+<td><code>30</code> seconds</td>
+</tr>
+<tr>
+<td><strong>Timezone</strong></td>
+<td><code>Europe/London</code> <em>(use your local timezone)</em></td>
+</tr>
+<tr>
+<td><strong>Routing flow</strong></td>
+<td><code>Outbound_DebtCollection</code></td>
+</tr>
+<tr>
+<td><strong>Music on hold</strong></td>
+<td><code>defaultmusic_on_hold.wav</code></td>
+</tr>
+<tr>
+<td><strong>Version label</strong></td>
+<td><code>Latest</code></td>
+</tr>
+<tr>
+<td><strong>Outdial queue</strong></td>
+<td><code>LAB31207_OutVoiceQueue</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Click <strong>Create</strong>.</p>
+</li>
+</ol>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p11_img1.png" data-title="Entry Point configuration" data-desc-position="top"><img alt="Entry Point configuration" src="../assets/lab1_p11_img1.png"></a>
+<figcaption>Campaign_EP entry point configured with Outbound telephony, pointing to the Outbound_DebtCollection flow and LAB31207_OutVoiceQueue</figcaption>
+</figure><p></p>
+</details>
+<h3 id="configure-outdial-ani">Configure Outdial ANI<a class="headerlink" href="#configure-outdial-ani" title="Permanent link">¶</a></h3>
+<p>The Outdial ANI is the caller ID displayed to customers when they receive the outbound call. You can configure multiple ANIs for different regions.</p>
+<details class="webex" open="open">
+<summary>Create Outdial ANI</summary>
+<ol>
+<li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Outdial ANI</strong>.</li>
+<li>Click <strong>Create</strong> and configure:<ul>
+<li><strong>Name</strong>: <code>LAB31207_outANI</code></li>
+</ul>
+</li>
+<li>
+<p>Under <strong>Entry list</strong>, click <strong>Add More</strong> and add your PSTN numbers</p>
+</li>
+<li>
+<p>Click <strong>Save</strong>.</p>
+</li>
+</ol>
+<p></p><figure markdown="" style="width: 70%;">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p12_img1.png" data-title="LAB31207_outANI configuration" data-desc-position="top"><img alt="LAB31207_outANI configuration" src="../assets/lab1_p12_img1.png"></a>
+<figcaption>LAB-31207OutdialANI configured for outdial caller ID</figcaption>
+</figure><p></p>
+</details>
+<hr>
+<h2 id="lab-16-campaign-manager-configuration">Lab 1.6 - Campaign Manager Configuration<a class="headerlink" href="#lab-16-campaign-manager-configuration" title="Permanent link">¶</a></h2>
+<p>Open the <strong>Webex Campaign Management</strong> portal. On first login, you will see the welcome screen outlining all the administration areas to configure before launching campaigns.</p>
+<figure style="width: 70%;">
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p13_img1.png" data-title="Campaign Manager welcome screen" data-desc-position="top"><img alt="Campaign Manager welcome screen" src="../assets/lab1_p13_img1.png"></a></p>
+<figcaption>Welcome to Webex Campaign Management — administration checklist</figcaption>
+</figure>
+<p>Once in the Campaign Manager configuration protal, you will click on the <em>Voice Campaign Administration</em> button in the left navigation panel, and will go through each item as described in the sections below. </p>
+<figure style="width: 30%;">
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p13_img2.png" data-title="Campaign Manager Administration" data-desc-position="top"><img alt="Campaign Manager Administration" src="../assets/lab1_p13_img2.png"></a></p>
+<figcaption>Welcome to Webex Campaign Management — administration checklist</figcaption>
+</figure>
+<h3 id="business-days">Business Days<a class="headerlink" href="#business-days" title="Permanent link">¶</a></h3>
+<p>Business days are used solely for the purpose of contact list expiry calculation. They have no association with 'Business hours' on the Control Hub. We won't use this option as part of this lab.</p>
+<h3 id="contact-modes">Contact Modes<a class="headerlink" href="#contact-modes" title="Permanent link">¶</a></h3>
+<p>Contact modes define the type of phone number in your contact list (e.g. Home, Office, Mobile). For this lab, we use a single contact mode mapped to the <code>phoneNumber</code> column in the CSV.</p>
+<details class="webex" open="open">
+<summary>Create Contact Mode</summary>
+<ol>
+<li>Navigate to <strong>Voice campaigns administration</strong> → <strong>Contact modes</strong>.</li>
+<li>
+<p>Click <strong>Create contact mode</strong> and fill in:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Contact mode name</strong></td>
+<td><code>phone</code></td>
+</tr>
+<tr>
+<td><strong>Contact mode type</strong></td>
+<td><code>Voice</code></td>
+</tr>
+<tr>
+<td><strong>Description</strong></td>
+<td><em>(optional)</em></td>
+</tr>
+<tr>
+<td><strong>Minimum length</strong></td>
+<td><code>7</code></td>
+</tr>
+<tr>
+<td><strong>Maximum length</strong></td>
+<td><code>15</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Click <strong>Create contact mode</strong>.</p>
+</li>
+</ol>
+<p></p><figure markdown="" style="width: 60%;">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p15_img1.png" data-title="Create contact mode" data-desc-position="top"><img alt="Create contact mode" src="../assets/lab1_p15_img1.png"></a>
+<figcaption>Creating the phone contact mode with Voice type and default length constraints</figcaption>
+</figure><p></p>
+</details>
+<h3 id="dnc-lists">DNC Lists<a class="headerlink" href="#dnc-lists" title="Permanent link">¶</a></h3>
+<p>Do Not Contact (DNC) lists prevent the campaign from calling restricted numbers. For this lab, <strong>no DNC list will be configured</strong>.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>In production environments, you would upload DNC lists here to comply with regulatory requirements (e.g., national DNC registries). The campaign engine automatically suppresses any contacts matched against active DNC lists.</p>
+</div>
+<h3 id="global-variables">Global Variables<a class="headerlink" href="#global-variables" title="Permanent link">¶</a></h3>
+<p>Global variables are synced from Control Hub. They appear here for informational purposes — you cannot create or modify them in Campaign Manager.</p>
+<details class="webex" open="open">
+<summary>Verify Global Variables</summary>
+<ol>
+<li>Navigate to <strong>Voice campaigns administration</strong> → <strong>Global variables</strong>.</li>
+<li>
+<p>Verify that <code>firstName</code> and <code>lastName</code> are listed with <strong>Status: Active</strong> and <strong>Agent view: Yes</strong>.</p>
+<p>If you don´t see the variables, click <em>Refresh from Control Hub</em> at the top-right of the page</p>
+</li>
+</ol>
+<details class="note" open="open">
+<summary>Note</summary>
+<p>Campaign Manager is case-insensitive. If variables in Control Hub differ only by character case, Campaign Manager will treat them as duplicates and only import one of them. E.g. if <em>lastname</em> and <em>Lastname</em> are global variables in Control Hub, Campaign Manager will ignore one of them. </p>
+</details>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Before you can use Global Variables in Campaign Manager, you must designate a <strong>customer-unique-identifier</strong> and <strong>account-unique-identifier</strong> for compliance with call attempt regulations. For this lab, since we are not configuring unique identifiers, this step is skipped.</p>
+</div>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p16_img1.png" data-title="Global variables in Campaign Manager" data-desc-position="top"><img alt="Global variables in Campaign Manager" src="../assets/lab1_p16_img1.png"></a>
+<figcaption>Global variables list showing firstName and lastName as Active, agent-viewable, and reportable</figcaption>
+</figure><p></p>
+</details>
+<h3 id="field-mappings">Field Mappings<a class="headerlink" href="#field-mappings" title="Permanent link">¶</a></h3>
+<p>Field mappings define how the columns in your CSV contact list map to the Campaign Manager's dialler system — including which column contains the phone number, which global variables carry the customer name, and the data types.</p>
+<h4 id="prepare-the-contact-list-csv">Prepare the Contact List CSV<a class="headerlink" href="#prepare-the-contact-list-csv" title="Permanent link">¶</a></h4>
+<p>Before creating the field mapping, create your contact list file.</p>
+<details class="webex" open="open">
+<summary>Create Contact List CSV</summary>
+<p>Create or <a href="../bcamp_files/contact_list_lab31207.csv">download</a> a CSV file named <code>contact_list_lab31207.csv</code> with the following header structure:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>firstName,lastName,phoneNumber
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>John,Smith,+442012345678
+</span></code></pre></div>
+<p>Populate your own customer <code>firstName</code>, <code>lastName</code>, and <code>phoneNumber</code>. Use the test customer details provided for LAB-31207 [VERIFY: confirm test customer source].</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>All phone numbers must use the E.164 format with the <code>+</code> prefix and country code (e.g. <code>+442012345678</code>).</li>
+<li>All rows within a single file must use numbers from the <strong>same country</strong>.</li>
+<li>Spaces, hyphens, or other special characters in phone numbers are not permitted.</li>
+</ul>
+</div>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p16_img2.png" data-title="Contact list CSV structure" data-desc-position="top"><img alt="Contact list CSV structure" src="../assets/lab1_p16_img2.png"></a>
+<figcaption>contact_list_lab31207.csv showing the three-column header: firstName, lastName, phoneNumber</figcaption>
+</figure><p></p>
+</details>
+<h4 id="create-the-field-mapping">Create the Field Mapping<a class="headerlink" href="#create-the-field-mapping" title="Permanent link">¶</a></h4>
+<details class="webex" open="open">
+<summary>Create Field Mapping</summary>
+<ol>
+<li>Navigate to <strong>Voice campaigns administration</strong> → <strong>Field mappings</strong>.</li>
+<li>Click <strong>Create field mapping</strong>.</li>
+<li>Enter a <strong>Field mapping name</strong>: <code>LAB31207_field_mapping</code></li>
+</ol>
+<p><strong>Step 1 — Upload sample file:</strong></p>
+<p>Click <strong>Choose file</strong> and select your <code>contact_list_lab31207.csv</code>. Once uploaded, the system displays the detected headers: <code>firstName</code>, <code>lastName</code>, <code>phoneNumber</code>.</p>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p17_img1.png" data-title="Field mapping upload" data-desc-position="top"><img alt="Field mapping upload" src="../assets/lab1_p17_img1.png"></a>
+<figcaption>Field mapping showing LAB31207_field_mapping with the uploaded CSV and 3 detected headers</figcaption>
+</figure><p></p>
+<p><strong>Step 2 — Map contact modes:</strong></p>
+<p>In the <strong>Map contact modes</strong> section, map the <code>phoneNumber</code> column to the <code>Phone</code> contact mode you created earlier. Leave <code>firstName</code> and <code>lastName</code> as <strong>Unmapped</strong> at this stage.</p>
+<p></p><figure markdown="" style="width: 60%;">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p17_img2.png" data-title="Map contact modes" data-desc-position="top"><img alt="Map contact modes" src="../assets/lab1_p17_img2.png"></a>
+<figcaption>Contact mode mapping showing phoneNumber mapped to the Phone contact mode</figcaption>
+</figure><p></p>
+<p><strong>Step 3 — Specify country of all phone numbers:</strong></p>
+<p>Select the appropriate country code for your numbers and set the format to:
+<em><code>Prefixed with + sign and country code i.e. '+&lt;country code&gt;&lt;phone number&gt;'</code></em></p>
+<p></p><figure markdown="" style="width: 80%;">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p18_img1.png" data-title="Country and phone number format" data-desc-position="top"><img alt="Country and phone number format" src="../assets/lab1_p18_img1.png"></a>
+<figcaption>Phone number format set to E.164 with + prefix and country code</figcaption>
+</figure><p></p>
+<p><strong>Step 4 — Map source of timezones:</strong></p>
+<p>Keep the default configuration.</p>
+<p><strong>Step 5 — Map global variables:</strong></p>
+<p>Map each column in the CSV file to the corresponding Global Variable:</p>
+<table>
+<thead>
+<tr>
+<th>File header</th>
+<th>Global variable</th>
+<th>Data type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>firstName</code></td>
+<td><code>firstName</code></td>
+<td>String</td>
+</tr>
+<tr>
+<td><code>lastName</code></td>
+<td><code>lastName</code></td>
+<td>String</td>
+</tr>
+<tr>
+<td><code>phoneNumber</code></td>
+<td>Unmapped</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p18_img2.png" data-title="Global variable mapping" data-desc-position="top"><img alt="Global variable mapping" src="../assets/lab1_p18_img2.png"></a>
+<figcaption>Global variable mapping</figcaption>
+</figure><p></p>
+<p><strong>Step 6 — Specify file header data types:</strong></p>
+<p>Leave all columns as <strong>String</strong> data type. Enable <strong>PII protection</strong> for <code>phoneNumber</code> if required by your organisation's data handling policies.</p>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p18_img3.png" data-title="File header data types" data-desc-position="top"><img alt="File header data types" src="../assets/lab1_p18_img3.png"></a>
+<figcaption>File header data types: all set to String. PII protection enabled for phoneNumber</figcaption>
+</figure><p></p>
+<p>Click <strong>Save</strong> to finalise the field mapping. You might get a pop up message like <em>Some global variables are unmapped in step# 5</em>. This is due to the fact the phonenumber is not being mapped to any global variable. That is fine, just click on <strong>Save field mapping as is</strong> to continue. </p>
+</details>
+<h3 id="org-exclusion-dates">Org Exclusion Dates<a class="headerlink" href="#org-exclusion-dates" title="Permanent link">¶</a></h3>
+<p>Organisation-level exclusion dates prevent campaigns from running on specific dates (e.g. national holidays). These exclusions apply to <strong>all campaigns</strong> in the organisation.</p>
+<details class="webex" open="open">
+<summary>Create Org Exclusion Date</summary>
+<ol>
+<li>Navigate to <strong>Voice campaigns administration</strong> → <strong>Org exclusion dates</strong>.</li>
+<li>
+<p>Click <strong>Create exclusion date</strong> and add:</p>
+<table>
+<thead>
+<tr>
+<th>Exclusion date</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Dec 31, 2026</code></td>
+<td><code>End of the Year</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Click <strong>Save</strong>.</p>
+</li>
+</ol>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p19_img1.png" data-title="Org exclusion dates" data-desc-position="top"><img alt="Org exclusion dates" src="../assets/lab1_p19_img1.png"></a>
+<figcaption>Organisation-level exclusion date set for 31 December 2026</figcaption>
+</figure><p></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>When a campaign is running and an exclusion date is reached, the campaign status automatically changes to <strong>Pending</strong> and calling stops. Once the exclusion date passes, the campaign automatically resumes with <strong>Running</strong> status.</p>
+</div>
+</details>
+<h3 id="purpose-meta-tags">Purpose Meta-tags<a class="headerlink" href="#purpose-meta-tags" title="Permanent link">¶</a></h3>
+<p>Purpose meta-tags allow you to categorise campaigns by business function. They are <strong>mandatory for campaign activation</strong> (though not required to save a campaign in draft).</p>
+<details class="webex" open="open">
+<summary>Create Purpose Meta-tag</summary>
+<ol>
+<li>Navigate to <strong>Voice campaigns administration</strong> → <strong>Purpose meta-tags</strong>.</li>
+<li>Click <strong>Create purpose meta-tag</strong> and configure:<ul>
+<li><strong>Purpose meta-tag</strong>: <code>debt</code></li>
+<li><strong>Purpose meta-tag group</strong>: <code>DEFAULT</code></li>
+</ul>
+</li>
+<li>Click <strong>Update purpose meta-tag</strong>.</li>
+</ol>
+<p></p><figure markdown="" style="width: 70%;">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p19_img2.png" data-title="Purpose meta-tag creation" data-desc-position="top"><img alt="Purpose meta-tag creation" src="../assets/lab1_p19_img2.png"></a>
+<figcaption>Creating the "debt" purpose meta-tag under the DEFAULT group</figcaption>
+</figure><p></p>
+</details>
+<h3 id="pl-meta-tags">P&amp;L Meta-tags<a class="headerlink" href="#pl-meta-tags" title="Permanent link">¶</a></h3>
+<p>P&amp;L (Profit and Loss) meta-tags allow campaigns to be assigned to different business divisions or cost centres. Like purpose meta-tags, they are <strong>mandatory for campaign activation</strong>.</p>
+<details class="webex" open="open">
+<summary>Create P&amp;L Meta-tag</summary>
+<ol>
+<li>Navigate to <strong>Voice campaigns administration</strong> → <strong>P&amp;L meta-tags</strong>.</li>
+<li>Click <strong>Create P&amp;L meta-tag</strong> and configure:<ul>
+<li><strong>P&amp;L meta-tag name</strong>: <code>debt</code></li>
+<li><strong>P&amp;L meta-tag description</strong>: <code>Debt Department</code></li>
+</ul>
+</li>
+<li>Click <strong>Save P&amp;L meta-tag</strong>.</li>
+</ol>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p20_img1.png" data-title="P&amp;L meta-tags list" data-desc-position="top"><img alt="P&amp;L meta-tags list" src="../assets/lab1_p20_img1.png"></a>
+<figcaption>P&amp;L meta-tags list showing the debt tag created alongside the system Default tag</figcaption>
+</figure><p></p>
+</details>
+<h3 id="suppression-rules">Suppression Rules<a class="headerlink" href="#suppression-rules" title="Permanent link">¶</a></h3>
+<p>Suppression rules prevent calls from being made to contacts during restricted time windows or under other compliance conditions. They are evaluated before each call attempt.</p>
+<details class="webex" open="open">
+<summary>Create Suppression Rule Set and Rule</summary>
+<p><strong>Step 1 — Create the rule set:</strong></p>
+<ol>
+<li>Navigate to <strong>Voice campaigns administration</strong> → <strong>Suppression rule sets</strong>.</li>
+<li>Click <strong>Create suppression rule set</strong>.</li>
+<li>Enter the name: <code>LAB31207_rule</code></li>
+<li>Click <strong>Save rule set</strong>.</li>
+</ol>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p20_img2.png" data-title="Suppression rule sets" data-desc-position="top"><img alt="Suppression rule sets" src="../assets/lab1_p20_img2.png"></a>
+<figcaption>Creating the LAB31207_rule suppression rule set</figcaption>
+</figure><p></p>
+<p>Once saved, the rule set appears in the list. Click the <strong>⋮ Actions</strong> menu on the <code>LAB31207_rule</code> row to access the option to create a rule within it.</p>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p20_img3.jpeg" data-title="Suppression rule set created" data-desc-position="top"><img alt="Suppression rule set created" src="../assets/lab1_p20_img3.jpeg"></a>
+<figcaption>LAB31207_rule suppression rule set listed with Voice channel. Use the Actions menu to select "Create suppression rule"</figcaption>
+</figure><p></p>
+<p><strong>Step 2 — Create the rule under the set:</strong></p>
+<ol>
+<li>Click on the <strong>LAB31207_rule</strong> set.</li>
+<li>
+<p>Click <strong>Create suppression rule</strong> and configure:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Rule name</strong></td>
+<td><code>LAB31207_rule1</code></td>
+</tr>
+<tr>
+<td><strong>Description</strong></td>
+<td><code>LAB31207_rule1</code></td>
+</tr>
+<tr>
+<td><strong>Suppression rule based on</strong></td>
+<td><code>Contact attempt timing window</code></td>
+</tr>
+<tr>
+<td><strong>Applicable channels</strong></td>
+<td><code>Voice</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Under <strong>Suppress contact attempts to customers who satisfy the following conditions</strong>, add:</p>
+<ul>
+<li><em>Current time (24hr format) in call recipient's timezone is </em><em>less than</em>** <code>7</code> hr(s) <code>0</code> min(s)</li>
+<li><strong>OR</strong> <em>Current time (24hr format) in call recipient's timezone is </em><em>greater than</em>** <code>23</code> hr(s) <code>0</code> min(s)</li>
+</ul>
+</li>
+<li>
+<p>Click <strong>Create</strong>.</p>
+</li>
+</ol>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p21_img1.png" data-title="Suppression rule conditions" data-desc-position="top"><img alt="Suppression rule conditions" src="../assets/lab1_p21_img1.png"></a>
+<figcaption>Suppression rule configured to prevent calls before 07:00 and after 23:00 in the recipient's timezone</figcaption>
+</figure><p></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This rule ensures the campaign never dials contacts during overnight hours, protecting both customer experience and regulatory compliance.</p>
+</div>
+</details>
+<h3 id="telephony-outcomes">Telephony Outcomes<a class="headerlink" href="#telephony-outcomes" title="Permanent link">¶</a></h3>
+<p>A telephony outcome set defines how each possible call result (Busy, No Answer, AMD, etc.) is treated by the campaign — including whether it counts as a contact attempt and how long to wait before retrying.</p>
+<p>The system provides a <strong>primary (read-only) outcome set</strong>. You must <strong>duplicate</strong> it to create a configurable version for your campaign.</p>
+<details class="webex" open="open">
+<summary>Duplicate Telephony Outcome Set</summary>
+<ol>
+<li>Navigate to <strong>Voice campaigns administration</strong> → <strong>Telephony outcome sets</strong>.</li>
+<li>On the <code>Primary_telephony_outcome_set</code> row, click the <strong>⋮ Actions</strong> menu and select <strong>Duplicate</strong>.</li>
+<li>Enter the new name: <code>LAB31207_Primary_telephony_outcome_set</code></li>
+<li>Click <strong>Duplicate</strong>.</li>
+</ol>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p21_img2.png" data-title="Telephony outcome sets" data-desc-position="top"><img alt="Telephony outcome sets" src="../assets/lab1_p21_img2.png"></a>
+<figcaption>Telephony outcome sets list showing the system Primary set and the Duplicate action</figcaption>
+</figure><p></p>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p22_img1.png" data-title="Duplicate outcome set dialog" data-desc-position="top"><img alt="Duplicate outcome set dialog" src="../assets/lab1_p22_img1.png"></a>
+<figcaption>Duplicate dialog creating LAB31207_Primary_telephony_outcome_set from the system primary set</figcaption>
+</figure><p></p>
+<p>The duplicated set will appear in your list. You can click on it to view all 20 telephony outcomes. For this lab, <strong>leave all outcome values at their defaults</strong>.</p>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p22_img2.jpeg" data-title="Telephony outcomes" data-desc-position="top"><img alt="Telephony outcomes" src="../assets/lab1_p22_img2.jpeg"></a><p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p23_img1.png" data-title="Telephony outcomes list" data-desc-position="top"><img alt="Telephony outcomes list" src="../assets/lab1_p23_img1.png"></a>
+</p><figcaption>LAB31207_Primary_telephony_outcome_set showing all 20 telephony outcomes including AMD, ABANDONED, LIVE_VOICE, BUSY, INVALID_NUMBER, and others</figcaption>
+</figure><p></p>
+</details>
+<h3 id="ui-users">UI Users<a class="headerlink" href="#ui-users" title="Permanent link">¶</a></h3>
+<p>Webex Campaign Management uses <strong>just-in-time (JIT) provisioning</strong> — user accounts are created automatically the first time a user logs in, based on their role in Control Hub. No manual user creation is required in Campaign Manager.</p>
+<figure>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p23_img2.png" data-title="UI Users" data-desc-position="top"><img alt="UI Users" src="../assets/lab1_p23_img2.png"></a></p>
+<figcaption>UI Users list showing the admin account provisioned via JIT sync from Control Hub</figcaption>
+</figure>
+<p>For more information, refer to the <a href="https://docs-campaign-for-contact-centers.webexcampaign.com/docs/ui-users">Campaign Management UI Users documentation</a>.</p>
+<h3 id="wrap-up-code-sets">Wrap-up Code Sets<a class="headerlink" href="#wrap-up-code-sets" title="Permanent link">¶</a></h3>
+<p>Wrap-up codes defined in Control Hub are synced to Campaign Manager. You can configure how each code affects future campaign contact attempts (e.g. whether a contact with a given wrap-up code should be retried).</p>
+<details class="webex" open="open">
+<summary>Configure Wrap-up Code Set</summary>
+<ol>
+<li>
+<p>Navigate to <strong>Voice campaigns administration</strong> → <strong>Wrap-up code sets</strong>. Create a new set.</p>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/wuset_create.png" data-title="Wrap-up code set - debt" data-desc-position="top"><img alt="Wrap-up code set - debt" src="../assets/wuset_create.png"></a>
+</figure><p></p>
+<p></p><figure markdown="" style="width: 60%;">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/wuset_create2.png" data-title="Wrap-up code set 2 - debt" data-desc-position="top"><img alt="Wrap-up code set 2 - debt" src="../assets/wuset_create2.png"></a>
+</figure><p></p>
+</li>
+<li>
+<p>Click on the new set and then <strong>Add wrap-up codes</strong> Locate the wrap-up codes synced from Control Hub. The <code>debt</code> wrap-up code created earlier should appear, select it.</p>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/wucode_create.png" data-title="Wrap-up code 1 - debt" data-desc-position="top"><img alt="Wrap-up code 1 - debt" src="../assets/wucode_create.png"></a>
+</figure><p></p>
+<p></p><figure markdown="" style="width: 70%;">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/wucode_create2.png" data-title="Wrap-up code 2 - debt" data-desc-position="top"><img alt="Wrap-up code 2 - debt" src="../assets/wucode_create2.png"></a>
+</figure><p></p>
+</li>
+</ol>
+<p>For more information, refer to the <a href="https://docs-campaign-for-contact-centers.webexcampaign.com/docs/wrap-up-code-sets">Wrap-up code sets documentation</a>.</p>
+</details>
+<hr>
+<h2 id="lab-17-campaign-management">Lab 1.7 - Campaign Management<a class="headerlink" href="#lab-17-campaign-management" title="Permanent link">¶</a></h2>
+<p>With all prerequisites in place, you are ready to create the campaign group, configure the campaign, and activate it.</p>
+<h3 id="create-a-campaign-group">Create a Campaign Group<a class="headerlink" href="#create-a-campaign-group" title="Permanent link">¶</a></h3>
+<p>A campaign group is a container (wrapper) for one or more campaigns. You must create the group first before creating any campaigns inside it.</p>
+<details class="webex" open="open">
+<summary>Create Campaign Group</summary>
+<ol>
+<li>In Campaign Manager's left navigation panel, navigate to <strong>Campaign management</strong> → <strong>Campaign groups</strong>.</li>
+<li>Click <strong>Create campaign group</strong> and enter:<ul>
+<li><strong>Campaign group name</strong>: <code>LAB-31207</code></li>
+<li><em>(All other fields are optional)</em></li>
+</ul>
+</li>
+<li>Click <strong>Save &amp; proceed</strong>.</li>
+</ol>
+<p></p><figure markdown="">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p25_img1.jpeg" data-title="Campaign groups list" data-desc-position="top"><img alt="Campaign groups list" src="../assets/lab1_p25_img1.jpeg"></a>
+    <figcaption>Campaign groups list</figcaption>
+</figure><p></p>
+<p></p><figure markdown="" style="width: 80%;">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p25_img2.png" data-title="Campaign group detail view" data-desc-position="top"><img alt="Campaign group detail view" src="../assets/lab1_p25_img2.png"></a>
+</figure><p></p>
+</details>
+<h3 id="create-and-configure-the-campaign">Create and Configure the Campaign<a class="headerlink" href="#create-and-configure-the-campaign" title="Permanent link">¶</a></h3>
+<details class="webex" open="open">
+<summary>Create Campaign</summary>
+<ol>
+<li>Click on the <strong>LAB-31207</strong> campaign group.</li>
+<li>
+<p>Click <strong>Create campaign</strong> in the top-right corner.</p>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p26_img1.png" data-title="Campaign group detail view" data-desc-position="top"><img alt="Campaign group detail view" src="../assets/lab1_p26_img1.png"></a>
+</figure><p></p>
+</li>
+<li>
+<p>An untitled campaign opens with a visual node-based configuration canvas. Work through each node from left to right.</p>
+</li>
+</ol>
+<p></p><figure markdown="" style="width: 80%;">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p26_img4.png" data-title="Campaign flow" data-desc-position="top"><img alt="Campaign flow" src="../assets/lab1_p26_img4.png"></a>
+</figure><p></p>
+</details>
+<p><strong>Node 1 — Dialer configuration:</strong></p>
+<details class="webex" open="open">
+<summary>Configure Dialer</summary>
+<p>In the <strong>Dialer configuration</strong> panel on the right side:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Control Hub channel</strong></td>
+<td><code>Campaign_EP</code></td>
+</tr>
+<tr>
+<td><strong>Outdial ANI</strong></td>
+<td><code>+442046200604</code> <em>(select your Outdial ANI)</em></td>
+</tr>
+<tr>
+<td><strong>Dialing mode</strong></td>
+<td><code>Progressive IVR</code></td>
+</tr>
+<tr>
+<td><strong>CPA parameters</strong></td>
+<td>Enabled (leave defaults)</td>
+</tr>
+<tr>
+<td><strong># of contacts to be sent to the dialer in each push</strong></td>
+<td><code>100</code></td>
+</tr>
+</tbody>
+</table>
+<p>Click <strong>Save changes</strong> at the right-bottom of the page.</p>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p26_img2.png" data-title="Dialer configuration" data-desc-position="top"><img alt="Dialer configuration" src="../assets/lab1_p26_img2.png"></a>
+</figure><p></p>
+</details>
+<p><strong>Node 2 — Contact list source:</strong></p>
+<details class="webex" open="open">
+<summary>Configure Contact List Source</summary>
+<ol>
+<li>Click the <strong>Contact list source</strong> node.</li>
+<li>The <strong>Select contact list source</strong> is by default set to the options <em>File</em> and <em>API</em>. We will use manual file upload.</li>
+<li>Set <strong>Select field mapping</strong> to the field mapping you created before: <code>LAB31207_field_mapping</code>.</li>
+<li>Set the contact expiration to 10 days.</li>
+<li>Click <strong>Save changes</strong>.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The actual contact list file will be uploaded after the campaign is activated. For now, just associate the field mapping.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The field mapping can only be changed while the campaign is in <strong>Draft</strong> status.</p>
+</div>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p26_img3.png" data-title="Contact list source configuration" data-desc-position="top"><img alt="Contact list source configuration" src="../assets/lab1_p26_img3.png"></a>
+</figure><p></p>
+</details>
+<p><strong>Node 3 — Daily schedule:</strong></p>
+<details class="webex" open="open">
+<summary>Configure Daily Schedule</summary>
+<ol>
+<li>Click the <strong>Daily schedule</strong> node.</li>
+<li>Configure the calling window using your local timezone.</li>
+<li>A typical lab schedule runs:<ul>
+<li><strong>Start time</strong>: <code>09:00</code></li>
+<li><strong>End time</strong>: <code>21:00</code></li>
+</ul>
+</li>
+<li>Click <strong>Save changes</strong>.</li>
+</ol>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p28_img1.png" data-title="Campaign daily schedule" data-desc-position="top"><img alt="Campaign daily schedule" src="../assets/lab1_p28_img1.png"></a>
+</figure><p></p>
+</details>
+<p><strong>Node 4 — Schedule exclusion dates:</strong></p>
+<details class="webex" open="open">
+<summary>Configure Exclusion Dates</summary>
+<ol>
+<li>Click the <strong>Schedule exclusion dates</strong> node.</li>
+<li>Under <strong>Organisation-level exclusion dates</strong>, the <code>End of the Year (Dec 31, 2026)</code> date you created earlier should appear automatically.</li>
+<li>Leave it checked (enabled).</li>
+<li>Click <strong>Save changes</strong>.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note you can define specific campaign exclusion dates that would only apply for the current campaign. We will not use it in this lab.</p>
+</div>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p28_img2.jpeg" data-title="Schedule exclusion dates" data-desc-position="top"><img alt="Schedule exclusion dates" src="../assets/lab1_p28_img2.jpeg"></a>
+</figure><p></p>
+</details>
+<p><strong>Node 5 — Contact attempts strategy:</strong></p>
+<details class="webex" open="open">
+<summary>Configure Contact Attempt Strategy</summary>
+<ol>
+<li>
+<p>Click the <strong>Contact attempts strategy</strong> node, then click <strong>Configure</strong>.</p>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p28_img3.png" data-title="Contact attempts strategy" data-desc-position="top"><img alt="Contact attempts strategy" src="../assets/lab1_p28_img3.png"></a>
+</figure><p></p>
+</li>
+<li>
+<p>Configure the following sections:</p>
+</li>
+</ol>
+<p><strong>Section 1 — Call outcome sets:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Wrap-up code set</strong></td>
+<td><code>Finance</code> (with 1 wrap-up code)</td>
+</tr>
+<tr>
+<td><strong>Telephony outcome set</strong></td>
+<td><code>LAB31207_Primary_telephony_outcome_set</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Section 2 — Contact mode priority:</strong></p>
+<p>The <code>Phone</code> contact mode should be pre-populated from your field mapping. Leave priority at <code>1</code>.</p>
+<p><strong>Section 3 — Max call attempts:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Timeframe</th>
+<th>Max call attempts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Until the contact list expires</td>
+<td><code>40</code></td>
+</tr>
+<tr>
+<td>In 1 day (from 00:01 to 23:59)</td>
+<td><code>4</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Section 4 — Sequential dialling:</strong></p>
+<p>Disable sequential dialling and set the amount of contact to <code>10</code>.</p>
+<p>Click <strong>Save</strong>.</p>
+<p></p><figure markdown="" style="width: 60%;">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p29_img1.jpeg" data-title="Contact attempts strategy full view" data-desc-position="top"><img alt="Contact attempts strategy full view" src="../assets/lab1_p29_img1.jpeg"></a>
+</figure><p></p>
+<p>Back to the campaign flow canvas, click <strong>Save changes</strong> in the right panel. </p>
+</details>
+<p><strong>Node 6 — Suppression rule sets:</strong></p>
+<details class="webex" open="open">
+<summary>Configure Suppression Rules</summary>
+<ol>
+<li>Click the <strong>Suppression rule sets</strong> node.</li>
+<li>Under <strong>Suppression rule sets</strong>, select <code>LAB31207_rule</code> (which includes <code>LAB31207_rule1</code>).</li>
+<li>Click <strong>Save changes</strong>.</li>
+</ol>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p30_img1.png" data-title="Suppression rule sets in campaign" data-desc-position="top"><img alt="Suppression rule sets in campaign" src="../assets/lab1_p30_img1.png"></a>
+</figure><p></p>
+</details>
+<h3 id="save-and-activate-the-campaign">Save and Activate the Campaign<a class="headerlink" href="#save-and-activate-the-campaign" title="Permanent link">¶</a></h3>
+<details class="webex" open="open">
+<summary>Save Campaign</summary>
+<ol>
+<li>Click <strong>Save &amp; exit</strong> (top right of the campaign flow canvas).</li>
+<li>In the <strong>Save campaign</strong> dialog, fill in:<ul>
+<li><strong>Campaign name</strong>: <code>LAB31207_campaign</code></li>
+<li><strong>P&amp;L meta-tag</strong>: <code>debt</code></li>
+<li><strong>Purpose meta-tag</strong>: <code>debt</code></li>
+<li><strong>Applicable DNC lists</strong>: <code>None</code></li>
+</ul>
+</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p30_img2.jpeg" data-title="Save campaign dialog" data-desc-position="top"><img alt="Save campaign dialog" src="../assets/lab1_p30_img2.jpeg"></a>
+</figure><p></p>
+</details>
+<details class="webex" open="open">
+<summary>Activate Campaign</summary>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Once a campaign is active, field mappings in the Contact List Source node cannot be modified. To change them, you must create a new campaign —or duplicate the existing one— and update the field mappings before activation.</p>
+<p>The field mapping can be changed while the campaign is in <strong>Draft</strong> status.</p>
+</div>
+<ol>
+<li>Back in the Campaign group list, locate <strong>LAB31207_campaign</strong> (status: <strong>Draft</strong>).</li>
+<li>Click the <strong>⋮ Actions</strong> menu and select <strong>Activate</strong>.</li>
+<li>In the confirmation dialog, click <strong>Confirm</strong>.</li>
+</ol>
+<p>The campaign status will change to <strong>Pending</strong> and then <strong>Running</strong>.</p>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p31_img1.png" data-title="Activate campaign" data-desc-position="top"><img alt="Activate campaign" src="../assets/lab1_p31_img1.png"></a>
+</figure><p></p>
+<details class="tip" open="open">
+<summary>Tip</summary>
+<p>Campaign status is not refreshed in real time, so make sure you click on the <strong>Refresh</strong> button to get the updated status of the campaign.</p>
+</details>
+</details>
+<hr>
+<h2 id="lab-18-upload-contact-list-and-test">Lab 1.8 - Upload Contact List and Test<a class="headerlink" href="#lab-18-upload-contact-list-and-test" title="Permanent link">¶</a></h2>
+<h3 id="upload-the-contact-list">Upload the Contact List<a class="headerlink" href="#upload-the-contact-list" title="Permanent link">¶</a></h3>
+<p>Now that the campaign is active, upload your contact list CSV to trigger the outbound calls.</p>
+<details class="webex" open="open">
+<summary>Upload Contact List</summary>
+<ol>
+<li>
+<p>In the campaign list, click the <strong>⋮ Actions</strong> menu on <strong>LAB31207_campaign</strong> and select <strong>Manage contact lists</strong>.</p>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p31_img3.png" data-title="Manage contact lists panel" data-desc-position="top"><img alt="Manage contact lists panel" src="../assets/lab1_p31_img3.png"></a>
+</figure><p></p>
+</li>
+<li>
+<p>Click <strong>Upload file to create contact list</strong>.</p>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p31_img4.png" data-title="Contact list upload dialog" data-desc-position="top"><img alt="Contact list upload dialog" src="../assets/lab1_p31_img4.png"></a>
+</figure><p></p>
+</li>
+<li>
+<p>In the <strong>Contact list from file upload</strong> dialog:</p>
+<ul>
+<li><strong>Supported channels</strong>: Voice (pre-selected)</li>
+<li><strong>Contact list type</strong>: Static</li>
+<li><strong>Field mapping</strong>: <code>LAB31207_field_mapping</code> (pre-selected)</li>
+<li>Click <strong>Browse</strong> and select your <code>contact_list_lab31207.csv</code></li>
+<li><strong>Automatically activate</strong>: Immediately after upload</li>
+<li><strong>In case of record issues</strong>: Skip the particular record</li>
+</ul>
+</li>
+<li>
+<p>Click <strong>Save and proceed</strong>.</p>
+<p></p><figure markdown="" style="width: 70%;">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p32_img2.png" data-title="Contact list file upload form" data-desc-position="top"><img alt="Contact list file upload form" src="../assets/lab1_p32_img2.png"></a>
+<figcaption>Contact list upload form showing field mapping, file selection, and activation settings</figcaption>
+</figure><p></p>
+</li>
+</ol>
+</details>
+<h3 id="monitor-upload-status">Monitor Upload Status<a class="headerlink" href="#monitor-upload-status" title="Permanent link">¶</a></h3>
+<p>After uploading, the contact list will show a status of <strong>Uploading</strong>, then it will transition to <strong>Active</strong> once processed. You can see the processing going through different status: <em>Processed, Valid, Eligible...</em>. Make sure you click <strong>Refresh</strong> to see the latest status.</p>
+<figure>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p32_img1.png" data-title="Contact list uploading status" data-desc-position="top"><img alt="Contact list uploading status" src="../assets/lab1_p32_img1.png"></a></p>
+</figure>
+<figure>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p33_img1.png" data-title="Contact list Active status" data-desc-position="top"><img alt="Contact list Active status" src="../assets/lab1_p33_img1.png"></a></p>
+</figure>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If your contact list fails to upload, the most likely cause is a <strong>formatting issue</strong> with the CSV file. Check that:</p>
+<ul>
+<li>The column headers match <strong>exactly</strong> what was defined in the field mapping (<code>firstName</code>, <code>lastName</code>, <code>phoneNumber</code>)</li>
+<li>Phone numbers use E.164 format with the <code>+</code> prefix (e.g. <code>+442012345678</code>)</li>
+<li>All phone numbers in the file are from the <strong>same country</strong></li>
+<li>No spaces, hyphens, or special characters appear in the phone number field</li>
+<li>The file is saved as a proper comma-separated CSV (not semicolon or tab-separated)</li>
+</ul>
+</div>
+<h3 id="verify-the-campaign-is-running">Verify the Campaign is Running<a class="headerlink" href="#verify-the-campaign-is-running" title="Permanent link">¶</a></h3>
+<p>Once the contact list is active, the Campaign Manager will begin pushing contacts to the dialler. <strong>Allow 2–5 minutes</strong> for the first calls to be generated.</p>
+<figure>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p33_img1.png" data-title="Campaign running with contact list active" data-desc-position="top"><img alt="Campaign running with contact list active" src="../assets/lab1_p33_img1.png"></a></p>
+<figcaption>Campaign in Running status with the contact list showing as Active and ready for dialling</figcaption>
+</figure>
+<p>If everything is configured correctly, <strong>you will receive a call</strong> on the phone number specified in your contact list. When you answer, you will hear:</p>
+<blockquote>
+<p><em>"Congratulations, You have completed lab 1"</em></p>
+</blockquote>
+<p>This confirms that the full end-to-end flow is working — from Campaign Manager initiating the call, through the CPA detection identifying a live voice, routing through the Go To node, and arriving at the <code>Lab1_completed</code> flow which plays the TTS message.</p>
+<details class="note" open="open">
+<summary>Note</summary>
+<p>Note that the <strong>End Flow</strong> node does not disconnect the call, so you must hang up manually after testing. We have chosen <strong>End Flow</strong> over <strong>Disconnect Contact</strong> because the call will eventually be routed to a queue in future exercises.</p>
+</details>
+<hr>
+<h2 id="lab-completion">Lab Completion ✅<a class="headerlink" href="#lab-completion" title="Permanent link">¶</a></h2>
+<p>At this point, you have successfully:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Configured an agent, team, and outdial queue in Webex Contact Center</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Created <code>firstName</code> and <code>lastName</code> Global Variables for customer data propagation</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Built the <code>AI_Agent_DebtCollection</code> test flow with a congratulatory TTS message</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Built the <code>Outbound_DebtCollection</code> campaign flow with CPA-based routing (AMD, Abandoned, Live Voice)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Configured the outdial Entry Point (Channel) and Outdial ANI</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Completed all Campaign Manager prerequisites (, contact modes, field mappings, suppression rules, telephony outcomes, wrap-up codes, meta-tags)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Created, configured, and activated the <code>LAB31207_campaign</code> Progressive IVR campaign</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Uploaded a contact list and received a live test call</li>
+</ul>
+<p><strong>Congratulations!</strong> You have completed Lab 1. The outbound campaign infrastructure is fully operational and ready to connect to the AI Agent in Lab 2.</p>
+<p><a class="md-button md-button--primary" href="../lab2_debt_ai_agent/">Next Lab: Lab 2 - Automating Debt Collection</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab2_debt_ai_agent/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 2 - AI Agent with MCP">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab 2 - AI Agent with MCP
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 Cisco
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.instant", "navigation.top", "navigation.footer", "search.suggest", "content.code.copy", "toc.follow", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../template_assets/js/newLoad.js"></script>
+      
+        <script src="../template_assets/js/setInfo.js"></script>
+      
+        <script src="../javascripts/extra.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "fade", "closeEffect": "fade", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

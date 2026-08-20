@@ -1,0 +1,1173 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Four-hour Webex Contact Center lab for native Campaign Manager, Webex AI Agent, MCP tools, and Real-Time Assist">
+      
+      
+        <meta name="author" content="Luis Garcia Delgado, Juan Corral, Sebastian Hernandez, Stephanie Ross">
+      
+      
+        <link rel="canonical" href="https://cx-partner.github.io/LAB-31207/lab2_debt_ai_agent/">
+      
+      
+        <link rel="prev" href="../lab1_campaign_manager/">
+      
+      
+        <link rel="next" href="../lab3_human_ai_assist/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../template_assets/webex75.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Lab 2 - AI Agent with MCP - LAB-31207 - Campaign Manager and AI Agent with MCP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-2-ai-agent-with-mcp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="LAB-31207 - Campaign Manager and AI Agent with MCP" class="md-header__button md-logo" aria-label="LAB-31207 - Campaign Manager and AI Agent with MCP" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LAB-31207 - Campaign Manager and AI Agent with MCP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 2 - AI Agent with MCP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../overview/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../lab1_campaign_manager/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LAB-31207 - Campaign Manager and AI Agent with MCP" class="md-nav__button md-logo" aria-label="LAB-31207 - Campaign Manager and AI Agent with MCP" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    LAB-31207 - Campaign Manager and AI Agent with MCP
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Labs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Labs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1_campaign_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 1 - Native Campaign Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2 - AI Agent with MCP
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2 - AI Agent with MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#lab-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab Purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-requisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-21-import-the-baseline-ai-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 2.1 - Import the Baseline AI Agent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-22-review-knowledge-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 2.2 - Review Knowledge Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-23-select-mcp-tools-as-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 2.3 - Select MCP Tools as Actions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-24-test-alex-in-preview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 2.4 - Test Alex in Preview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-25-connect-the-ai-agent-to-the-outbound-call" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 2.5 - Connect the AI Agent to the Outbound Call
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-26-test-the-complete-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 2.6 - Test the Complete Scenario
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-completion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab Completion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3_human_ai_assist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3 - Real-Time Assist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lab-2-ai-agent-with-mcp">Lab 2 - AI Agent with MCP<a class="headerlink" href="#lab-2-ai-agent-with-mcp" title="Permanent link">¶</a></h1>
+<h2 id="lab-purpose">Lab Purpose<a class="headerlink" href="#lab-purpose" title="Permanent link">¶</a></h2>
+<p>In Lab 1, you configured native Campaign Manager to place outbound calls and route live-voice answers into the <code>AI_Agent_DebtCollection</code> flow. In this lab, you will configure <strong>Alex</strong>, a Webex AI Agent that uses tenant-provisioned <strong>MCP tools</strong> to retrieve customer context, support the debt-resolution conversation, and prepare the call for human escalation when needed.</p>
+<p>The backend actions are provided by the pre-staged MCP server. You will select available MCP tools in AI Agent Studio rather than building fulfillment flows.</p>
+<details class="purpose" open="open">
+<summary>Lab Objectives</summary>
+<p>By the end of this lab, you will be able to:</p>
+<ul>
+<li>Import or create a baseline autonomous Webex AI Agent.</li>
+<li>Review the agent prompt, welcome message, and knowledge configuration.</li>
+<li>Select available MCP tools as AI Agent actions.</li>
+<li>Validate MCP tool execution in AI Agent Preview.</li>
+<li>Connect the outbound campaign flow to Alex using Virtual Agent V2.</li>
+</ul>
+</details>
+<details class="challenge" open="open">
+<summary>Lab Outcome</summary>
+<p>At the end of Lab 2, an answered outbound campaign call is routed to Alex. Alex can greet the customer by name, use MCP tools to look up account context [VERIFY], and handle the debt-resolution scenario.</p>
+</details>
+<hr>
+<h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permanent link">¶</a></h2>
+<p>In order to complete this lab, you must have:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Completed <a href="../lab1_campaign_manager/">Lab 1 - Native Campaign Manager</a>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Access to <strong>Control Hub</strong> and <strong>Webex AI Agent Studio</strong>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> MCP Agentic App already provisioned in the Webex tenant.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> MCP tools already enabled by the tenant administrator [VERIFY: confirm tool list].</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Baseline AI Agent import package available [VERIFY: add exact filename and download link].</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">MCP-Backed Actions</p>
+<p>Backend actions for this lab are exposed as MCP tools. When you configure Alex, select the available MCP tools in AI Agent Studio.</p>
+</div>
+<hr>
+<h2 id="lab-overview">Lab Overview<a class="headerlink" href="#lab-overview" title="Permanent link">¶</a></h2>
+<p>In this lab you will perform the following tasks:</p>
+<ol>
+<li>Import the baseline AI Agent configuration.</li>
+<li>Review Alex's profile, instructions, and Knowledge Base.</li>
+<li>Select MCP tools as AI Agent actions.</li>
+<li>Test Alex in Preview.</li>
+<li>Connect Alex to the outbound campaign call flow.</li>
+<li>Run the complete outbound test.</li>
+</ol>
+<hr>
+<h2 id="lab-21-import-the-baseline-ai-agent">Lab 2.1 - Import the Baseline AI Agent<a class="headerlink" href="#lab-21-import-the-baseline-ai-agent" title="Permanent link">¶</a></h2>
+<p>The fastest path for a 4-hour lab is to import a baseline agent and review the important configuration, instead of building every prompt and action from scratch.</p>
+<details class="webex" open="open">
+<summary>Import Alex</summary>
+<ol>
+<li>From <a href="https://admin.webex.com">Control Hub</a>, navigate to <strong>Contact Center</strong>.</li>
+<li>Under <strong>Quick Links</strong>, open <strong>Webex AI Agent</strong>.</li>
+<li>In AI Agent Studio, select the import option [VERIFY: exact UI label].</li>
+<li>Import the baseline package: <code>[VERIFY: LAB-31207_Alex_baseline filename]</code>.</li>
+<li>
+<p>Open the imported agent and confirm the name:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Agent Name</strong></td>
+<td><code>LAB31207_Alex</code></td>
+</tr>
+<tr>
+<td><strong>Agent Type</strong></td>
+<td><code>Autonomous</code></td>
+</tr>
+<tr>
+<td><strong>Use Case</strong></td>
+<td>Debt-resolution outbound assistant</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Save the imported agent without publishing yet.</p>
+</li>
+</ol>
+</details>
+<div class="admonition note">
+<p class="admonition-title">If Import Is Not Available</p>
+<p>If the import option is not available in your tenant, create the agent manually with <strong>Start from scratch</strong> and use the profile values in the next section. This fallback is expected to take longer, so the lab facilitator may provide a pre-created agent instead.</p>
+</div>
+<details class="webex" open="open">
+<summary>Review Alex's Profile</summary>
+<p>Confirm or populate the following values:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Welcome message</strong></td>
+<td><code>Hello, I'm Alex from Webex Financial Group. Am I speaking with {{firstName}} {{lastName}}?</code></td>
+</tr>
+<tr>
+<td><strong>Primary context variables</strong></td>
+<td><code>firstName</code>, <code>lastName</code>, <code>phoneNumber</code></td>
+</tr>
+<tr>
+<td><strong>Tone</strong></td>
+<td>Professional, concise, and helpful</td>
+</tr>
+<tr>
+<td><strong>Escalation behavior</strong></td>
+<td>Escalate when the customer disputes a transaction, requests a human, or cannot be verified [VERIFY].</td>
+</tr>
+</tbody>
+</table>
+<p>Use the following compact instruction set if you are configuring manually:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>You are Alex, a Webex Financial Group AI Agent supporting an outbound debt-resolution call.
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Confirm whether you are speaking with {{firstName}} {{lastName}}. Keep responses short and suitable for voice.
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Use MCP tools for customer lookup, authentication, balance or debt lookup, recent transactions, payment or promise-to-pay handling, and escalation support. Do not invent customer data. If a required value is missing, ask the customer or explain that you need to transfer to a specialist.
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>Never disclose sensitive information before customer verification. Never ask for full PINs, full card numbers, passwords, or one-time passcodes.
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>If the customer disputes a transaction, suspects fraud, asks for a human, or cannot be verified, prepare the escalation context and transfer to a specialist using the configured transfer path [VERIFY: transfer action name].
+</span></code></pre></div>
+</details>
+<hr>
+<h2 id="lab-22-review-knowledge-configuration">Lab 2.2 - Review Knowledge Configuration<a class="headerlink" href="#lab-22-review-knowledge-configuration" title="Permanent link">¶</a></h2>
+<p>Alex should have enough knowledge to answer basic policy and product questions without turning the lab into a content-ingestion exercise.</p>
+<details class="webex" open="open">
+<summary>Confirm Knowledge Base</summary>
+<ol>
+<li>Open Alex in AI Agent Studio.</li>
+<li>Select the <strong>Knowledge</strong> tab.</li>
+<li>Confirm the baseline Knowledge Base is attached [VERIFY: exact KB name].</li>
+<li>
+<p>If the Knowledge Base is missing, create one using the provided document:</p>
+<div class="admonition download">
+<p class="admonition-title">Knowledge Base Document</p>
+<p>Use <code>docs/bcamp_files/Webex_Financial_Group_KB.docx</code> [VERIFY: keep or replace with LAB-31207-specific KB].</p>
+</div>
+</li>
+<li>
+<p>Wait for the source to reach the <strong>Processed</strong> state before final testing.</p>
+</li>
+</ol>
+</details>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Knowledge processing can take several minutes. Continue with MCP action selection while processing completes.</p>
+</div>
+<hr>
+<h2 id="lab-23-select-mcp-tools-as-actions">Lab 2.3 - Select MCP Tools as Actions<a class="headerlink" href="#lab-23-select-mcp-tools-as-actions" title="Permanent link">¶</a></h2>
+<p>The MCP server is already added to the Webex tenant. You only need to select the available MCP tools from the AI Agent action configuration.</p>
+<details class="webex" open="open">
+<summary>Add MCP Tools to Alex</summary>
+<ol>
+<li>In AI Agent Studio, open <code>LAB31207_Alex</code>.</li>
+<li>Select the <strong>Actions</strong> tab.</li>
+<li>Click <strong>Add actions</strong>.</li>
+<li>Choose <strong>Select Available</strong> [VERIFY: exact UI label].</li>
+<li>
+<p>Select the MCP tools provided for LAB-31207.</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[VERIFY: get_customer_profile]</code></td>
+<td>Retrieve customer identity and profile context.</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>[VERIFY: verify_customer]</code></td>
+<td>Validate customer identity using the lab-safe verification method.</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>[VERIFY: get_debt_summary]</code></td>
+<td>Retrieve balance, maturity date, and debt context.</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>[VERIFY: get_recent_transactions]</code></td>
+<td>Retrieve recent transaction context for disputes or questions.</td>
+<td>Recommended</td>
+</tr>
+<tr>
+<td><code>[VERIFY: create_payment_or_promise]</code></td>
+<td>Record payment intent, promise-to-pay, or next step.</td>
+<td>Recommended</td>
+</tr>
+<tr>
+<td><code>[VERIFY: prepare_escalation]</code></td>
+<td>Package context for human escalation.</td>
+<td>Required for RTA path</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Review each selected action and confirm the input schema is automatically populated from the MCP tool definition.</p>
+</li>
+<li>Click <strong>Save changes</strong>.</li>
+</ol>
+</details>
+<div class="admonition warning">
+<p class="admonition-title">Tool Names and Schemas</p>
+<p>Use the tool names and input fields shown in your tenant. If a value in this guide is marked <code>[VERIFY]</code>, confirm the exact name with the lab facilitator before continuing.</p>
+</div>
+<hr>
+<h2 id="lab-24-test-alex-in-preview">Lab 2.4 - Test Alex in Preview<a class="headerlink" href="#lab-24-test-alex-in-preview" title="Permanent link">¶</a></h2>
+<p>Before connecting Alex to the campaign, validate the agent in Preview. This lets you troubleshoot prompt or tool issues without waiting for Campaign Manager to dial.</p>
+<details class="tool" open="open">
+<summary>Preview Test</summary>
+<ol>
+<li>In AI Agent Studio, open <code>LAB31207_Alex</code>.</li>
+<li>Click <strong>Preview</strong>.</li>
+<li>Start a conversation with a test customer identity provided by the lab facilitator [VERIFY: test customer values].</li>
+<li>
+<p>Confirm Alex can:</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Expected Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name confirmation</td>
+<td>Alex confirms the test customer's name.</td>
+</tr>
+<tr>
+<td>Customer lookup</td>
+<td>MCP customer lookup succeeds.</td>
+</tr>
+<tr>
+<td>Verification</td>
+<td>Alex follows the lab-safe verification process.</td>
+</tr>
+<tr>
+<td>Debt summary</td>
+<td>Alex retrieves and explains balance/maturity context.</td>
+</tr>
+<tr>
+<td>Transaction question</td>
+<td>Alex uses the transaction tool or explains the limitation.</td>
+</tr>
+<tr>
+<td>Escalation trigger</td>
+<td>Alex prepares transfer context when fraud/dispute is mentioned [VERIFY].</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>If a tool fails, open the session details and confirm the exact input sent to the MCP tool.</p>
+</li>
+</ol>
+</details>
+<details class="failure" open="open">
+<summary>Troubleshooting</summary>
+<ul>
+<li><strong>No MCP tools are visible</strong>: Confirm the Agentic App is allowed and tools are enabled for the organization [VERIFY: admin path].</li>
+<li><strong>Tool requires unknown input</strong>: Check the MCP schema and update the prompt so Alex knows where to get the value.</li>
+<li><strong>Preview works but voice does not</strong>: Confirm the flow passes <code>phoneNumber</code>, <code>firstName</code>, and <code>lastName</code> to Virtual Agent V2.</li>
+</ul>
+</details>
+<hr>
+<h2 id="lab-25-connect-the-ai-agent-to-the-outbound-call">Lab 2.5 - Connect the AI Agent to the Outbound Call<a class="headerlink" href="#lab-25-connect-the-ai-agent-to-the-outbound-call" title="Permanent link">¶</a></h2>
+<p>At the end of Lab 1, the outbound call routes to <code>AI_Agent_DebtCollection</code>, which currently plays a temporary completion message. Replace that message with Alex.</p>
+<details class="webex" open="open">
+<summary>Deliver the Outbound Call to Alex</summary>
+<ol>
+<li>Go to <strong>Control Hub</strong> &gt; <strong>Contact Center</strong> &gt; <strong>Flows</strong>.</li>
+<li>Open the <code>AI_Agent_DebtCollection</code> flow.</li>
+<li>Enable editing.</li>
+<li>Delete the temporary <strong>Play Message</strong> node from Lab 1.</li>
+<li>Drag a <strong>Virtual Agent V2</strong> node onto the canvas.</li>
+<li>Connect the <strong>NewPhoneContact</strong> or <strong>StartFlow</strong> node to <strong>Virtual Agent V2</strong>.</li>
+<li>
+<p>Configure the <strong>Virtual Agent V2</strong> node:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Activity Label</strong></td>
+<td><code>DebtCollectionAgent</code></td>
+</tr>
+<tr>
+<td><strong>Contact Center AI Config</strong></td>
+<td><code>Webex AI Agent (Autonomous)</code></td>
+</tr>
+<tr>
+<td><strong>Virtual Agent</strong></td>
+<td><code>LAB31207_Alex</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>In <strong>State Event</strong>, set <strong>Event Data</strong> to:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{NewPhoneContact.DNIS}}"</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{firstName}}"</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{lastName}}"</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">}</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Connect the <strong>Handled</strong> outcome to <strong>End Flow</strong>.</p>
+</li>
+<li>Connect <strong>Errored</strong> and <strong>Escalated</strong> to a temporary <strong>Play Message</strong> or to the escalation queue if you are continuing directly into Lab 3 [VERIFY: chosen path].</li>
+<li>Validate and publish the flow.</li>
+</ol>
+</details>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The values on the left side of the JSON (<code>phoneNumber</code>, <code>firstName</code>, <code>lastName</code>) must match the variables Alex expects. The values on the right side come from the Campaign Manager contact list and flow variable mapping created in Lab 1.</p>
+</div>
+<hr>
+<h2 id="lab-26-test-the-complete-scenario">Lab 2.6 - Test the Complete Scenario<a class="headerlink" href="#lab-26-test-the-complete-scenario" title="Permanent link">¶</a></h2>
+<details class="webex" open="open">
+<summary>Run the Outbound Test</summary>
+<ol>
+<li>In Campaign Manager, upload a contact list with your test customer's <code>firstName</code>, <code>lastName</code>, and <code>phoneNumber</code>.</li>
+<li>Wait for the contact list to become active.</li>
+<li>Answer the outbound call.</li>
+<li>Confirm Alex greets the customer by name.</li>
+<li>Complete the verification and debt-summary path using the MCP tools.</li>
+<li>Ask a transaction or dispute question to confirm Alex uses the relevant MCP tool or prepares escalation context [VERIFY].</li>
+</ol>
+</details>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Campaign Manager can take 2-5 minutes to generate the call after the contact list is active. Use Preview for troubleshooting tool behavior and use the live call only for final validation.</p>
+</div>
+<hr>
+<h2 id="lab-completion">Lab Completion<a class="headerlink" href="#lab-completion" title="Permanent link">¶</a></h2>
+<p>At this point, you have successfully:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Imported or configured Alex.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Attached tenant-provisioned MCP tools as AI Agent actions.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Tested Alex in Preview.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Connected the outbound campaign to Alex.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Completed an outbound call into an MCP-enabled AI Agent.</li>
+</ul>
+<p><a class="md-button md-button--primary" href="../lab3_human_ai_assist/">Next Lab: Lab 3 - Real-Time Assist</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../lab1_campaign_manager/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 1 - Native Campaign Manager">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 1 - Native Campaign Manager
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab3_human_ai_assist/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 3 - Real-Time Assist">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab 3 - Real-Time Assist
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 Cisco
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.instant", "navigation.top", "navigation.footer", "search.suggest", "content.code.copy", "toc.follow", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../template_assets/js/newLoad.js"></script>
+      
+        <script src="../template_assets/js/setInfo.js"></script>
+      
+        <script src="../javascripts/extra.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "fade", "closeEffect": "fade", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

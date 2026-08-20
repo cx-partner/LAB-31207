@@ -1,0 +1,1088 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Four-hour Webex Contact Center lab for native Campaign Manager, Webex AI Agent, MCP tools, and Real-Time Assist">
+      
+      
+        <meta name="author" content="Luis Garcia Delgado, Juan Corral, Sebastian Hernandez, Stephanie Ross">
+      
+      
+        <link rel="canonical" href="https://cx-partner.github.io/LAB-31207/lab3_human_ai_assist/">
+      
+      
+        <link rel="prev" href="../lab2_debt_ai_agent/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../template_assets/webex75.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Lab 3 - Real-Time Assist - LAB-31207 - Campaign Manager and AI Agent with MCP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-3-real-time-assist" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="LAB-31207 - Campaign Manager and AI Agent with MCP" class="md-header__button md-logo" aria-label="LAB-31207 - Campaign Manager and AI Agent with MCP" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LAB-31207 - Campaign Manager and AI Agent with MCP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 3 - Real-Time Assist
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../overview/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../lab1_campaign_manager/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LAB-31207 - Campaign Manager and AI Agent with MCP" class="md-nav__button md-logo" aria-label="LAB-31207 - Campaign Manager and AI Agent with MCP" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    LAB-31207 - Campaign Manager and AI Agent with MCP
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Labs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Labs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1_campaign_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 1 - Native Campaign Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2_debt_ai_agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2 - AI Agent with MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3 - Real-Time Assist
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3 - Real-Time Assist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#lab-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab Purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-requisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-31-enable-ai-assistant-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 3.1 - Enable AI Assistant Features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-32-confirm-real-time-transcription-in-the-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 3.2 - Confirm Real-Time Transcription in the Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-33-confirm-desktop-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 3.3 - Confirm Desktop Layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-34-create-or-import-the-real-time-assist-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 3.4 - Create or Import the Real-Time Assist Skill
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-35-assign-the-skill-to-the-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 3.5 - Assign the Skill to the Queue
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-36-test-rta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 3.6 - Test RTA
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-completion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab Completion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lab-3-real-time-assist">Lab 3 - Real-Time Assist<a class="headerlink" href="#lab-3-real-time-assist" title="Permanent link">¶</a></h1>
+<h2 id="lab-purpose">Lab Purpose<a class="headerlink" href="#lab-purpose" title="Permanent link">¶</a></h2>
+<p>In Lab 2, you connected the outbound campaign to Alex, an MCP-enabled Webex AI Agent. In this lab, you will add a short human-assist path using <strong>Webex Contact Center AI Assistant</strong>, <strong>Real-Time Transcription</strong>, <strong>Generated Summaries</strong>, and <strong>Real-Time Assist</strong>.</p>
+<p>Because the MCP server is already provisioned, this lab focuses on enabling the feature, assigning the skill, and validating that the human agent receives useful guidance during a live call.</p>
+<details class="purpose" open="open">
+<summary>Lab Objectives</summary>
+<p>By the end of this lab, you will be able to:</p>
+<ul>
+<li>Enable AI Assistant features needed for RTA.</li>
+<li>Confirm the Agent Desktop layout exposes AI Assistant and Real-Time Transcript components.</li>
+<li>Create or import a compact Real-Time Assist skill.</li>
+<li>Optionally attach MCP-backed actions to the skill [VERIFY].</li>
+<li>Assign the skill to the target queue.</li>
+<li>Validate transcript, summary, and guidance during a human escalation scenario.</li>
+</ul>
+</details>
+<details class="challenge" open="open">
+<summary>Lab Outcome</summary>
+<p>A human agent receives the call after Alex escalates or after the lab facilitator routes the test to the queue. The Agent Desktop shows Real-Time Transcript, AI Assistant guidance, and a generated summary.</p>
+</details>
+<hr>
+<h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permanent link">¶</a></h2>
+<p>In order to complete this lab, you must have:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Completed <a href="../lab2_debt_ai_agent/">Lab 2 - AI Agent with MCP</a>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> A queue and agent available for the human-assist scenario.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> AI Assistant features enabled or admin access to enable them.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Desktop layout with AI Assistant and Real-Time Transcript components, or the provided template.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> RTA baseline skill import package [VERIFY: add exact filename], or permission to create the skill manually.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">RTA Time Box</p>
+<p>This lab is designed to fit the final 35-40 minutes of LAB-31207. If the core outbound-to-AI-Agent path took longer than expected, complete only the AI Assistant feature enablement and queue assignment, then use the remaining time for validation.</p>
+</div>
+<hr>
+<h2 id="lab-overview">Lab Overview<a class="headerlink" href="#lab-overview" title="Permanent link">¶</a></h2>
+<p>In this lab you will perform the following tasks:</p>
+<ol>
+<li>Enable AI Assistant features in Control Hub.</li>
+<li>Confirm the flow supports Real-Time Transcription.</li>
+<li>Confirm or update the Desktop Layout.</li>
+<li>Create or import the Real-Time Assist skill.</li>
+<li>Assign the skill to the queue.</li>
+<li>Test the assisted handoff.</li>
+</ol>
+<hr>
+<h2 id="lab-31-enable-ai-assistant-features">Lab 3.1 - Enable AI Assistant Features<a class="headerlink" href="#lab-31-enable-ai-assistant-features" title="Permanent link">¶</a></h2>
+<details class="webex" open="open">
+<summary>Configure AI Assistant Features</summary>
+<ol>
+<li>Open <a href="https://admin.webex.com">Control Hub</a>.</li>
+<li>Navigate to <strong>Contact Center</strong> &gt; <strong>AI Features</strong>. In some tenants, this menu may appear as <strong>AI Assistant</strong>.</li>
+<li>Enable <strong>Generated Summaries</strong>.</li>
+<li>Select the summarization types required for the lab. For a shared lab tenant, selecting <strong>All queues</strong> is the fastest option [VERIFY: tenant policy].</li>
+<li>Enable <strong>Real-Time Transcription</strong>.</li>
+<li>Enable <strong>Real-Time Assist</strong>.</li>
+<li>Save the configuration.</li>
+</ol>
+</details>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In production, these features are usually scoped by queue. For this lab, use the assigned queue for the exercise.</p>
+</div>
+<hr>
+<h2 id="lab-32-confirm-real-time-transcription-in-the-flow">Lab 3.2 - Confirm Real-Time Transcription in the Flow<a class="headerlink" href="#lab-32-confirm-real-time-transcription-in-the-flow" title="Permanent link">¶</a></h2>
+<p>Real-Time Transcription requires media streaming to start when the human agent accepts the call.</p>
+<details class="webex" open="open">
+<summary>Add Start Media Stream</summary>
+<ol>
+<li>Open the <code>AI_Agent_DebtCollection</code> flow in <strong>Control Hub</strong> &gt; <strong>Contact Center</strong> &gt; <strong>Flows</strong>.</li>
+<li>Go to <strong>Event Flows</strong>.</li>
+<li>Drag a <strong>Start Media Stream</strong> node onto the canvas.</li>
+<li>
+<p>Connect the <strong>AgentAnswered</strong> event node to <strong>Start Media Stream</strong>.</p>
+<div class="admonition info">
+<p class="admonition-title">Event Name</p>
+<p>In some tenants, <strong>AgentAnswered</strong> appears as <strong>AgentAccepted</strong>. Use the event that is available in your Flow Designer.</p>
+</div>
+</li>
+<li>
+<p>Connect <strong>Start Media Stream</strong> to <strong>End Flow</strong>.</p>
+</li>
+<li>Validate and publish the flow.</li>
+</ol>
+</details>
+<details class="webex" open="open">
+<summary>Route Escalation to the Queue</summary>
+<ol>
+<li>In the <strong>Main Flow</strong>, locate the <strong>Virtual Agent V2</strong> node used for Alex.</li>
+<li>Connect the <strong>Escalated</strong> outcome to the queue used by the human agent [VERIFY: exact queue node and queue name].</li>
+<li>Keep the <strong>Errored</strong> outcome connected to a safe fallback path.</li>
+<li>Publish the flow.</li>
+</ol>
+</details>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The exact escalation routing depends on the tenant's existing queue and flow design. If the baseline flow already includes the queue route, verify the path and continue.</p>
+</div>
+<hr>
+<h2 id="lab-33-confirm-desktop-layout">Lab 3.3 - Confirm Desktop Layout<a class="headerlink" href="#lab-33-confirm-desktop-layout" title="Permanent link">¶</a></h2>
+<p>The Agent Desktop must expose the AI Assistant and Real-Time Transcript surfaces.</p>
+<details class="webex" open="open">
+<summary>Desktop Layout Check</summary>
+<ol>
+<li>In Control Hub, navigate to <strong>Contact Center</strong> &gt; <strong>Desktop Layouts</strong> [VERIFY: exact path].</li>
+<li>Open the layout assigned to the lab agent's team.</li>
+<li>Confirm the layout includes the AI Assistant component.</li>
+<li>Confirm the layout includes Real-Time Transcript tab/panel support.</li>
+<li>Assign the layout to the team used by the human agent.</li>
+</ol>
+</details>
+<div class="admonition download">
+<p class="admonition-title">Desktop Layout Template</p>
+<p>If a template is needed, use <code>docs/bcamp_files/Finance_Desktop.json</code> [VERIFY: replace with LAB-31207-specific desktop layout if provided].</p>
+</div>
+<hr>
+<h2 id="lab-34-create-or-import-the-real-time-assist-skill">Lab 3.4 - Create or Import the Real-Time Assist Skill<a class="headerlink" href="#lab-34-create-or-import-the-real-time-assist-skill" title="Permanent link">¶</a></h2>
+<p>Use an import package if one is provided. If not, create a compact skill manually.</p>
+<details class="webex" open="open">
+<summary>Import or Create the RTA Skill</summary>
+<ol>
+<li>Open <strong>Webex AI Agent Studio</strong> from Control Hub.</li>
+<li>Select the <strong>AI Assistant Skill</strong> area [VERIFY: exact icon/label].</li>
+<li>Import the baseline skill package [VERIFY: exact filename], or click <strong>Create Skill</strong> &gt; <strong>Start from scratch</strong>.</li>
+<li>
+<p>Use the following values if creating manually:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Skill name</strong></td>
+<td><code>LAB31207_RTA_Assistant</code></td>
+</tr>
+<tr>
+<td><strong>Goal</strong></td>
+<td><code>Assist the human agent during a debt-resolution or fraud/dispute conversation by providing concise next-step guidance based on the live transcript.</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Add or confirm the instructions:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>You assist the human agent, not the customer.
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Watch the live conversation for identity verification issues, balance questions, payment intent, dispute language, suspicious transaction language, and requests for a human specialist.
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Keep guidance short and actionable. Tell the agent what to ask next, what to confirm, and what to avoid saying.
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>If MCP tools are available to this AI Assistant skill, use them only when the required values were explicitly provided in the conversation or confirmed by the human agent [VERIFY]. Do not invent customer IDs, transaction IDs, payment amounts, or case IDs.
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>If the customer disputes a transaction, guide the agent to confirm the transaction details, explain the next step, and create or prepare the case using the configured MCP action [VERIFY: exact action name].
+</span></code></pre></div>
+</li>
+<li>
+<p>Attach the fraud or policy Knowledge Base if provided.</p>
+<div class="admonition download">
+<p class="admonition-title">Fraud Knowledge Base</p>
+<p>Use <code>docs/bcamp_files/Fraud_KB.docx</code> [VERIFY: keep or replace with LAB-31207-specific RTA KB].</p>
+</div>
+</li>
+</ol>
+</details>
+<details class="webex" open="open">
+<summary>Optional: Add MCP Actions to the RTA Skill</summary>
+<ol>
+<li>Open the skill's <strong>Actions</strong> tab.</li>
+<li>Click <strong>Add action</strong> or <strong>Select Available</strong> [VERIFY: exact UI label].</li>
+<li>
+<p>Select the MCP tools intended for human-agent assistance [VERIFY: exact tool list].</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[VERIFY: get_recent_transactions]</code></td>
+<td>Retrieve recent transactions when the customer disputes a charge.</td>
+</tr>
+<tr>
+<td><code>[VERIFY: create_case]</code></td>
+<td>Create or prepare a dispute/fraud case after agent confirmation.</td>
+</tr>
+<tr>
+<td><code>[VERIFY: get_customer_summary]</code></td>
+<td>Retrieve customer context for the agent.</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Mark agent review/confirmation as required where the UI supports it [VERIFY].</p>
+</li>
+<li>Save and publish the skill.</li>
+</ol>
+</details>
+<div class="admonition important">
+<p class="admonition-title">MCP-Backed RTA Actions</p>
+<p>If RTA needs an action, use the MCP tool selected from the pre-provisioned Agentic App.</p>
+</div>
+<hr>
+<h2 id="lab-35-assign-the-skill-to-the-queue">Lab 3.5 - Assign the Skill to the Queue<a class="headerlink" href="#lab-35-assign-the-skill-to-the-queue" title="Permanent link">¶</a></h2>
+<details class="webex" open="open">
+<summary>Assign RTA Skill</summary>
+<ol>
+<li>Go to <strong>Control Hub</strong> &gt; <strong>Contact Center</strong> &gt; <strong>AI Features</strong>.</li>
+<li>Open the <strong>Queue</strong> tab [VERIFY: exact UI label].</li>
+<li>Select the queue used by the lab's human agent.</li>
+<li>In the <strong>Real-Time Assist</strong> section, enable <strong>Apply Real-Time Assist</strong>.</li>
+<li>Select <code>LAB31207_RTA_Assistant</code>.</li>
+<li>Save the queue configuration.</li>
+</ol>
+</details>
+<details class="info" open="open">
+<summary>Skill-to-Queue Mapping</summary>
+<p>RTA skills are assigned to queues. Any agent receiving a call from the assigned queue should receive the skill's guidance for that interaction.</p>
+</details>
+<hr>
+<h2 id="lab-36-test-rta">Lab 3.6 - Test RTA<a class="headerlink" href="#lab-36-test-rta" title="Permanent link">¶</a></h2>
+<details class="webex" open="open">
+<summary>Execute the Test</summary>
+<ol>
+<li>Start the outbound call from Campaign Manager or use the provided inbound shortcut [VERIFY].</li>
+<li>
+<p>Speak with Alex and trigger the escalation path by saying something like:</p>
+<p><copy><code>I do not recognize one of these transactions and want to speak with someone.</code></copy></p>
+</li>
+<li>
+<p>Accept the call as the human agent.</p>
+</li>
+<li>
+<p>Confirm the Agent Desktop shows:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Expected Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Real-Time Transcript</td>
+<td>Live transcript appears after the agent accepts the call.</td>
+</tr>
+<tr>
+<td>AI Assistant</td>
+<td>Guidance appears during the conversation.</td>
+</tr>
+<tr>
+<td>RTA Skill</td>
+<td>Guidance matches the dispute/fraud scenario.</td>
+</tr>
+<tr>
+<td>MCP Action [VERIFY]</td>
+<td>If configured, action suggestions require confirmed values before execution.</td>
+</tr>
+<tr>
+<td>Generated Summary</td>
+<td>Summary appears during wrap-up or after call completion [VERIFY].</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>End the call and review the generated summary.</p>
+</li>
+</ol>
+</details>
+<details class="failure" open="open">
+<summary>Troubleshooting</summary>
+<ul>
+<li><strong>No transcript</strong>: Confirm <strong>Start Media Stream</strong> is connected from <strong>AgentAnswered</strong> or <strong>AgentAccepted</strong>.</li>
+<li><strong>No RTA guidance</strong>: Confirm the skill is published and assigned to the queue receiving the call.</li>
+<li><strong>No AI Assistant widget</strong>: Confirm the Desktop Layout includes the AI Assistant component and is assigned to the agent's team.</li>
+<li><strong>MCP action unavailable</strong>: Confirm MCP actions are supported for the RTA skill in this tenant [VERIFY]. Use guidance-only RTA if not.</li>
+</ul>
+</details>
+<hr>
+<h2 id="lab-completion">Lab Completion<a class="headerlink" href="#lab-completion" title="Permanent link">¶</a></h2>
+<p>At this point, you have successfully:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Enabled AI Assistant, RTT, summaries, and RTA.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Confirmed the flow can start media streaming for RTT.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Created or imported an RTA skill.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Assigned the skill to the queue.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Tested human-agent guidance during the escalation scenario.</li>
+</ul>
+<p><strong>Congratulations!</strong> You have completed the LAB-31207 core journey: native Campaign Manager to MCP-enabled AI Agent, with Real-Time Assist for the human handoff.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../lab2_debt_ai_agent/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 2 - AI Agent with MCP">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 2 - AI Agent with MCP
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 Cisco
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.instant", "navigation.top", "navigation.footer", "search.suggest", "content.code.copy", "toc.follow", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../template_assets/js/newLoad.js"></script>
+      
+        <script src="../template_assets/js/setInfo.js"></script>
+      
+        <script src="../javascripts/extra.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "fade", "closeEffect": "fade", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
