@@ -44,5 +44,5 @@ The lab starts from a prepared tenant. The MCP server is already provisioned, so
 
 - [Control Hub](https://admin.webex.com)
 - [Webex Developer Portal](https://developer.webex.com)
-- Campaign Manager portal: [VERIFY: add tenant-specific Campaign Manager URL]
+- [Campaign Manager portal](https://wxone.wxcc.webexcampaign.us/nextgen)
 - AI Agent Studio: Open from **Control Hub** > **Contact Center** > **Quick Links** > **Webex AI Agent**
