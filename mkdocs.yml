@@ -98,6 +98,7 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Overview: overview.md
+  - Customer Portal: customer-portal.md
   - Labs:
       - Lab 1 - Native Campaign Manager: lab1_campaign_manager.md
       - Lab 2 - AI Agent with MCP: lab2_debt_ai_agent.md
