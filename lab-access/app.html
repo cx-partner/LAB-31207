@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab Access</title>
+<style>
+  :root {
+    --bg: #f4f6f8;
+    --card: #ffffff;
+    --border: #dde3e8;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --primary: #0b5fff;
+    --primary-dark: #0847c4;
+    --error-bg: #fdecec;
+    --error-text: #a01818;
+    --success-bg: #e9f8ee;
+    --success-text: #146c2e;
+    --surface-alt: #f0f2f5;
+    --surface-alt-2: #f8f9fb;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  body.dark {
+    --bg: #16171a;
+    --card: #202124;
+    --border: #3a3b3e;
+    --text: #e8eaed;
+    --muted: #9aa0a6;
+    --primary: #5b8def;
+    --primary-dark: #4472cc;
+    --error-bg: #3a2020;
+    --error-text: #ff8a8a;
+    --success-bg: #1f3324;
+    --success-text: #7be495;
+    --surface-alt: #26272a;
+    --surface-alt-2: #202124;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); padding: 24px 16px 64px; }
+  .wrap { max-width: min(680px, 94vw); margin: 0 auto; }
+  h1 { font-size: 1.6rem; margin: 0 0 4px; }
+  .subtitle { color: var(--muted); margin: 0 0 20px; font-size: 0.92rem; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px 32px; box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+
+  label { display: block; font-size: 0.82rem; font-weight: 600; margin: 14px 0 6px; }
+  label:first-child { margin-top: 0; }
+  input, select {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px;
+    font-size: 0.95rem; font-family: inherit; background: var(--card); color: var(--text);
+  }
+  input:focus, select:focus { outline: 2px solid var(--primary); outline-offset: 0; }
+  .hint { font-size: 0.76rem; color: var(--muted); margin-top: 4px; }
+
+  fieldset { border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin: 14px 0 0; }
+  legend { font-size: 0.82rem; font-weight: 600; padding: 0 6px; }
+  .radio-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; }
+  .radio-row input { width: auto; }
+  .radio-row label { margin: 0; font-weight: 400; }
+
+  button.primary {
+    margin-top: 20px; width: 100%; padding: 12px; border: none; border-radius: 8px;
+    background: var(--primary); color: #fff; font-size: 0.95rem; font-weight: 600; cursor: pointer;
+  }
+  button.primary:hover { background: var(--primary-dark); }
+  button.primary:disabled { opacity: 0.6; cursor: not-allowed; }
+  button.secondary {
+    margin-top: 10px; width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: #fff; color: var(--text); font-size: 0.9rem; cursor: pointer;
+  }
+
+  .banner { padding: 10px 12px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 14px; display: none; }
+  .banner.error { background: var(--error-bg); color: var(--error-text); }
+  .banner.show { display: block; }
+
+  .result-grid { display: grid; gap: 12px; margin: 8px 0 20px; }
+  .result-row {
+    padding: 12px 14px; background: var(--surface-alt-2); border: 1px solid var(--border); border-radius: 8px;
+  }
+  .result-row .k { display: block; font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 4px; }
+  .result-row .v { font-size: 1rem; font-weight: 700; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .result-row .v2 { font-size: 0.85rem; color: var(--muted); margin-top: 2px; }
+
+  .pod-badge {
+    display: inline-block; padding: 6px 16px; background: var(--primary); color: #fff;
+    border-radius: 999px; font-size: 1.3rem; font-weight: 800; font-family: ui-monospace, monospace;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Lab Access</h1>
+  <p class="subtitle">Get your POD number and lab credentials for this session.</p>
+
+  <div class="card">
+    <div class="banner" id="regBanner"></div>
+
+    <form id="regForm">
+      <label for="r_email">Your registered email</label>
+      <input id="r_email" type="email" required>
+
+      <label for="r_password">Classroom password</label>
+      <input id="r_password" type="password" required>
+      <div class="hint">Provided by the proctors in the classroom.</div>
+
+      <fieldset>
+        <legend>Do you have a US-based personal mobile number you can use for this lab?</legend>
+        <div class="radio-row">
+          <input type="radio" id="r_phone_yes" name="r_hasPhone" value="yes" required>
+          <label for="r_phone_yes">Yes</label>
+        </div>
+        <div class="radio-row">
+          <input type="radio" id="r_phone_no" name="r_hasPhone" value="no" required>
+          <label for="r_phone_no">No — assign me a customer profile</label>
+        </div>
+      </fieldset>
+
+      <button type="submit" class="primary" id="regSubmitBtn">Get my POD</button>
+    </form>
+
+    <div id="resultsPanel" style="display:none;">
+      <p class="hint" id="resultWelcome" style="text-align:center; margin-bottom:2px;"></p>
+      <p style="text-align:center; margin: 4px 0 20px;">
+        <span class="pod-badge" id="resultPodBadge"></span>
+      </p>
+
+      <div class="result-grid">
+        <div class="result-row">
+          <span class="k">Admin login</span>
+          <span class="v" id="resultAdminEmail"></span>
+          <div class="v2">Password: <span id="resultLabPassword1"></span></div>
+        </div>
+        <div class="result-row">
+          <span class="k">Agent login</span>
+          <span class="v" id="resultAgentEmail"></span>
+          <div class="v2">Password: <span id="resultLabPassword2"></span></div>
+        </div>
+        <div class="result-row" id="customerRow" style="display:none;">
+          <span class="k">Customer profile</span>
+          <span class="v" id="resultCustomerEmail"></span>
+          <div class="v2">Password: <span id="resultCustomerPassword"></span></div>
+        </div>
+      </div>
+
+      <p class="hint">These values are saved in your browser and will automatically appear anywhere the lab guide references them.</p>
+      <button type="button" class="secondary" id="registerAnotherBtn">Register a different email</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------- Theme sync (mirrors the surrounding site; see site-utils.js) ---------- */
+function applyTheme() {
+  try {
+    document.body.classList.toggle("dark", localStorage.getItem("cp-theme") === "slate");
+  } catch (err) {}
+}
+applyTheme();
+window.addEventListener("storage", (e) => { if (e.key === "cp-theme" || e.key === null) applyTheme(); });
+setInterval(applyTheme, 1000);
+
+/* ---------- Config ---------- */
+// TODO: replace with a fine-grained GitHub token scoped to ONLY this repo,
+// with "Contents: Read and write" permission and nothing else.
+const GITHUB_TOKEN = "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";
+const GITHUB_OWNER = "cx-partner";
+const GITHUB_REPO = "LAB-31207";
+const GITHUB_BRANCH = "main";
+const TRACKING_PATH = "docs/lab_tracking/pod_tracking.json";
+const GITHUB_API_URL = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${TRACKING_PATH}`;
+
+const CLASSROOM_PASSWORD = "WxOneAustin!26";
+const LAB_PASSWORD = "Webexone!26";
+const CUSTOMER_PASSWORD = "CustomerPwd";
+
+const POD_MIN = 10;
+const POD_MAX = 50;
+const CUSTOMER_PROFILE_MIN = 1;
+const CUSTOMER_PROFILE_MAX = 10;
+
+// Fetched live from docs/lab_tracking/Registration_emails.csv (relative to this
+// app at docs/lab-access/app.html) so the roster can be updated without touching this file.
+// CSV columns: Partner, First Name, Last Name, Email
+const REGISTRATION_LIST_PATH = "../lab_tracking/Registration_emails.csv";
+let registeredAttendeesCache = null; // Map<normalizedEmail, { partner, firstName, lastName }>
+
+async function loadRegisteredAttendees() {
+  if (registeredAttendeesCache) return registeredAttendeesCache;
+  const res = await fetch(REGISTRATION_LIST_PATH, { cache: "no-store" });
+  if (!res.ok) throw new Error("Could not load the registered attendee list.");
+  const text = await res.text();
+  const map = new Map();
+  text.split(/\r?\n/).forEach((line) => {
+    if (!line.trim()) return;
+    const cols = line.split(",").map((v) => v.replace(/^["']|["']$/g, "").trim());
+    const email = (cols[3] || "").toLowerCase();
+    if (!email.includes("@")) return; // skips the header row and any blank/malformed lines
+    map.set(email, { partner: cols[0] || "", firstName: cols[1] || "", lastName: cols[2] || "" });
+  });
+  registeredAttendeesCache = map;
+  return registeredAttendeesCache;
+}
+
+/* ---------- Helpers ---------- */
+function normalizeEmail(e) { return e.trim().toLowerCase(); }
+function showBanner(el, type, msg) { el.className = `banner ${type} show`; el.textContent = msg; }
+function hideBanner(el) { el.className = "banner"; el.textContent = ""; }
+
+function b64ToUtf8(b64) {
+  return decodeURIComponent(escape(atob(b64.replace(/\n/g, ""))));
+}
+function utf8ToB64(str) {
+  return btoa(unescape(encodeURIComponent(str)));
+}
+
+/* ---------- GitHub Contents API ---------- */
+async function githubGetFile() {
+  const res = await fetch(`${GITHUB_API_URL}?ref=${GITHUB_BRANCH}`, {
+    headers: {
+      "Authorization": `Bearer ${GITHUB_TOKEN}`,
+      "Accept": "application/vnd.github+json"
+    }
+  });
+  if (!res.ok) throw new Error(`Could not read the tracking file (${res.status}).`);
+  const data = await res.json();
+  const json = JSON.parse(b64ToUtf8(data.content));
+  return { json, sha: data.sha };
+}
+
+async function githubPutFile(json, sha, message) {
+  const res = await fetch(GITHUB_API_URL, {
+    method: "PUT",
+    headers: {
+      "Authorization": `Bearer ${GITHUB_TOKEN}`,
+      "Accept": "application/vnd.github+json"
+    },
+    body: JSON.stringify({
+      message,
+      content: utf8ToB64(JSON.stringify(json, null, 2)),
+      sha,
+      branch: GITHUB_BRANCH
+    })
+  });
+  if (res.status === 409) {
+    const err = new Error("conflict");
+    err.conflict = true;
+    throw err;
+  }
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.message || `Could not save the tracking file (${res.status}).`);
+  }
+  return res.json();
+}
+
+function nextAvailable(used, min, max) {
+  for (let n = min; n <= max; n++) {
+    if (!used.has(n)) return n;
+  }
+  return null;
+}
+
+/* ---------- Registration (idempotent, retries on write conflicts) ---------- */
+async function registerAttendee(email, needsCustomerProfile) {
+  const normalizedEmail = normalizeEmail(email);
+  const maxAttempts = 6;
+
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    const { json, sha } = await githubGetFile();
+    const registrations = json.registrations || [];
+
+    const existing = registrations.find((r) => normalizeEmail(r.email) === normalizedEmail);
+    if (existing) return existing;
+
+    const usedPods = new Set(registrations.map((r) => r.pod));
+    const pod = nextAvailable(usedPods, POD_MIN, POD_MAX);
+    if (pod == null) throw new Error("All PODs are currently assigned. Please contact the lab proctors.");
+
+    let customerProfile = null;
+    if (needsCustomerProfile) {
+      const usedProfiles = new Set(
+        registrations.filter((r) => r.customerProfile != null).map((r) => r.customerProfile)
+      );
+      customerProfile = nextAvailable(usedProfiles, CUSTOMER_PROFILE_MIN, CUSTOMER_PROFILE_MAX);
+      // If none are left, we still assign the POD; the UI below flags the missing profile.
+    }
+
+    const entry = {
+      email: normalizedEmail,
+      pod,
+      customerProfile,
+      assignedAt: new Date().toISOString()
+    };
+    registrations.push(entry);
+    json.registrations = registrations;
+
+    try {
+      await githubPutFile(json, sha, `Assign POD ${pod} to ${normalizedEmail}`);
+      return entry;
+    } catch (err) {
+      if (err.conflict && attempt < maxAttempts - 1) {
+        await new Promise((r) => setTimeout(r, 300 + Math.random() * 500));
+        continue; // someone else wrote in the meantime — re-fetch and retry
+      }
+      throw err;
+    }
+  }
+  throw new Error("Could not save your assignment after several attempts. Please try again.");
+}
+
+/* ---------- Form handling ---------- */
+document.getElementById("regForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const banner = document.getElementById("regBanner");
+  hideBanner(banner);
+
+  const email = document.getElementById("r_email").value.trim();
+  const pwd = document.getElementById("r_password").value;
+  const phoneChoice = document.querySelector('input[name="r_hasPhone"]:checked');
+
+  if (pwd !== CLASSROOM_PASSWORD) {
+    return showBanner(banner, "error", "Incorrect classroom password.");
+  }
+  if (!phoneChoice) {
+    return showBanner(banner, "error", "Please answer the phone number question.");
+  }
+
+  let registeredAttendees;
+  try {
+    registeredAttendees = await loadRegisteredAttendees();
+  } catch (err) {
+    return showBanner(banner, "error", "Could not verify the attendee list. Please try again in a moment.");
+  }
+  const normalizedEmail = normalizeEmail(email);
+  const attendee = registeredAttendees.get(normalizedEmail);
+  if (!attendee) {
+    return showBanner(banner, "error", "That email isn't on the registered attendee list — check with the proctors.");
+  }
+
+  const btn = document.getElementById("regSubmitBtn");
+  btn.disabled = true;
+  btn.textContent = "Assigning your POD…";
+
+  try {
+    const entry = await registerAttendee(normalizedEmail, phoneChoice.value === "no");
+    showResults(entry, normalizedEmail, attendee, phoneChoice.value === "no");
+  } catch (err) {
+    showBanner(banner, "error", err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Get my POD";
+  }
+});
+
+function showResults(entry, email, attendee, requestedCustomerProfile) {
+  const pod = entry.pod;
+  const adminEmail = `pod${pod}+admin@wxone.wbx.ai`;
+  const agentEmail = `pod${pod}+agent@wxone.wbx.ai`;
+  const customerEmail = entry.customerProfile != null ? `customer${entry.customerProfile}@wxone.wbx.ai` : null;
+
+  const info = {
+    email,
+    firstName: attendee.firstName || "",
+    lastName: attendee.lastName || "",
+    partner: attendee.partner || "",
+    pod: String(pod),
+    adminEmail,
+    agentEmail,
+    labPassword: LAB_PASSWORD,
+    customerEmail: customerEmail || "",
+    customerPassword: customerEmail ? CUSTOMER_PASSWORD : ""
+  };
+  try { localStorage.setItem("labUserInfo", JSON.stringify(info)); } catch (err) {}
+
+  document.getElementById("resultWelcome").textContent = attendee.firstName
+    ? `Welcome, ${attendee.firstName}!`
+    : "";
+  document.getElementById("resultPodBadge").textContent = `POD ${pod}`;
+  document.getElementById("resultAdminEmail").textContent = adminEmail;
+  document.getElementById("resultLabPassword1").textContent = LAB_PASSWORD;
+  document.getElementById("resultAgentEmail").textContent = agentEmail;
+  document.getElementById("resultLabPassword2").textContent = LAB_PASSWORD;
+
+  const custRow = document.getElementById("customerRow");
+  if (customerEmail) {
+    document.getElementById("resultCustomerEmail").textContent = customerEmail;
+    document.getElementById("resultCustomerPassword").textContent = CUSTOMER_PASSWORD;
+    custRow.style.display = "block";
+  } else if (requestedCustomerProfile) {
+    document.getElementById("resultCustomerEmail").textContent = "None available — contact the proctors";
+    document.getElementById("resultCustomerPassword").textContent = "—";
+    custRow.style.display = "block";
+  } else {
+    custRow.style.display = "none";
+  }
+
+  document.getElementById("regForm").style.display = "none";
+  document.getElementById("resultsPanel").style.display = "block";
+}
+
+document.getElementById("registerAnotherBtn").addEventListener("click", () => {
+  document.getElementById("regForm").reset();
+  document.getElementById("regForm").style.display = "block";
+  document.getElementById("resultsPanel").style.display = "none";
+  hideBanner(document.getElementById("regBanner"));
+});
+</script>
+</body>
+</html>

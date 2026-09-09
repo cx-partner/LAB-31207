@@ -9,13 +9,13 @@
         <meta name="author" content="Luis Garcia Delgado, Juan Corral, Sebastian Hernandez, Stephanie Ross">
       
       
-        <link rel="canonical" href="https://cx-partner.github.io/LAB-31207/overview/">
+        <link rel="canonical" href="https://cx-partner.github.io/LAB-31207/lab-access/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../overview/">
       
       
-        <link rel="next" href="../lab-access/">
+        <link rel="next" href="../customer-portal/">
       
       
         
@@ -26,7 +26,7 @@
     
     
       
-        <title>Overview - LAB-31207 - Campaign Manager and AI Agent with MCP</title>
+        <title>Lab Access - LAB-31207 - Campaign Manager and AI Agent with MCP</title>
       
     
     
@@ -91,7 +91,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lab-31207-overview" class="md-skip">
+        <a href="#lab-access" class="md-skip">
           Skip to content
         </a>
       
@@ -126,7 +126,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Lab Access
             
           </span>
         </div>
@@ -238,11 +238,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../overview/" class="md-tabs__link">
         
   
   
@@ -259,9 +257,11 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../lab-access/" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
   
@@ -386,37 +386,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Overview
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
         
   
   
@@ -432,59 +405,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-      
-        <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Purpose
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-hour-agenda" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4-Hour Agenda
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#useful-links" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Useful Links
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -493,10 +413,19 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../lab-access/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -512,6 +441,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -709,86 +639,26 @@
 
 
 
-<h1 id="lab-31207-overview">LAB-31207 Overview<a class="headerlink" href="#lab-31207-overview" title="Permanent link">¶</a></h1>
-<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">¶</a></h2>
-<p>LAB-31207 is a focused 4-hour hands-on lab for building a proactive outbound customer journey in Webex Contact Center. You will configure native Campaign Manager, connect answered calls to a Webex AI Agent, attach MCP-backed actions, and enable Real-Time Assist for the human handoff.</p>
-<p>The lab starts from a prepared tenant. The MCP server is already provisioned, so you will select available MCP tools from the AI Agent or AI Assistant configuration instead of building backend fulfillment flows.</p>
-<details class="purpose" open="open">
-<summary>Lab Objectives</summary>
-<p>By the end of this lab, you will be able to:</p>
-<ul>
-<li>Configure a native Webex Campaign Manager outbound IVR campaign.</li>
-<li>Import or configure a baseline Webex AI Agent for the debt-resolution scenario.</li>
-<li>Attach tenant-provisioned MCP tools to the AI Agent and validate tool execution.</li>
-<li>Route Campaign Manager live-voice calls into the AI Agent.</li>
-<li>Enable Real-Time Assist for a human escalation scenario if the core path completes on time.</li>
-</ul>
-</details>
-<details class="note" open="open">
-<summary>What Is Pre-Staged</summary>
-<p>The following items should already be available in the lab tenant:</p>
-<ul>
-<li>Webex Contact Center tenant with Campaign Manager enabled.</li>
-<li>Webex AI Agent and AI Assistant features enabled.</li>
-<li>Tenant-provisioned MCP Agentic App and tools.</li>
-<li>Baseline AI Agent import package [VERIFY: add exact filename and location].</li>
-<li>Test customer data available through the MCP server [VERIFY: confirm test records and phone numbers].</li>
-<li>An agent queue and desktop layout suitable for RTA, or a provided desktop layout template.</li>
-</ul>
-</details>
-<h2 id="4-hour-agenda">4-Hour Agenda<a class="headerlink" href="#4-hour-agenda" title="Permanent link">¶</a></h2>
-<table>
-<thead>
-<tr>
-<th>Time</th>
-<th style="text-align: right;">Segment</th>
-<th>Outcome</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0:00-0:10</td>
-<td style="text-align: right;">Orientation</td>
-<td>Confirm tenant access, lab naming, test number, and MCP assumptions.</td>
-</tr>
-<tr>
-<td>0:10-1:55</td>
-<td style="text-align: right;">Lab 1 - Native Campaign Manager</td>
-<td>Build and activate the outbound campaign, upload a contact list, and receive the validation call.</td>
-</tr>
-<tr>
-<td>1:55-2:05</td>
-<td style="text-align: right;">Break / catch-up</td>
-<td>Absorb Campaign Manager processing delays.</td>
-</tr>
-<tr>
-<td>2:05-3:00</td>
-<td style="text-align: right;">Lab 2 - AI Agent with MCP</td>
-<td>Import/configure Alex, select MCP tools, and validate the AI Agent in Preview.</td>
-</tr>
-<tr>
-<td>3:00-3:25</td>
-<td style="text-align: right;">Lab 2 - Campaign to AI Agent</td>
-<td>Replace the temporary Lab 1 message flow with Virtual Agent V2 and test the outbound call to Alex.</td>
-</tr>
-<tr>
-<td>3:25-4:00</td>
-<td style="text-align: right;">Lab 3 - Real-Time Assist</td>
-<td>Enable AI Assistant features, create/assign the RTA skill, and validate guidance in Agent Desktop.</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition warning">
-<p class="admonition-title">Time Box</p>
-<p>The lab is designed to fit 4 hours. If Campaign Manager processing or tenant access delays consume the RTA window, complete Labs 1 and 2 first. RTA is valuable, but the primary success path is outbound campaign to MCP-enabled AI Agent.</p>
-</div>
-<h2 id="useful-links">Useful Links<a class="headerlink" href="#useful-links" title="Permanent link">¶</a></h2>
-<ul>
-<li><a href="https://admin.webex.com">Control Hub</a></li>
-<li><a href="https://developer.webex.com">Webex Developer Portal</a></li>
-<li><a href="https://wxone.wxcc.webexcampaign.us/nextgen">Campaign Manager portal</a></li>
-<li>AI Agent Studio: Open from <strong>Control Hub</strong> &gt; <strong>Contact Center</strong> &gt; <strong>Quick Links</strong> &gt; <strong>Webex AI Agent</strong></li>
-</ul>
+<h1 id="lab-access">Lab Access<a class="headerlink" href="#lab-access" title="Permanent link">¶</a></h1>
+<p>Enter your registered email and the classroom password to get your POD number and lab credentials.</p>
+<p><a href="app.html" target="_blank">Open in a new tab ↗</a></p>
+
+<iframe id="labAccessFrame" src="app.html" style="width:100%; min-height:500px; border:none;" title="Lab Access"></iframe>
+
+<script>
+(function () {
+  var frame = document.getElementById("labAccessFrame");
+  function resizeFrame() {
+    var top = frame.getBoundingClientRect().top;
+    var available = window.innerHeight - top - 24;
+    frame.style.setProperty("height", Math.max(500, available) + "px", "important");
+  }
+  resizeFrame();
+  window.addEventListener("resize", resizeFrame);
+  window.addEventListener("load", resizeFrame);
+  setTimeout(resizeFrame, 300);
+})();
+</script>
 
 
 
@@ -824,7 +694,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer">
         
           
-          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home">
+          <a href="../overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
@@ -834,20 +704,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Home
+                Overview
               </div>
             </div>
           </a>
         
         
           
-          <a href="../lab-access/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab Access">
+          <a href="../customer-portal/" class="md-footer__link md-footer__link--next" aria-label="Next: Customer Portal">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Lab Access
+                Customer Portal
               </div>
             </div>
             <div class="md-footer__button md-icon">
