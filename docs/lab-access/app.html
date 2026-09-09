@@ -164,14 +164,10 @@ window.addEventListener("storage", (e) => { if (e.key === "cp-theme" || e.key ==
 setInterval(applyTheme, 1000);
 
 /* ---------- Config ---------- */
-// TODO: replace with a fine-grained GitHub token scoped to ONLY this repo,
-// with "Contents: Read and write" permission and nothing else.
-const GITHUB_TOKEN = "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";
-const GITHUB_OWNER = "cx-partner";
-const GITHUB_REPO = "LAB-31207";
-const GITHUB_BRANCH = "main";
-const TRACKING_PATH = "docs/lab_tracking/pod_tracking.json";
-const GITHUB_API_URL = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${TRACKING_PATH}`;
+const AIRTABLE_TOKEN = "patteXO8XdAm8i6xC.0ebc2ecd57e746b06d7f5e276cf1cef70cd896aa0ff4a305ed13403c88579ed5";
+const TRACKING_BASE_ID = "appSZDwSKoPSEtFWj";
+const TRACKING_TABLE_NAME = "PodAssignments";
+const TRACKING_API_URL = `https://api.airtable.com/v0/${TRACKING_BASE_ID}/${encodeURIComponent(TRACKING_TABLE_NAME)}`;
 
 const CLASSROOM_PASSWORD = "WxOneAustin!26";
 const LAB_PASSWORD = "Webexone!26";
@@ -210,51 +206,41 @@ function normalizeEmail(e) { return e.trim().toLowerCase(); }
 function showBanner(el, type, msg) { el.className = `banner ${type} show`; el.textContent = msg; }
 function hideBanner(el) { el.className = "banner"; el.textContent = ""; }
 
-function b64ToUtf8(b64) {
-  return decodeURIComponent(escape(atob(b64.replace(/\n/g, ""))));
-}
-function utf8ToB64(str) {
-  return btoa(unescape(encodeURIComponent(str)));
-}
-
-/* ---------- GitHub Contents API ---------- */
-async function githubGetFile() {
-  const res = await fetch(`${GITHUB_API_URL}?ref=${GITHUB_BRANCH}`, {
+/* ---------- Airtable ---------- */
+async function airtableFetch(pathSuffix, options = {}) {
+  const res = await fetch(`${TRACKING_API_URL}${pathSuffix}`, {
+    ...options,
     headers: {
-      "Authorization": `Bearer ${GITHUB_TOKEN}`,
-      "Accept": "application/vnd.github+json"
+      "Authorization": `Bearer ${AIRTABLE_TOKEN}`,
+      "Content-Type": "application/json",
+      ...(options.headers || {})
     }
   });
-  if (!res.ok) throw new Error(`Could not read the tracking file (${res.status}).`);
-  const data = await res.json();
-  const json = JSON.parse(b64ToUtf8(data.content));
-  return { json, sha: data.sha };
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(data?.error?.message || `Request failed (${res.status})`);
+  }
+  return data;
 }
 
-async function githubPutFile(json, sha, message) {
-  const res = await fetch(GITHUB_API_URL, {
-    method: "PUT",
-    headers: {
-      "Authorization": `Bearer ${GITHUB_TOKEN}`,
-      "Accept": "application/vnd.github+json"
-    },
-    body: JSON.stringify({
-      message,
-      content: utf8ToB64(JSON.stringify(json, null, 2)),
-      sha,
-      branch: GITHUB_BRANCH
-    })
+async function fetchAllAssignments() {
+  // Small table (at most 41 PODs) — one page (default pageSize 100) always covers it.
+  const data = await airtableFetch("?pageSize=100");
+  return data.records;
+}
+
+async function findAssignmentByEmail(email) {
+  const formula = encodeURIComponent(`LOWER({Email})='${email.replace(/'/g, "\\'")}'`);
+  const data = await airtableFetch(`?filterByFormula=${formula}&maxRecords=1`);
+  return data.records[0] || null;
+}
+
+async function createAssignment(fields) {
+  const data = await airtableFetch("", {
+    method: "POST",
+    body: JSON.stringify({ records: [{ fields }] })
   });
-  if (res.status === 409) {
-    const err = new Error("conflict");
-    err.conflict = true;
-    throw err;
-  }
-  if (!res.ok) {
-    const errData = await res.json().catch(() => ({}));
-    throw new Error(errData.message || `Could not save the tracking file (${res.status}).`);
-  }
-  return res.json();
+  return data.records[0];
 }
 
 function nextAvailable(used, min, max) {
@@ -264,52 +250,32 @@ function nextAvailable(used, min, max) {
   return null;
 }
 
-/* ---------- Registration (idempotent, retries on write conflicts) ---------- */
+/* ---------- Registration (idempotent — same email always returns its existing assignment) ---------- */
 async function registerAttendee(email, needsCustomerProfile) {
   const normalizedEmail = normalizeEmail(email);
-  const maxAttempts = 6;
 
-  for (let attempt = 0; attempt < maxAttempts; attempt++) {
-    const { json, sha } = await githubGetFile();
-    const registrations = json.registrations || [];
-
-    const existing = registrations.find((r) => normalizeEmail(r.email) === normalizedEmail);
-    if (existing) return existing;
-
-    const usedPods = new Set(registrations.map((r) => r.pod));
-    const pod = nextAvailable(usedPods, POD_MIN, POD_MAX);
-    if (pod == null) throw new Error("All PODs are currently assigned. Please contact the lab proctors.");
-
-    let customerProfile = null;
-    if (needsCustomerProfile) {
-      const usedProfiles = new Set(
-        registrations.filter((r) => r.customerProfile != null).map((r) => r.customerProfile)
-      );
-      customerProfile = nextAvailable(usedProfiles, CUSTOMER_PROFILE_MIN, CUSTOMER_PROFILE_MAX);
-      // If none are left, we still assign the POD; the UI below flags the missing profile.
-    }
-
-    const entry = {
-      email: normalizedEmail,
-      pod,
-      customerProfile,
-      assignedAt: new Date().toISOString()
-    };
-    registrations.push(entry);
-    json.registrations = registrations;
-
-    try {
-      await githubPutFile(json, sha, `Assign POD ${pod} to ${normalizedEmail}`);
-      return entry;
-    } catch (err) {
-      if (err.conflict && attempt < maxAttempts - 1) {
-        await new Promise((r) => setTimeout(r, 300 + Math.random() * 500));
-        continue; // someone else wrote in the meantime — re-fetch and retry
-      }
-      throw err;
-    }
+  const existing = await findAssignmentByEmail(normalizedEmail);
+  if (existing) {
+    return { pod: existing.fields.POD, customerProfile: existing.fields.CustomerProfile ?? null };
   }
-  throw new Error("Could not save your assignment after several attempts. Please try again.");
+
+  const allRecords = await fetchAllAssignments();
+  const usedPods = new Set(allRecords.map((r) => r.fields.POD).filter((v) => v != null));
+  const pod = nextAvailable(usedPods, POD_MIN, POD_MAX);
+  if (pod == null) throw new Error("All PODs are currently assigned. Please contact the lab proctors.");
+
+  let customerProfile = null;
+  if (needsCustomerProfile) {
+    const usedProfiles = new Set(allRecords.map((r) => r.fields.CustomerProfile).filter((v) => v != null));
+    customerProfile = nextAvailable(usedProfiles, CUSTOMER_PROFILE_MIN, CUSTOMER_PROFILE_MAX);
+    // If none are left, we still assign the POD; the UI below flags the missing profile.
+  }
+
+  const fields = { Email: normalizedEmail, POD: pod };
+  if (customerProfile != null) fields.CustomerProfile = customerProfile;
+
+  const created = await createAssignment(fields);
+  return { pod: created.fields.POD, customerProfile: created.fields.CustomerProfile ?? null };
 }
 
 /* ---------- Form handling ---------- */
