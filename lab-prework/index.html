@@ -90,6 +90,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#lab-prework" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -398,6 +403,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -586,7 +593,12 @@
 
 
 
-  <h1>Lab Prework</h1>
+<h1 id="lab-prework">Lab Prework<a class="headerlink" href="#lab-prework" title="Permanent link">¶</a></h1>
+<p>Complete this before the hands-on labs: get your POD assigned, then your test customer record will be provisioned automatically.</p>
+<div class="admonition warning" id="preworkRequiredBanner" style="display:none;">
+  <p class="admonition-title">Prework required</p>
+  <p>You need to complete the Lab Prework before starting the Labs. Please finish the steps below first.</p>
+</div>
 
 <p><a href="app.html" target="_blank">Open in a new tab ↗</a></p>
 
@@ -604,6 +616,11 @@
   window.addEventListener("resize", resizeFrame);
   window.addEventListener("load", resizeFrame);
   setTimeout(resizeFrame, 300);
+
+  if (window.location.search.indexOf("prework_required=1") !== -1) {
+    var banner = document.getElementById("preworkRequiredBanner");
+    if (banner) banner.style.display = "block";
+  }
 })();
 </script>
 

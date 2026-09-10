@@ -30,7 +30,8 @@
 /*   <span class="lab-var" data-var="pod"></span>                              */
 /*   <span class="lab-var" data-var="adminEmail"></span>                       */
 /* Supported data-var keys: pod, email, firstName, lastName, partner,        */
-/* adminEmail, agentEmail, labPassword, customerEmail, customerPassword.      */
+/* adminEmail, agentEmail, labPassword, customerEmail, customerPassword,      */
+/* customerPhone.                                                             */
 /* Optional data-fallback="..." sets the text shown before registration.       */
 (function () {
   function populate() {
@@ -96,4 +97,34 @@
   // Re-check periodically to survive MkDocs "instant navigation" DOM swaps,
   // which don't fire a normal page load / DOMContentLoaded.
   setInterval(toggleLabsNav, 1000);
+})();
+
+/* ---------- Require Lab Prework before entering any Labs page ---------- */
+/* This guards the destination page directly rather than the nav link, so it   */
+/* doesn't depend on knowing anything about the theme's nav markup — it just   */
+/* checks the current URL. Also self-heals via interval to catch MkDocs        */
+/* "instant navigation" transitions, which swap content without a full reload. */
+(function () {
+  function hasCompletedPrework() {
+    try {
+      var info = JSON.parse(localStorage.getItem("labUserInfo") || "null");
+      return !!(info && info.pod && info.customerId);
+    } catch (err) {
+      return false;
+    }
+  }
+  function guardLabsPage() {
+    var path = window.location.pathname;
+    if (path.indexOf("/labs/") === -1) return; // not a Labs page
+    if (hasCompletedPrework()) return;
+
+    var preworkUrl = path.replace(/\/labs\/.*$/, "/lab-prework/");
+    if (preworkUrl === path) return; // pattern didn't match — don't loop
+    window.location.replace(preworkUrl + "?prework_required=1");
+  }
+  guardLabsPage();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", guardLabsPage);
+  }
+  setInterval(guardLabsPage, 500);
 })();
