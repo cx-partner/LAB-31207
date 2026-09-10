@@ -259,6 +259,13 @@ async function createAssignment(fields) {
   return data.records[0];
 }
 
+async function updateAssignment(recordId, fields) {
+  return airtableFetch(`/${recordId}`, {
+    method: "PATCH",
+    body: JSON.stringify({ fields })
+  });
+}
+
 function nextAvailable(used, min, max) {
   for (let n = min; n <= max; n++) {
     if (!used.has(n)) return n;
@@ -272,7 +279,19 @@ async function registerAttendee(email, needsCustomerProfile) {
 
   const existing = await findAssignmentByEmail(normalizedEmail);
   if (existing) {
-    return { pod: existing.fields.POD, customerProfile: existing.fields.CustomerProfile ?? null };
+    const existingProfile = existing.fields.CustomerProfile ?? null;
+    if (!needsCustomerProfile || existingProfile != null) {
+      return { pod: existing.fields.POD, customerProfile: existingProfile };
+    }
+    // Already registered, but this time needs a customer profile and doesn't have one yet — assign one now.
+    const allRecords = await fetchAllAssignments();
+    const usedProfiles = new Set(allRecords.map((r) => r.fields.CustomerProfile).filter((v) => v != null));
+    const customerProfile = nextAvailable(usedProfiles, CUSTOMER_PROFILE_MIN, CUSTOMER_PROFILE_MAX);
+    if (customerProfile == null) {
+      return { pod: existing.fields.POD, customerProfile: null };
+    }
+    const updated = await updateAssignment(existing.id, { CustomerProfile: customerProfile });
+    return { pod: updated.fields.POD, customerProfile: updated.fields.CustomerProfile ?? null };
   }
 
   const allRecords = await fetchAllAssignments();

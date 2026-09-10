@@ -145,6 +145,7 @@
           <input id="c_pod" inputmode="numeric" maxlength="2" placeholder="05" required>
         </div>
         <div class="hint">Enter your 2-digit lab POD number</div>
+        <div class="hint">Don't have one yet? <a href="../lab-access/app.html">Complete Lab Access first</a>.</div>
 
         <div class="row2">
           <div>
@@ -295,6 +296,12 @@ const BASE_ID = "appcyTYF3nQqgReHR";
 const CUSTOMERS_API_URL = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent("Customers")}`;
 const TRANSACTIONS_API_URL = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent("Transactions")}`;
 
+// Lab Access's POD-tracking base (separate base, separate token — used only to
+// verify a POD has been assigned before letting someone create a customer for it).
+const TRACKING_AIRTABLE_TOKEN = "patteXO8XdAm8i6xC.0ebc2ecd57e746b06d7f5e276cf1cef70cd896aa0ff4a305ed13403c88579ed5";
+const TRACKING_BASE_ID = "appSZDwSKoPSEtFWj";
+const TRACKING_API_URL = `https://api.airtable.com/v0/${TRACKING_BASE_ID}/${encodeURIComponent("PodAssignments")}`;
+
 const POD_PATTERN = /^\d{2}$/;
 const PIN_PATTERN = /^\d{4}$/;
 
@@ -329,11 +336,11 @@ function showBanner(el, type, msg) {
 function hideBanner(el) { el.className = "banner"; el.textContent = ""; }
 
 /* ---------- Airtable calls ---------- */
-async function apiFetch(baseUrl, pathSuffix, options = {}) {
+async function apiFetch(baseUrl, token, pathSuffix, options = {}) {
   const res = await fetch(`${baseUrl}${pathSuffix}`, {
     ...options,
     headers: {
-      "Authorization": `Bearer ${AIRTABLE_TOKEN}`,
+      "Authorization": `Bearer ${token}`,
       "Content-Type": "application/json",
       ...(options.headers || {})
     }
@@ -344,8 +351,15 @@ async function apiFetch(baseUrl, pathSuffix, options = {}) {
   }
   return data;
 }
-const customersFetch = (path, opts) => apiFetch(CUSTOMERS_API_URL, path, opts);
-const transactionsFetch = (path, opts) => apiFetch(TRANSACTIONS_API_URL, path, opts);
+const customersFetch = (path, opts) => apiFetch(CUSTOMERS_API_URL, AIRTABLE_TOKEN, path, opts);
+const transactionsFetch = (path, opts) => apiFetch(TRANSACTIONS_API_URL, AIRTABLE_TOKEN, path, opts);
+const trackingFetch = (path, opts) => apiFetch(TRACKING_API_URL, TRACKING_AIRTABLE_TOKEN, path, opts);
+
+async function podIsEnabled(podNumber) {
+  const formula = encodeURIComponent(`{POD}=${podNumber}`);
+  const data = await trackingFetch(`?filterByFormula=${formula}&maxRecords=1`);
+  return data.records.length > 0;
+}
 
 async function customerIdExists(customerId) {
   const formula = encodeURIComponent(`{CustomerID}='${escapeFormulaValue(customerId)}'`);
@@ -484,6 +498,10 @@ document.getElementById("createForm").addEventListener("submit", async (e) => {
   btn.textContent = "Creating…";
 
   try {
+    const podNumber = parseInt(pod, 10);
+    if (!(await podIsEnabled(podNumber))) {
+      throw new Error("This POD hasn't been enabled yet. Complete Lab Access first to get your POD assigned.");
+    }
     if (await customerIdExists(customerId)) {
       throw new Error("That Customer ID already exists. Use “My Account” to look it up instead.");
     }
