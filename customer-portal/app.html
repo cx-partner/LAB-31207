@@ -189,6 +189,7 @@
 
         <button type="submit" class="primary" id="createSubmitBtn">Create account</button>
       </form>
+      <button type="button" class="secondary" id="copyCreatedBtn" style="display:none;">Copy account details</button>
     </div>
 
     <!-- LOOKUP PANEL -->
@@ -244,6 +245,8 @@
 
         <div class="section-title">Transactions</div>
         <div id="transactionsList"><p class="hint">Loading…</p></div>
+
+        <button type="button" class="secondary" id="copyAccountBtn">Copy account details</button>
 
         <div class="confirm-box">
           <label for="e_confirmPin">Enter your current PIN to authorize changes</label>
@@ -414,6 +417,31 @@ function renderTransactionsList(records) {
 }
 
 /* ---------- Tabs ---------- */
+function copyToClipboard(text, btn) {
+  const restoreLabel = btn.textContent;
+  const onDone = () => {
+    btn.textContent = "Copied!";
+    setTimeout(() => { btn.textContent = restoreLabel; }, 1500);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(onDone).catch(() => fallbackCopy(text, onDone));
+  } else {
+    fallbackCopy(text, onDone);
+  }
+}
+
+function fallbackCopy(text, onDone) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch (err) {}
+  document.body.removeChild(ta);
+  onDone();
+}
+
 function switchTab(tab) {
   document.getElementById("tabCreateBtn").classList.toggle("active", tab === "create");
   document.getElementById("tabLookupBtn").classList.toggle("active", tab === "lookup");
@@ -489,6 +517,25 @@ document.getElementById("createForm").addEventListener("submit", async (e) => {
     }
 
     showBanner(banner, "success", `Account ${customerId} created${txnNote}. Use "My Account" to view or edit it.`);
+
+    lastCreatedDump = [
+      `Customer ID: ${customerId}`,
+      `First Name: ${firstName}`,
+      `Last Name: ${lastName}`,
+      `PIN: ${pin}`,
+      `Date of Birth: ${dob}`,
+      `Phone Number: ${phone}`,
+      `Email: ${email}`,
+      `Address: ${address}`,
+      `Social Security: ${fields.SocialSecurity}`,
+      `Balance: $${fields.Balance}`,
+      `Cashback Balance: $${fields.CashbackBalance}`,
+      `Maturity Date: ${fields.MaturityDate}`,
+      `Rewards Tier: ${fields.RewardsTier}`,
+      `Credit Card: ${fields.CreditCard}`
+    ].join("\n");
+    document.getElementById("copyCreatedBtn").style.display = "block";
+
     document.getElementById("createForm").reset();
     document.getElementById("c_dob").max = new Date().toISOString().slice(0, 10);
   } catch (err) {
@@ -499,9 +546,15 @@ document.getElementById("createForm").addEventListener("submit", async (e) => {
   }
 });
 
+let lastCreatedDump = null;
+document.getElementById("copyCreatedBtn").addEventListener("click", (e) => {
+  if (lastCreatedDump) copyToClipboard(lastCreatedDump, e.currentTarget);
+});
+
 /* ---------- Lookup / edit ---------- */
 let currentRecordId = null;
 let currentCustomerId = null;
+let currentAccountSnapshot = null; // read-only fields not present in the edit inputs (incl. SocialSecurity, never PIN)
 
 document.getElementById("lookupForm").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -563,6 +616,15 @@ async function populateEditForm(record) {
     `<div><span class="k">${k}</span><span class="v">${v ?? "—"}</span></div>`
   ).join("");
 
+  currentAccountSnapshot = {
+    customerId: f.CustomerID,
+    rewardsTier: f.RewardsTier,
+    creditCard: f.CreditCard,
+    cashbackBalance: f.CashbackBalance,
+    maturityDate: f.MaturityDate,
+    socialSecurity: f.SocialSecurity
+  };
+
   document.getElementById("transactionsList").innerHTML = '<p class="hint">Loading…</p>';
   try {
     const txns = await fetchTransactionsByIds(f.Transactions || []);
@@ -572,6 +634,28 @@ async function populateEditForm(record) {
       `<p class="hint">Could not load transactions: ${err.message}</p>`;
   }
 }
+
+document.getElementById("copyAccountBtn").addEventListener("click", (e) => {
+  if (!currentAccountSnapshot) return;
+  const s = currentAccountSnapshot;
+  const dump = [
+    `Customer ID: ${s.customerId}`,
+    `First Name: ${document.getElementById("e_firstName").value}`,
+    `Last Name: ${document.getElementById("e_lastName").value}`,
+    `Date of Birth: ${document.getElementById("e_dob").value}`,
+    `Phone Number: ${document.getElementById("e_phone").value}`,
+    `Email: ${document.getElementById("e_email").value}`,
+    `Address: ${document.getElementById("e_address").value}`,
+    `Balance: $${document.getElementById("e_balance").value}`,
+    `Social Security: ${s.socialSecurity || ""}`,
+    `Cashback Balance: ${s.cashbackBalance != null ? "$" + s.cashbackBalance : ""}`,
+    `Maturity Date: ${s.maturityDate || ""}`,
+    `Rewards Tier: ${s.rewardsTier || ""}`,
+    `Credit Card: ${s.creditCard || ""}`
+    // PIN intentionally excluded — see confirm-box note above.
+  ].join("\n");
+  copyToClipboard(dump, e.currentTarget);
+});
 
 document.getElementById("editForm").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -621,6 +705,7 @@ document.getElementById("editForm").addEventListener("submit", async (e) => {
 function resetLookup() {
   currentRecordId = null;
   currentCustomerId = null;
+  currentAccountSnapshot = null;
   document.getElementById("lookupForm").reset();
   document.getElementById("lookupForm").style.display = "block";
   document.getElementById("editForm").style.display = "none";
