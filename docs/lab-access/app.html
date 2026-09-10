@@ -84,6 +84,12 @@
   .result-row .k { display: block; font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 4px; }
   .result-row .v { font-size: 1rem; font-weight: 700; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
   .result-row .v2 { font-size: 0.85rem; color: var(--muted); margin-top: 2px; }
+  .result-row-head { display: flex; justify-content: space-between; align-items: center; }
+  .copy-btn {
+    font-size: 0.72rem; padding: 3px 10px; border: 1px solid var(--border); border-radius: 6px;
+    background: var(--card); color: var(--muted); cursor: pointer;
+  }
+  .copy-btn:hover { color: var(--primary); border-color: var(--primary); }
 
   .pod-badge {
     display: inline-block; padding: 6px 16px; background: var(--primary); color: #fff;
@@ -130,22 +136,32 @@
 
       <div class="result-grid">
         <div class="result-row">
-          <span class="k">Admin login</span>
+          <div class="result-row-head">
+            <span class="k">Admin login</span>
+            <button type="button" class="copy-btn" data-copy-email="resultAdminEmail" data-copy-password="resultLabPassword1">Copy</button>
+          </div>
           <span class="v" id="resultAdminEmail"></span>
           <div class="v2">Password: <span id="resultLabPassword1"></span></div>
         </div>
         <div class="result-row">
-          <span class="k">Agent login</span>
+          <div class="result-row-head">
+            <span class="k">Agent login</span>
+            <button type="button" class="copy-btn" data-copy-email="resultAgentEmail" data-copy-password="resultLabPassword2">Copy</button>
+          </div>
           <span class="v" id="resultAgentEmail"></span>
           <div class="v2">Password: <span id="resultLabPassword2"></span></div>
         </div>
         <div class="result-row" id="customerRow" style="display:none;">
-          <span class="k">Customer profile</span>
+          <div class="result-row-head">
+            <span class="k">Customer profile</span>
+            <button type="button" class="copy-btn" data-copy-email="resultCustomerEmail" data-copy-password="resultCustomerPassword">Copy</button>
+          </div>
           <span class="v" id="resultCustomerEmail"></span>
           <div class="v2">Password: <span id="resultCustomerPassword"></span></div>
         </div>
       </div>
 
+      <button type="button" class="secondary" id="copyAllBtn">Copy all to clipboard</button>
       <p class="hint">These values are saved in your browser and will automatically appear anywhere the lab guide references them.</p>
       <button type="button" class="secondary" id="registerAnotherBtn">Register a different email</button>
     </div>
@@ -367,6 +383,50 @@ function showResults(entry, email, attendee, requestedCustomerProfile) {
   document.getElementById("regForm").style.display = "none";
   document.getElementById("resultsPanel").style.display = "block";
 }
+
+function copyToClipboard(text, btn) {
+  const restoreLabel = btn.textContent;
+  const onDone = () => {
+    btn.textContent = "Copied!";
+    setTimeout(() => { btn.textContent = restoreLabel; }, 1500);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(onDone).catch(() => fallbackCopy(text, onDone));
+  } else {
+    fallbackCopy(text, onDone);
+  }
+}
+
+function fallbackCopy(text, onDone) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch (err) {}
+  document.body.removeChild(ta);
+  onDone();
+}
+
+document.querySelectorAll(".copy-btn[data-copy-email]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const emailEl = document.getElementById(btn.getAttribute("data-copy-email"));
+    const pwdEl = document.getElementById(btn.getAttribute("data-copy-password"));
+    const text = `Email: ${emailEl.textContent}\nPassword: ${pwdEl.textContent}`;
+    copyToClipboard(text, btn);
+  });
+});
+
+document.getElementById("copyAllBtn").addEventListener("click", () => {
+  const lines = [document.getElementById("resultPodBadge").textContent];
+  lines.push(`Admin: ${document.getElementById("resultAdminEmail").textContent} / ${document.getElementById("resultLabPassword1").textContent}`);
+  lines.push(`Agent: ${document.getElementById("resultAgentEmail").textContent} / ${document.getElementById("resultLabPassword2").textContent}`);
+  if (document.getElementById("customerRow").style.display !== "none") {
+    lines.push(`Customer: ${document.getElementById("resultCustomerEmail").textContent} / ${document.getElementById("resultCustomerPassword").textContent}`);
+  }
+  copyToClipboard(lines.join("\n"), document.getElementById("copyAllBtn"));
+});
 
 document.getElementById("registerAnotherBtn").addEventListener("click", () => {
   document.getElementById("regForm").reset();
