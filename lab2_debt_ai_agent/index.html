@@ -720,6 +720,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ai-agent-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI Agent Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lab-completion" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -840,48 +851,36 @@
 <p>The fastest path for a 4-hour lab is to import a baseline agent and review the important configuration, instead of building every prompt and action from scratch.</p>
 <details class="webex" open="open">
 <summary>Import Alex</summary>
+<div class="admonition download">
+<p class="admonition-title">Alex AI Agent</p>
+<p>Download the Alex AI Agent json file from <a download="LAB-31207_Alex_baseline.json" href="./bcamp_files/Finance_Desktop.json">here</a> and store it in a local drive. The file is named <code>LAB-31207_Alex_baseline</code></p>
+</div>
+<details class="inline vidcast" open="open">
+<summary>Import Alex AI Agent</summary>
+<p><video controls="" width="600">
+<source src="/LAB-31207/assets/lab2_p21_vid1.mp4" type="video/mp4">
+</video>
+</p><p><a href="/LAB-31207/assets/lab2_p21_vid1.mp4" target="_blank" rel="noopener">Open video in new tab</a></p><p></p>
+</details>
 <ol>
 <li>From <a href="https://admin.webex.com">Control Hub</a>, navigate to <strong>Contact Center</strong>.</li>
 <li>Under <strong>Quick Links</strong>, open <strong>Webex AI Agent</strong>.</li>
-<li>In AI Agent Studio, select the import option [VERIFY: exact UI label].</li>
-<li>Import the baseline package: <code>[VERIFY: LAB-31207_Alex_baseline filename]</code>.</li>
 <li>
-<p>Open the imported agent and confirm the name:</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Agent Name</strong></td>
-<td><code>LAB31207_Alex</code></td>
-</tr>
-<tr>
-<td><strong>Agent Type</strong></td>
-<td><code>Autonomous</code></td>
-</tr>
-<tr>
-<td><strong>Use Case</strong></td>
-<td>Debt-resolution outbound assistant</td>
-</tr>
-</tbody>
-</table>
+<p>In AI Agent Studio, click on the <strong>Import agent</strong> button at the top-right and in the Import window:</p>
+<ol>
+<li>Click <strong>Upload</strong> and select the <code>LAB-31207_Alex_baseline</code> json file from your local drive. </li>
+<li>Set the <strong>Agent name</strong> field to <copy><code>PODXX-LAB-31207_Alex</code></copy>, replacing <code>XX</code> with your POD number.   </li>
+<li>Click <strong>Import</strong> to create the Alex AI Agent from the baseline package.</li>
+</ol>
 </li>
 <li>
-<p>Save the imported agent without publishing yet.</p>
+<p>You will see now the Profile settings for your new agent with a status <code>Ready to preview</code></p>
 </li>
 </ol>
 </details>
-<div class="admonition note">
-<p class="admonition-title">If Import Is Not Available</p>
-<p>If the import option is not available in your tenant, create the agent manually with <strong>Start from scratch</strong> and use the profile values in the next section. This fallback is expected to take longer, so the lab facilitator may provide a pre-created agent instead.</p>
-</div>
 <details class="webex" open="open">
-<summary>Review Alex's Profile</summary>
-<p>Confirm or populate the following values:</p>
+<summary>Review Alex's configuration</summary>
+<p>Under the <strong>Profile</strong> tab, Confirm or populate the following values:</p>
 <table>
 <thead>
 <tr>
@@ -891,195 +890,373 @@
 </thead>
 <tbody>
 <tr>
+<td>Time zone</td>
+<td><code>America/Chicago</code></td>
+</tr>
+<tr>
+<td>AI engine</td>
+<td><code>Webex AI Pro-US 2.0</code></td>
+</tr>
+<tr>
+<td>AI transparency</td>
+<td>It is set with a message: <code>You are now interacting with an AI-powered virtual assistant.</code></td>
+</tr>
+<tr>
 <td><strong>Welcome message</strong></td>
-<td><code>Hello, I'm Alex from Webex Financial Group. Am I speaking with {{firstName}} {{lastName}}?</code></td>
-</tr>
-<tr>
-<td><strong>Primary context variables</strong></td>
-<td><code>firstName</code>, <code>lastName</code>, <code>phoneNumber</code></td>
-</tr>
-<tr>
-<td><strong>Tone</strong></td>
-<td>Professional, concise, and helpful</td>
-</tr>
-<tr>
-<td><strong>Escalation behavior</strong></td>
-<td>Escalate when the customer disputes a transaction, requests a human, or cannot be verified [VERIFY].</td>
+<td><code>Hello, I´m Alex, a personal balance accountant from Webex Financial Group. Am I speaking to {{firstName}} {{lastName}}?</code></td>
 </tr>
 </tbody>
 </table>
-<p>Use the following compact instruction set if you are configuring manually:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>You are Alex, a Webex Financial Group AI Agent supporting an outbound debt-resolution call.
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Confirm whether you are speaking with {{firstName}} {{lastName}}. Keep responses short and suitable for voice.
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Use MCP tools for customer lookup, authentication, balance or debt lookup, recent transactions, payment or promise-to-pay handling, and escalation support. Do not invent customer data. If a required value is missing, ask the customer or explain that you need to transfer to a specialist.
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>Never disclose sensitive information before customer verification. Never ask for full PINs, full card numbers, passwords, or one-time passcodes.
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>If the customer disputes a transaction, suspects fraud, asks for a human, or cannot be verified, prepare the escalation context and transfer to a specialist using the configured transfer path [VERIFY: transfer action name].
-</span></code></pre></div>
+<details class="inline info" open="open">
+<summary>Alex Instructions</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p21_img2.png" data-title="Instructions" data-desc-position="top"><img alt="Instructions" src="../assets/lab2_p21_img2.png"></a>
+</figure><p></p>
+</details>
+<p>Now navigate to the <strong>Instructions</strong> tab. Here, the Agent receives its objective and execution steps written in natural language. Read through the pre-configured instructions and pay close attention to:</p>
+<ul>
+<li>
+<p>Task Descriptions: How the Agent's responsibilities and goals are defined.</p>
+</li>
+<li>
+<p>Action References: The specific backend Actions required to support these tasks.</p>
+</li>
+<li>
+<p>Escalation Logic: Rules dictating exactly when and how the Agent hands over the call to a human representative. </p>
+</li>
+</ul>
+<p>Note Webex AI Agent Studio provides AI-powered assistance to generate, optimize, and refine instructions for autonomous AI agents. You can start from a simple description or example, improve existing instructions using prompt-engineering best practices, review the changes, and edit the result before saving. With this feature, you can create clear, well-structured instructions that maximize your AI agent's performance.
+<br><br></p>
+<details class="inline info" open="open">
+<summary>Alex Knowledge Base</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p21_img3.png" data-title="KB" data-desc-position="top"><img alt="KB" src="../assets/lab2_p21_img3.png"></a>
+</figure><p></p>
+</details>
+<p>Click the <strong>Knowledge</strong> tab. A Knowledge Base supplies the autonomous AI Agent with domain-specific context—such as FAQs, product documentation, and company policies—stored in a vector database to power Retrieval-Augmented Generation (RAG). The Agent does not have a Knowledge Base configured yet; you will set this up in Review Knowledge Configuration.
+<br><br><br><br><br><br></p>
+<details class="inline info" open="open">
+<summary>Alex Actions</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p21_img4.png" data-title="Actions" data-desc-position="top"><img alt="Actions" src="../assets/lab2_p21_img4.png"></a>
+</figure><p></p>
+</details>
+<p>Next, navigate to the <strong>Actions</strong> tab. Currently, only the default [Agent handover] action is listed. To enable the Agent to perform its tasks, you will need to create the following actions:</p>
+<div class="language-text highlight"><pre><span></span><code>[authenticate_user]
+[fetch_balance]
+[payment_session]
+[confirm_payment]
+[fetch_transactions]
+[fraud_trasfer]
+</code></pre></div>
+<p>You will configure them in the <a href="#lab-23-select-mcp-tools-as-actions">Select MCP Tools as Actions</a> section. </p>
+<details class="inline info" open="open">
+<summary>Alex Conversational settings</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p21_img5.png" data-title="Conversation" data-desc-position="top"><img alt="Conversation" src="../assets/lab2_p21_img5.png"></a>
+</figure><p></p>
+</details>
+<p>From the <strong>Conversation</strong> tab you can manage the Conversational settings of the Agent.</p>
+<p>To transform a technical interaction into a natural dialogue, you must fine-tune how Alex speaks and listens. Under the <strong>Conversation</strong> tab, you have four primary levers to control the "human" feel of your debt collection agent:</p>
+<ol>
+<li>
+<p>Language &amp; response style</p>
+<p>Language support depends upon the selected AI Engine. Refer to the <a href="https://help.webex.com/en-us/article/pdef2d/Supported-languages-for-Scripted-AI-Agents" rel="noopener" target="_blank">Supported languages and voices</a> for details.</p>
+<p>The response style allows you to define how you want your AI agent to respond to customers. You can configure the Acknowledgement mode (Active, Direct or Custom), the Style (Brief, Empathetic, Conversational, or Formal), the Frequency (Always or When appropriate), the Length, and include disfluencies to add fillers like "um" or "like" to sound more human.</p>
+</li>
+<li>
+<p>Voice Settings</p>
+<p>Allows you to choose the desired voice for your AI agent from the Select voice drop-down, based on the chosen AI engine and configured language and the the rate/speed of speech output</p>
+</li>
+<li>
+<p>Vocabulary</p>
+<p>Technical jargon or specific brand names like "NovaPay" or "QDF" can sometimes trip up standard AI. Use the Custom <em>Vocabulary</em> field to program up to 100 industry-specific terms, ensuring the agent correctly identifies intent even when customers use niche terminology.</p>
+</li>
+<li>
+<p>Delays &amp; Interruptions</p>
+<p>Managing the "silence" is critical. The <em>End of Speech Sensitivity</em> slider determines how quickly Alex responds once a customer stops talking. For high-stress calls, a Relaxed setting (closer to 2000 ms) prevents the agent from cutting the customer off. The <em>Caller turn timeout</em> defines the specific time the system waits before checking if the customer has finished speaking. This setting helps to prevent the agent from "clipping" the caller. In a debt collection scenario, customers often pause to look up credit card details or account numbers; a slightly higher timeout (closer to 3000 ms) ensures Alex doesn't interrupt them while they are searching for information. Additionally, enabling <em>Allow customer to interrupt</em> is vital for empathy, allowing Alex to stop speaking the moment the customer voice-activates. Finally, use Timeouts to manage the "dead air." The <em>No-input timeout</em> ensures the agent re-engages if a customer goes silent</p>
+</li>
+<li>
+<p>Timeouts &amp; DTMF</p>
+<p><em>DTMF</em> settings provide a fallback for secure data entry, allowing customers to use their keypad to signal the end of a digit string (e.g., using #) during the authentication phase. </p>
+</li>
+</ol>
+<p>In this lab we are not prescripting the conversational parameters to use. We leave you to play with them and evaluate the conversational effect they produce. </p>
 </details>
 <hr>
 <h2 id="lab-22-review-knowledge-configuration">Lab 2.2 - Review Knowledge Configuration<a class="headerlink" href="#lab-22-review-knowledge-configuration" title="Permanent link">¶</a></h2>
+<p>RAG (Retrieval-Augmented Generation) ingestion is the process of collecting, structuring, and indexing enterprise data—such as documents, FAQs, or knowledge articles—into a searchable format (typically embeddings in a vector database). This enables AI agents to dynamically retrieve the most relevant information at runtime, grounding their responses in trusted sources and forming the foundation of accurate, up-to-date Knowledge Bases.</p>
 <p>Alex should have enough knowledge to answer basic policy and product questions without turning the lab into a content-ingestion exercise.</p>
+<p>While Webex AI Agent supports three types of sources for the Knowledge Base: </p>
+<ul>
+<li><em>Files</em>: upload PDF, .docx, .doc, .txt, .xlsx, .xls, and .CSV files.</li>
+<li><em>Articles</em>: editable documents in the AI Agent Studio</li>
+<li><em>Websites</em>: website content using web URLs</li>
+</ul>
+<p>In this lab, we will use just <em>File</em> ingestion.</p>
 <details class="webex" open="open">
 <summary>Confirm Knowledge Base</summary>
+<p>You have verified in the previous section that the Knowledge Base is empty in your AI Agent. We have pre-built a Knowledge Base for the purpose of this lab. Let's verify it. </p>
+<details class="inline end vidcast" open="open">
+<summary>Check Knowledge Base</summary>
+<p><video controls="" width="600">
+<source src="/LAB-31207/assets/lab2_p22_vid1.mp4" type="video/mp4">
+</video>
+</p><p><a href="/LAB-31207/assets/lab2_p22_vid1.mp4" target="_blank" rel="noopener">Open video in new tab</a></p><p></p>
+</details>
+<ol>
+<li>Click on the <strong>Knowledge</strong> icon in the left navigation bar of your AI Agent Studio (the <em>disk array</em> icon)</li>
+<li>You will see the pre-built <em>Webex Bank Knowledge Base</em>. Click on it</li>
+<li>Note the source of the Knowledge Base is a file named <code>Webex_Financial_Group_KB</code>. The <em>Type</em> is <code>File</code>and the <em>Status</em> is <code>Processed</code>, which means the content has been vectorized and is ready to use. 
+<br><br><br><br><br><br><br><br></li>
+</ol>
+<details class="inline vidcast" open="open">
+<summary>Configure Knowledge Base in the AI Agent</summary>
+<p><video controls="" width="600">
+<source src="/LAB-31207/assets/lab2_p22_vid2.mp4" type="video/mp4">
+</video>
+</p><p><a href="/LAB-31207/assets/lab2_p22_vid2.mp4" target="_blank" rel="noopener">Open video in new tab</a></p><p></p>
+</details>
+<p>Now you will associate this Knowledge Base to your AI Agent.</p>
 <ol>
 <li>Open Alex in AI Agent Studio.</li>
-<li>Select the <strong>Knowledge</strong> tab.</li>
-<li>Confirm the baseline Knowledge Base is attached [VERIFY: exact KB name].</li>
-<li>
-<p>If the Knowledge Base is missing, create one using the provided document:</p>
-<div class="admonition download">
-<p class="admonition-title">Knowledge Base Document</p>
-<p>Use <code>docs/bcamp_files/Webex_Financial_Group_KB.docx</code> [VERIFY: keep or replace with LAB-31207-specific KB].</p>
-</div>
-</li>
-<li>
-<p>Wait for the source to reach the <strong>Processed</strong> state before final testing.</p>
-</li>
+<li>Select the <strong>Knowledge</strong> tab. As verified when creating the AI Agent, the Knowledge Base is empty. </li>
+<li>Click on the <strong>Knowledge base</strong> drop down menu and select the ^Webex Bank Knowledge Base`.</li>
+<li>Click <strong>Save changes</strong></li>
 </ol>
+<p>Your AI Agent is now able to handle the customized information from Webex Bank.</p>
 </details>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Knowledge processing can take several minutes. Continue with MCP action selection while processing completes.</p>
-</div>
 <hr>
 <h2 id="lab-23-select-mcp-tools-as-actions">Lab 2.3 - Select MCP Tools as Actions<a class="headerlink" href="#lab-23-select-mcp-tools-as-actions" title="Permanent link">¶</a></h2>
-<p>The MCP server is already added to the Webex tenant. You only need to select the available MCP tools from the AI Agent action configuration.</p>
+<p>The MCP server has been prebuilt and is already configured to the Webex Lab tenant. You will only need to select the available MCP tools from the AI Agent action configuration. But before that, let's confirm the MCP tools are available in your tenant. </p>
+<p><code>[VERIFY: the MCP server configuration for the tenant and the available tools]</code></p>
+<details class="challenge" open="open">
+<summary>Optional: Verify MCP Server tools in Control Hub</summary>
+<details class="danger" open="open">
+<summary>IMPORTANT!!!!</summary>
+<p>The MCP Server configuration is shared across all lab participants.<br>
+<mark>CRITICAL: Do not modify any MCP Server settings in the lab tenant.</mark></p>
+</details>
+<ol>
+<li>Go to <a href="https://admin.webex.com" rel="noopener" target="_blank">Control Hub</a></li>
+<li>in the left  navigation panel, click on <strong>Apps</strong></li>
+<li>Select the <strong>Agentic Apps</strong> tab</li>
+<li>Verify that the <code>Finance_MCP_WebexOne</code> MCP Server is listed with <em>Allowed</em> access.</li>
+<li>Click on the server name. </li>
+<li>On the <strong>General</strong> tab, confirm that:<ul>
+<li><strong>Access</strong> is set to <code>Àllowed for all users</code> </li>
+<li><strong>Authorize automatic server data updates</strong> is enabled (ensuring updates in the server take effect without requiring re-authorization).</li>
+</ul>
+</li>
+<li>Switch to the <strong>Tools</strong> tab and verify that all the rquired actions (listed previously) are present and set to allowed. </li>
+</ol>
+</details>
+<p><code>[VERIFY: insert video to add actions - for one action]</code></p>
 <details class="webex" open="open">
 <summary>Add MCP Tools to Alex</summary>
 <ol>
-<li>In AI Agent Studio, open <code>LAB31207_Alex</code>.</li>
-<li>Select the <strong>Actions</strong> tab.</li>
-<li>Click <strong>Add actions</strong>.</li>
+<li>In AI Agent Studio, open your AI Agent <code>PODXX-LAB-31207_Alex</code>.</li>
+<li>Switch to the <strong>Actions</strong> tab.</li>
+<li>Click <strong>+ Add actions</strong>.</li>
 <li>Choose <strong>Select Available</strong> [VERIFY: exact UI label].</li>
 <li>
-<p>Select the MCP tools provided for LAB-31207.</p>
+<p>Select following MCP tools required for Alex.</p>
 <table>
 <thead>
 <tr>
 <th>Tool</th>
-<th>Purpose</th>
-<th>Status</th>
+<th>Description</th>
+<th>Entities</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>[VERIFY: get_customer_profile]</code></td>
-<td>Retrieve customer identity and profile context.</td>
-<td>Required</td>
+<td><code>[VERIFY: authenticate_user]</code></td>
+<td>This action returns two random postions (1st, 2nd, 3rd, or 4th) and the corresponding digits in the 4-digit PIN for the Agent to complete the authentication</td>
+<td>PIN</td>
 </tr>
 <tr>
-<td><code>[VERIFY: verify_customer]</code></td>
-<td>Validate customer identity using the lab-safe verification method.</td>
-<td>Required</td>
+<td><code>[VERIFY: fetch_balance]</code></td>
+<td>Using the customer's phone number, fetch the following details from the Customer DB: Record ID, Customer ID, Account Balance, Email...</td>
+<td>PhoneNumber</td>
 </tr>
 <tr>
-<td><code>[VERIFY: get_debt_summary]</code></td>
-<td>Retrieve balance, maturity date, and debt context.</td>
-<td>Required</td>
+<td><code>[VERIFY: payment_session]</code></td>
+<td>Generates a NovaPay payment session for the amount selected by the customer. The payment session URL is sent to the customer via email.</td>
+<td>SessionId, debt_amount, email</td>
 </tr>
 <tr>
-<td><code>[VERIFY: get_recent_transactions]</code></td>
-<td>Retrieve recent transaction context for disputes or questions.</td>
-<td>Recommended</td>
+<td><code>[VERIFY: confirm_payment]</code></td>
+<td>Confirms payment with NovaPay service and updates the remaining balance in the customer DB.</td>
+<td>Balance, PaymentSessionId, RecordID</td>
 </tr>
 <tr>
-<td><code>[VERIFY: create_payment_or_promise]</code></td>
-<td>Record payment intent, promise-to-pay, or next step.</td>
-<td>Recommended</td>
-</tr>
-<tr>
-<td><code>[VERIFY: prepare_escalation]</code></td>
-<td>Package context for human escalation.</td>
-<td>Required for RTA path</td>
+<td><code>[VERIFY: fetch_transactions]</code></td>
+<td>Fetch up to 5 most recent transactions from a customer account.</td>
+<td>CustomerID</td>
 </tr>
 </tbody>
 </table>
 </li>
 <li>
-<p>Review each selected action and confirm the input schema is automatically populated from the MCP tool definition.</p>
+<p>Review each selected action and confirm the input schema is automatically populated from the MCP tool definition. Note the Action Type in the Action list is set to MCP for all of them.</p>
 </li>
 <li>Click <strong>Save changes</strong>.</li>
 </ol>
 </details>
-<div class="admonition warning">
-<p class="admonition-title">Tool Names and Schemas</p>
-<p>Use the tool names and input fields shown in your tenant. If a value in this guide is marked <code>[VERIFY]</code>, confirm the exact name with the lab facilitator before continuing.</p>
-</div>
 <hr>
 <h2 id="lab-24-test-alex-in-preview">Lab 2.4 - Test Alex in Preview<a class="headerlink" href="#lab-24-test-alex-in-preview" title="Permanent link">¶</a></h2>
-<p>Before connecting Alex to the campaign, validate the agent in Preview. This lets you troubleshoot prompt or tool issues without waiting for Campaign Manager to dial.</p>
-<details class="tool" open="open">
-<summary>Preview Test</summary>
-<ol>
-<li>In AI Agent Studio, open <code>LAB31207_Alex</code>.</li>
-<li>Click <strong>Preview</strong>.</li>
-<li>Start a conversation with a test customer identity provided by the lab facilitator [VERIFY: test customer values].</li>
-<li>
-<p>Confirm Alex can:</p>
+<p>Before connecting Alex to the campaign and going live, It is essential to validate that Alex follows the programmed logic. For that, you will validate the agent in Preview mode. This lets you troubleshoot prompt or tool issues without waiting for Campaign Manager to dial.</p>
+<details class="webex" open="open">
+<summary>Prepare a Test Customer Profile</summary>
+<p>Make sure you have a populated entry in the customer CRM through the <a href="https://cx-partner.github.io/LAB-31207/customer-portal/" rel="noopener" target="_blank">Customer Portal</a> for your test customer. The <code>Customer Portal</code> tool generates an entry in the Customers table and in the Transsactions table for your fake customer. Most fields can be fake data, and are actually automatically generated by the Customer Portal tool, but the following must be real, since Alex will use them to actually reach you:</p>
 <table>
 <thead>
 <tr>
-<th>Check</th>
-<th>Expected Result</th>
+<th>Field</th>
+<th>Requirement</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Name confirmation</td>
-<td>Alex confirms the test customer's name.</td>
+<td>Phone number</td>
+<td>Real — used to recover customer data</td>
 </tr>
 <tr>
-<td>Customer lookup</td>
-<td>MCP customer lookup succeeds.</td>
+<td>Email</td>
+<td>Real — used to receive the NovaPay payment link</td>
 </tr>
 <tr>
-<td>Verification</td>
-<td>Alex follows the lab-safe verification process.</td>
+<td>4-digit PIN</td>
+<td>Any value — used authenticate the user</td>
 </tr>
 <tr>
-<td>Debt summary</td>
-<td>Alex retrieves and explains balance/maturity context.</td>
+<td>Account balance</td>
+<td>automatically generated</td>
 </tr>
 <tr>
-<td>Transaction question</td>
-<td>Alex uses the transaction tool or explains the limitation.</td>
-</tr>
-<tr>
-<td>Escalation trigger</td>
-<td>Alex prepares transfer context when fraud/dispute is mentioned [VERIFY].</td>
+<td>Transactions</td>
+<td>automatically generated (up to 5 sample transactions)</td>
 </tr>
 </tbody>
 </table>
+<p>If you already created this profile earlier in the lab, skip this step and reuse it.</p>
+</details>
+<details class="tool" open="open">
+<summary>Run the Preview Scenario</summary>
+<ol>
+<li>In AI Agent Studio, open <code>PODXX-LAB-31207_Alex</code>.</li>
+<li>Click <strong>Preview</strong>.</li>
+<li>Since Preview does not go through the Outbound Debt Collection flow, the <code>firstName</code>, <code>lastName</code>, and <code>phoneNumber</code> values are not passed to Alex automatically. Provide your name and the phone number from your test profile yourself when Alex asks.</li>
+<li>Try asking about your balance <strong>before</strong> authenticating — Alex should decline and ask you to verify your identity first.</li>
+<li>Complete authentication. Alex will challenge you with 2 of the 4 digits from the PIN in your test profile (<code>authenticate_user</code>).</li>
+<li>
+<p>Confirm Alex reports your balance and maturity date, and offers to take a payment (<code>fetch_balance</code>):
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>    Authentication successful. John, your current account balance is $4,650 and your debt matures on April 28, 2026. Would you like to make a total or partial payment today?
+</span></code></pre></div><p></p>
 </li>
 <li>
-<p>If a tool fails, open the session details and confirm the exact input sent to the MCP tool.</p>
+<p>Choose a partial payment and give an amount. Alex should generate a NovaPay session and confirm it was emailed (<code>payment_session</code>):
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>    A secure NovaPay payment link for $650 has been sent to your email address. Once you complete the payment, please let me know so I can confirm your transaction and update your balance.
+</span></code></pre></div><p></p>
+</li>
+<li>
+<p>Check your email (check spam if it doesn't arrive quickly). It should look like:
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>    Dear Customer,
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    Thank you for speaking with me today regarding your outstanding balance with Webex Financial Group.
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    As we discussed, please find the secure link below to process your payment of $650. This link is unique to your account and is powered by our secure payment partner, NovaPay.
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    https://cx-partner.github.io/NovaPay/backend/frontend/index.html?sessionId=&lt;session-id&gt;&amp;amount=650
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    Important Information:
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    Account Status: Completing this payment ensures your account remains in good standing before your maturity date.
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    Confirmation: Once the transaction is complete, I will automatically update your balance in our database.
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    If you have any questions or did not authorize this request, please contact our customer service department immediately.
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    Best regards,
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    Alex
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    Automated Service specialist
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    Webex Financial Group
+</span></code></pre></div><p></p>
+</li>
+<li>
+<p>Click the link, fill in the NovaPay payment interface, and click <strong>Pay Now</strong>. NovaPay returns a confirmation message.
+    </p><figure markdown="" style="width: 30%;">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/payment_UI.png" data-title="Payment interface" data-desc-position="top"><img alt="Payment interface" src="../assets/payment_UI.png"></a>
+    </figure><p></p>
+</li>
+<li>
+<p>Return to the conversation with Alex and confirm the payment. Alex checks the status with NovaPay and updates the balance (<code>confirm_payment</code>):
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>    Your payment of $650 was successful. Confirmation code: NP-1EOQTHWK. Your   remaining balance is $4,000. Do you need any further assistance?
+</span></code></pre></div><p></p>
+<p>Verify the balance was updated in the customer's record in the Customer Portal.</p>
+</li>
+<li>
+<p>Ask a generic question about balance payment terms, your credit card or the Rewards program. Alex should retrieve the information from the Knowledge Base and provide a detailed response.</p>
+</li>
+<li>
+<p>Ask about your last transactions. Alex returns up to the last 5 with (<code>fetch_transactions</code>). Try a few different queries — last transactions, most recent, or a transaction in a specific city:
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>    Here are your last three transactions:
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>        - $1,200 at 99 Collectibles in Madrid on February 4, 2026
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        - $900 at 99 Collectibles in New York on February 2, 2026
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>        - $2,400 at ACME Tech in Amsterdam on February 1, 2026
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    Would you like to see more transactions or need help with anything else?
+</span></code></pre></div><p></p>
+</li>
+<li>
+<p>Finally, mention a suspicious or unrecognized transaction. Confirm Alex stops the normal flow and prepares to transfer you to a fraud specialist. <code>[VERIFY: where this is covered (lab?) exact trigger phrase / expected transfer message]</code>.</p>
 </li>
 </ol>
 </details>
 <details class="failure" open="open">
 <summary>Troubleshooting</summary>
+<p>Refer to the <a href="#">Test your AI Agent</a> section for details on how to troubleshoot the AI Agent and the Actions in case of error.</p>
 <ul>
-<li><strong>No MCP tools are visible</strong>: Confirm the Agentic App is allowed and tools are enabled for the organization [VERIFY: admin path].</li>
-<li><strong>Tool requires unknown input</strong>: Check the MCP schema and update the prompt so Alex knows where to get the value.</li>
-<li><strong>Preview works but voice does not</strong>: Confirm the flow passes <code>phoneNumber</code>, <code>firstName</code>, and <code>lastName</code> to Virtual Agent V2.</li>
+<li><strong>Debt disclosed before authentication</strong>: Review the escalation/authentication logic in the Instructions tab — Alex should never call <code>fetch_balance</code> before <code>authenticate_user</code> succeeds.</li>
+<li><strong>No payment email arrives</strong>: Check spam, and confirm the email address on the test profile is a real, reachable address.</li>
+<li><strong>Balance doesn't update after payment</strong>: Open the session details for <code>confirm_payment</code> and check the exact input sent to the MCP tool.</li>
+<li><strong>Transactions come back empty</strong>: Confirm sample transactions are populated for that customer in the Customer Portal.</li>
+<li><strong>No MCP tools are visible</strong>: Confirm the Agentic App is allowed and tools are enabled for the organization.</li>
 </ul>
 </details>
+<div class="admonition important">
+<p class="admonition-title">Publish Your AI Agent</p>
+<p>Once you've validated the full scenario above, publish Alex so it can be used by the outbound flow in the next section.</p>
+<ol>
+<li>In the AI Agent configuration page, click <strong>Publish</strong> at the top-right corner.</li>
+<li>Provide a publishing comment in the dialog and click <strong>Publish</strong>.</li>
+</ol>
+<p>Your agent is now operational.</p>
+</div>
 <hr>
 <h2 id="lab-25-connect-the-ai-agent-to-the-outbound-call">Lab 2.5 - Connect the AI Agent to the Outbound Call<a class="headerlink" href="#lab-25-connect-the-ai-agent-to-the-outbound-call" title="Permanent link">¶</a></h2>
-<p>At the end of Lab 1, the outbound call routes to <code>AI_Agent_DebtCollection</code>, which currently plays a temporary completion message. Replace that message with Alex.</p>
+<p>At the end of Lab 1, the outbound call routes to the <code>AI_Agent_DebtCollection</code> flow, which currently plays just a temporary completion message. You will now modify that flow to route the call to Alex, your AI Agent.</p>
+<details open="open">
+<summary>Initial flow</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p25_img1.png" data-title="initial flow" data-desc-position="top"><img alt="initial flow" src="../assets/lab2_p25_img1.png"></a>
+</figure> <p></p>
+</details>
 <details class="webex" open="open">
 <summary>Deliver the Outbound Call to Alex</summary>
+<details class="inline vidcast" open="open">
+<summary>Connect Alex to the Outbound Call</summary>
+<p><video controls="" width="600">
+<source src="/LAB-31207/assets/lab2_p25_vid1.mp4" type="video/mp4">
+</video>
+</p><p><a href="/LAB-31207/assets/lab2_p25_vid1.mp4" target="_blank" rel="noopener">Open video in new tab</a></p><p></p>
+</details>
 <ol>
 <li>Go to <strong>Control Hub</strong> &gt; <strong>Contact Center</strong> &gt; <strong>Flows</strong>.</li>
 <li>Open the <code>AI_Agent_DebtCollection</code> flow.</li>
-<li>Enable editing.</li>
+<li>Enable editing with the top bar <strong>Edit</strong> toggle.</li>
 <li>Delete the temporary <strong>Play Message</strong> node from Lab 1.</li>
 <li>Drag a <strong>Virtual Agent V2</strong> node onto the canvas.</li>
-<li>Connect the <strong>NewPhoneContact</strong> or <strong>StartFlow</strong> node to <strong>Virtual Agent V2</strong>.</li>
+<li>Connect the <strong>NewContact</strong> node to <strong>Virtual Agent V2</strong>.</li>
 <li>
 <p>Configure the <strong>Virtual Agent V2</strong> node:</p>
 <table>
@@ -1092,7 +1269,15 @@
 <tbody>
 <tr>
 <td><strong>Activity Label</strong></td>
-<td><code>DebtCollectionAgent</code></td>
+<td><copy><code>DebtCollectionAgent</code></copy></td>
+</tr>
+<tr>
+<td><strong>Activity Description</strong></td>
+<td><code>Optionally, provide a description</code></td>
+</tr>
+<tr>
+<td><strong>Conversational Experience</strong></td>
+<td>select <code>Static Contact Center AI Config</code></td>
 </tr>
 <tr>
 <td><strong>Contact Center AI Config</strong></td>
@@ -1100,58 +1285,112 @@
 </tr>
 <tr>
 <td><strong>Virtual Agent</strong></td>
-<td><code>LAB31207_Alex</code></td>
+<td>select your <code>PODXX-LAB-31207_Alex</code></td>
 </tr>
 </tbody>
 </table>
 </li>
 <li>
 <p>In <strong>State Event</strong>, set <strong>Event Data</strong> to:</p>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{NewPhoneContact.DNIS}}"</span><span class="p">,</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{firstName}}"</span><span class="p">,</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{lastName}}"</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">}</span>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="nt">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{NewContact.DNIS}}"</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{firstName}}"</span><span class="p">,</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{lastName}}"</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">}</span>
 </span></code></pre></div>
+<details class="tip" open="open">
+<summary>Tip</summary>
+<p>The variables <strong>firstName</strong> and <strong>lastName</strong> on the right are defined as Global Variables and its value is assigned in the outbound campaign from the contact list and mapped from the <em>Outbound_DebtCollection</em> flow to this flow. </p>
+<p>The variables <strong>phoneNumber</strong>, <strong>firstName</strong> and <strong>lastName</strong> on the left must be the same variables you have used in your AI Agent configuration (in the welcome message, the description or the activities).</p>
+</details>
 </li>
 <li>
-<p>Connect the <strong>Handled</strong> outcome to <strong>End Flow</strong>.</p>
+<p>In the <em>Decryption Settings</em>, set the <strong>Enable decryption</strong> slider to ease troubleshooting during debugging. Make sure the <strong>enable decryption</strong> slider is set in the <strong>Global Flow Properties</strong> panel also.</p>
 </li>
-<li>Connect <strong>Errored</strong> and <strong>Escalated</strong> to a temporary <strong>Play Message</strong> or to the escalation queue if you are continuing directly into Lab 3 [VERIFY: chosen path].</li>
-<li>Validate and publish the flow.</li>
+<li>Connect the <strong>Handled</strong> outcome to <strong>End Flow</strong>.</li>
+<li>
+<p>The <em>Escalated</em> outcome will be covered in Lab 3, where we will connect the AI Agent to a queue that routes the call to a human agent. For now, to allow you to test the end-to-end scenario, we will simply play a message: </p>
+<ul>
+<li>Drag an drop a <strong>Play Message</strong> node to the right of the <strong>Virtual Agent</strong> node and, from the <em>Escalated</em> outlet of the <strong>Virtual Agent</strong> node, connect both together . </li>
+<li>Click on the <strong>Play Message</strong> node to edit its properties in the activity settings panel. </li>
+<li>Give it a name and a description. </li>
+<li>Under <strong>Prompt</strong> section, set the <em>Enable Text-to-Speech</em> slider. </li>
+<li>Under <strong>Connector</strong> select the <em>Cisco Cloud Text-to-Speech</em></li>
+<li>Click the <em>Add Text-to-Speech Message</em> button and provide your temporary message: </li>
+</ul>
+<p><copy><code>Your call will be sent to a human expert once you complete your Lab 3</code></copy></p>
+<ul>
+<li>make sure you delete the unused <em>Audio File</em> option above.</li>
+</ul>
+</li>
+<li>
+<p>Connect te outlet of the <strong>Play Message</strong> node to the <strong>EndFlow</strong> node. </p>
+</li>
+<li>
+<p>To complete the handling of the Virtual Agent outcomes, we will also play an error message in case of error and will leave the call to be escalated to the human agent. </p>
+<ul>
+<li>Drag and drop a <strong>Play Message</strong> node to the right of the <strong>Virtual Agent</strong> node and connect both together from the <em>Errored</em> outlet of the <strong>Virtual Agent</strong> node. </li>
+<li>Click on the <strong>Play Message</strong> node. You can give it a name and a description. </li>
+<li>Under <strong>Prompt</strong> section, set the <em>Enable Text-to-Speech</em> slider. </li>
+<li>Under <strong>Connector</strong> select the <em>Cisco Cloud Text-to-Speech</em></li>
+<li>Click the <em>Add Text-to-Speech Message</em> button and provide your temporary message: </li>
+</ul>
+<p><copy><code>We are experiencing some system errors. Please wait while I transfer you to an agent</code></copy></p>
+<ul>
+<li>Delete the <em>Audio File</em> option above.</li>
+</ul>
+</li>
+<li>
+<p>Connect the outlet of the <strong>Play Message</strong> error node to the inlet of the escalation <strong>Play Message</strong> node. </p>
+</li>
+<li>
+<p>Enable the <strong>Validation</strong> check with the slider in the bottom right of the editor to validate the flow and if there are no erros, click <strong>[Publish Flow]</strong> to publish it. </p>
+</li>
 </ol>
+<p>Your AI Agent is now operational to work in an outbound Campaign!</p>
 </details>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>The values on the left side of the JSON (<code>phoneNumber</code>, <code>firstName</code>, <code>lastName</code>) must match the variables Alex expects. The values on the right side come from the Campaign Manager contact list and flow variable mapping created in Lab 1.</p>
-</div>
 <hr>
 <h2 id="lab-26-test-the-complete-scenario">Lab 2.6 - Test the Complete Scenario<a class="headerlink" href="#lab-26-test-the-complete-scenario" title="Permanent link">¶</a></h2>
 <details class="webex" open="open">
 <summary>Run the Outbound Test</summary>
+<p>You can now run the complete scenario. Follow the below steps.</p>
 <ol>
 <li>In Campaign Manager, upload a contact list with your test customer's <code>firstName</code>, <code>lastName</code>, and <code>phoneNumber</code>.</li>
 <li>Wait for the contact list to become active.</li>
-<li>Answer the outbound call.</li>
+<li>When the Campaign Manager launches the outbound call, answer the call in your device (or in your customer's webex app if you don't have an US number).</li>
 <li>Confirm Alex greets the customer by name.</li>
-<li>Complete the verification and debt-summary path using the MCP tools.</li>
+<li>Complete the authentication and debt-collection process.</li>
+<li>Try querying Alex about your products.</li>
 <li>Ask a transaction or dispute question to confirm Alex uses the relevant MCP tool or prepares escalation context [VERIFY].</li>
 </ol>
 </details>
+<details class="warning" open="open">
+<summary>Warning</summary>
+<p>As the room environment may be noisy, please avoid using speaker mode for your calls to avoid unintended responses. </p>
+</details>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Campaign Manager can take 2-5 minutes to generate the call after the contact list is active. Use Preview for troubleshooting tool behavior and use the live call only for final validation.</p>
+<p>Campaign Manager can take 2-5 minutes to generate the call after the contact list is active. Use Preview tool for troubleshooting the AI Agent behavior and use the live call only for final validation.</p>
 </div>
 <hr>
+<h2 id="ai-agent-troubleshooting">AI Agent Troubleshooting<a class="headerlink" href="#ai-agent-troubleshooting" title="Permanent link">¶</a></h2>
+<p>You can view the details of sessions established betwee the customers and the AI agent.</p>
+<p>To explore the AI Agent sessions, go to the <strong>AI Agent Studio</strong> and select your Agent in the dashboard. Then click on <strong>Sessions</strong> in the left panel. The Sessions page provides a comprehensive record of all interactions between AI agents and users. You will see a list of sessions, with indication of the channel used, the messages that the interaction comprises adn the date.</p>
+<p>Click on the individual session for a detailed view of the content. If the session is encrypted, click the <em>Decrypt content</em> to view the session information, including:
+    - a transcript of the conversation in cronological order in the left panel. 
+    - </p>
+<hr>
 <h2 id="lab-completion">Lab Completion<a class="headerlink" href="#lab-completion" title="Permanent link">¶</a></h2>
-<p>At this point, you have successfully:</p>
+<p>At this point, you have built a <strong>Proactive Front Door</strong> that:</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Imported or configured Alex.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Attached tenant-provisioned MCP tools as AI Agent actions.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Tested Alex in Preview.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Connected the outbound campaign to Alex.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Completed an outbound call into an MCP-enabled AI Agent.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Uses a Debt Collection AI Agent</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Proactively identifies debt maturity and contact the customer</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Automates debt payment</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Resolves customer enquiries</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Identify fraud situations and escalates to a Human Agent</li>
 </ul>
+<p><strong>Congratulations!</strong> You now have a fully operational <strong>Proactive Debt Collection</strong> service in place.
+You have successfully completed Lab 2. You are now ready to move on to the next Lab.</p>
 <p><a class="md-button md-button--primary" href="../lab3_human_ai_assist/">Next Lab: Lab 3 - Real-Time Assist</a></p>
 
 
