@@ -1,4 +1,11 @@
+# Lab Prework
 
+Complete this before the hands-on labs: get your POD assigned, then your test customer record will be provisioned automatically.
+
+<div class="admonition warning" id="preworkRequiredBanner" style="display:none;">
+  <p class="admonition-title">Prework required</p>
+  <p>You need to complete the Lab Prework before starting the Labs. Please finish the steps below first.</p>
+</div>
 
 <p><a href="app.html" target="_blank">Open in a new tab ↗</a></p>
 
@@ -16,5 +23,10 @@
   window.addEventListener("resize", resizeFrame);
   window.addEventListener("load", resizeFrame);
   setTimeout(resizeFrame, 300);
+
+  if (window.location.search.indexOf("prework_required=1") !== -1) {
+    var banner = document.getElementById("preworkRequiredBanner");
+    if (banner) banner.style.display = "block";
+  }
 })();
 </script>

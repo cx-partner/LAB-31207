@@ -124,8 +124,9 @@
     margin-top: 18px; padding: 14px; background: var(--confirm-bg); border: 1px solid var(--confirm-border); border-radius: 8px;
   }
 
-  .step-list { padding-left: 20px; margin: 10px 0; }
-  .step-list li { margin: 8px 0; }
+  .step-list { padding-left: 22px; margin: 16px 0; }
+  .step-list li { margin: 16px 0; line-height: 1.55; }
+  #panelIntro p { line-height: 1.6; margin: 14px 0; }
 </style>
 </head>
 <body>
@@ -169,7 +170,7 @@
           </div>
           <div class="radio-row">
             <input type="radio" id="r_phone_no" name="r_hasPhone" value="no" required>
-            <label for="r_phone_no">No — assign me a customer profile</label>
+            <label for="r_phone_no">No — assign me a customer profile with a phone number</label>
           </div>
         </fieldset>
 
@@ -208,6 +209,7 @@
 
         <label for="cf_phone">Phone number</label>
         <input id="cf_phone" type="tel" placeholder="2109444550" required>
+        <div class="hint" id="cf_phone_hint"></div>
 
         <label for="cf_email">Email</label>
         <input id="cf_email" type="email" required>
@@ -250,10 +252,12 @@
         <div class="result-row" id="resCustomerProfileRow" style="display:none;">
           <div class="result-row-head">
             <span class="k">Customer profile</span>
-            <button type="button" class="copy-btn" data-copy-email="resCustomerProfileEmail" data-copy-password="resCustomerProfilePassword">Copy</button>
+            <button type="button" class="copy-btn" data-copy-email="resCustomerProfileEmail" data-copy-password="resCustomerProfilePassword" data-copy-phone="resCustomerProfilePhone">Copy</button>
           </div>
           <span class="v" id="resCustomerProfileEmail"></span>
           <div class="v2">Password: <span id="resCustomerProfilePassword"></span></div>
+          <div class="v2">Phone: <span id="resCustomerProfilePhone"></span></div>
+          <div class="hint" style="margin-top:8px;">Log into the Webex App with these customer credentials to make and receive calls.</div>
         </div>
       </div>
       <button type="button" class="secondary" id="downloadPodBtn">Download POD Info</button>
@@ -337,6 +341,23 @@ const TRANSACTIONS_API_URL = `https://api.airtable.com/v0/${BANKING_BASE_ID}/${e
 // app at docs/lab-prework/app.html). CSV columns: Partner, First Name, Last Name, Email
 const REGISTRATION_LIST_PATH = "../lab_tracking/Registration_emails.csv";
 let registeredAttendeesCache = null;
+
+// Static, manually-maintained mapping of customer profile # -> Webex Calling
+// number (see fetch_customer_numbers.sh — no Webex credential is ever embedded
+// in this app; the file is just plain JSON, same pattern as the CSV above).
+const CUSTOMER_PROFILE_NUMBERS_PATH = "../lab_tracking/customer_profile_numbers.json";
+let customerProfileNumbersCache = null;
+async function loadCustomerProfileNumbers() {
+  if (customerProfileNumbersCache) return customerProfileNumbersCache;
+  try {
+    const res = await fetch(CUSTOMER_PROFILE_NUMBERS_PATH, { cache: "no-store" });
+    if (!res.ok) throw new Error("not found");
+    customerProfileNumbersCache = await res.json();
+  } catch (err) {
+    customerProfileNumbersCache = {};
+  }
+  return customerProfileNumbersCache;
+}
 
 const VENDORS = ["Amazon", "Starbucks", "Zara", "Best Buy", "Shell Gas", "Whole Foods", "Delta Airlines",
   "Apple Store", "Uber", "Netflix", "99 Collectibles", "ACME Tech", "Hilton Hotels", "Target", "IKEA"];
@@ -579,6 +600,15 @@ function renderTransactionsList(records) {
 /* ---------- Wizard state ---------- */
 let sessionPod = null;          // number
 let sessionCustomerProfile = null;
+let sessionCustomerProfilePhone = null;
+
+async function resolveSessionCustomerProfilePhone() {
+  sessionCustomerProfilePhone = null;
+  if (sessionCustomerProfile != null) {
+    const numbers = await loadCustomerProfileNumbers();
+    sessionCustomerProfilePhone = numbers[String(sessionCustomerProfile)] || null;
+  }
+}
 let sessionAttendee = null;     // { partner, firstName, lastName }
 let sessionEmail = null;
 let sessionCustomerId = null;
@@ -633,6 +663,7 @@ document.getElementById("podForm").addEventListener("submit", async (e) => {
     sessionCustomerProfile = entry.customerProfile;
     sessionAttendee = attendee;
     sessionEmail = normalizedEmail;
+    await resolveSessionCustomerProfilePhone();
 
     updateLabUserInfo({
       email: normalizedEmail,
@@ -644,7 +675,8 @@ document.getElementById("podForm").addEventListener("submit", async (e) => {
       agentEmail: `pod${entry.pod}+agent@wxone.wbx.ai`,
       labPassword: LAB_PASSWORD,
       customerEmail: entry.customerProfile != null ? `customer${entry.customerProfile}@wxone.wbx.ai` : "",
-      customerPassword: entry.customerProfile != null ? CUSTOMER_PASSWORD : ""
+      customerPassword: entry.customerProfile != null ? CUSTOMER_PASSWORD : "",
+      customerPhone: sessionCustomerProfilePhone || ""
     });
 
     await proceedToCustomerStep();
@@ -684,8 +716,22 @@ async function proceedToCustomerStep() {
   document.getElementById("cf_firstName").value = sessionAttendee.firstName || "";
   document.getElementById("cf_lastName").value = sessionAttendee.lastName || "";
   document.getElementById("cf_email").value = sessionEmail || "";
-  document.getElementById("cf_phone").value = "+1 ";
   document.getElementById("cf_dob").max = new Date().toISOString().slice(0, 10);
+
+  const phoneInput = document.getElementById("cf_phone");
+  const phoneHint = document.getElementById("cf_phone_hint");
+  if (sessionCustomerProfilePhone) {
+    phoneInput.value = sessionCustomerProfilePhone;
+    phoneInput.readOnly = true;
+    phoneHint.textContent = `This is your assigned Webex Calling number for customer profile ${sessionCustomerProfile} — it can't be edited here.`;
+  } else {
+    phoneInput.value = "+1 ";
+    phoneInput.readOnly = false;
+    phoneHint.textContent = sessionCustomerProfile != null
+      ? "We don't have a Webex Calling number on file for your customer profile yet — enter one manually."
+      : "";
+  }
+
   document.getElementById("customerForm").style.display = "block";
 }
 
@@ -787,6 +833,7 @@ function renderResults(customerFields, txns) {
   if (customerProfileEmail) {
     document.getElementById("resCustomerProfileEmail").textContent = customerProfileEmail;
     document.getElementById("resCustomerProfilePassword").textContent = CUSTOMER_PASSWORD;
+    document.getElementById("resCustomerProfilePhone").textContent = sessionCustomerProfilePhone || "—";
     custRow.style.display = "block";
   } else {
     custRow.style.display = "none";
@@ -837,7 +884,12 @@ document.querySelectorAll(".copy-btn[data-copy-email]").forEach((btn) => {
   btn.addEventListener("click", () => {
     const emailEl = document.getElementById(btn.getAttribute("data-copy-email"));
     const pwdEl = document.getElementById(btn.getAttribute("data-copy-password"));
-    const text = `Email: ${emailEl.textContent}\nPassword: ${pwdEl.textContent}`;
+    let text = `Email: ${emailEl.textContent}\nPassword: ${pwdEl.textContent}`;
+    const phoneAttr = btn.getAttribute("data-copy-phone");
+    if (phoneAttr) {
+      const phoneEl = document.getElementById(phoneAttr);
+      if (phoneEl && phoneEl.textContent) text += `\nPhone: ${phoneEl.textContent}`;
+    }
     copyToClipboard(text, btn);
   });
 });
@@ -848,6 +900,7 @@ document.getElementById("downloadPodBtn").addEventListener("click", () => {
   lines.push(`Agent: ${document.getElementById("resAgentEmail").textContent} / ${document.getElementById("resLabPassword2").textContent}`);
   if (document.getElementById("resCustomerProfileRow").style.display !== "none") {
     lines.push(`Customer profile: ${document.getElementById("resCustomerProfileEmail").textContent} / ${document.getElementById("resCustomerProfilePassword").textContent}`);
+    lines.push(`Customer profile phone: ${document.getElementById("resCustomerProfilePhone").textContent}`);
   }
   downloadTextFile(`pod-${sessionPod}-info.txt`, lines.join("\n"));
 });
@@ -934,6 +987,8 @@ async function init() {
     const profileMatch = /^customer(\d+)@/.exec(info.customerEmail || "");
     sessionCustomerProfile = profileMatch ? parseInt(profileMatch[1], 10) : null;
     sessionCustomerId = info.customerId;
+    sessionCustomerProfilePhone = info.customerPhone || null;
+    if (!sessionCustomerProfilePhone) await resolveSessionCustomerProfilePhone();
 
     try {
       const record = await findCustomerByIdOnly(sessionCustomerId);
