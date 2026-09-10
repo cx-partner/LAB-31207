@@ -74,6 +74,9 @@
   input:focus, textarea:focus, select:focus { outline: 2px solid var(--primary); outline-offset: 0; }
   .hint { font-size: 0.76rem; color: var(--muted); margin-top: 4px; }
   textarea { resize: vertical; min-height: 60px; }
+  a { color: var(--primary); }
+  a:hover { color: var(--primary-dark); }
+  body.dark input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 
   .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
@@ -92,9 +95,10 @@
   button.primary:hover { background: var(--primary-dark); }
   button.primary:disabled { opacity: 0.6; cursor: not-allowed; }
   button.secondary {
-    margin-top: 10px; width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 8px;
-    background: #fff; color: var(--text); font-size: 0.9rem; cursor: pointer;
+    margin-top: 10px; width: 100%; padding: 10px; border: none; border-radius: 8px;
+    background: var(--primary); color: #fff; font-size: 0.9rem; font-weight: 600; cursor: pointer;
   }
+  button.secondary:hover { background: var(--primary-dark); }
 
   .banner { padding: 10px 12px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 14px; display: none; }
   .banner.error { background: var(--error-bg); color: var(--error-text); }
@@ -145,7 +149,7 @@
           <input id="c_pod" inputmode="numeric" maxlength="2" placeholder="05" required>
         </div>
         <div class="hint">Enter your 2-digit lab POD number</div>
-        <div class="hint">Don't have one yet? <a href="../lab-access/app.html">Complete Lab Access first</a>.</div>
+        <div class="hint">Don't have one yet? <a href="../lab-access/app.html" target="_blank" rel="noopener">Complete Lab Access first ↗</a></div>
 
         <div class="row2">
           <div>
@@ -387,22 +391,34 @@ async function createTransactionsForCustomer(customerRecordId, count) {
   // TransactionID is an Airtable autonumber field, and FirstName/LastName are
   // lookups from the linked Customer record — none of these are set here;
   // Airtable fills them in automatically once CustomerID is linked.
+  const created = [];
   for (let i = 0; i < count; i++) {
+    const fields = {
+      CustomerID: [customerRecordId],
+      Amount: randomMoney(20, 3000),
+      Vendor: randomChoice(VENDORS),
+      City: randomChoice(CITIES),
+      Date: randomPastDate(1, 180)
+    };
     await transactionsFetch("", {
       method: "POST",
-      body: JSON.stringify({
-        records: [{
-          fields: {
-            CustomerID: [customerRecordId],
-            Amount: randomMoney(20, 3000),
-            Vendor: randomChoice(VENDORS),
-            City: randomChoice(CITIES),
-            Date: randomPastDate(1, 180)
-          }
-        }]
-      })
+      body: JSON.stringify({ records: [{ fields }] })
     });
+    created.push(fields);
   }
+  return created;
+}
+
+function formatTransactionLines(txns) {
+  // txns can be either plain {Vendor, City, Amount, Date} objects (just-created)
+  // or Airtable records ({fields: {...}}) fetched for an existing account.
+  if (!txns || !txns.length) return ["", "Transactions: none"];
+  const lines = txns.map((t, i) => {
+    const f = t.fields || t;
+    const amount = Number(f.Amount || 0).toLocaleString();
+    return `  ${i + 1}. ${f.Date || "—"} — ${f.Vendor || "—"} (${f.City || "—"}) — $${amount}`;
+  });
+  return ["", "Transactions:"].concat(lines);
 }
 
 async function fetchTransactionsByIds(ids) {
@@ -527,8 +543,9 @@ document.getElementById("createForm").addEventListener("submit", async (e) => {
     const newRecordId = created.records[0].id;
 
     let txnNote = "";
+    let createdTxns = [];
     try {
-      await createTransactionsForCustomer(newRecordId, txnCount);
+      createdTxns = await createTransactionsForCustomer(newRecordId, txnCount);
       txnNote = ` with ${txnCount} starter transaction${txnCount > 1 ? "s" : ""}`;
     } catch (txnErr) {
       txnNote = ` (account created, but transactions failed: ${txnErr.message})`;
@@ -550,7 +567,8 @@ document.getElementById("createForm").addEventListener("submit", async (e) => {
       `Cashback Balance: $${fields.CashbackBalance}`,
       `Maturity Date: ${fields.MaturityDate}`,
       `Rewards Tier: ${fields.RewardsTier}`,
-      `Credit Card: ${fields.CreditCard}`
+      `Credit Card: ${fields.CreditCard}`,
+      ...formatTransactionLines(createdTxns)
     ].join("\n");
     document.getElementById("copyCreatedBtn").style.display = "block";
 
@@ -573,6 +591,7 @@ document.getElementById("copyCreatedBtn").addEventListener("click", (e) => {
 let currentRecordId = null;
 let currentCustomerId = null;
 let currentAccountSnapshot = null; // read-only fields not present in the edit inputs (incl. SocialSecurity, never PIN)
+let currentTransactions = [];
 
 document.getElementById("lookupForm").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -646,8 +665,10 @@ async function populateEditForm(record) {
   document.getElementById("transactionsList").innerHTML = '<p class="hint">Loading…</p>';
   try {
     const txns = await fetchTransactionsByIds(f.Transactions || []);
+    currentTransactions = txns;
     renderTransactionsList(txns);
   } catch (err) {
+    currentTransactions = [];
     document.getElementById("transactionsList").innerHTML =
       `<p class="hint">Could not load transactions: ${err.message}</p>`;
   }
@@ -669,8 +690,9 @@ document.getElementById("copyAccountBtn").addEventListener("click", (e) => {
     `Cashback Balance: ${s.cashbackBalance != null ? "$" + s.cashbackBalance : ""}`,
     `Maturity Date: ${s.maturityDate || ""}`,
     `Rewards Tier: ${s.rewardsTier || ""}`,
-    `Credit Card: ${s.creditCard || ""}`
+    `Credit Card: ${s.creditCard || ""}`,
     // PIN intentionally excluded — see confirm-box note above.
+    ...formatTransactionLines(currentTransactions)
   ].join("\n");
   copyToClipboard(dump, e.currentTarget);
 });
@@ -724,6 +746,7 @@ function resetLookup() {
   currentRecordId = null;
   currentCustomerId = null;
   currentAccountSnapshot = null;
+  currentTransactions = [];
   document.getElementById("lookupForm").reset();
   document.getElementById("lookupForm").style.display = "block";
   document.getElementById("editForm").style.display = "none";
