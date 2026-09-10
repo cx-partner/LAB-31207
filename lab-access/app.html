@@ -69,9 +69,10 @@
   button.primary:hover { background: var(--primary-dark); }
   button.primary:disabled { opacity: 0.6; cursor: not-allowed; }
   button.secondary {
-    margin-top: 10px; width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 8px;
-    background: #fff; color: var(--text); font-size: 0.9rem; cursor: pointer;
+    margin-top: 10px; width: 100%; padding: 10px; border: none; border-radius: 8px;
+    background: var(--primary); color: #fff; font-size: 0.9rem; font-weight: 600; cursor: pointer;
   }
+  button.secondary:hover { background: var(--primary-dark); }
 
   .banner { padding: 10px 12px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 14px; display: none; }
   .banner.error { background: var(--error-bg); color: var(--error-text); }
