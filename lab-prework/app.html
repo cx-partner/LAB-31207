@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab Prework</title>
+<style>
+  :root {
+    --bg: #f4f6f8;
+    --card: #ffffff;
+    --border: #dde3e8;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --primary: #0b5fff;
+    --primary-dark: #0847c4;
+    --error-bg: #fdecec;
+    --error-text: #a01818;
+    --success-bg: #e9f8ee;
+    --success-text: #146c2e;
+    --surface-alt: #f0f2f5;
+    --surface-alt-2: #f8f9fb;
+    --confirm-bg: #fff7e6;
+    --confirm-border: #f3d99b;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  body.dark {
+    --bg: #16171a;
+    --card: #202124;
+    --border: #3a3b3e;
+    --text: #e8eaed;
+    --muted: #9aa0a6;
+    --primary: #5b8def;
+    --primary-dark: #4472cc;
+    --error-bg: #3a2020;
+    --error-text: #ff8a8a;
+    --success-bg: #1f3324;
+    --success-text: #7be495;
+    --surface-alt: #26272a;
+    --surface-alt-2: #202124;
+    --confirm-bg: #3a3320;
+    --confirm-border: #6b5b2a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); padding: 24px 16px 64px; }
+  .wrap { max-width: min(720px, 94vw); margin: 0 auto; }
+  h1 { font-size: 1.6rem; margin: 0 0 4px; }
+  .subtitle { color: var(--muted); margin: 0 0 20px; font-size: 0.92rem; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px 32px; box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+
+  label { display: block; font-size: 0.82rem; font-weight: 600; margin: 14px 0 6px; }
+  label:first-child { margin-top: 0; }
+  input, select, textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px;
+    font-size: 0.95rem; font-family: inherit; background: var(--card); color: var(--text);
+  }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--primary); outline-offset: 0; }
+  .hint { font-size: 0.76rem; color: var(--muted); margin-top: 4px; }
+  textarea { resize: vertical; min-height: 60px; }
+  a { color: var(--primary); }
+  a:hover { color: var(--primary-dark); }
+  body.dark input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
+
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  fieldset { border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin: 14px 0 0; }
+  legend { font-size: 0.82rem; font-weight: 600; padding: 0 6px; }
+  .radio-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; }
+  .radio-row input { width: auto; }
+  .radio-row label { margin: 0; font-weight: 400; }
+
+  button.primary {
+    margin-top: 20px; width: 100%; padding: 12px; border: none; border-radius: 8px;
+    background: var(--primary); color: #fff; font-size: 0.95rem; font-weight: 600; cursor: pointer;
+  }
+  button.primary:hover { background: var(--primary-dark); }
+  button.primary:disabled { opacity: 0.6; cursor: not-allowed; }
+  button.secondary {
+    margin-top: 10px; width: 100%; padding: 10px; border: none; border-radius: 8px;
+    background: var(--primary); color: #fff; font-size: 0.9rem; font-weight: 600; cursor: pointer;
+  }
+  button.secondary:hover { background: var(--primary-dark); }
+
+  .banner { padding: 10px 12px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 14px; display: none; }
+  .banner.error { background: var(--error-bg); color: var(--error-text); }
+  .banner.success { background: var(--success-bg); color: var(--success-text); }
+  .banner.show { display: block; }
+
+  .result-grid { display: grid; gap: 12px; margin: 8px 0 20px; }
+  .result-row {
+    padding: 12px 14px; background: var(--surface-alt-2); border: 1px solid var(--border); border-radius: 8px;
+  }
+  .result-row .k { display: block; font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 4px; }
+  .result-row .v { font-size: 1rem; font-weight: 700; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .result-row .v2 { font-size: 0.85rem; color: var(--muted); margin-top: 2px; }
+  .result-row-head { display: flex; justify-content: space-between; align-items: center; }
+  .copy-btn {
+    font-size: 0.72rem; padding: 3px 10px; border: 1px solid var(--border); border-radius: 6px;
+    background: var(--card); color: var(--muted); cursor: pointer;
+  }
+  .copy-btn:hover { color: var(--primary); border-color: var(--primary); }
+
+  .pod-badge {
+    display: inline-block; padding: 6px 16px; background: var(--primary); color: #fff;
+    border-radius: 999px; font-size: 1.3rem; font-weight: 800; font-family: ui-monospace, monospace;
+  }
+
+  .section-title { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.03em; margin: 22px 0 8px; }
+  .section-title:first-child { margin-top: 0; }
+
+  .txn-row {
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem;
+  }
+  .txn-row:last-child { border-bottom: none; }
+  .txn-date { color: var(--muted); min-width: 84px; }
+  .txn-vendor { flex: 1; }
+  .txn-amount { font-weight: 700; }
+
+  .confirm-box {
+    margin-top: 18px; padding: 14px; background: var(--confirm-bg); border: 1px solid var(--confirm-border); border-radius: 8px;
+  }
+
+  .step-list { padding-left: 20px; margin: 10px 0; }
+  .step-list li { margin: 8px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Lab Prework</h1>
+  <p class="subtitle">Complete these required steps before the hands-on labs begin.</p>
+
+  <div class="card">
+    <!-- LOADING (shown briefly while we check for prior progress) -->
+    <div id="panelLoading">
+      <p class="hint">Checking your progress…</p>
+    </div>
+
+    <!-- STEP 0: INTRO -->
+    <div id="panelIntro" style="display:none;">
+      <p>This lab requires two quick steps, done in order:</p>
+      <ol class="step-list">
+        <li><strong>Get your POD.</strong> Enter your registered email and the classroom password to receive your POD number and Webex admin/agent credentials.</li>
+        <li><strong>Provision a test customer.</strong> We'll automatically set up a test banking customer tied to your POD, with sample transactions, for you to use during the exercises.</li>
+      </ol>
+      <p class="hint">Takes about a minute. You can come back to this page any time — if you've already completed a step, it won't ask you again.</p>
+      <button type="button" class="primary" id="startBtn">Start Prework</button>
+    </div>
+
+    <!-- STEP 1: POD -->
+    <div id="panelPod" style="display:none;">
+      <div class="banner" id="podBanner"></div>
+      <form id="podForm">
+        <label for="r_email">Your registered email</label>
+        <input id="r_email" type="email" required>
+
+        <label for="r_password">Classroom password</label>
+        <input id="r_password" type="password" required>
+        <div class="hint">Provided by the proctors in the classroom.</div>
+
+        <fieldset>
+          <legend>Do you have a US-based personal mobile number you can use for this lab?</legend>
+          <div class="radio-row">
+            <input type="radio" id="r_phone_yes" name="r_hasPhone" value="yes" required>
+            <label for="r_phone_yes">Yes</label>
+          </div>
+          <div class="radio-row">
+            <input type="radio" id="r_phone_no" name="r_hasPhone" value="no" required>
+            <label for="r_phone_no">No — assign me a customer profile</label>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="primary" id="podSubmitBtn">Get my POD</button>
+      </form>
+    </div>
+
+    <!-- STEP 2: CUSTOMER -->
+    <div id="panelCustomerStep" style="display:none;">
+      <div class="banner" id="customerBanner"></div>
+      <p class="hint" id="customerLoading">Checking for an existing test customer for your POD…</p>
+      <form id="customerForm" style="display:none;">
+        <p class="hint">Test customer ID: <strong id="cf_customerIdLabel"></strong> (from your assigned POD)</p>
+
+        <div class="row2">
+          <div>
+            <label for="cf_firstName">First name</label>
+            <input id="cf_firstName" required>
+          </div>
+          <div>
+            <label for="cf_lastName">Last name</label>
+            <input id="cf_lastName" required>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div>
+            <label for="cf_pin">Choose a 4-digit PIN</label>
+            <input id="cf_pin" inputmode="numeric" maxlength="4" placeholder="1234" required>
+          </div>
+          <div>
+            <label for="cf_dob">Date of birth</label>
+            <input id="cf_dob" type="date" required>
+          </div>
+        </div>
+
+        <label for="cf_phone">Phone number</label>
+        <input id="cf_phone" type="tel" placeholder="2109444550" required>
+
+        <label for="cf_email">Email</label>
+        <input id="cf_email" type="email" required>
+
+        <label for="cf_address">Address</label>
+        <textarea id="cf_address" required></textarea>
+
+        <div class="hint">3 starter transactions will be generated for this test customer automatically.</div>
+
+        <button type="submit" class="primary" id="customerSubmitBtn">Provision test customer</button>
+      </form>
+    </div>
+
+    <!-- STEP 3: RESULTS -->
+    <div id="panelResults" style="display:none;">
+      <div class="banner" id="resultsBanner"></div>
+      <div class="confirm-box">📥 Recommended: download both files below and save them somewhere safe before you leave this page.</div>
+
+      <div class="section-title">Your Lab POD</div>
+      <p style="text-align:center; margin: 4px 0 20px;">
+        <span class="pod-badge" id="resPodBadge"></span>
+      </p>
+      <div class="result-grid">
+        <div class="result-row">
+          <div class="result-row-head">
+            <span class="k">Admin login</span>
+            <button type="button" class="copy-btn" data-copy-email="resAdminEmail" data-copy-password="resLabPassword1">Copy</button>
+          </div>
+          <span class="v" id="resAdminEmail"></span>
+          <div class="v2">Password: <span id="resLabPassword1"></span></div>
+        </div>
+        <div class="result-row">
+          <div class="result-row-head">
+            <span class="k">Agent login</span>
+            <button type="button" class="copy-btn" data-copy-email="resAgentEmail" data-copy-password="resLabPassword2">Copy</button>
+          </div>
+          <span class="v" id="resAgentEmail"></span>
+          <div class="v2">Password: <span id="resLabPassword2"></span></div>
+        </div>
+        <div class="result-row" id="resCustomerProfileRow" style="display:none;">
+          <div class="result-row-head">
+            <span class="k">Customer profile</span>
+            <button type="button" class="copy-btn" data-copy-email="resCustomerProfileEmail" data-copy-password="resCustomerProfilePassword">Copy</button>
+          </div>
+          <span class="v" id="resCustomerProfileEmail"></span>
+          <div class="v2">Password: <span id="resCustomerProfilePassword"></span></div>
+        </div>
+      </div>
+      <button type="button" class="secondary" id="downloadPodBtn">Download POD Info</button>
+
+      <div class="section-title">Your Test Customer Record</div>
+      <div class="result-grid" id="customerSummaryGrid"></div>
+      <div id="resultsTransactionsList"></div>
+      <button type="button" class="secondary" id="downloadCustomerBtn">Download Customer Record Info</button>
+      <button type="button" class="secondary" id="toggleEditBtn">Edit customer record</button>
+
+      <form id="editCustomerForm" style="display:none;">
+        <div class="section-title">Edit customer record</div>
+        <div class="row2">
+          <div>
+            <label for="ec_firstName">First name</label>
+            <input id="ec_firstName" required>
+          </div>
+          <div>
+            <label for="ec_lastName">Last name</label>
+            <input id="ec_lastName" required>
+          </div>
+        </div>
+        <label for="ec_dob">Date of birth</label>
+        <input id="ec_dob" type="date" required>
+        <p class="hint">Your PIN isn't shown here for security. If you don't remember it, contact the lab proctors.</p>
+        <label for="ec_phone">Phone number</label>
+        <input id="ec_phone" type="tel" required>
+        <label for="ec_email">Email</label>
+        <input id="ec_email" type="email" required>
+        <label for="ec_address">Address</label>
+        <textarea id="ec_address" required></textarea>
+        <label for="ec_balance">Balance ($)</label>
+        <input id="ec_balance" type="number" step="0.01" required>
+
+        <div class="confirm-box">
+          <label for="ec_confirmPin">Enter your current PIN to authorize changes</label>
+          <input id="ec_confirmPin" inputmode="numeric" maxlength="4" placeholder="1234" required>
+        </div>
+
+        <button type="submit" class="primary" id="editCustomerSaveBtn">Save changes</button>
+        <button type="button" class="secondary" id="cancelEditBtn">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------- Theme sync (mirrors the surrounding site; see site-utils.js) ---------- */
+function applyTheme() {
+  try {
+    document.body.classList.toggle("dark", localStorage.getItem("cp-theme") === "slate");
+  } catch (err) {}
+}
+applyTheme();
+window.addEventListener("storage", (e) => { if (e.key === "cp-theme" || e.key === null) applyTheme(); });
+setInterval(applyTheme, 1000);
+
+/* ---------- Config ---------- */
+const CLASSROOM_PASSWORD = "WxOneAustin!26";
+const LAB_PASSWORD = "Webexone!26";
+const CUSTOMER_PASSWORD = "CustomerPwd";
+const POD_MIN = 1;
+const POD_MAX = 30;
+const CUSTOMER_PROFILE_MIN = 1;
+const CUSTOMER_PROFILE_MAX = 10;
+const PIN_PATTERN = /^\d{4}$/;
+const FIXED_TXN_COUNT = 3;
+
+// Lab Access's POD-tracking base
+const TRACKING_TOKEN = "patteXO8XdAm8i6xC.0ebc2ecd57e746b06d7f5e276cf1cef70cd896aa0ff4a305ed13403c88579ed5";
+const TRACKING_BASE_ID = "appSZDwSKoPSEtFWj";
+const TRACKING_API_URL = `https://api.airtable.com/v0/${TRACKING_BASE_ID}/${encodeURIComponent("PodAssignments")}`;
+
+// Customer Portal's banking demo base
+const BANKING_TOKEN = "pat7EAY1uk4ZqxSJ1.f582b560ccf0ae8e4c9a6b804a67e5e1d29a0173300e01f46c62cc6e9b675858";
+const BANKING_BASE_ID = "appcyTYF3nQqgReHR";
+const CUSTOMERS_API_URL = `https://api.airtable.com/v0/${BANKING_BASE_ID}/${encodeURIComponent("Customers")}`;
+const TRANSACTIONS_API_URL = `https://api.airtable.com/v0/${BANKING_BASE_ID}/${encodeURIComponent("Transactions")}`;
+
+// Fetched live from docs/lab_tracking/Registration_emails.csv (relative to this
+// app at docs/lab-prework/app.html). CSV columns: Partner, First Name, Last Name, Email
+const REGISTRATION_LIST_PATH = "../lab_tracking/Registration_emails.csv";
+let registeredAttendeesCache = null;
+
+const VENDORS = ["Amazon", "Starbucks", "Zara", "Best Buy", "Shell Gas", "Whole Foods", "Delta Airlines",
+  "Apple Store", "Uber", "Netflix", "99 Collectibles", "ACME Tech", "Hilton Hotels", "Target", "IKEA"];
+const CITIES = ["Madrid", "Amsterdam", "New York", "Chicago", "London", "Paris", "Berlin", "Barcelona",
+  "Miami", "Austin", "San Francisco", "Dublin"];
+
+/* ---------- Small helpers ---------- */
+function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+function pad(n, len) { return String(n).padStart(len, "0"); }
+function randomChoice(arr) { return arr[randInt(0, arr.length - 1)]; }
+function randomMoney(min, max) { return Math.round((Math.random() * (max - min) + min) * 100) / 100; }
+function randomSSN() { return `${pad(randInt(0, 999), 3)}-${pad(randInt(0, 99), 2)}-${pad(randInt(0, 9999), 4)}`; }
+function randomFutureDate(minMonths, maxMonths) {
+  const d = new Date();
+  d.setMonth(d.getMonth() + randInt(minMonths, maxMonths));
+  return d.toISOString().slice(0, 10);
+}
+function randomPastDate(minDays, maxDays) {
+  const d = new Date();
+  d.setDate(d.getDate() - randInt(minDays, maxDays));
+  return d.toISOString().slice(0, 10);
+}
+function normalizeEmail(e) { return e.trim().toLowerCase(); }
+function escapeFormulaValue(v) { return String(v).replace(/'/g, "\\'"); }
+function sanitizePhone(v) { return v.replace(/[^\d]/g, ""); }
+function showBanner(el, type, msg) { el.className = `banner ${type} show`; el.textContent = msg; }
+function hideBanner(el) { el.className = "banner"; el.textContent = ""; }
+
+function copyToClipboard(text, btn) {
+  const restoreLabel = btn.textContent;
+  const onDone = () => {
+    btn.textContent = "Copied!";
+    setTimeout(() => { btn.textContent = restoreLabel; }, 1500);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(onDone).catch(() => fallbackCopy(text, onDone));
+  } else {
+    fallbackCopy(text, onDone);
+  }
+}
+function fallbackCopy(text, onDone) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch (err) {}
+  document.body.removeChild(ta);
+  onDone();
+}
+function downloadTextFile(filename, text) {
+  const blob = new Blob([text], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function updateLabUserInfo(patch) {
+  let info = {};
+  try { info = JSON.parse(localStorage.getItem("labUserInfo") || "{}"); } catch (err) {}
+  Object.assign(info, patch);
+  try { localStorage.setItem("labUserInfo", JSON.stringify(info)); } catch (err) {}
+}
+
+/* ---------- Airtable: tracking base (POD assignments) ---------- */
+async function trackingFetch(pathSuffix, options = {}) {
+  const res = await fetch(`${TRACKING_API_URL}${pathSuffix}`, {
+    ...options,
+    headers: {
+      "Authorization": `Bearer ${TRACKING_TOKEN}`,
+      "Content-Type": "application/json",
+      ...(options.headers || {})
+    }
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data?.error?.message || `Request failed (${res.status})`);
+  return data;
+}
+async function fetchAllAssignments() {
+  const data = await trackingFetch("?pageSize=100");
+  return data.records;
+}
+async function findAssignmentByEmail(email) {
+  const formula = encodeURIComponent(`LOWER({Email})='${email.replace(/'/g, "\\'")}'`);
+  const data = await trackingFetch(`?filterByFormula=${formula}&maxRecords=1`);
+  return data.records[0] || null;
+}
+async function createAssignment(fields) {
+  const data = await trackingFetch("", { method: "POST", body: JSON.stringify({ records: [{ fields }] }) });
+  return data.records[0];
+}
+async function updateAssignment(recordId, fields) {
+  return trackingFetch(`/${recordId}`, { method: "PATCH", body: JSON.stringify({ fields }) });
+}
+function nextAvailable(used, min, max) {
+  for (let n = min; n <= max; n++) {
+    if (!used.has(n)) return n;
+  }
+  return null;
+}
+
+async function registerAttendee(email, needsCustomerProfile) {
+  const normalizedEmail = normalizeEmail(email);
+  const existing = await findAssignmentByEmail(normalizedEmail);
+  if (existing) {
+    const existingProfile = existing.fields.CustomerProfile ?? null;
+    if (!needsCustomerProfile || existingProfile != null) {
+      return { pod: existing.fields.POD, customerProfile: existingProfile };
+    }
+    const allRecords = await fetchAllAssignments();
+    const usedProfiles = new Set(allRecords.map((r) => r.fields.CustomerProfile).filter((v) => v != null));
+    const customerProfile = nextAvailable(usedProfiles, CUSTOMER_PROFILE_MIN, CUSTOMER_PROFILE_MAX);
+    if (customerProfile == null) return { pod: existing.fields.POD, customerProfile: null };
+    const updated = await updateAssignment(existing.id, { CustomerProfile: customerProfile });
+    return { pod: updated.fields.POD, customerProfile: updated.fields.CustomerProfile ?? null };
+  }
+
+  const allRecords = await fetchAllAssignments();
+  const usedPods = new Set(allRecords.map((r) => r.fields.POD).filter((v) => v != null));
+  const pod = nextAvailable(usedPods, POD_MIN, POD_MAX);
+  if (pod == null) throw new Error("All PODs are currently assigned. Please contact the lab proctors.");
+
+  let customerProfile = null;
+  if (needsCustomerProfile) {
+    const usedProfiles = new Set(allRecords.map((r) => r.fields.CustomerProfile).filter((v) => v != null));
+    customerProfile = nextAvailable(usedProfiles, CUSTOMER_PROFILE_MIN, CUSTOMER_PROFILE_MAX);
+  }
+  const fields = { Email: normalizedEmail, POD: pod };
+  if (customerProfile != null) fields.CustomerProfile = customerProfile;
+  const created = await createAssignment(fields);
+  return { pod: created.fields.POD, customerProfile: created.fields.CustomerProfile ?? null };
+}
+
+async function loadRegisteredAttendees() {
+  if (registeredAttendeesCache) return registeredAttendeesCache;
+  const res = await fetch(REGISTRATION_LIST_PATH, { cache: "no-store" });
+  if (!res.ok) throw new Error("Could not load the registered attendee list.");
+  const text = await res.text();
+  const map = new Map();
+  text.split(/\r?\n/).forEach((line) => {
+    if (!line.trim()) return;
+    const cols = line.split(",").map((v) => v.replace(/^["']|["']$/g, "").trim());
+    const email = (cols[3] || "").toLowerCase();
+    if (!email.includes("@")) return;
+    map.set(email, { partner: cols[0] || "", firstName: cols[1] || "", lastName: cols[2] || "" });
+  });
+  registeredAttendeesCache = map;
+  return registeredAttendeesCache;
+}
+
+/* ---------- Airtable: banking base (Customers / Transactions) ---------- */
+async function bankingFetch(baseUrl, pathSuffix, options = {}) {
+  const res = await fetch(`${baseUrl}${pathSuffix}`, {
+    ...options,
+    headers: {
+      "Authorization": `Bearer ${BANKING_TOKEN}`,
+      "Content-Type": "application/json",
+      ...(options.headers || {})
+    }
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data?.error?.message || `Request failed (${res.status})`);
+  return data;
+}
+const customersFetch = (path, opts) => bankingFetch(CUSTOMERS_API_URL, path, opts);
+const transactionsFetch = (path, opts) => bankingFetch(TRANSACTIONS_API_URL, path, opts);
+
+async function findCustomerByIdOnly(customerId) {
+  const formula = encodeURIComponent(`{CustomerID}='${escapeFormulaValue(customerId)}'`);
+  const data = await customersFetch(`?filterByFormula=${formula}&maxRecords=1`);
+  return data.records[0] || null;
+}
+async function findCustomer(customerId, pin) {
+  const formula = encodeURIComponent(
+    `AND({CustomerID}='${escapeFormulaValue(customerId)}',{PIN}='${escapeFormulaValue(pin)}')`
+  );
+  const data = await customersFetch(`?filterByFormula=${formula}&maxRecords=1`);
+  return data.records[0] || null;
+}
+async function createCustomerRecord(fields) {
+  return customersFetch("", { method: "POST", body: JSON.stringify({ records: [{ fields }] }) });
+}
+async function updateCustomerRecord(recordId, fields) {
+  return customersFetch(`/${recordId}`, { method: "PATCH", body: JSON.stringify({ fields }) });
+}
+async function createTransactionsForCustomer(customerRecordId, count) {
+  const created = [];
+  for (let i = 0; i < count; i++) {
+    const fields = {
+      CustomerID: [customerRecordId],
+      Amount: randomMoney(20, 3000),
+      Vendor: randomChoice(VENDORS),
+      City: randomChoice(CITIES),
+      Date: randomPastDate(1, 180)
+    };
+    await transactionsFetch("", { method: "POST", body: JSON.stringify({ records: [{ fields }] }) });
+    created.push(fields);
+  }
+  return created;
+}
+async function fetchTransactionsByIds(ids) {
+  if (!ids || ids.length === 0) return [];
+  const formula = "OR(" + ids.map((id) => `RECORD_ID()='${id}'`).join(",") + ")";
+  const params = new URLSearchParams({ filterByFormula: formula });
+  const data = await transactionsFetch(`?${params.toString()}`);
+  return data.records;
+}
+function formatTransactionLines(txns) {
+  if (!txns || !txns.length) return ["", "Transactions: none"];
+  const lines = txns.map((t, i) => {
+    const f = t.fields || t;
+    const amount = Number(f.Amount || 0).toLocaleString();
+    return `  ${i + 1}. ${f.Date || "—"} — ${f.Vendor || "—"} (${f.City || "—"}) — $${amount}`;
+  });
+  return ["", "Transactions:"].concat(lines);
+}
+function renderTransactionsList(records) {
+  const container = document.getElementById("resultsTransactionsList");
+  if (!records.length) {
+    container.innerHTML = '<p class="hint">No transactions yet.</p>';
+    return;
+  }
+  const sorted = [...records].sort((a, b) => (b.fields.Date || "").localeCompare(a.fields.Date || ""));
+  container.innerHTML = sorted.map((r) => {
+    const f = r.fields;
+    return `<div class="txn-row">
+      <span class="txn-date">${f.Date || "—"}</span>
+      <span class="txn-vendor">${f.Vendor || "—"} · ${f.City || "—"}</span>
+      <span class="txn-amount">$${Number(f.Amount || 0).toLocaleString()}</span>
+    </div>`;
+  }).join("");
+}
+
+/* ---------- Wizard state ---------- */
+let sessionPod = null;          // number
+let sessionCustomerProfile = null;
+let sessionAttendee = null;     // { partner, firstName, lastName }
+let sessionEmail = null;
+let sessionCustomerId = null;
+let sessionRecordId = null;
+let sessionTransactions = [];
+let sessionJustCreatedPin = null; // only set if this session created the record itself
+
+function showPanel(id) {
+  ["panelLoading", "panelIntro", "panelPod", "panelCustomerStep", "panelResults"].forEach((p) => {
+    document.getElementById(p).style.display = p === id ? "block" : "none";
+  });
+}
+
+document.getElementById("startBtn").addEventListener("click", () => showPanel("panelPod"));
+
+/* ---------- Step 1: POD ---------- */
+document.getElementById("podForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const banner = document.getElementById("podBanner");
+  hideBanner(banner);
+
+  const email = document.getElementById("r_email").value.trim();
+  const pwd = document.getElementById("r_password").value;
+  const phoneChoice = document.querySelector('input[name="r_hasPhone"]:checked');
+
+  if (pwd !== CLASSROOM_PASSWORD) {
+    return showBanner(banner, "error", "Incorrect classroom password.");
+  }
+  if (!phoneChoice) {
+    return showBanner(banner, "error", "Please answer the phone number question.");
+  }
+
+  let registeredAttendees;
+  try {
+    registeredAttendees = await loadRegisteredAttendees();
+  } catch (err) {
+    return showBanner(banner, "error", "Could not verify the attendee list. Please try again in a moment.");
+  }
+  const normalizedEmail = normalizeEmail(email);
+  const attendee = registeredAttendees.get(normalizedEmail);
+  if (!attendee) {
+    return showBanner(banner, "error", "That email isn't on the registered attendee list — check with the proctors.");
+  }
+
+  const btn = document.getElementById("podSubmitBtn");
+  btn.disabled = true;
+  btn.textContent = "Assigning your POD…";
+
+  try {
+    const entry = await registerAttendee(normalizedEmail, phoneChoice.value === "no");
+    sessionPod = entry.pod;
+    sessionCustomerProfile = entry.customerProfile;
+    sessionAttendee = attendee;
+    sessionEmail = normalizedEmail;
+
+    updateLabUserInfo({
+      email: normalizedEmail,
+      firstName: attendee.firstName || "",
+      lastName: attendee.lastName || "",
+      partner: attendee.partner || "",
+      pod: String(entry.pod),
+      adminEmail: `pod${entry.pod}+admin@wxone.wbx.ai`,
+      agentEmail: `pod${entry.pod}+agent@wxone.wbx.ai`,
+      labPassword: LAB_PASSWORD,
+      customerEmail: entry.customerProfile != null ? `customer${entry.customerProfile}@wxone.wbx.ai` : "",
+      customerPassword: entry.customerProfile != null ? CUSTOMER_PASSWORD : ""
+    });
+
+    await proceedToCustomerStep();
+  } catch (err) {
+    showBanner(banner, "error", err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Get my POD";
+  }
+});
+
+/* ---------- Step 2: Customer ---------- */
+async function proceedToCustomerStep() {
+  showPanel("panelCustomerStep");
+  const banner = document.getElementById("customerBanner");
+  hideBanner(banner);
+  document.getElementById("customerForm").style.display = "none";
+  document.getElementById("customerLoading").style.display = "block";
+
+  sessionCustomerId = `CUST-${pad(sessionPod, 3)}`;
+  document.getElementById("cf_customerIdLabel").textContent = sessionCustomerId;
+
+  try {
+    const existing = await findCustomerByIdOnly(sessionCustomerId);
+    if (existing) {
+      sessionJustCreatedPin = null;
+      await loadResultsFromRecord(existing);
+      return;
+    }
+  } catch (err) {
+    document.getElementById("customerLoading").style.display = "none";
+    return showBanner(banner, "error", `Could not check for an existing test customer: ${err.message}`);
+  }
+
+  // No existing test customer for this POD — show the creation form, prefilled.
+  document.getElementById("customerLoading").style.display = "none";
+  document.getElementById("cf_firstName").value = sessionAttendee.firstName || "";
+  document.getElementById("cf_lastName").value = sessionAttendee.lastName || "";
+  document.getElementById("cf_email").value = sessionEmail || "";
+  document.getElementById("cf_phone").value = "+1 ";
+  document.getElementById("cf_dob").max = new Date().toISOString().slice(0, 10);
+  document.getElementById("customerForm").style.display = "block";
+}
+
+document.getElementById("customerForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const banner = document.getElementById("customerBanner");
+  hideBanner(banner);
+
+  const firstName = document.getElementById("cf_firstName").value.trim();
+  const lastName = document.getElementById("cf_lastName").value.trim();
+  const pin = document.getElementById("cf_pin").value.trim();
+  const dob = document.getElementById("cf_dob").value;
+  const phone = sanitizePhone(document.getElementById("cf_phone").value.trim());
+  const email = document.getElementById("cf_email").value.trim();
+  const address = document.getElementById("cf_address").value.trim();
+
+  if (!PIN_PATTERN.test(pin)) {
+    return showBanner(banner, "error", "PIN must be exactly 4 digits.");
+  }
+  if (phone.length < 7) {
+    return showBanner(banner, "error", "Please enter a valid phone number.");
+  }
+
+  const btn = document.getElementById("customerSubmitBtn");
+  btn.disabled = true;
+  btn.textContent = "Provisioning…";
+
+  try {
+    const fields = {
+      CustomerID: sessionCustomerId,
+      FirstName: firstName,
+      LastName: lastName,
+      PIN: pin,
+      DOB: dob,
+      PhoneNumber: phone,
+      Email: email,
+      Address: address,
+      SocialSecurity: randomSSN(),
+      Balance: randomMoney(5001, 25000),
+      CashbackBalance: randomMoney(0, 3000),
+      MaturityDate: randomFutureDate(3, 36),
+      RewardsTier: randomChoice(["Basic", "Elite", "Standard"]),
+      CreditCard: randomChoice(["Travel Rewards Card", "Standard Cashback", "Platinum Card"])
+    };
+    const created = await createCustomerRecord(fields);
+    const newRecordId = created.records[0].id;
+
+    let createdTxns = [];
+    try {
+      createdTxns = await createTransactionsForCustomer(newRecordId, FIXED_TXN_COUNT);
+    } catch (txnErr) {
+      showBanner(banner, "error", `Customer created, but transactions failed: ${txnErr.message}`);
+    }
+
+    sessionRecordId = newRecordId;
+    sessionJustCreatedPin = pin;
+    sessionTransactions = createdTxns;
+    updateLabUserInfo({ customerId: sessionCustomerId });
+    renderResults(fields, createdTxns);
+  } catch (err) {
+    showBanner(banner, "error", err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Provision test customer";
+  }
+});
+
+async function loadResultsFromRecord(record) {
+  sessionRecordId = record.id;
+  const f = record.fields;
+  updateLabUserInfo({ customerId: f.CustomerID });
+
+  document.getElementById("resultsTransactionsList").innerHTML = '<p class="hint">Loading…</p>';
+  try {
+    sessionTransactions = await fetchTransactionsByIds(f.Transactions || []);
+  } catch (err) {
+    sessionTransactions = [];
+  }
+  renderResults(f, sessionTransactions);
+}
+
+/* ---------- Step 3: Results ---------- */
+function renderResults(customerFields, txns) {
+  showPanel("panelResults");
+
+  // POD section
+  const pod = sessionPod;
+  const adminEmail = `pod${pod}+admin@wxone.wbx.ai`;
+  const agentEmail = `pod${pod}+agent@wxone.wbx.ai`;
+  const customerProfileEmail = sessionCustomerProfile != null ? `customer${sessionCustomerProfile}@wxone.wbx.ai` : null;
+
+  document.getElementById("resPodBadge").textContent = `POD ${pod}`;
+  document.getElementById("resAdminEmail").textContent = adminEmail;
+  document.getElementById("resLabPassword1").textContent = LAB_PASSWORD;
+  document.getElementById("resAgentEmail").textContent = agentEmail;
+  document.getElementById("resLabPassword2").textContent = LAB_PASSWORD;
+
+  const custRow = document.getElementById("resCustomerProfileRow");
+  if (customerProfileEmail) {
+    document.getElementById("resCustomerProfileEmail").textContent = customerProfileEmail;
+    document.getElementById("resCustomerProfilePassword").textContent = CUSTOMER_PASSWORD;
+    custRow.style.display = "block";
+  } else {
+    custRow.style.display = "none";
+  }
+
+  // Customer section
+  const f = customerFields;
+  const grid = document.getElementById("customerSummaryGrid");
+  const rows = [
+    ["Customer ID", f.CustomerID],
+    ["Name", `${f.FirstName || ""} ${f.LastName || ""}`.trim()],
+    ["Date of Birth", f.DOB],
+    ["Phone Number", f.PhoneNumber],
+    ["Email", f.Email],
+    ["Address", f.Address],
+    ["Balance", f.Balance != null ? `$${Number(f.Balance).toLocaleString()}` : ""],
+    ["Rewards Tier", f.RewardsTier],
+    ["Credit Card", f.CreditCard],
+    ["Cashback Balance", f.CashbackBalance != null ? `$${Number(f.CashbackBalance).toLocaleString()}` : ""],
+    ["Maturity Date", f.MaturityDate]
+  ];
+  grid.innerHTML = rows.map(([k, v]) =>
+    `<div class="result-row"><span class="k">${k}</span><span class="v" style="font-size:0.9rem;">${v || "—"}</span></div>`
+  ).join("");
+
+  if (Array.isArray(txns) && txns.length && txns[0].fields) {
+    renderTransactionsList(txns);
+  } else if (Array.isArray(txns) && txns.length) {
+    renderTransactionsList(txns.map((t) => ({ fields: t })));
+  } else {
+    renderTransactionsList([]);
+  }
+
+  // Populate edit form defaults for when "Edit" is opened
+  document.getElementById("ec_firstName").value = f.FirstName || "";
+  document.getElementById("ec_lastName").value = f.LastName || "";
+  document.getElementById("ec_dob").value = f.DOB || "";
+  document.getElementById("ec_dob").max = new Date().toISOString().slice(0, 10);
+  document.getElementById("ec_phone").value = f.PhoneNumber || "";
+  document.getElementById("ec_email").value = f.Email || "";
+  document.getElementById("ec_address").value = f.Address || "";
+  document.getElementById("ec_balance").value = f.Balance != null ? f.Balance : 0;
+  document.getElementById("ec_confirmPin").value = "";
+  document.getElementById("editCustomerForm").style.display = "none";
+}
+
+document.querySelectorAll(".copy-btn[data-copy-email]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const emailEl = document.getElementById(btn.getAttribute("data-copy-email"));
+    const pwdEl = document.getElementById(btn.getAttribute("data-copy-password"));
+    const text = `Email: ${emailEl.textContent}\nPassword: ${pwdEl.textContent}`;
+    copyToClipboard(text, btn);
+  });
+});
+
+document.getElementById("downloadPodBtn").addEventListener("click", () => {
+  const lines = [document.getElementById("resPodBadge").textContent];
+  lines.push(`Admin: ${document.getElementById("resAdminEmail").textContent} / ${document.getElementById("resLabPassword1").textContent}`);
+  lines.push(`Agent: ${document.getElementById("resAgentEmail").textContent} / ${document.getElementById("resLabPassword2").textContent}`);
+  if (document.getElementById("resCustomerProfileRow").style.display !== "none") {
+    lines.push(`Customer profile: ${document.getElementById("resCustomerProfileEmail").textContent} / ${document.getElementById("resCustomerProfilePassword").textContent}`);
+  }
+  downloadTextFile(`pod-${sessionPod}-info.txt`, lines.join("\n"));
+});
+
+document.getElementById("downloadCustomerBtn").addEventListener("click", () => {
+  const grid = document.getElementById("customerSummaryGrid");
+  const lines = [...grid.querySelectorAll(".result-row")].map((row) => {
+    const k = row.querySelector(".k").textContent;
+    const v = row.querySelector(".v").textContent;
+    return `${k}: ${v}`;
+  });
+  if (sessionJustCreatedPin) lines.splice(1, 0, `PIN: ${sessionJustCreatedPin}`);
+  lines.push(...formatTransactionLines(sessionTransactions));
+  downloadTextFile(`${sessionCustomerId}-record.txt`, lines.join("\n"));
+});
+
+/* ---------- Edit customer record ---------- */
+document.getElementById("toggleEditBtn").addEventListener("click", () => {
+  const form = document.getElementById("editCustomerForm");
+  form.style.display = form.style.display === "none" ? "block" : "none";
+});
+document.getElementById("cancelEditBtn").addEventListener("click", () => {
+  document.getElementById("editCustomerForm").style.display = "none";
+});
+
+document.getElementById("editCustomerForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const banner = document.getElementById("resultsBanner");
+  hideBanner(banner);
+
+  const confirmPin = document.getElementById("ec_confirmPin").value.trim();
+  const phone = sanitizePhone(document.getElementById("ec_phone").value.trim());
+  const balance = parseFloat(document.getElementById("ec_balance").value);
+
+  if (!PIN_PATTERN.test(confirmPin)) {
+    return showBanner(banner, "error", "Enter your current 4-digit PIN to authorize changes.");
+  }
+  if (Number.isNaN(balance)) {
+    return showBanner(banner, "error", "Enter a valid balance.");
+  }
+
+  const btn = document.getElementById("editCustomerSaveBtn");
+  btn.disabled = true;
+  btn.textContent = "Saving…";
+
+  try {
+    const verified = await findCustomer(sessionCustomerId, confirmPin);
+    if (!verified || verified.id !== sessionRecordId) {
+      throw new Error("Incorrect PIN. Changes were not saved.");
+    }
+
+    const updatedFields = {
+      FirstName: document.getElementById("ec_firstName").value.trim(),
+      LastName: document.getElementById("ec_lastName").value.trim(),
+      DOB: document.getElementById("ec_dob").value,
+      PhoneNumber: phone,
+      Email: document.getElementById("ec_email").value.trim(),
+      Address: document.getElementById("ec_address").value.trim(),
+      Balance: balance
+    };
+    await updateCustomerRecord(sessionRecordId, updatedFields);
+
+    sessionJustCreatedPin = null; // no longer "just created" — don't leak PIN into future downloads
+    showBanner(banner, "success", "Changes saved.");
+    renderResults({ ...verified.fields, ...updatedFields }, sessionTransactions);
+    document.getElementById("editCustomerForm").style.display = "none";
+  } catch (err) {
+    showBanner(banner, "error", err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Save changes";
+  }
+});
+
+/* ---------- Resume on return visit ---------- */
+async function init() {
+  let info = null;
+  try { info = JSON.parse(localStorage.getItem("labUserInfo") || "null"); } catch (err) {}
+
+  if (info && info.pod && info.customerId) {
+    sessionPod = parseInt(info.pod, 10);
+    sessionEmail = info.email || null;
+    sessionAttendee = { firstName: info.firstName || "", lastName: info.lastName || "", partner: info.partner || "" };
+    const profileMatch = /^customer(\d+)@/.exec(info.customerEmail || "");
+    sessionCustomerProfile = profileMatch ? parseInt(profileMatch[1], 10) : null;
+    sessionCustomerId = info.customerId;
+
+    try {
+      const record = await findCustomerByIdOnly(sessionCustomerId);
+      if (record) {
+        await loadResultsFromRecord(record);
+        return;
+      }
+    } catch (err) {
+      // Couldn't verify — fall through to the normal intro flow below.
+    }
+  }
+  showPanel("panelIntro");
+}
+init();
+</script>
+</body>
+</html>

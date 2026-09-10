@@ -62,3 +62,38 @@
     if (e.key === "labUserInfo" || e.key === null) populate();
   });
 })();
+
+/* ---------- Hide the "Labs" nav link until Lab Prework is completed ---------- */
+/* This is convenience/guidance only, not real access control — the Labs page  */
+/* is still reachable by direct URL even while hidden from the nav.            */
+(function () {
+  function hasCompletedPrework() {
+    try {
+      var info = JSON.parse(localStorage.getItem("labUserInfo") || "null");
+      return !!(info && info.pod && info.customerId);
+    } catch (err) {
+      return false;
+    }
+  }
+  function toggleLabsNav() {
+    var done = hasCompletedPrework();
+    document.querySelectorAll("a").forEach(function (a) {
+      var label = (a.textContent || "").trim().toLowerCase();
+      var href = (a.getAttribute("href") || "").toLowerCase();
+      var isLabsLink = label === "labs" || href.indexOf("labs/") !== -1 || href.indexOf("labs.md") !== -1 || href === "labs";
+      if (!isLabsLink) return;
+      var container = a.closest("li") || a;
+      container.style.display = done ? "" : "none";
+    });
+  }
+  toggleLabsNav();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", toggleLabsNav);
+  }
+  window.addEventListener("storage", function (e) {
+    if (e.key === "labUserInfo" || e.key === null) toggleLabsNav();
+  });
+  // Re-check periodically to survive MkDocs "instant navigation" DOM swaps,
+  // which don't fire a normal page load / DOMContentLoaded.
+  setInterval(toggleLabsNav, 1000);
+})();

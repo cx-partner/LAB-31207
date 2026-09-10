@@ -9,9 +9,13 @@
         <meta name="author" content="Luis Garcia Delgado, Juan Corral, Sebastian Hernandez, Stephanie Ross">
       
       
-        <link rel="canonical" href="https://cx-partner.github.io/LAB-31207/customer-portal/">
+        <link rel="canonical" href="https://cx-partner.github.io/LAB-31207/lab-prework/">
       
       
+        <link rel="prev" href="../overview/">
+      
+      
+        <link rel="next" href="../lab1_campaign_manager/">
       
       
         
@@ -22,7 +26,7 @@
     
     
       
-        <title>Customer Portal - LAB-31207 - Campaign Manager and AI Agent with MCP</title>
+        <title>Lab Prework - LAB-31207 - Campaign Manager and AI Agent with MCP</title>
       
     
     
@@ -86,11 +90,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#customer-portal" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -122,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Customer Portal
+              Lab Prework
             
           </span>
         </div>
@@ -253,9 +252,11 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../lab-prework/" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
   
@@ -388,10 +389,17 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../lab-prework/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -407,6 +415,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -577,16 +586,15 @@
 
 
 
-<h1 id="customer-portal">Customer Portal<a class="headerlink" href="#customer-portal" title="Permanent link">¶</a></h1>
-<p>Create your customer record, or look up and update an existing one using your Customer ID and PIN.</p>
-<p>Use your two-digits assigned POD number (XX) for your Customer ID: CUST-0XX</p>
+  <h1>Lab Prework</h1>
+
 <p><a href="app.html" target="_blank">Open in a new tab ↗</a></p>
 
-<iframe id="customerPortalFrame" src="app.html" style="width:100%; min-height:500px; border:none;" title="Customer Portal"></iframe>
+<iframe id="labPreworkFrame" src="app.html" style="width:100%; min-height:500px; border:none;" title="Lab Prework"></iframe>
 
 <script>
 (function () {
-  var frame = document.getElementById("customerPortalFrame");
+  var frame = document.getElementById("labPreworkFrame");
   function resizeFrame() {
     var top = frame.getBoundingClientRect().top;
     var available = window.innerHeight - top - 24;
@@ -595,31 +603,7 @@
   resizeFrame();
   window.addEventListener("resize", resizeFrame);
   window.addEventListener("load", resizeFrame);
-  setTimeout(resizeFrame, 300); // catch late layout shifts (fonts, etc.)
-})();
-</script>
-
-<script>
-(function () {
-  function currentScheme() {
-    return document.documentElement.getAttribute("data-md-color-scheme") ||
-      (document.body && document.body.getAttribute("data-md-color-scheme")) || "";
-  }
-  function sync() {
-    var scheme = currentScheme();
-    if (scheme) localStorage.setItem("cp-theme", scheme);
-  }
-  sync();
-  if (window.MutationObserver) {
-    new MutationObserver(sync).observe(document.documentElement, {
-      attributes: true, attributeFilter: ["data-md-color-scheme"]
-    });
-    if (document.body) {
-      new MutationObserver(sync).observe(document.body, {
-        attributes: true, attributeFilter: ["data-md-color-scheme"]
-      });
-    }
-  }
+  setTimeout(resizeFrame, 300);
 })();
 </script>
 
@@ -652,6 +636,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab1_campaign_manager/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 1 - Native Campaign Manager">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab 1 - Native Campaign Manager
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
