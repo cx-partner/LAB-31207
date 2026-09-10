@@ -1,6 +1,9 @@
 # Customer Portal
 
-Create a new account, or look up and update an existing one using your Customer ID and PIN.
+Create your customer record, or look up and update an existing one using your Customer ID and PIN.
+
+Use your two-digits assigned POD number (XX) for your Customer ID: CUST-0XX
+
 
 <p><a href="app.html" target="_blank">Open in a new tab ↗</a></p>
 
