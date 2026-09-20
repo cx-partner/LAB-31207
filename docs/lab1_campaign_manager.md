@@ -14,6 +14,8 @@ In this lab, you will configure an **end-to-end outbound IVR campaign** using We
     - **Campaign Manager Configuration:** Complete all prerequisite campaign administration settings including business days, contact modes, field mappings, suppression rules, and telephony outcomes.
     - **Campaign Activation:** Create a campaign group, configure and activate the campaign, and upload a contact list to trigger live calls.
 
+    Note: To allow attendees to complete de labs, some of the items will be pre-configured.
+
 ???+ Challenge "Lab Outcome"
     By the end of Lab 1, you will have a fully operational outbound IVR campaign that:
 
