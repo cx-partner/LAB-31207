@@ -983,20 +983,101 @@
 <h2 id="lab-23-select-mcp-tools-as-actions">Lab 2.3 - Select MCP Tools as Actions<a class="headerlink" href="#lab-23-select-mcp-tools-as-actions" title="Permanent link">¶</a></h2>
 <p>The LAB-31207 MCP server is already configured in the shared lab tenant. Select its available tools from the AI Agent action configuration; do not create or edit an MCP server as part of the lab.</p>
 <details class="info" open="open">
-<summary>Optional learning: connect this MCP server in another tenant</summary>
-<p>This is reference material only. Do not perform these steps in the shared lab tenant.</p>
+<summary>Optional learning: register and provision this MCP server in another tenant</summary>
+<p>This is reference material only. Do not perform these steps in the shared lab tenant. You need a <strong>Customer Administrator</strong> account for the Control Hub steps; a Partner account cannot authorize Agentic Apps for the customer organization.</p>
+<p><strong>1. Register the Agentic App in the Webex Developer Portal</strong></p>
 <ol>
-<li>In <a href="https://admin.webex.com" rel="noopener" target="_blank">Control Hub</a>, open <strong>Apps</strong> &gt; <strong>Agentic Apps</strong> [VERIFY: exact navigation labels].</li>
+<li>Go to the <a href="https://developer.webex.com" rel="noopener" target="_blank">Webex Developer Portal</a> and sign in with your Webex credentials.</li>
+<li>On the home page, select <strong>Start Building Apps</strong>, then <strong>Create an Agentic App</strong>.</li>
 <li>
-<p>Add an MCP server [VERIFY: exact add-server label] with the endpoint below:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>https://mcp.cx-tme.com/lab-31207/mcp
-</span></code></pre></div>
+<p>Enter the following application details:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Agentic App Module</strong></td>
+<td><code>MCP</code></td>
+</tr>
+<tr>
+<td><strong>Transport Type</strong></td>
+<td><code>Streamable HTTP</code></td>
+</tr>
+<tr>
+<td><strong>Agentic App Name</strong></td>
+<td><code>LAB-31207 Debt Collection MCP Server</code></td>
+</tr>
+<tr>
+<td><strong>Description</strong></td>
+<td><code>MCP server providing customer authentication, debt payment, and transaction-history tools for the Webex Financial Group debt-collection agent.</code></td>
+</tr>
+<tr>
+<td><strong>Agentic App Icon</strong></td>
+<td>Choose any suitable icon.</td>
+</tr>
+<tr>
+<td><strong>Agentic App URL</strong></td>
+<td><code>https://mcp.cx-tme.com/lab-31207/mcp</code></td>
+</tr>
+<tr>
+<td><strong>Agentic App auth type</strong></td>
+<td><code>API Key</code></td>
+</tr>
+</tbody>
+</table>
 </li>
 <li>
-<p>Configure Bearer API-key authentication [VERIFY: exact authentication label]. Obtain the API key directly from the facilitator; it is intentionally not included in this guide or source repository.</p>
+<p>Select <strong>Add Agentic App</strong>. Keep the app private to your tenant unless you specifically intend to distribute it through App Hub.</p>
 </li>
-<li>Allow the server and verify that its five tools appear: <code>authenticate_user</code>, <code>fetch_balance</code>, <code>payment_session</code>, <code>confirm_payment</code>, and <code>fetch_transactions</code>.</li>
 </ol>
+<p><strong>2. Provision the Agentic App in Control Hub</strong></p>
+<ol>
+<li>In <a href="https://admin.webex.com" rel="noopener" target="_blank">Control Hub</a>, go to <strong>Apps</strong> &gt; <strong>Agentic Apps</strong>.</li>
+<li>Open <code>LAB-31207 Debt Collection MCP Server</code>.</li>
+<li>On the <strong>General</strong> tab, set access to <strong>Allowed</strong> for the organization and save.</li>
+<li>On the <strong>Authentication</strong> tab, confirm the method is <strong>API Key</strong>, enter the API key supplied separately by the facilitator, and save. The key is intentionally not included in this guide or repository.</li>
+<li>
+<p>On the <strong>Tools</strong> tab, enable and save these five tools:</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>authenticate_user</code></td>
+<td>Creates the PIN-digit challenge used to authenticate a caller.</td>
+</tr>
+<tr>
+<td><code>fetch_balance</code></td>
+<td>Retrieves the customer account, balance, maturity date, and delivery context.</td>
+</tr>
+<tr>
+<td><code>payment_session</code></td>
+<td>Creates a NovaPay payment session and initiates payment-link delivery.</td>
+</tr>
+<tr>
+<td><code>confirm_payment</code></td>
+<td>Confirms a completed NovaPay payment and updates the balance.</td>
+</tr>
+<tr>
+<td><code>fetch_transactions</code></td>
+<td>Retrieves up to five recent customer transactions.</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>If available in your tenant, enable automatic tool-signature updates only when you intend to accept future MCP tool changes without reauthorization [VERIFY: exact Control Hub label].</p>
+</li>
+</ol>
+<p>After the app is allowed, authenticated, and its tools are enabled, its tools become available to autonomous AI Agents in that organization.</p>
 </details>
 <details class="webex" open="open">
 <summary>Add MCP Tools to Alex</summary>
@@ -1102,7 +1183,7 @@
 <li>Complete authentication. Alex will challenge you with 2 of the 4 digits from the PIN in your test profile (<code>authenticate_user</code>).</li>
 <li>
 <p>Confirm Alex reports your balance and maturity date, and offers to take a payment (<code>fetch_balance</code>):
-</p><div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>    Authentication successful. John, your current account balance is $4,650 and your debt matures on April 28, 2026. Would you like to make a total or partial payment today?
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>    Authentication successful. John, your current account balance is $4,650 and your debt matures on April 28, 2026. Would you like to make a total or partial payment today?
 </span></code></pre></div><p></p>
 </li>
 <li>
@@ -1123,7 +1204,7 @@
 </li>
 <li>
 <p>Return to the conversation with Alex and confirm the payment. Alex checks the status with NovaPay and updates the balance (<code>confirm_payment</code>):
-</p><div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>    Your payment of $650 was successful. Confirmation code: NP-1EOQTHWK. Your   remaining balance is $4,000. Do you need any further assistance?
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>    Your payment of $650 was successful. Confirmation code: NP-1EOQTHWK. Your   remaining balance is $4,000. Do you need any further assistance?
 </span></code></pre></div><p></p>
 <p>Verify the balance was updated in the customer's record in the Customer Portal.</p>
 </li>
@@ -1132,11 +1213,11 @@
 </li>
 <li>
 <p>Ask about your last transactions. Alex returns up to the last 5 with (<code>fetch_transactions</code>). Try a few different queries — last transactions, most recent, or a transaction in a specific city:
-</p><div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>    Here are your last three transactions:
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>        - $1,200 at 99 Collectibles in Madrid on February 4, 2026
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>        - $900 at 99 Collectibles in New York on February 2, 2026
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>        - $2,400 at ACME Tech in Amsterdam on February 1, 2026
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    Would you like to see more transactions or need help with anything else?
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>    Here are your last three transactions:
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>        - $1,200 at 99 Collectibles in Madrid on February 4, 2026
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        - $900 at 99 Collectibles in New York on February 2, 2026
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        - $2,400 at ACME Tech in Amsterdam on February 1, 2026
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    Would you like to see more transactions or need help with anything else?
 </span></code></pre></div><p></p>
 </li>
 <li>
@@ -1224,11 +1305,11 @@
 </li>
 <li>
 <p>In <strong>State Event</strong>, set <strong>Event Data</strong> to:</p>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="nt">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{NewContact.DNIS}}"</span><span class="p">,</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{firstName}}"</span><span class="p">,</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{lastName}}"</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">}</span>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nt">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{NewContact.DNIS}}"</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{firstName}}"</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{lastName}}"</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span>
 </span></code></pre></div>
 <details class="tip" open="open">
 <summary>Tip</summary>
