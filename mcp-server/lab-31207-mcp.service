@@ -1,0 +1,26 @@
+[Unit]
+Description=LAB-31207 Debt Collection MCP Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/opt/mcp/LAB-31207
+EnvironmentFile=/opt/mcp/LAB-31207/.env
+Environment=XDG_DATA_HOME=/opt/mcp/LAB-31207/.data
+ExecStart=/opt/mcp/LAB-31207/venv/bin/python /opt/mcp/LAB-31207/server.py
+Restart=always
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=full
+ReadWritePaths=/opt/mcp/LAB-31207/.data
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

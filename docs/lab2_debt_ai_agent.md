@@ -122,9 +122,8 @@ The fastest path for a 4-hour lab is to import a baseline agent and review the i
         [payment_session]
         [confirm_payment]
         [fetch_transactions]
-        [fraud_trasfer]
 
-    You will configure them in the [Select MCP Tools as Actions](#lab-23-select-mcp-tools-as-actions) section. 
+    You will configure the five MCP tools in the [Select MCP Tools as Actions](#lab-23-select-mcp-tools-as-actions) section. The native `fraud_transfer` action is configured separately; it is not an MCP tool.
 
     ???+ Inline info "Alex Conversational settings"
         <figure markdown>
@@ -213,27 +212,21 @@ In this lab, we will use just *File* ingestion.
 
 ## Lab 2.3 - Select MCP Tools as Actions
 
-The MCP server has been prebuilt and is already configured to the Webex Lab tenant. You will only need to select the available MCP tools from the AI Agent action configuration. But before that, let's confirm the MCP tools are available in your tenant. 
+The LAB-31207 MCP server is already configured in the shared lab tenant. Select its available tools from the AI Agent action configuration; do not create or edit an MCP server as part of the lab.
 
-`[VERIFY: the MCP server configuration for the tenant and the available tools]`
+???+ info "Optional learning: connect this MCP server in another tenant"
 
-???+ challenge "Optional: Verify MCP Server tools in Control Hub"
+    This is reference material only. Do not perform these steps in the shared lab tenant.
 
-    ???+ danger "IMPORTANT!!!!"
-         The MCP Server configuration is shared across all lab participants.  
-         ==CRITICAL: Do not modify any MCP Server settings in the lab tenant.==
-    
-    1. Go to [Control Hub](https://admin.webex.com){:target="_blank" rel="noopener"}
-    2. in the left  navigation panel, click on **Apps**
-    3. Select the **Agentic Apps** tab
-    4. Verify that the `Finance_MCP_WebexOne` MCP Server is listed with *Allowed* access.
-    5. Click on the server name. 
-    6. On the **General** tab, confirm that:
-        - **Access** is set to `Àllowed for all users` 
-        - **Authorize automatic server data updates** is enabled (ensuring updates in the server take effect without requiring re-authorization).
-    7. Switch to the **Tools** tab and verify that all the rquired actions (listed previously) are present and set to allowed. 
+    1. In [Control Hub](https://admin.webex.com){:target="_blank" rel="noopener"}, open **Apps** > **Agentic Apps** [VERIFY: exact navigation labels].
+    2. Add an MCP server [VERIFY: exact add-server label] with the endpoint below:
 
-`[VERIFY: insert video to add actions - for one action]`
+        ```text
+        https://mcp.cx-tme.com/lab-31207/mcp
+        ```
+
+    3. Configure Bearer API-key authentication [VERIFY: exact authentication label]. Obtain the API key directly from the facilitator; it is intentionally not included in this guide or source repository.
+    4. Allow the server and verify that its five tools appear: `authenticate_user`, `fetch_balance`, `payment_session`, `confirm_payment`, and `fetch_transactions`.
 
 ???+ webex "Add MCP Tools to Alex"
     1. In AI Agent Studio, open your AI Agent `PODXX-LAB-31207_Alex`.
@@ -242,13 +235,13 @@ The MCP server has been prebuilt and is already configured to the Webex Lab tena
     4. Choose **Select Available** [VERIFY: exact UI label].
     5. Select following MCP tools required for Alex.
 
-        | Tool | Description | Entities |
+        | MCP tool | What Alex uses it for | Required context |
         |---|---|---|
-        | `[VERIFY: authenticate_user]` | This action returns two random postions (1st, 2nd, 3rd, or 4th) and the corresponding digits in the 4-digit PIN for the Agent to complete the authentication| PIN |
-        | `[VERIFY: fetch_balance]` | Using the customer's phone number, fetch the following details from the Customer DB: Record ID, Customer ID, Account Balance, Email...| PhoneNumber |
-        | `[VERIFY: payment_session]` | Generates a NovaPay payment session for the amount selected by the customer. The payment session URL is sent to the customer via email. | SessionId, debt_amount, email |
-        | `[VERIFY: confirm_payment]` | Confirms payment with NovaPay service and updates the remaining balance in the customer DB. | Balance, PaymentSessionId, RecordID |
-        | `[VERIFY: fetch_transactions]` | Fetch up to 5 most recent transactions from a customer account. | CustomerID |
+        | `authenticate_user` | Returns two randomly selected positions and digits from the 4-digit PIN so Alex can challenge the caller. | PIN returned by `fetch_balance` |
+        | `fetch_balance` | Retrieves the customer record, balance, maturity date, and delivery context from the customer database. | Phone number |
+        | `payment_session` | Creates a NovaPay session for the agreed amount and sends the link through the customer's configured delivery channel. | Payment amount and account context returned by `fetch_balance` |
+        | `confirm_payment` | Confirms a completed NovaPay payment and updates the remaining customer balance. | Record ID and payment-session ID |
+        | `fetch_transactions` | Retrieves up to five recent transactions for the authenticated customer. | Customer ID |
 
 
     6. Review each selected action and confirm the input schema is automatically populated from the MCP tool definition. Note the Action Type in the Action list is set to MCP for all of them.
@@ -262,17 +255,18 @@ Before connecting Alex to the campaign and going live, It is essential to valida
 
 
 ???+ webex "Prepare a Test Customer Profile"
-    Make sure you have a populated entry in the customer CRM through the [Customer Portal](https://cx-partner.github.io/LAB-31207/customer-portal/){:target="_blank" rel="noopener"} for your test customer. The `Customer Portal` tool generates an entry in the Customers table and in the Transsactions table for your fake customer. Most fields can be fake data, and are actually automatically generated by the Customer Portal tool, but the following must be real, since Alex will use them to actually reach you:
+    Complete the [lab prework](../lab-prework/){:target="_blank" rel="noopener"} to provision the test customer used in this scenario. It assigns either your personal US mobile number or an assigned Webex Calling customer profile, and records the delivery route needed for the payment link.
 
     | Field | Requirement |
     |---|---|
-    | Phone number | Real — used to recover customer data |
-    | Email | Real — used to receive the NovaPay payment link |
+    | Personal US mobile number | Used to recover customer data and receive the NovaPay payment link by SMS. |
+    | Assigned Webex Calling customer profile | Use its assigned number for the call; the NovaPay payment link is delivered to your registered email. |
+    | Email | Required for the profile; it must be reachable when using an assigned Webex Calling customer profile. |
     | 4-digit PIN | Any value — used authenticate the user|
     | Account balance | automatically generated |
     | Transactions | automatically generated (up to 5 sample transactions) |
 
-    If you already created this profile earlier in the lab, skip this step and reuse it.
+    If you already completed prework, reuse that test customer rather than creating a second record in the Customer Portal.
 
 ???+ tool "Run the Preview Scenario"
     1. In AI Agent Studio, open `PODXX-LAB-31207_Alex`.
@@ -285,33 +279,11 @@ Before connecting Alex to the campaign and going live, It is essential to valida
         Authentication successful. John, your current account balance is $4,650 and your debt matures on April 28, 2026. Would you like to make a total or partial payment today?
     ```
 
-    7. Choose a partial payment and give an amount. Alex should generate a NovaPay session and confirm it was emailed (`payment_session`):
-    ```text
-        A secure NovaPay payment link for $650 has been sent to your email address. Once you complete the payment, please let me know so I can confirm your transaction and update your balance.
-    ```
+    7. Choose a partial payment and give an amount. Alex should generate a NovaPay session and confirm that the secure payment link was sent through your delivery channel (`payment_session`):
+        - Personal US mobile number: text message (SMS).
+        - Assigned Webex Calling customer profile: email.
 
-    8. Check your email (check spam if it doesn't arrive quickly). It should look like:
-    ```text
-        Dear Customer,
-
-        Thank you for speaking with me today regarding your outstanding balance with Webex Financial Group.
-
-        As we discussed, please find the secure link below to process your payment of $650. This link is unique to your account and is powered by our secure payment partner, NovaPay.
-
-        https://cx-partner.github.io/NovaPay/backend/frontend/index.html?sessionId=<session-id>&amount=650
-
-        Important Information:
-        Account Status: Completing this payment ensures your account remains in good standing before your maturity date.
-        Confirmation: Once the transaction is complete, I will automatically update your balance in our database.
-
-        If you have any questions or did not authorize this request, please contact our customer service department immediately.
-
-        Best regards,
-
-        Alex
-        Automated Service specialist
-        Webex Financial Group
-    ```
+    8. Open the link from the applicable channel. For email delivery, check spam if it does not arrive quickly.
 
     9. Click the link, fill in the NovaPay payment interface, and click **Pay Now**. NovaPay returns a confirmation message.
         <figure markdown style="width: 30%;">
@@ -342,7 +314,7 @@ Before connecting Alex to the campaign and going live, It is essential to valida
     Refer to the [Test your AI Agent](#) section for details on how to troubleshoot the AI Agent and the Actions in case of error.
 
     - **Debt disclosed before authentication**: Review the escalation/authentication logic in the Instructions tab — Alex should never call `fetch_balance` before `authenticate_user` succeeds.
-    - **No payment email arrives**: Check spam, and confirm the email address on the test profile is a real, reachable address.
+    - **No payment link arrives**: For a personal US mobile number, confirm the phone can receive SMS. For an assigned Webex Calling customer profile, check spam and confirm the registered email is reachable.
     - **Balance doesn't update after payment**: Open the session details for `confirm_payment` and check the exact input sent to the MCP tool.
     - **Transactions come back empty**: Confirm sample transactions are populated for that customer in the Customer Portal.
     - **No MCP tools are visible**: Confirm the Agentic App is allowed and tools are enabled for the organization.
