@@ -214,19 +214,47 @@ In this lab, we will use just *File* ingestion.
 
 The LAB-31207 MCP server is already configured in the shared lab tenant. Select its available tools from the AI Agent action configuration; do not create or edit an MCP server as part of the lab.
 
-???+ info "Optional learning: connect this MCP server in another tenant"
+???+ info "Optional learning: register and provision this MCP server in another tenant"
 
-    This is reference material only. Do not perform these steps in the shared lab tenant.
+    This is reference material only. Do not perform these steps in the shared lab tenant. You need a **Customer Administrator** account for the Control Hub steps; a Partner account cannot authorize Agentic Apps for the customer organization.
 
-    1. In [Control Hub](https://admin.webex.com){:target="_blank" rel="noopener"}, open **Apps** > **Agentic Apps** [VERIFY: exact navigation labels].
-    2. Add an MCP server [VERIFY: exact add-server label] with the endpoint below:
+    **1. Register the Agentic App in the Webex Developer Portal**
 
-        ```text
-        https://mcp.cx-tme.com/lab-31207/mcp
-        ```
+    1. Go to the [Webex Developer Portal](https://developer.webex.com){:target="_blank" rel="noopener"} and sign in with your Webex credentials.
+    2. On the home page, select **Start Building Apps**, then **Create an Agentic App**.
+    3. Enter the following application details:
 
-    3. Configure Bearer API-key authentication [VERIFY: exact authentication label]. Obtain the API key directly from the facilitator; it is intentionally not included in this guide or source repository.
-    4. Allow the server and verify that its five tools appear: `authenticate_user`, `fetch_balance`, `payment_session`, `confirm_payment`, and `fetch_transactions`.
+        | Field | Value |
+        |---|---|
+        | **Agentic App Module** | `MCP` |
+        | **Transport Type** | `Streamable HTTP` |
+        | **Agentic App Name** | `LAB-31207 Debt Collection MCP Server` |
+        | **Description** | `MCP server providing customer authentication, debt payment, and transaction-history tools for the Webex Financial Group debt-collection agent.` |
+        | **Agentic App Icon** | Choose any suitable icon. |
+        | **Agentic App URL** | `https://mcp.cx-tme.com/lab-31207/mcp` |
+        | **Agentic App auth type** | `API Key` |
+
+    4. Select **Add Agentic App**. Keep the app private to your tenant unless you specifically intend to distribute it through App Hub.
+
+    **2. Provision the Agentic App in Control Hub**
+
+    1. In [Control Hub](https://admin.webex.com){:target="_blank" rel="noopener"}, go to **Apps** > **Agentic Apps**.
+    2. Open `LAB-31207 Debt Collection MCP Server`.
+    3. On the **General** tab, set access to **Allowed** for the organization and save.
+    4. On the **Authentication** tab, confirm the method is **API Key**, enter the API key supplied separately by the facilitator, and save. The key is intentionally not included in this guide or repository.
+    5. On the **Tools** tab, enable and save these five tools:
+
+        | Tool | Purpose |
+        |---|---|
+        | `authenticate_user` | Creates the PIN-digit challenge used to authenticate a caller. |
+        | `fetch_balance` | Retrieves the customer account, balance, maturity date, and delivery context. |
+        | `payment_session` | Creates a NovaPay payment session and initiates payment-link delivery. |
+        | `confirm_payment` | Confirms a completed NovaPay payment and updates the balance. |
+        | `fetch_transactions` | Retrieves up to five recent customer transactions. |
+
+    6. If available in your tenant, enable automatic tool-signature updates only when you intend to accept future MCP tool changes without reauthorization [VERIFY: exact Control Hub label].
+
+    After the app is allowed, authenticated, and its tools are enabled, its tools become available to autonomous AI Agents in that organization.
 
 ???+ webex "Add MCP Tools to Alex"
     1. In AI Agent Studio, open your AI Agent `PODXX-LAB-31207_Alex`.
