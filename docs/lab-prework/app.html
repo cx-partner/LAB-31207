@@ -774,7 +774,8 @@ document.getElementById("customerForm").addEventListener("submit", async (e) => 
       CashbackBalance: randomMoney(0, 3000),
       MaturityDate: randomFutureDate(3, 36),
       RewardsTier: randomChoice(["Basic", "Elite", "Standard"]),
-      CreditCard: randomChoice(["Travel Rewards Card", "Standard Cashback", "Platinum Card"])
+      CreditCard: randomChoice(["Travel Rewards Card", "Standard Cashback", "Platinum Card"]),
+      WebexNumber: sessionCustomerProfile != null
     };
     const created = await createCustomerRecord(fields);
     const newRecordId = created.records[0].id;
