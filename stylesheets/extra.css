@@ -63,3 +63,14 @@ copy.copied {
   color: #2ecc71;
   transition: all 0.2s ease;
 }
+
+/* ---------- Lab Prework gating ---------- */
+/* Hide any link pointing into the Labs section until Lab Prework is done.
+   Hidden by default (CSS applies before first paint, so there's no flash);
+   site-utils.js reveals it by adding data-prework-done to <html> once the
+   attendee has completed prework. This single href-based rule covers the
+   top nav tab, the left sidebar entry, and the footer "next page" link,
+   since all of them are just <a> tags whose href points into /labs/. */
+html:not([data-prework-done]) a[href*="/labs/"] {
+  display: none !important;
+}
