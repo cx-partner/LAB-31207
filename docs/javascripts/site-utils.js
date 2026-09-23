@@ -64,9 +64,12 @@
   });
 })();
 
-/* ---------- Hide the "Labs" nav link until Lab Prework is completed ---------- */
-/* This is convenience/guidance only, not real access control — the Labs page  */
-/* is still reachable by direct URL even while hidden from the nav.            */
+/* ---------- Reveal Labs links once Lab Prework is completed ---------- */
+/* The actual hiding is done in CSS (see stylesheets/extra.css), which applies */
+/* before first paint — no flash. This script's only job is flipping           */
+/* data-prework-done on <html> so that CSS rule lets the links show again.     */
+/* Convenience/guidance only, not real access control — the Labs page is       */
+/* still reachable by direct URL even while its links are hidden.              */
 (function () {
   function hasCompletedPrework() {
     try {
@@ -76,55 +79,18 @@
       return false;
     }
   }
-  function toggleLabsNav() {
-    var done = hasCompletedPrework();
-    document.querySelectorAll("a").forEach(function (a) {
-      var label = (a.textContent || "").trim().toLowerCase();
-      var href = (a.getAttribute("href") || "").toLowerCase();
-      var isLabsLink = label === "labs" || href.indexOf("labs/") !== -1 || href.indexOf("labs.md") !== -1 || href === "labs";
-      if (!isLabsLink) return;
-      var container = a.closest("li") || a;
-      container.style.display = done ? "" : "none";
-    });
+  function syncPreworkAttribute() {
+    if (hasCompletedPrework()) {
+      document.documentElement.setAttribute("data-prework-done", "");
+    } else {
+      document.documentElement.removeAttribute("data-prework-done");
+    }
   }
-  toggleLabsNav();
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", toggleLabsNav);
-  }
+  syncPreworkAttribute();
   window.addEventListener("storage", function (e) {
-    if (e.key === "labUserInfo" || e.key === null) toggleLabsNav();
+    if (e.key === "labUserInfo" || e.key === null) syncPreworkAttribute();
   });
   // Re-check periodically to survive MkDocs "instant navigation" DOM swaps,
   // which don't fire a normal page load / DOMContentLoaded.
-  setInterval(toggleLabsNav, 1000);
-})();
-
-/* ---------- Require Lab Prework before entering any Labs page ---------- */
-/* This guards the destination page directly rather than the nav link, so it   */
-/* doesn't depend on knowing anything about the theme's nav markup — it just   */
-/* checks the current URL. Also self-heals via interval to catch MkDocs        */
-/* "instant navigation" transitions, which swap content without a full reload. */
-(function () {
-  function hasCompletedPrework() {
-    try {
-      var info = JSON.parse(localStorage.getItem("labUserInfo") || "null");
-      return !!(info && info.pod && info.customerId);
-    } catch (err) {
-      return false;
-    }
-  }
-  function guardLabsPage() {
-    var path = window.location.pathname;
-    if (path.indexOf("/labs/") === -1) return; // not a Labs page
-    if (hasCompletedPrework()) return;
-
-    var preworkUrl = path.replace(/\/labs\/.*$/, "/lab-prework/");
-    if (preworkUrl === path) return; // pattern didn't match — don't loop
-    window.location.replace(preworkUrl + "?prework_required=1");
-  }
-  guardLabsPage();
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", guardLabsPage);
-  }
-  setInterval(guardLabsPage, 500);
+  setInterval(syncPreworkAttribute, 1000);
 })();
