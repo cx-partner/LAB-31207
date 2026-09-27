@@ -412,7 +412,7 @@ The Outdial ANI is the caller ID displayed to customers when they receive the ou
     <figcaption>OutdialANI configured for outdial caller ID</figcaption>
     </figure>
 
-!!! Important Note
+    !!! Important
         In order to configure the **Outdial ANI**, a PSTN number must a assigned to an **Inboud Telephony Entry Point** (aka **Channel**) first.
 ---
 
@@ -437,14 +437,14 @@ Once in the Campaign Manager configuration protal, you will click on the *Voice 
 
 Business days are used solely for the purpose of contact list expiry calculation. They have no association with 'Business hours' on the Control Hub. We won't use this option as part of this lab.
 
-### Contact Modes
+### Contact Modes (pre-configured)
 
-Contact modes define the type of phone number in your contact list (e.g. Home, Office, Mobile). For this lab, we use a single contact mode mapped to the `phoneNumber` column in the CSV.
+Contact modes define the type of phone number in your contact list (e.g. Home, Office, Mobile). For this lab, we use a single contact mode mapped to the `phoneNumber` column in the CSV. All the PODs will use the pre-configured **phone** contact mode.
 
-???+ webex "Create Contact Mode"
+???+ webex "Contact Mode"
 
-    1. Navigate to **Voice campaigns administration** → **Contact modes**.
-    2. Click **Create contact mode** and fill in:
+    1. Navigate to **Campaign data config** → **Contact modes**.
+    2. Click on **phone** contact mode and the following information show be displayed:
 
         | Field | Value |
         |---|---|
@@ -454,11 +454,10 @@ Contact modes define the type of phone number in your contact list (e.g. Home, O
         | **Minimum length** | `7` |
         | **Maximum length** | `15` |
 
-    3. Click **Create contact mode**.
 
     <figure markdown style="width: 60%;">
     ![Create contact mode](./assets/lab1_p15_img1.png)
-    <figcaption>Creating the phone contact mode with Voice type and default length constraints</figcaption>
+    <figcaption>Phone contact mode with Voice type and default length constraints</figcaption>
     </figure>
 
 ### DNC Lists
