@@ -608,10 +608,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lab-12-create-an-outdial-queue" class="md-nav__link">
+  <a href="#lab-12-enable-and-configure-contact-center-agent" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Lab 1.2 - Create an Outdial Queue
+        Lab 1.2 - Enable and configure contact center agent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 1.2 - Enable and configure contact center agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-and-configure-contact-center-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable and configure contact center agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-13-create-an-outdial-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 1.3 - Create an Outdial Queue
       
     </span>
   </a>
@@ -1121,14 +1149,14 @@
 <h2 id="lab-overview">Lab Overview 📌<a class="headerlink" href="#lab-overview" title="Permanent link">¶</a></h2>
 <p>The diagram below illustrates the high-level architecture and the sequence of configuration steps you will follow throughout this lab:</p>
 <figure>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p2_img1.png" data-title="Lab 1 Architecture Overview" data-desc-position="top"><img alt="Lab 1 Architecture Overview" src="../assets/lab1_p2_img1.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/outbound-campaign-flow.png" data-title="Lab 1 Architecture Overview" data-desc-position="top"><img alt="Lab 1 Architecture Overview" src="../assets/outbound-campaign-flow.png"></a></p>
 <figcaption>High-level outbound campaign configuration workflow</figcaption>
 </figure>
 <p>In this lab you will perform the following tasks:</p>
 <ol>
-<li>Configure a team</li>
+<li>Configure a team and enable Contact Center users.</li>
 <li>Create an Outdial Queue</li>
-<li>Configure Global Variables and Wrap-up Codes</li>
+<li>Configure Global Variables and Wrap-up Codes (for the purpose of this lab these 2 items will be preconfigured)</li>
 <li>Build the Outbound Campaign Flow (Main + Event flows)</li>
 <li>Create the Outdial Entry Point (Channel) and Outdial ANI</li>
 <li>Complete Campaign Manager prerequisites</li>
@@ -1140,6 +1168,13 @@
 <p>Even we won't use any agent to run the IVR campaign, the creation of a <strong>team or agent</strong> to assign to an <strong>outdial queue</strong> is mandatory. The <strong>Entry Point</strong> need to have that queue associated.</p>
 <details class="webex" open="open">
 <summary>Create Team</summary>
+<details class="inline vidcast" open="open">
+<summary>Create a team</summary>
+<p><video controls="" width="600">
+<source src="/LAB-31207/assets/create_team.mp4" type="video/mp4">
+</video>
+</p><p><a href="/LAB-31207/assets/create_team.mp4" target="_blank" rel="noopener">Open video in new tab</a></p><p></p>
+</details>
 <ol>
 <li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Teams</strong>.</li>
 <li>
@@ -1154,7 +1189,7 @@
 <tbody>
 <tr>
 <td><strong>Name</strong></td>
-<td><code>LAB31207_Team</code></td>
+<td><code>Team&lt;yourpodnumber&gt;</code></td>
 </tr>
 <tr>
 <td><strong>Parent site</strong></td>
@@ -1179,16 +1214,68 @@
 <p>Click <strong>Create</strong>.</p>
 </li>
 </ol>
-<p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p3_img2.png" data-title="Create Team dialog" data-desc-position="top"><img alt="Create Team dialog" src="../assets/lab1_p3_img2.png"></a>
-<figcaption>Creating LAB31207_Team with Agent-based type and Default Multimedia Profile</figcaption>
-</figure><p></p>
 </details>
 <hr>
-<h2 id="lab-12-create-an-outdial-queue">Lab 1.2 - Create an Outdial Queue<a class="headerlink" href="#lab-12-create-an-outdial-queue" title="Permanent link">¶</a></h2>
+<h2 id="lab-12-enable-and-configure-contact-center-agent">Lab 1.2 - Enable and configure contact center agent<a class="headerlink" href="#lab-12-enable-and-configure-contact-center-agent" title="Permanent link">¶</a></h2>
+<h3 id="enable-and-configure-contact-center-agent">Enable and configure contact center agent<a class="headerlink" href="#enable-and-configure-contact-center-agent" title="Permanent link">¶</a></h3>
+<p>After creating your team, we will enable and configure the contact center agent. Please, select the agent that contain your pod number.</p>
+<details class="webex" open="open">
+<summary>Enable and configure contact center agent</summary>
+<details class="inline vidcast" open="open">
+<summary>Enable and configure contact center agent</summary>
+<p><video controls="" width="600">
+<source src="/LAB-31207/assets/lab1_enable_cc_user.mp4" type="video/mp4">
+</video>
+</p><p><a href="/LAB-31207/assets/lab1_enable_cc_user.mp4" target="_blank" rel="noopener">Open video in new tab</a></p><p></p>
+</details>
+<ol>
+<li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Contact Center Users</strong>.</li>
+<li>
+<p>Click on the <strong>agent</strong> user that belong to your pod number and fill in the following:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Contact Center</strong></td>
+<td><code>enabled (toggle ON)</code></td>
+</tr>
+<tr>
+<td><strong>Site</strong></td>
+<td><code>Site-1</code></td>
+</tr>
+<tr>
+<td><strong>Team</strong></td>
+<td><code>Team&lt;yourpodnumber&gt;</code></td>
+</tr>
+<tr>
+<td><strong>Desktop Profile</strong></td>
+<td><code>Agent_profile</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</details>
+<hr>
+<h2 id="lab-13-create-an-outdial-queue">Lab 1.3 - Create an Outdial Queue<a class="headerlink" href="#lab-13-create-an-outdial-queue" title="Permanent link">¶</a></h2>
 <p>The outdial queue is what connects your outbound campaign to the agent pool. It must be set to <strong>Outbound queue</strong> type and have the <strong>Outbound campaign</strong> toggle enabled.</p>
 <details class="webex" open="open">
 <summary>Create Outdial Queue</summary>
+<details class="inline vidcast" open="open">
+<summary>Enable and configure contact center agent</summary>
+<p><video controls="" width="600">
+<source src="/LAB-31207/assets/lab1_outdial_queue.mp4" type="video/mp4">
+</video>
+</p><p><a href="/LAB-31207/assets/lab1_outdial_queue.mp4" target="_blank" rel="noopener">Open video in new tab</a></p><p></p>
+</details>
 <ol>
 <li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Queues</strong>.</li>
 <li>
@@ -1203,7 +1290,7 @@
 <tbody>
 <tr>
 <td><strong>Name</strong></td>
-<td><code>LAB31207_OutVoiceQueue</code></td>
+<td><code>OutdialQ&lt;yourpodnumber&gt;</code></td>
 </tr>
 <tr>
 <td><strong>Contact direction</strong></td>
@@ -1219,7 +1306,7 @@
 </tr>
 <tr>
 <td><strong>Agent assignment</strong></td>
-<td><code>Teams</code> → select <code>LAB31207_Team</code></td>
+<td><code>Teams</code> → select <code>Team&lt;yourpodnumber&gt;</code></td>
 </tr>
 </tbody>
 </table>
@@ -1230,8 +1317,8 @@
 <li>
 <p>Fill in the mandatory <strong>Advanced settings</strong>:</p>
 <ul>
-<li><strong>Service level threshold</strong>: <em>200</em></li>
-<li><strong>Maximum time in queue</strong>: <em>120</em></li>
+<li><strong>Service level threshold</strong>: <em>120</em></li>
+<li><strong>Maximum time in queue</strong>: <em>30</em></li>
 <li><strong>Default music in queue</strong>: <em>defaultmusic_on_hold.wav</em></li>
 </ul>
 </li>
@@ -1239,13 +1326,6 @@
 <p>Click <strong>Create</strong>.</p>
 </li>
 </ol>
-<p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p4_img2.png" data-title="Create Outdial Queue" data-desc-position="top"><img alt="Create Outdial Queue" src="../assets/lab1_p4_img2.png"></a>
-</figure><p></p>
-<p></p><figure markdown="" style="width: 70%;">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p4_img3.png" data-title="Create Outdial Queue2" data-desc-position="top"><img alt="Create Outdial Queue2" src="../assets/lab1_p4_img3.png"></a>
-<figcaption>Creating the LAB31207_OutVoiceQueue with Outbound queue direction and Outbound campaign enabled</figcaption>
-</figure><p></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The <strong>Contact direction</strong> and <strong>Channel type</strong> fields cannot be changed after the queue is created. Double-check these values before clicking Create.</p>
