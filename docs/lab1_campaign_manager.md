@@ -152,16 +152,17 @@ The outdial queue is what connects your outbound campaign to the agent pool. It 
 
 ---
 
-## Lab 1.3 - Configure Global Variables and Wrap-up Codes
+## Lab 1.4 -  Global Variables and Wrap-up Codes (Pre-Configured)
 
-### Create Global Variables
+### Global Variables
 
 Global Variables are used to carry customer data (from the contact list) through the campaign flow and display it on the Agent Desktop. You must create two variables: `firstName` and `lastName`.
+All PODs will use the same global variables which are already pre-configured. If you want to check the configuration (OPTIONAL) you can follow the instructions below and check their values.
 
-???+ webex "Create Global Variables"
+???+ webex "Check Global Variables"
 
     1. In Control Hub, navigate to **Contact Center** → **Flows** → **Global Variables**.
-    2. Click **Create a global variable** and configure the **firstName** variable:
+    2. Click on the **firstName** variable and you must see the following information:
 
         | Field | Value |
         |---|---|
@@ -173,8 +174,8 @@ Global Variables are used to carry customer data (from the contact list) through
         | **Desktop label** | `First Name` |
         | **Edit on desktop** | Disabled |
 
-    3. Click **Create**.
-    4. Repeat the process to create the **lastName** variable with the Desktop label `Last Name`.
+    3. Click on the top left to go back to **Global Variables**.
+    4. Repeat the process to check the **lastName** variable.
 
     <figure markdown>
     ![Create firstName global variable](./assets/lab1_p5_img2.png)
@@ -182,16 +183,16 @@ Global Variables are used to carry customer data (from the contact list) through
     </figure>
 
     !!! important
-        Both `firstName` and `lastName` must be added to all flows in this lab — both the dummy test flow and the outbound campaign flow — under **Global Flow Properties** → **Global Variables**.
+        Both `firstName` and `lastName` must be added to all flows in this lab — both the dummy test flow and the outbound campaign flow — under **Global Flow Properties** → **Global Variables**. This is will be done in Lab 1.5
 
-### Create a Wrap-up Code
+### Check Wrap-up Code
 
-A wrap-up code is required by Campaign Manager when configuring the contact attempt strategy.
+A wrap-up code is required by Campaign Manager when configuring the contact attempt strategy. Similar to Global Variables, the wrap-up codes are pre-configured and all the PODs must use the same. You can check the configuration as optional following the next steps.
 
-???+ webex "Create Wrap-up Code"
+???+ webex " Wrap-up Code"
 
     1. In Control Hub, navigate to **Contact Center** → **Idle/wrap-up codes**.
-    2. Click **Create** and configure:
+    2. Click **debt** wrap-ip code and check the following:
 
         | Field | Value |
         |---|---|
@@ -200,7 +201,7 @@ A wrap-up code is required by Campaign Manager when configuring the contact atte
         | **Make it default** | Enabled |
         | **Code type** | `Default Wrapup Work Type` |
 
-    3. Click **Save**.
+   
 
     <figure markdown>
     ![Debt wrap-up code](./assets/lab1_p6_img1.png)
@@ -209,11 +210,11 @@ A wrap-up code is required by Campaign Manager when configuring the contact atte
 
 ---
 
-## Lab 1.4 - Build the Flows
+## Lab 1.5 - Build the Flows
 
 ### Create the "Lab2" Dummy Test Flow
 
-Before building the full outbound campaign flow, create a simple **dummy flow** to validate the end-to-end campaign configuration. This same flow will be used as the starting point for **Lab 2** so name it as **AI_Agent_DebtCollection**
+Before building the full outbound campaign flow, create a simple **dummy flow** to validate the end-to-end campaign configuration. This same flow will be used as the starting point for **Lab 2** so name it as **AI_Agent_DebtCollection<yourPodNumber>**
 
 The flow plays a congratulatory TTS message when a live voice contact is detected, confirming Lab 1 is fully operational.
 
@@ -222,7 +223,7 @@ The flow plays a congratulatory TTS message when a live voice contact is detecte
     1. In Control Hub, navigate to **Contact Center** → **Flows**.
     2. Click **Manage Flows -> Create Flows** 
     3. Select **Flow** and **Start from scratch** and click **Next**
-    4. Name the flow <copy>`AI_Agent_DebtCollection`</copy> and select **Voice** as the channel type.
+    4. Name the flow <copy>`AI_Agent_DebtCollection<yourPodNumber>`</copy> and select **Voice** as the channel type.
     3. In the **Global Flow Properties** panel on the right:
         - Under **Global Variables**, click **Add global variables** and add both `firstName` and `lastName`.
     4. From the **Activities Library**, drag a **Play Message** node onto the canvas and connect it to the **NewPhoneContact** Start node.
@@ -257,7 +258,7 @@ Now create the main outbound campaign flow. This flow handles the outbound diall
 
     1. In Control Hub, navigate to **Contact Center** → **Flows**.
     2. Click **Manage Flows -> Create Flows** and select **Flow** and **Start from scratch** in the next window. Click **Next**
-    3. Name it <copy>`Outbound_DebtCollection`</copy> and select **Voice** as the channel type.
+    3. Name it <copy>`Outbound_DebtCollection<yourPodNumber>`</copy> and select **Voice** as the channel type.
     3. In the **Global Flow Properties** panel:
         - Under **Global Variables**, add both `firstName` and `lastName`.
     4. The Main flow canvas starts with a **NewPhoneContact** Start node.
@@ -267,7 +268,7 @@ Now create the main outbound campaign flow. This flow handles the outbound diall
         Connect it to an **End Flow** node as a placeholder — the actual logic is handled in Event flows.
 
     <figure markdown>
-    ![Outbound_DebtCollection flow global variables](./assets/lab1_p7_img2.png)
+    ![Outbound_DebtCollection flow global variables](./assets/lab1_flow1_1.png)
     <figcaption>Outbound_DebtCollection flow showing firstName and lastName Global Variables added to the flow configuration</figcaption>
     </figure>
 
@@ -360,53 +361,59 @@ This event triggers when the dialler receives a CPA result for an outbound call 
 
 ---
 
-## Lab 1.5 - Create the Outdial Entry Point (Channel) and Outdial ANI
+## Lab 1.6 - Create the Outdial Entry Point (Channel) and Outdial ANI
 
 ### Create the Outdial Entry Point
 
 The Entry Point (Channel) is the outbound telephony channel that ties together the flow, the outdial queue, and the dialling configuration.
 
-???+ webex "Create Outdial Entry Point"
+???+ webex "Create Outdial Entry Point (aka Channel)"
+
+    ???+ inline vidcast "Create Outdial Entry Point (aka channel)"
+        <video controls width="600">
+        <source src="/LAB-31207/assets/lab1_EP_Creation.mp4" type="video/mp4">
+        </video>
+        <p><a href="/LAB-31207/assets/lab1_EP_Creation.mp4" target="_blank" rel="noopener">Open video in new tab</a></p>
 
     1. In Control Hub, navigate to **Contact Center** → **Channels**.
     2. Click **Create a channel** and configure:
 
         | Field | Value |
         |---|---|
-        | **Name** | `Campaign_EP` |
+        | **Name** | `Campaign_EP_<yourPodNumber>` |
         | **Channel type** | `Outbound telephony` |
         | **Service level threshold** | `30` seconds |
         | **Timezone** | `Europe/London` *(use your local timezone)* |
-        | **Routing flow** | `Outbound_DebtCollection` |
+        | **Routing flow** | `Outbound_Debt_Collection<youtPodNumber>` the one you create on the previous step |
         | **Music on hold** | `defaultmusic_on_hold.wav` |
         | **Version label** | `Latest` |
-        | **Outdial queue** | `LAB31207_OutVoiceQueue` |
+        | **Outdial queue** | `OutdialQ<yourPodNumber>` the one you create in the previous step|
 
     3. Click **Create**.
 
-    <figure markdown>
-    ![Entry Point configuration](./assets/lab1_p11_img1.png)
-    <figcaption>Campaign_EP entry point configured with Outbound telephony, pointing to the Outbound_DebtCollection flow and LAB31207_OutVoiceQueue</figcaption>
-    </figure>
 
-### Configure Outdial ANI
+###  Outdial ANI
 
-The Outdial ANI is the caller ID displayed to customers when they receive the outbound call. You can configure multiple ANIs for different regions.
+The Outdial ANI is the caller ID displayed to customers when they receive the outbound call. You can configure multiple ANIs for different regions. For the purpose of this lab, all attendes will use the same Outdial ANI which will be preconfigured. If you want to check the configuration (OPIONAL) you can follow this steps.
 
-???+ webex "Create Outdial ANI"
+???+ webex "Outdial ANI"
 
     1. In Control Hub, navigate to **Contact Center** → **Outdial ANI**.
-    2. Click **Create** and configure:
-        - **Name**: `LAB31207_outANI`
-    3. Under **Entry list**, click **Add More** and add your PSTN numbers
-
-    4. Click **Save**.
+    2. Click on **OutdialANI_All** and you will see:
+        - **Name**: `OudialANI_All`
+    3. Under **Configured ANIs**, click **Add More** and add your PSTN numbers
+        - **Name**: `Campaign`
+        - **Contact Number**: `+17382033500`
+        - **Default ANI**: `Campaign(+17382033500)`
+  
 
     <figure markdown style="width: 70%;">
-    ![LAB31207_outANI configuration](./assets/lab1_p12_img1.png)
-    <figcaption>LAB-31207OutdialANI configured for outdial caller ID</figcaption>
+    ![LAB31207_outANI configuration](./assets/Lab1_OutdialANI.png)
+    <figcaption>OutdialANI configured for outdial caller ID</figcaption>
     </figure>
 
+!!! Important Note
+        In order to configure the **Outdial ANI**, a PSTN number must a assigned to an **Inboud Telephony Entry Point** (aka **Channel**) first.
 ---
 
 
