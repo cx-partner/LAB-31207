@@ -41,15 +41,15 @@ In order to complete this lab, you must have:
 The diagram below illustrates the high-level architecture and the sequence of configuration steps you will follow throughout this lab:
 
 <figure markdown>
-![Lab 1 Architecture Overview](./assets/lab1_p2_img1.png)
+![Lab 1 Architecture Overview](./assets/outbound-campaign-flow.png)
 <figcaption>High-level outbound campaign configuration workflow</figcaption>
 </figure>
 
 In this lab you will perform the following tasks:
 
-1. Configure a team
+1. Configure a team and enable Contact Center users.
 2. Create an Outdial Queue
-3. Configure Global Variables and Wrap-up Codes
+3. Configure Global Variables and Wrap-up Codes (for the purpose of this lab these 2 items will be preconfigured)
 4. Build the Outbound Campaign Flow (Main + Event flows)
 5. Create the Outdial Entry Point (Channel) and Outdial ANI
 6. Complete Campaign Manager prerequisites
@@ -64,61 +64,87 @@ Even we won't use any agent to run the IVR campaign, the creation of a **team or
 
 ???+ webex "Create Team"
 
-    1. In Control Hub, navigate to **Contact Center** → **Teams**.
-    2. Click **Create a team** and fill in the following:
+
+    ???+ inline vidcast "Create a team"
+        <video controls width="600">
+        <source src="/LAB-31207/assets/create_team.mp4" type="video/mp4">
+        </video>
+        <p><a href="/LAB-31207/assets/create_team.mp4" target="_blank" rel="noopener">Open video in new tab</a></p>
+
+      1. In Control Hub, navigate to **Contact Center** → **Teams**.
+      2. Click **Create a team** and fill in the following:
 
         | Field | Value |
         |---|---|
-        | **Name** | `LAB31207_Team` |
+        | **Name** | `Team<yourpodnumber>` |
         | **Parent site** | `Site-1` |
         | **Team type** | `Agent-based` |
         | **Multimedia profile** | `Default_Multimedia_Profile` |
         | **Desktop layout** | `Global Layout` |
 
-    3. Click **Create**.
-
-    <figure markdown>
-    ![Create Team dialog](./assets/lab1_p3_img2.png)
-    <figcaption>Creating LAB31207_Team with Agent-based type and Default Multimedia Profile</figcaption>
-    </figure>
+     3. Click **Create**.
 
 ---
 
-## Lab 1.2 - Create an Outdial Queue
+## Lab 1.2 - Enable and configure contact center agent
+
+### Enable and configure contact center agent
+After creating your team, we will enable and configure the contact center agent. Please, select the agent that contain your pod number.
+
+???+ webex "Enable and configure contact center agent"
+
+
+    ???+ inline vidcast "Enable and configure contact center agent"
+        <video controls width="600">
+        <source src="/LAB-31207/assets/lab1_enable_cc_user.mp4" type="video/mp4">
+        </video>
+        <p><a href="/LAB-31207/assets/lab1_enable_cc_user.mp4" target="_blank" rel="noopener">Open video in new tab</a></p>
+
+      1. In Control Hub, navigate to **Contact Center** → **Contact Center Users**.
+      2. Click on the **agent** user that belong to your pod number and fill in the following:
+
+        | Field | Value |
+        |---|---|
+        | **Contact Center** | `enabled (toggle ON)` |
+        | **Site** | `Site-1` |
+        | **Team** | `Team<yourpodnumber>` |
+        | **Desktop Profile** | `Agent_profile` |
+
+     3. Click **Save**.
+
+---
+
+## Lab 1.3 - Create an Outdial Queue
 
 The outdial queue is what connects your outbound campaign to the agent pool. It must be set to **Outbound queue** type and have the **Outbound campaign** toggle enabled.
 
 ???+ webex "Create Outdial Queue"
+
+    ???+ inline vidcast "Enable and configure contact center agent"
+        <video controls width="600">
+        <source src="/LAB-31207/assets/lab1_outdial_queue.mp4" type="video/mp4">
+        </video>
+        <p><a href="/LAB-31207/assets/lab1_outdial_queue.mp4" target="_blank" rel="noopener">Open video in new tab</a></p>
 
     1. In Control Hub, navigate to **Contact Center** → **Queues**.
     2. Click **Create a queue** and configure:
 
         | Field | Value |
         |---|---|
-        | **Name** | `LAB31207_OutVoiceQueue` |
+        | **Name** | `OutdialQ<yourpodnumber>` |
         | **Contact direction** | `Outbound queue` |
         | **Channel type** | `Telephony` |
         | **Outbound campaign** | Enabled (toggle ON) |
-        | **Agent assignment** | `Teams` → select `LAB31207_Team` |
+        | **Agent assignment** | `Teams` → select `Team<yourpodnumber>` |
 
     3. Under **Call distribution**, click **Create a group**, expand it, and select your Team.
     4. Fill in the mandatory **Advanced settings**:
 
-        - **Service level threshold**: *200*
-        - **Maximum time in queue**: *120*
+        - **Service level threshold**: *120*
+        - **Maximum time in queue**: *30*
         - **Default music in queue**: *defaultmusic_on_hold.wav*
 
     4. Click **Create**.
-
-    <figure markdown>
-    ![Create Outdial Queue](./assets/lab1_p4_img2.png)
-    </figure>
-
-    <figure markdown style="width: 70%;">
-    ![Create Outdial Queue2](./assets/lab1_p4_img3.png)
-    <figcaption>Creating the LAB31207_OutVoiceQueue with Outbound queue direction and Outbound campaign enabled</figcaption>
-    </figure>
-    
 
     !!! note
         The **Contact direction** and **Channel type** fields cannot be changed after the queue is created. Double-check these values before clicking Create.
