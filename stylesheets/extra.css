@@ -65,12 +65,21 @@ copy.copied {
 }
 
 /* ---------- Lab Prework gating ---------- */
-/* Hide any link pointing into the Labs section until Lab Prework is done.
-   Hidden by default (CSS applies before first paint, so there's no flash);
+/* Hidden by default (CSS applies before first paint, so there's no flash);
    site-utils.js reveals it by adding data-prework-done to <html> once the
-   attendee has completed prework. This single href-based rule covers the
-   top nav tab, the left sidebar entry, and the footer "next page" link,
-   since all of them are just <a> tags whose href points into /labs/. */
-html:not([data-prework-done]) a[href*="/labs/"] {
+   attendee has completed prework.
+
+   The "Labs" nav entry is a group with no index page, so Material points the
+   top tab itself at the first child page and puts the other two in its
+   dropdown — there's no shared "/labs/" path, so each lab page's real slug
+   is matched individually. This covers the top tab, its dropdown items, the
+   left sidebar entries, and any footer "next page" link, since all of them
+   are just <a> tags whose href points to one of these three pages. */
+html:not([data-prework-done]) li:has(> a[href*="/lab1_campaign_manager/"]),
+html:not([data-prework-done]) li:has(> a[href*="/lab2_debt_ai_agent/"]),
+html:not([data-prework-done]) li:has(> a[href*="/lab3_human_ai_assist/"]),
+html:not([data-prework-done]) a[href*="/lab1_campaign_manager/"],
+html:not([data-prework-done]) a[href*="/lab2_debt_ai_agent/"],
+html:not([data-prework-done]) a[href*="/lab3_human_ai_assist/"] {
   display: none !important;
 }
