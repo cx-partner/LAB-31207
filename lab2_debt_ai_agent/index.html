@@ -748,7 +748,7 @@
 
 <h1 id="lab-2-ai-agent-with-mcp">Lab 2 - AI Agent with MCP<a class="headerlink" href="#lab-2-ai-agent-with-mcp" title="Permanent link">¶</a></h1>
 <h2 id="lab-purpose">Lab Purpose<a class="headerlink" href="#lab-purpose" title="Permanent link">¶</a></h2>
-<p>In Lab 1, you configured native Campaign Manager to place outbound calls and route live-voice answers into the <code>AI_Agent_DebtCollection</code> flow. In this lab, you will configure <strong>Alex</strong>, a Webex AI Agent that uses tenant-provisioned <strong>MCP tools</strong> to retrieve customer context, support the debt-resolution conversation, and prepare the call for human escalation when needed.</p>
+<p>In Lab 1, you configured a native Campaign Manager to place outbound calls and route live-voice answers into the <code>AI_Agent_DebtCollection</code> flow. In this lab, you will configure <strong>Alex</strong>, a Webex AI Agent that uses tenant-provisioned <strong>MCP tools</strong> to retrieve customer context, support the debt-resolution conversation, and prepare the call for human escalation when needed.</p>
 <p>The backend actions are provided by the pre-staged MCP server. You will select available MCP tools in AI Agent Studio rather than building fulfillment flows.</p>
 <details class="purpose" open="open">
 <summary>Lab Objectives</summary>
@@ -763,7 +763,7 @@
 </details>
 <details class="challenge" open="open">
 <summary>Lab Outcome</summary>
-<p>At the end of Lab 2, an answered outbound campaign call is routed to Alex. Alex can greet the customer by name, use MCP tools to look up account context [VERIFY], and handle the debt-resolution scenario.</p>
+<p>At the end of Lab 2, an answered outbound campaign call is routed to Alex. Alex can greet the customer by name, use MCP tools to look up account context, and handle the debt-resolution scenario.</p>
 </details>
 <hr>
 <h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permanent link">¶</a></h2>
@@ -771,20 +771,20 @@
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Completed <a href="../lab1_campaign_manager/">Lab 1 - Native Campaign Manager</a>.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Access to <strong>Control Hub</strong> and <strong>Webex AI Agent Studio</strong>.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> MCP Agentic App already provisioned in the Webex tenant.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> MCP tools already enabled by the tenant administrator [VERIFY: confirm tool list].</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Baseline AI Agent import package available [VERIFY: add exact filename and download link].</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> MCP Agentic App already provisioned in the Webex tenant (This is preconfigured. You will verify it in Lab 2.3 section)).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> MCP tools already enabled by the tenant administrator (you will verify this in Lab 2.3 section).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Baseline AI Agent import package available (you will import the pre-package AI Agent in Lab 2.1).</li>
 </ul>
 <div class="admonition important">
 <p class="admonition-title">MCP-Backed Actions</p>
-<p>Backend actions for this lab are exposed as MCP tools. When you configure Alex, select the available MCP tools in AI Agent Studio.</p>
+<p>Backend actions for this lab are exposed as MCP tools. The MCP server has been configured as an Agentic App in the lab Tenant. When you configure Alex, you will select the available MCP tools from the AI Agent Studio.</p>
 </div>
 <hr>
 <h2 id="lab-overview">Lab Overview<a class="headerlink" href="#lab-overview" title="Permanent link">¶</a></h2>
 <p>In this lab you will perform the following tasks:</p>
 <ol>
 <li>Import the baseline AI Agent configuration.</li>
-<li>Review Alex's profile, instructions, and Knowledge Base.</li>
+<li>Review Alex's profile, instructions, and enable the Knowledge Base.</li>
 <li>Select MCP tools as AI Agent actions.</li>
 <li>Test Alex in Preview.</li>
 <li>Connect Alex to the outbound campaign call flow.</li>
@@ -892,7 +892,7 @@
 [confirm_payment]
 [fetch_transactions]
 </code></pre></div>
-<p>You will configure the five MCP tools in the <a href="#lab-23-select-mcp-tools-as-actions">Select MCP Tools as Actions</a> section. The native <code>fraud_transfer</code> action is configured separately; it is not an MCP tool.</p>
+<p>You will configure the five MCP tools in the <a href="#lab-23-select-mcp-tools-as-actions">Select MCP Tools as Actions</a> section.</p>
 <details class="inline info" open="open">
 <summary>Alex Conversational settings</summary>
 <p></p><figure markdown="">
@@ -971,14 +971,27 @@
 </details>
 <hr>
 <h2 id="lab-23-select-mcp-tools-as-actions">Lab 2.3 - Select MCP Tools as Actions<a class="headerlink" href="#lab-23-select-mcp-tools-as-actions" title="Permanent link">¶</a></h2>
-<p>The LAB-31207 MCP server is already configured in the shared lab tenant. Select its available tools from the AI Agent action configuration; do not create or edit an MCP server as part of the lab.</p>
+<p>The LAB_31207_Finance MCP server is already enabled in the shared lab tenant. <strong>You don't need to do any configuration in Control Hub</strong>.  The MCP Server exposes a number of tools you will be using as AI Agent actions later on. The next section is <strong>informational</strong> and explains how the MCP server is configured. </p>
 <details class="info" open="open">
-<summary>Optional learning: register and provision this MCP server in another tenant</summary>
-<p>This is reference material only. Do not perform these steps in the shared lab tenant. You need a <strong>Customer Administrator</strong> account for the Control Hub steps; a Partner account cannot authorize Agentic Apps for the customer organization.</p>
+<summary>Optional learning: How to register and provision the MCP server</summary>
+<p></p><p align="center" style="font-size: 24px;">
+<mark class="critic">
+This section explains how the MCP server is configured as an Agentic App in the lab tenant. <br>
+<strong>Do not perform these steps in the shared lab tenant</strong>. <br>
+This is only for your information. 
+</mark>
+</p><p></p>
+<p>To configure Agentic Apps in Control Hub, you need a <strong>Customer Administrator</strong> account; a Partner account cannot authorize Agentic Apps for the customer organization.</p>
 <p><strong>1. Register the Agentic App in the Webex Developer Portal</strong></p>
+<details class="inline" open="open">
+<summary>New Agentic App</summary>
+<p></p><figure markdown="" style="width: 30%;">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p23_img1.png" data-title="New Agentic App" data-desc-position="top"><img alt="New Agentic App" src="../assets/lab2_p23_img1.png"></a>
+</figure><p></p>
+</details>
 <ol>
-<li>Go to the <a href="https://developer.webex.com" rel="noopener" target="_blank">Webex Developer Portal</a> and sign in with your Webex credentials.</li>
-<li>On the home page, select <strong>Start Building Apps</strong>, then <strong>Create an Agentic App</strong>.</li>
+<li>Go to the <a href="https://developer.webex.com" rel="noopener" target="_blank">Webex Developer Portal</a> and sign in with the Webex Admin credentials.</li>
+<li>On the home page, select <strong>Start Building -&gt;</strong>, then <strong>Create an Agentic App</strong>.</li>
 <li>
 <p>Enter the following application details:</p>
 <table>
@@ -994,24 +1007,24 @@
 <td><code>MCP</code></td>
 </tr>
 <tr>
+<td><strong>Agentic App URL</strong></td>
+<td><code>https://mcp.cx-tme.com/lab-31207/mcp</code></td>
+</tr>
+<tr>
 <td><strong>Transport Type</strong></td>
 <td><code>Streamable HTTP</code></td>
 </tr>
 <tr>
 <td><strong>Agentic App Name</strong></td>
-<td><code>LAB-31207 Debt Collection MCP Server</code></td>
+<td><code>Lab_31207_Finance</code></td>
 </tr>
 <tr>
 <td><strong>Description</strong></td>
-<td><code>MCP server providing customer authentication, debt payment, and transaction-history tools for the Webex Financial Group debt-collection agent.</code></td>
+<td><code>Finance demo mcp for Webex One 2026 lab 31207</code></td>
 </tr>
 <tr>
 <td><strong>Agentic App Icon</strong></td>
 <td>Choose any suitable icon.</td>
-</tr>
-<tr>
-<td><strong>Agentic App URL</strong></td>
-<td><code>https://mcp.cx-tme.com/lab-31207/mcp</code></td>
 </tr>
 <tr>
 <td><strong>Agentic App auth type</strong></td>
@@ -1025,13 +1038,38 @@
 </li>
 </ol>
 <p><strong>2. Provision the Agentic App in Control Hub</strong></p>
+<details class="inline" open="open">
+<summary>Agentic App in Control Hub</summary>
+<p></p><figure markdown="" style="width: 30%;">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p23_img2.png" data-title="Agentic App in Control Hub" data-desc-position="top"><img alt="Agentic App in Control Hub" src="../assets/lab2_p23_img2.png"></a>
+</figure><p></p>
+</details>
 <ol>
 <li>In <a href="https://admin.webex.com" rel="noopener" target="_blank">Control Hub</a>, go to <strong>Apps</strong> &gt; <strong>Agentic Apps</strong>.</li>
-<li>Open <code>LAB-31207 Debt Collection MCP Server</code>.</li>
-<li>On the <strong>General</strong> tab, set access to <strong>Allowed</strong> for the organization and save.</li>
-<li>On the <strong>Authentication</strong> tab, confirm the method is <strong>API Key</strong>, enter the API key supplied separately by the facilitator, and save. The key is intentionally not included in this guide or repository.</li>
+<li>Open <code>LAB_31207_Finance</code>.</li>
 <li>
-<p>On the <strong>Tools</strong> tab, enable and save these five tools:</p>
+<p>On the <strong>General</strong> tab, set access to <strong>Allowed</strong> for the organization and save and enable the <em>Authorize automatic server data updates</em> to avoid re-authorization on server updates.
+<br><br><br></p>
+<details class="inline end" open="open">
+<summary>Agentic App in Control Hub</summary>
+<p></p><figure markdown="" style="width: 30%;">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p23_img3.png" data-title="Agentic App in Control Hub" data-desc-position="top"><img alt="Agentic App in Control Hub" src="../assets/lab2_p23_img3.png"></a>
+</figure><p></p>
+</details>
+</li>
+<li>
+<p>On the <strong>Authentication</strong> tab, confirm the method is <strong>API Key</strong>, enter the API key and save.</p>
+</li>
+</ol>
+<details class="inline" open="open">
+<summary>Agentic App in Control Hub</summary>
+<p></p><figure markdown="" style="width: 30%;">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p23_img4.png" data-title="Agentic App in Control Hub" data-desc-position="top"><img alt="Agentic App in Control Hub" src="../assets/lab2_p23_img4.png"></a>
+</figure><p></p>
+</details>
+<ol>
+<li>
+<p>On the <strong>Tools</strong> tab, you will see the tools exposed by the MCP server. These five tools are enabled:</p>
 <table>
 <thead>
 <tr>
@@ -1041,41 +1079,39 @@
 </thead>
 <tbody>
 <tr>
-<td><code>authenticate_user</code></td>
+<td><code>Authenticate User</code></td>
 <td>Creates the PIN-digit challenge used to authenticate a caller.</td>
 </tr>
 <tr>
-<td><code>fetch_balance</code></td>
+<td><code>Fetch Balance</code></td>
 <td>Retrieves the customer account, balance, maturity date, and delivery context.</td>
 </tr>
 <tr>
-<td><code>payment_session</code></td>
+<td><code>Payment Session</code></td>
 <td>Creates a NovaPay payment session and initiates payment-link delivery.</td>
 </tr>
 <tr>
-<td><code>confirm_payment</code></td>
+<td><code>Confirm Payment</code></td>
 <td>Confirms a completed NovaPay payment and updates the balance.</td>
 </tr>
 <tr>
-<td><code>fetch_transactions</code></td>
-<td>Retrieves up to five recent customer transactions.</td>
+<td><code>Fetch Transactions</code></td>
+<td>Retrieves recent customer transactions.</td>
 </tr>
 </tbody>
 </table>
 </li>
-<li>
-<p>If available in your tenant, enable automatic tool-signature updates only when you intend to accept future MCP tool changes without reauthorization [VERIFY: exact Control Hub label].</p>
-</li>
 </ol>
-<p>After the app is allowed, authenticated, and its tools are enabled, its tools become available to autonomous AI Agents in that organization.</p>
+<p>After the app is allowed, authenticated, and its tools are enabled, the tools become available to autonomous AI Agents in that organization.</p>
 </details>
+<p>The next step in your lab is to select the MCP tools for your AI Agent actions. </p>
 <details class="webex" open="open">
 <summary>Add MCP Tools to Alex</summary>
 <ol>
 <li>In AI Agent Studio, open your AI Agent <code>PODXX-LAB-31207_Alex</code>.</li>
 <li>Switch to the <strong>Actions</strong> tab.</li>
 <li>Click <strong>+ Add actions</strong>.</li>
-<li>Choose <strong>Select Available</strong> [VERIFY: exact UI label].</li>
+<li>Choose <strong>Select available</strong>.</li>
 <li>
 <p>Select following MCP tools required for Alex.</p>
 <table>
@@ -1126,42 +1162,47 @@
 <p>Before connecting Alex to the campaign and going live, It is essential to validate that Alex follows the programmed logic. For that, you will validate the agent in Preview mode. This lets you troubleshoot prompt or tool issues without waiting for Campaign Manager to dial.</p>
 <details class="webex" open="open">
 <summary>Prepare a Test Customer Profile</summary>
-<p>Complete the <a href="../lab-prework/" rel="noopener" target="_blank">lab prework</a> to provision the test customer used in this scenario. It assigns either your personal US mobile number or an assigned Webex Calling customer profile, and records the delivery route needed for the payment link.</p>
+<p>For this initial test, you must have completed the <a href="../lab-prework/" rel="noopener" target="_blank">lab prework</a> to provision the test customer used in this scenario. It generates a complete customer record. Below you will see the main information you need for your test. </p>
+<details class="important" open="open">
+<summary>Delivery of payment link</summary>
+<p>If you created the customer profile using your own US mobile number, the payment link will be sent to that number via SMS. If you created the customer using a Webex Customer profile, the payment link will be sent to the email address associated with your profile.</p>
+</details>
+<details class="inline" open="open">
+<summary>Customer Profile</summary>
+<p></p><figure markdown="" style="width: 30%;">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p24_img1.png" data-title="Agentic App in Control Hub" data-desc-position="top"><img alt="Agentic App in Control Hub" src="../assets/lab2_p24_img1.png"></a>
+</figure><p></p>
+</details>
 <table>
 <thead>
 <tr>
 <th>Field</th>
-<th>Requirement</th>
+<th>Usage</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Personal US mobile number</td>
-<td>Used to recover customer data and receive the NovaPay payment link by SMS.</td>
+<td>Customer Id</td>
+<td>Your assigned customer ID as CUST-XXX where xxx is your POD number</td>
 </tr>
 <tr>
-<td>Assigned Webex Calling customer profile</td>
-<td>Use its assigned number for the call; the NovaPay payment link is delivered to your registered email.</td>
+<td>Phone Number</td>
+<td>- If you have an US number, this should be your US mobile number. In this case, you will receive the payment link via SMS. <br> - If you selected a Webex customer, this will be your assigned Webex Calling number. In this case, the payment link will be sent via email.</td>
 </tr>
 <tr>
 <td>Email</td>
-<td>Required for the profile; it must be reachable when using an assigned Webex Calling customer profile.</td>
+<td>In case you selected a Webex Customer profile, the payment link will be sent to this email address.</td>
 </tr>
 <tr>
-<td>4-digit PIN</td>
-<td>Any value — used authenticate the user</td>
-</tr>
-<tr>
-<td>Account balance</td>
-<td>automatically generated</td>
+<td>Balance</td>
+<td>This is the pending debt. You can make a partial or total payment on this amount</td>
 </tr>
 <tr>
 <td>Transactions</td>
-<td>automatically generated (up to 5 sample transactions)</td>
+<td>You will see three generated transactions in your customer record</td>
 </tr>
 </tbody>
 </table>
-<p>If you already completed prework, reuse that test customer rather than creating a second record in the Customer Portal.</p>
 </details>
 <details class="tool" open="open">
 <summary>Run the Preview Scenario</summary>
@@ -1194,7 +1235,7 @@
 </li>
 <li>
 <p>Return to the conversation with Alex and confirm the payment. Alex checks the status with NovaPay and updates the balance (<code>confirm_payment</code>):
-</p><div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>    Your payment of $650 was successful. Confirmation code: NP-1EOQTHWK. Your   remaining balance is $4,000. Do you need any further assistance?
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>    Your payment of $650 was successful. Confirmation code: NP-1EOQTHWK. Your remaining balance is $4,000. Do you need any further assistance?
 </span></code></pre></div><p></p>
 <p>Verify the balance was updated in the customer's record in the Customer Portal.</p>
 </li>
@@ -1202,7 +1243,7 @@
 <p>Ask a generic question about balance payment terms, your credit card or the Rewards program. Alex should retrieve the information from the Knowledge Base and provide a detailed response.</p>
 </li>
 <li>
-<p>Ask about your last transactions. Alex returns up to the last 5 with (<code>fetch_transactions</code>). Try a few different queries — last transactions, most recent, or a transaction in a specific city:
+<p>Ask about your last transactions. Alex returns them with (<code>fetch_transactions</code>). Try a few different queries — last transactions, most recent, or a transaction in a specific city:
 </p><div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>    Here are your last three transactions:
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>        - $1,200 at 99 Collectibles in Madrid on February 4, 2026
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        - $900 at 99 Collectibles in New York on February 2, 2026
@@ -1211,13 +1252,13 @@
 </span></code></pre></div><p></p>
 </li>
 <li>
-<p>Finally, mention a suspicious or unrecognized transaction. Confirm Alex stops the normal flow and prepares to transfer you to a fraud specialist. <code>[VERIFY: where this is covered (lab?) exact trigger phrase / expected transfer message]</code>.</p>
+<p>Finally, mention a suspicious or unrecognized transaction. Confirm Alex stops the normal flow and prepares to transfer you to a fraud specialist. Note that the actual hand over to the Human agent will be implemented in Lab-3.</p>
 </li>
 </ol>
 </details>
 <details class="failure" open="open">
 <summary>Troubleshooting</summary>
-<p>Refer to the <a href="#">Test your AI Agent</a> section for details on how to troubleshoot the AI Agent and the Actions in case of error.</p>
+<p>Refer to the <a href="#ai-agent-troubleshooting">AI Agent Troubleshooting</a> section for details on how to troubleshoot the AI Agent and the Actions in case of error.</p>
 <ul>
 <li><strong>Debt disclosed before authentication</strong>: Review the escalation/authentication logic in the Instructions tab — Alex should never call <code>fetch_balance</code> before <code>authenticate_user</code> succeeds.</li>
 <li><strong>No payment link arrives</strong>: For a personal US mobile number, confirm the phone can receive SMS. For an assigned Webex Calling customer profile, check spam and confirm the registered email is reachable.</li>
@@ -1347,7 +1388,7 @@
 <p>Connect the outlet of the <strong>Play Message</strong> error node to the inlet of the escalation <strong>Play Message</strong> node. </p>
 </li>
 <li>
-<p>Enable the <strong>Validation</strong> check with the slider in the bottom right of the editor to validate the flow and if there are no erros, click <strong>[Publish Flow]</strong> to publish it. </p>
+<p>Enable the <strong>Validation</strong> check with the slider in the bottom right of the editor to validate the flow and if there are no errors, click <strong>[Publish Flow]</strong> to publish it. </p>
 </li>
 </ol>
 <p>Your AI Agent is now operational to work in an outbound Campaign!</p>
@@ -1360,11 +1401,11 @@
 <ol>
 <li>In Campaign Manager, upload a contact list with your test customer's <code>firstName</code>, <code>lastName</code>, and <code>phoneNumber</code>.</li>
 <li>Wait for the contact list to become active.</li>
-<li>When the Campaign Manager launches the outbound call, answer the call in your device (or in your customer's webex app if you don't have an US number).</li>
+<li>When the Campaign Manager launches the outbound call, answer the call in your device (or in your customer's webex app if you don't have an US mobile number).</li>
 <li>Confirm Alex greets the customer by name.</li>
 <li>Complete the authentication and debt-collection process.</li>
 <li>Try querying Alex about your products.</li>
-<li>Ask a transaction or dispute question to confirm Alex uses the relevant MCP tool or prepares escalation context [VERIFY].</li>
+<li>Ask a transaction or dispute question to confirm Alex uses the relevant MCP tool or prepares escalation context.</li>
 </ol>
 </details>
 <details class="warning" open="open">
