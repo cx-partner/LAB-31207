@@ -2,7 +2,7 @@
 
 ## Lab Purpose
 
-In Lab 1, you configured native Campaign Manager to place outbound calls and route live-voice answers into the `AI_Agent_DebtCollection` flow. In this lab, you will configure **Alex**, a Webex AI Agent that uses tenant-provisioned **MCP tools** to retrieve customer context, support the debt-resolution conversation, and prepare the call for human escalation when needed.
+In Lab 1, you configured a native Campaign Manager to place outbound calls and route live-voice answers into the `AI_Agent_DebtCollection` flow. In this lab, you will configure **Alex**, a Webex AI Agent that uses tenant-provisioned **MCP tools** to retrieve customer context, support the debt-resolution conversation, and prepare the call for human escalation when needed.
 
 The backend actions are provided by the pre-staged MCP server. You will select available MCP tools in AI Agent Studio rather than building fulfillment flows.
 
@@ -16,7 +16,7 @@ The backend actions are provided by the pre-staged MCP server. You will select a
     - Connect the outbound campaign flow to Alex using Virtual Agent V2.
 
 ???+ challenge "Lab Outcome"
-    At the end of Lab 2, an answered outbound campaign call is routed to Alex. Alex can greet the customer by name, use MCP tools to look up account context [VERIFY], and handle the debt-resolution scenario.
+    At the end of Lab 2, an answered outbound campaign call is routed to Alex. Alex can greet the customer by name, use MCP tools to look up account context, and handle the debt-resolution scenario.
 
 ---
 
@@ -26,12 +26,12 @@ In order to complete this lab, you must have:
 
 * [x] Completed [Lab 1 - Native Campaign Manager](lab1_campaign_manager.md).
 * [x] Access to **Control Hub** and **Webex AI Agent Studio**.
-* [x] MCP Agentic App already provisioned in the Webex tenant.
-* [x] MCP tools already enabled by the tenant administrator [VERIFY: confirm tool list].
-* [x] Baseline AI Agent import package available [VERIFY: add exact filename and download link].
+* [x] MCP Agentic App already provisioned in the Webex tenant (This is preconfigured. You will verify it in Lab 2.3 section)).
+* [x] MCP tools already enabled by the tenant administrator (you will verify this in Lab 2.3 section).
+* [x] Baseline AI Agent import package available (you will import the pre-package AI Agent in Lab 2.1).
 
 !!! important "MCP-Backed Actions"
-    Backend actions for this lab are exposed as MCP tools. When you configure Alex, select the available MCP tools in AI Agent Studio.
+    Backend actions for this lab are exposed as MCP tools. The MCP server has been configured as an Agentic App in the lab Tenant. When you configure Alex, you will select the available MCP tools from the AI Agent Studio.
 
 ---
 
@@ -40,7 +40,7 @@ In order to complete this lab, you must have:
 In this lab you will perform the following tasks:
 
 1. Import the baseline AI Agent configuration.
-2. Review Alex's profile, instructions, and Knowledge Base.
+2. Review Alex's profile, instructions, and enable the Knowledge Base.
 3. Select MCP tools as AI Agent actions.
 4. Test Alex in Preview.
 5. Connect Alex to the outbound campaign call flow.
@@ -123,7 +123,7 @@ The fastest path for a 4-hour lab is to import a baseline agent and review the i
         [confirm_payment]
         [fetch_transactions]
 
-    You will configure the five MCP tools in the [Select MCP Tools as Actions](#lab-23-select-mcp-tools-as-actions) section. The native `fraud_transfer` action is configured separately; it is not an MCP tool.
+    You will configure the five MCP tools in the [Select MCP Tools as Actions](#lab-23-select-mcp-tools-as-actions) section.
 
     ???+ Inline info "Alex Conversational settings"
         <figure markdown>
@@ -212,59 +212,94 @@ In this lab, we will use just *File* ingestion.
 
 ## Lab 2.3 - Select MCP Tools as Actions
 
-The LAB-31207 MCP server is already configured in the shared lab tenant. Select its available tools from the AI Agent action configuration; do not create or edit an MCP server as part of the lab.
+The LAB_31207_Finance MCP server is already enabled in the shared lab tenant. **You don't need to do any configuration in Control Hub**.  The MCP Server exposes a number of tools you will be using as AI Agent actions later on. The next section is **informational** and explains how the MCP server is configured. 
 
-???+ info "Optional learning: register and provision this MCP server in another tenant"
+???+ info "Optional learning: How to register and provision the MCP server"
 
-    This is reference material only. Do not perform these steps in the shared lab tenant. You need a **Customer Administrator** account for the Control Hub steps; a Partner account cannot authorize Agentic Apps for the customer organization.
+    
+    <p align="center" style="font-size: 24px;">
+    {==
+    This section explains how the MCP server is configured as an Agentic App in the lab tenant. <br>
+    **Do not perform these steps in the shared lab tenant**. <br>
+    This is only for your information. 
+    ==}
+    </p>
+    
+    
+    To configure Agentic Apps in Control Hub, you need a **Customer Administrator** account; a Partner account cannot authorize Agentic Apps for the customer organization.
 
     **1. Register the Agentic App in the Webex Developer Portal**
+        
+    ???+ inline  "New Agentic App"
+        <figure markdown style="width: 30%;">
+        ![New Agentic App](./assets/lab2_p23_img1.png)
+        </figure>
 
-    1. Go to the [Webex Developer Portal](https://developer.webex.com){:target="_blank" rel="noopener"} and sign in with your Webex credentials.
-    2. On the home page, select **Start Building Apps**, then **Create an Agentic App**.
+
+    1. Go to the [Webex Developer Portal](https://developer.webex.com){:target="_blank" rel="noopener"} and sign in with the Webex Admin credentials.
+    2. On the home page, select **Start Building ->**, then **Create an Agentic App**.
     3. Enter the following application details:
 
         | Field | Value |
         |---|---|
         | **Agentic App Module** | `MCP` |
-        | **Transport Type** | `Streamable HTTP` |
-        | **Agentic App Name** | `LAB-31207 Debt Collection MCP Server` |
-        | **Description** | `MCP server providing customer authentication, debt payment, and transaction-history tools for the Webex Financial Group debt-collection agent.` |
-        | **Agentic App Icon** | Choose any suitable icon. |
         | **Agentic App URL** | `https://mcp.cx-tme.com/lab-31207/mcp` |
+        | **Transport Type** | `Streamable HTTP` |
+        | **Agentic App Name** | `Lab_31207_Finance` |
+        | **Description** | `Finance demo mcp for Webex One 2026 lab 31207` |
+        | **Agentic App Icon** | Choose any suitable icon. |
         | **Agentic App auth type** | `API Key` |
 
     4. Select **Add Agentic App**. Keep the app private to your tenant unless you specifically intend to distribute it through App Hub.
 
     **2. Provision the Agentic App in Control Hub**
 
+    ???+ inline  "Agentic App in Control Hub"
+        <figure markdown style="width: 30%;">
+        ![Agentic App in Control Hub](./assets/lab2_p23_img2.png)
+        </figure>
+
     1. In [Control Hub](https://admin.webex.com){:target="_blank" rel="noopener"}, go to **Apps** > **Agentic Apps**.
-    2. Open `LAB-31207 Debt Collection MCP Server`.
-    3. On the **General** tab, set access to **Allowed** for the organization and save.
-    4. On the **Authentication** tab, confirm the method is **API Key**, enter the API key supplied separately by the facilitator, and save. The key is intentionally not included in this guide or repository.
-    5. On the **Tools** tab, enable and save these five tools:
+    2. Open `LAB_31207_Finance`.
+    3. On the **General** tab, set access to **Allowed** for the organization and save and enable the *Authorize automatic server data updates* to avoid re-authorization on server updates.
+    <br><br><br>
+
+        ???+ inline end "Agentic App in Control Hub"
+            <figure markdown style="width: 30%;">
+            ![Agentic App in Control Hub](./assets/lab2_p23_img3.png)
+            </figure>
+    4. On the **Authentication** tab, confirm the method is **API Key**, enter the API key and save.
+    
+    ???+ inline "Agentic App in Control Hub"
+        <figure markdown style="width: 30%;">
+        ![Agentic App in Control Hub](./assets/lab2_p23_img4.png)
+        </figure>
+    
+    5. On the **Tools** tab, you will see the tools exposed by the MCP server. These five tools are enabled:
 
         | Tool | Purpose |
         |---|---|
-        | `authenticate_user` | Creates the PIN-digit challenge used to authenticate a caller. |
-        | `fetch_balance` | Retrieves the customer account, balance, maturity date, and delivery context. |
-        | `payment_session` | Creates a NovaPay payment session and initiates payment-link delivery. |
-        | `confirm_payment` | Confirms a completed NovaPay payment and updates the balance. |
-        | `fetch_transactions` | Retrieves up to five recent customer transactions. |
+        | `Authenticate User` | Creates the PIN-digit challenge used to authenticate a caller. |
+        | `Fetch Balance` | Retrieves the customer account, balance, maturity date, and delivery context. |
+        | `Payment Session` | Creates a NovaPay payment session and initiates payment-link delivery. |
+        | `Confirm Payment` | Confirms a completed NovaPay payment and updates the balance. |
+        | `Fetch Transactions` | Retrieves recent customer transactions. |
 
-    6. If available in your tenant, enable automatic tool-signature updates only when you intend to accept future MCP tool changes without reauthorization [VERIFY: exact Control Hub label].
 
-    After the app is allowed, authenticated, and its tools are enabled, its tools become available to autonomous AI Agents in that organization.
+    After the app is allowed, authenticated, and its tools are enabled, the tools become available to autonomous AI Agents in that organization.
+
+
+The next step in your lab is to select the MCP tools for your AI Agent actions. 
 
 ???+ webex "Add MCP Tools to Alex"
     1. In AI Agent Studio, open your AI Agent `PODXX-LAB-31207_Alex`.
     2. Switch to the **Actions** tab.
     3. Click **+ Add actions**.
-    4. Choose **Select Available** [VERIFY: exact UI label].
+    4. Choose **Select available**.
     5. Select following MCP tools required for Alex.
 
         | MCP tool | What Alex uses it for | Required context |
-        |---|---|---|
+        |----|---|---|
         | `authenticate_user` | Returns two randomly selected positions and digits from the 4-digit PIN so Alex can challenge the caller. | PIN returned by `fetch_balance` |
         | `fetch_balance` | Retrieves the customer record, balance, maturity date, and delivery context from the customer database. | Phone number |
         | `payment_session` | Creates a NovaPay session for the agreed amount and sends the link through the customer's configured delivery channel. | Payment amount and account context returned by `fetch_balance` |
@@ -283,18 +318,23 @@ Before connecting Alex to the campaign and going live, It is essential to valida
 
 
 ???+ webex "Prepare a Test Customer Profile"
-    Complete the [lab prework](../lab-prework/){:target="_blank" rel="noopener"} to provision the test customer used in this scenario. It assigns either your personal US mobile number or an assigned Webex Calling customer profile, and records the delivery route needed for the payment link.
+    For this initial test, you must have completed the [lab prework](../lab-prework/){:target="_blank" rel="noopener"} to provision the test customer used in this scenario. It generates a complete customer record. Below you will see the main information you need for your test. 
 
-    | Field | Requirement |
-    |---|---|
-    | Personal US mobile number | Used to recover customer data and receive the NovaPay payment link by SMS. |
-    | Assigned Webex Calling customer profile | Use its assigned number for the call; the NovaPay payment link is delivered to your registered email. |
-    | Email | Required for the profile; it must be reachable when using an assigned Webex Calling customer profile. |
-    | 4-digit PIN | Any value — used authenticate the user|
-    | Account balance | automatically generated |
-    | Transactions | automatically generated (up to 5 sample transactions) |
+    ???+ Important "Delivery of payment link" 
+        If you created the customer profile using your own US mobile number, the payment link will be sent to that number via SMS. If you created the customer using a Webex Customer profile, the payment link will be sent to the email address associated with your profile.
 
-    If you already completed prework, reuse that test customer rather than creating a second record in the Customer Portal.
+    ???+ inline "Customer Profile"
+        <figure markdown style="width: 30%;">
+        ![Agentic App in Control Hub](./assets/lab2_p24_img1.png)
+        </figure>
+
+    | Field | Usage|
+    |----|----|
+    |Customer Id | Your assigned customer ID as CUST-XXX where xxx is your POD number |
+    |Phone Number | - If you have an US number, this should be your US mobile number. In this case, you will receive the payment link via SMS. <br> - If you selected a Webex customer, this will be your assigned Webex Calling number. In this case, the payment link will be sent via email. |
+    |Email | In case you selected a Webex Customer profile, the payment link will be sent to this email address. |
+    | Balance | This is the pending debt. You can make a partial or total payment on this amount |
+    | Transactions | You will see three generated transactions in your customer record |
 
 ???+ tool "Run the Preview Scenario"
     1. In AI Agent Studio, open `PODXX-LAB-31207_Alex`.
@@ -320,14 +360,14 @@ Before connecting Alex to the campaign and going live, It is essential to valida
 
     10. Return to the conversation with Alex and confirm the payment. Alex checks the status with NovaPay and updates the balance (`confirm_payment`):
     ```text
-        Your payment of $650 was successful. Confirmation code: NP-1EOQTHWK. Your   remaining balance is $4,000. Do you need any further assistance?
+        Your payment of $650 was successful. Confirmation code: NP-1EOQTHWK. Your remaining balance is $4,000. Do you need any further assistance?
     ```
 
         Verify the balance was updated in the customer's record in the Customer Portal.
 
     10. Ask a generic question about balance payment terms, your credit card or the Rewards program. Alex should retrieve the information from the Knowledge Base and provide a detailed response.
 
-    11. Ask about your last transactions. Alex returns up to the last 5 with (`fetch_transactions`). Try a few different queries — last transactions, most recent, or a transaction in a specific city:
+    11. Ask about your last transactions. Alex returns them with (`fetch_transactions`). Try a few different queries — last transactions, most recent, or a transaction in a specific city:
     ```text
         Here are your last three transactions:
             - $1,200 at 99 Collectibles in Madrid on February 4, 2026
@@ -336,10 +376,10 @@ Before connecting Alex to the campaign and going live, It is essential to valida
         Would you like to see more transactions or need help with anything else?
     ```
 
-    12. Finally, mention a suspicious or unrecognized transaction. Confirm Alex stops the normal flow and prepares to transfer you to a fraud specialist. `[VERIFY: where this is covered (lab?) exact trigger phrase / expected transfer message]`.
+    12. Finally, mention a suspicious or unrecognized transaction. Confirm Alex stops the normal flow and prepares to transfer you to a fraud specialist. Note that the actual hand over to the Human agent will be implemented in Lab-3.
 
 ???+ failure "Troubleshooting"
-    Refer to the [Test your AI Agent](#) section for details on how to troubleshoot the AI Agent and the Actions in case of error.
+    Refer to the [AI Agent Troubleshooting](#ai-agent-troubleshooting) section for details on how to troubleshoot the AI Agent and the Actions in case of error.
 
     - **Debt disclosed before authentication**: Review the escalation/authentication logic in the Instructions tab — Alex should never call `fetch_balance` before `authenticate_user` succeeds.
     - **No payment link arrives**: For a personal US mobile number, confirm the phone can receive SMS. For an assigned Webex Calling customer profile, check spam and confirm the registered email is reachable.
@@ -437,7 +477,7 @@ At the end of Lab 1, the outbound call routes to the `AI_Agent_DebtCollection` f
 
     10. Connect the outlet of the **Play Message** error node to the inlet of the escalation **Play Message** node. 
 
-    11. Enable the **Validation** check with the slider in the bottom right of the editor to validate the flow and if there are no erros, click **[Publish Flow]** to publish it. 
+    11. Enable the **Validation** check with the slider in the bottom right of the editor to validate the flow and if there are no errors, click **[Publish Flow]** to publish it. 
 
 
     Your AI Agent is now operational to work in an outbound Campaign!
@@ -453,11 +493,11 @@ At the end of Lab 1, the outbound call routes to the `AI_Agent_DebtCollection` f
 
     1. In Campaign Manager, upload a contact list with your test customer's `firstName`, `lastName`, and `phoneNumber`.
     2. Wait for the contact list to become active.
-    3. When the Campaign Manager launches the outbound call, answer the call in your device (or in your customer's webex app if you don't have an US number).
+    3. When the Campaign Manager launches the outbound call, answer the call in your device (or in your customer's webex app if you don't have an US mobile number).
     4. Confirm Alex greets the customer by name.
     5. Complete the authentication and debt-collection process.
     5. Try querying Alex about your products.
-    6. Ask a transaction or dispute question to confirm Alex uses the relevant MCP tool or prepares escalation context [VERIFY].
+    6. Ask a transaction or dispute question to confirm Alex uses the relevant MCP tool or prepares escalation context.
 
 ???+ Warning
 
