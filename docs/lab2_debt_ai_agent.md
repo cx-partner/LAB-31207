@@ -55,7 +55,7 @@ The fastest path for a 4-hour lab is to import a baseline agent and review the i
 ???+ webex "Import Alex"
      
     !!! download "Alex AI Agent"
-        Download the Alex AI Agent json file from [here](./bcamp_files/Finance_Desktop.json){:download="LAB-31207_Alex_baseline.json"} and store it in a local drive. The file is named `LAB-31207_Alex_baseline`
+        Download the Alex AI Agent json file from [here](./bcamp_files/LAB-31207_Alex_baseline.json){:download="LAB-31207_Alex_baseline.json"} and store it in a local drive. The file is named `LAB-31207_Alex_baseline`
 
     ???+ inline vidcast "Import Alex AI Agent"
         <video controls width="600">
