@@ -426,18 +426,18 @@ Open the **Webex Campaign Management** portal. On first login, you will see the 
 <figcaption>Welcome to Webex Campaign Management — administration checklist</figcaption>
 </figure>
 
-Once in the Campaign Manager configuration protal, you will click on the *Voice Campaign Administration* button in the left navigation panel, and will go through each item as described in the sections below. 
+Once in the Campaign Manager configuration portal, you can click on the different options from the left navigation panel, and will go through each item as described in the sections below. 
 
 <figure markdown style="width: 30%;">
-![Campaign Manager Administration](./assets/lab1_p13_img2.png)
-<figcaption>Welcome to Webex Campaign Management — administration checklist</figcaption>
+![Campaign Manager Administration](./assets/lab1_CM_options.png)
+<figcaption>Welcome to Webex Campaign Management — Configuration Options</figcaption>
 </figure>
 
-### Business Days
+### Business Days (Only Informational, no configuration is required)
 
 Business days are used solely for the purpose of contact list expiry calculation. They have no association with 'Business hours' on the Control Hub. We won't use this option as part of this lab.
 
-### Contact Modes
+### Contact Modes (Pre-configured)
 
 Contact modes define the type of phone number in your contact list (e.g. Home, Office, Mobile). For this lab, we use a single contact mode mapped to the `phoneNumber` column in the CSV. All the PODs will use the same pre-configured contact mode called **phone**
 
@@ -460,14 +460,14 @@ Contact modes define the type of phone number in your contact list (e.g. Home, O
     <figcaption>Creating the phone contact mode with Voice type and default length constraints</figcaption>
     </figure>
 
-### DNC Lists
+### DNC Lists (Only Informational, No configuration is required)
 
 Do Not Contact (DNC) lists prevent the campaign from calling restricted numbers. For this lab, **no DNC list will be configured**.
 
 !!! info
     In production environments, you would upload DNC lists here to comply with regulatory requirements (e.g., national DNC registries). The campaign engine automatically suppresses any contacts matched against active DNC lists.
 
-### Global Variables
+### Global Variables (Pre-loaded by the sync between WxCC and Campaign Manager)
 
 Global variables are synced from Control Hub. They appear here for informational purposes — you cannot create or modify them in Campaign Manager.
 
@@ -491,7 +491,7 @@ Global variables are synced from Control Hub. They appear here for informational
 
 ### Field Mappings
 
-Field mappings define how the columns in your CSV contact list map to the Campaign Manager's dialler system — including which column contains the phone number, which global variables carry the customer name, and the data types.
+Field mappings define how the columns in your CSV contact list map to the Campaign Manager's dialler system, including which column contains the phone number, which global variables carry the customer name, and the data types.
 
 #### Prepare the Contact List CSV
 
@@ -503,13 +503,13 @@ Before creating the field mapping, create your contact list file.
 
     ```csv
     firstName,lastName,phoneNumber
-    John,Smith,+442012345678
+    John,Smith,+14085052211
     ```
 
-    Populate your own customer `firstName`, `lastName`, and `phoneNumber`. Use the test customer details provided for LAB-31207 [VERIFY: confirm test customer source].
+    Populate your own customer `firstName`, `lastName`, and `phoneNumber`. Use the test customer details provided for LAB-31207.
 
     !!! note
-        - All phone numbers must use the E.164 format with the `+` prefix and country code (e.g. `+442012345678`).
+        - All phone numbers must use the E.164 format with the `+` prefix and country code (e.g. `+14085052211`).
         - All rows within a single file must use numbers from the **same country**.
         - Spaces, hyphens, or other special characters in phone numbers are not permitted.
 
@@ -522,17 +522,17 @@ Before creating the field mapping, create your contact list file.
 
 ???+ webex "Create Field Mapping"
 
-    1. Navigate to **Voice campaigns administration** → **Field mappings**.
+    1. Navigate to **Campaign data config** → **Field mappings**.
     2. Click **Create field mapping**.
-    3. Enter a **Field mapping name**: `LAB31207_field_mapping`
+    3. Enter a **Field mapping name**: `field_mapping_<yourPodNumber>`
 
     **Step 1 — Upload sample file:**
 
     Click **Choose file** and select your `contact_list_lab31207.csv`. Once uploaded, the system displays the detected headers: `firstName`, `lastName`, `phoneNumber`.
 
     <figure markdown>
-    ![Field mapping upload](./assets/lab1_p17_img1.png)
-    <figcaption>Field mapping showing LAB31207_field_mapping with the uploaded CSV and 3 detected headers</figcaption>
+    ![Field mapping upload](./assets/lab1_CM_FM1.png)
+    <figcaption>Field mapping showing field_mapping<yourPodNumber> with the uploaded CSV and 3 detected headers</figcaption>
     </figure>
 
     **Step 2 — Map contact modes:**
@@ -540,7 +540,7 @@ Before creating the field mapping, create your contact list file.
     In the **Map contact modes** section, map the `phoneNumber` column to the `Phone` contact mode you created earlier. Leave `firstName` and `lastName` as **Unmapped** at this stage.
 
     <figure markdown style="width: 60%;">
-    ![Map contact modes](./assets/lab1_p17_img2.png)
+    ![Map contact modes](./assets/lab1_CM_FM2.png)
     <figcaption>Contact mode mapping showing phoneNumber mapped to the Phone contact mode</figcaption>
     </figure>
 
@@ -550,7 +550,7 @@ Before creating the field mapping, create your contact list file.
     *`Prefixed with + sign and country code i.e. '+<country code><phone number>'`*
 
     <figure markdown style="width: 80%;">
-    ![Country and phone number format](./assets/lab1_p18_img1.png)
+    ![Country and phone number format](./assets/lab1_CM_FM3.png)
     <figcaption>Phone number format set to E.164 with + prefix and country code</figcaption>
     </figure>
 
@@ -584,60 +584,57 @@ Before creating the field mapping, create your contact list file.
 
     Click **Save** to finalise the field mapping. You might get a pop up message like *Some global variables are unmapped in step# 5*. This is due to the fact the phonenumber is not being mapped to any global variable. That is fine, just click on **Save field mapping as is** to continue. 
 
-### Org Exclusion Dates
+### Holidays for All Campaigns (Pre-Configured)
 
-Organisation-level exclusion dates prevent campaigns from running on specific dates (e.g. national holidays). These exclusions apply to **all campaigns** in the organisation.
+**Holidays for All Campaigns** prevent campaigns from running on specific dates (e.g. national holidays). These exclusions apply to **all campaigns** in the organisation.
 
-???+ webex "Create Org Exclusion Date"
+???+ webex "Holidays for All Campaigns"
 
-    1. Navigate to **Voice campaigns administration** → **Org exclusion dates**.
-    2. Click **Create exclusion date** and add:
+    1. Navigate to **Organization config** → **Holidays for All Campaigns**.
+    2. Verify the existing holiday:
 
         | Exclusion date | Comment |
         |---|---|
         | `Dec 31, 2026` | `End of the Year` |
 
-    3. Click **Save**.
 
     <figure markdown>
-    ![Org exclusion dates](./assets/lab1_p19_img1.png)
-    <figcaption>Organisation-level exclusion date set for 31 December 2026</figcaption>
+    ![Org exclusion dates](./assets/lab1_CM-H1.png)
+    <figcaption>Exclusion date set for 31 December 2026</figcaption>
     </figure>
 
     !!! info
         When a campaign is running and an exclusion date is reached, the campaign status automatically changes to **Pending** and calling stops. Once the exclusion date passes, the campaign automatically resumes with **Running** status.
 
-### Purpose Meta-tags
+### Purpose Meta-tags (Pre-configured)
 
-Purpose meta-tags allow you to categorise campaigns by business function. They are **mandatory for campaign activation** (though not required to save a campaign in draft).
+Purpose meta-tags allow you to categorise campaigns by business function. They are **mandatory for campaign activation** (though not required to save a campaign in draft). All PODs will use the same pre-configured meta-tag.
 
-???+ webex "Create Purpose Meta-tag"
+???+ webex "Verify Purpose Meta-tag"
 
-    1. Navigate to **Voice campaigns administration** → **Purpose meta-tags**.
-    2. Click **Create purpose meta-tag** and configure:
+    1. Navigate to **Organization config** → **Purpose meta-tags**.
+    2. Click on the existing **purpose meta-tag** and verify:
         - **Purpose meta-tag**: `debt`
         - **Purpose meta-tag group**: `DEFAULT`
-    3. Click **Update purpose meta-tag**.
 
     <figure markdown style="width: 70%;">
-    ![Purpose meta-tag creation](./assets/lab1_p19_img2.png)
-    <figcaption>Creating the "debt" purpose meta-tag under the DEFAULT group</figcaption>
+    ![Purpose meta-tag creation](./assets/lab1_CM_PMT.gif)
+    <figcaption>Verify the "debt" purpose meta-tag under the DEFAULT group</figcaption>
     </figure>
 
-### P&L Meta-tags
+### P&L Meta-tags (Pre-configured)
 
-P&L (Profit and Loss) meta-tags allow campaigns to be assigned to different business divisions or cost centres. Like purpose meta-tags, they are **mandatory for campaign activation**.
+P&L (Profit and Loss) meta-tags allow campaigns to be assigned to different business divisions or cost centres. Like purpose meta-tags, they are **mandatory for campaign activation**. All PODs will use the same pre-configured P&L meta-tag.
 
-???+ webex "Create P&L Meta-tag"
+???+ webex "Verify P&L Meta-tag"
 
-    1. Navigate to **Voice campaigns administration** → **P&L meta-tags**.
-    2. Click **Create P&L meta-tag** and configure:
+    1. Navigate to **Organization config* → **P&L meta-tags**.
+    2. Click on the existing **P&L meta-tag** and verify:
         - **P&L meta-tag name**: `debt`
         - **P&L meta-tag description**: `Debt Department`
-    3. Click **Save P&L meta-tag**.
 
     <figure markdown>
-    ![P&L meta-tags list](./assets/lab1_p20_img1.png)
+    ![P&L meta-tags list](./assets/lab1_cm-plmt.gif)
     <figcaption>P&L meta-tags list showing the debt tag created alongside the system Default tag</figcaption>
     </figure>
 
