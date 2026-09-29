@@ -9,7 +9,7 @@ theme:
   features:
     - navigation.tabs
     - navigation.tabs.sticky
-    - navigation.indexes
+    - navigation.indexesmkd
     - navigation.instant
     - navigation.top
     - navigation.footer
@@ -103,6 +103,9 @@ nav:
 #  - Lab Access: lab-access.md
 #  - Customer Portal: customer-portal.md
   - Labs:
-      - Lab 1 - Native Campaign Manager: lab1_campaign_manager.md
-      - Lab 2 - AI Agent with MCP: lab2_debt_ai_agent.md
-      - Lab 3 - Real-Time Assist: lab3_human_ai_assist.md
+      - Lab 1: 
+        - Native Campaign Manager: lab1_campaign_manager.md
+      - Lab 2: 
+        - AI Agent with MCP: lab2_debt_ai_agent.md
+      - Lab 3: 
+        - Real-Time Assist: lab3_human_ai_assist.md
