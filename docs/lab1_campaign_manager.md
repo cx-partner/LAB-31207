@@ -437,14 +437,14 @@ Once in the Campaign Manager configuration protal, you will click on the *Voice 
 
 Business days are used solely for the purpose of contact list expiry calculation. They have no association with 'Business hours' on the Control Hub. We won't use this option as part of this lab.
 
-### Contact Modes (pre-configured)
+### Contact Modes
 
-Contact modes define the type of phone number in your contact list (e.g. Home, Office, Mobile). For this lab, we use a single contact mode mapped to the `phoneNumber` column in the CSV. All the PODs will use the pre-configured **phone** contact mode.
+Contact modes define the type of phone number in your contact list (e.g. Home, Office, Mobile). For this lab, we use a single contact mode mapped to the `phoneNumber` column in the CSV. All the PODs will use the same pre-configured contact mode called **phone**
 
-???+ webex "Contact Mode"
+???+ webex "Verify Contact Mode"
 
     1. Navigate to **Campaign data config** → **Contact modes**.
-    2. Click on **phone** contact mode and the following information show be displayed:
+    2. Click **phone** contact mode and the following details should be displayed:
 
         | Field | Value |
         |---|---|
@@ -457,7 +457,7 @@ Contact modes define the type of phone number in your contact list (e.g. Home, O
 
     <figure markdown style="width: 60%;">
     ![Create contact mode](./assets/lab1_p15_img1.png)
-    <figcaption>Phone contact mode with Voice type and default length constraints</figcaption>
+    <figcaption>Creating the phone contact mode with Voice type and default length constraints</figcaption>
     </figure>
 
 ### DNC Lists
