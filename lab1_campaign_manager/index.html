@@ -1897,12 +1897,11 @@ All PODs will use the same global variables which are already pre-configured. If
 <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/Lab1_OutdialANI.png" data-title="LAB31207_outANI configuration" data-desc-position="top"><img alt="LAB31207_outANI configuration" src="../assets/Lab1_OutdialANI.png"></a>
 <figcaption>OutdialANI configured for outdial caller ID</figcaption>
 </figure><p></p>
-</details>
-<div class="admonition important note">
+<div class="admonition important">
 <p class="admonition-title">Important</p>
-<div class="language-text highlight"><pre><span></span><code>In order to configure the **Outdial ANI**, a PSTN number must a assigned to an **Inboud Telephony Entry Point** (aka **Channel**) first.
-</code></pre></div>
+<p>In order to configure the <strong>Outdial ANI</strong>, a PSTN number must a assigned to an <strong>Inboud Telephony Entry Point</strong> (aka <strong>Channel</strong>) first.</p>
 </div>
+</details>
 <hr>
 <h2 id="lab-16-campaign-manager-configuration">Lab 1.6 - Campaign Manager Configuration<a class="headerlink" href="#lab-16-campaign-manager-configuration" title="Permanent link">¶</a></h2>
 <p>Open the <strong>Webex Campaign Management</strong> portal. On first login, you will see the welcome screen outlining all the administration areas to configure before launching campaigns.</p>
@@ -1918,13 +1917,13 @@ All PODs will use the same global variables which are already pre-configured. If
 <h3 id="business-days">Business Days<a class="headerlink" href="#business-days" title="Permanent link">¶</a></h3>
 <p>Business days are used solely for the purpose of contact list expiry calculation. They have no association with 'Business hours' on the Control Hub. We won't use this option as part of this lab.</p>
 <h3 id="contact-modes">Contact Modes<a class="headerlink" href="#contact-modes" title="Permanent link">¶</a></h3>
-<p>Contact modes define the type of phone number in your contact list (e.g. Home, Office, Mobile). For this lab, we use a single contact mode mapped to the <code>phoneNumber</code> column in the CSV.</p>
+<p>Contact modes define the type of phone number in your contact list (e.g. Home, Office, Mobile). For this lab, we use a single contact mode mapped to the <code>phoneNumber</code> column in the CSV. All the PODs will use the same pre-configured contact mode called <strong>phone</strong></p>
 <details class="webex" open="open">
-<summary>Create Contact Mode</summary>
+<summary>Verify Contact Mode</summary>
 <ol>
-<li>Navigate to <strong>Voice campaigns administration</strong> → <strong>Contact modes</strong>.</li>
+<li>Navigate to <strong>Campaign data config</strong> → <strong>Contact modes</strong>.</li>
 <li>
-<p>Click <strong>Create contact mode</strong> and fill in:</p>
+<p>Click <strong>phone</strong> contact mode and the following details should be displayed:</p>
 <table>
 <thead>
 <tr>
@@ -1955,9 +1954,6 @@ All PODs will use the same global variables which are already pre-configured. If
 </tr>
 </tbody>
 </table>
-</li>
-<li>
-<p>Click <strong>Create contact mode</strong>.</p>
 </li>
 </ol>
 <p></p><figure markdown="" style="width: 60%;">
