@@ -228,8 +228,7 @@ The flow plays a congratulatory TTS message when a live voice contact is detecte
         - Under **Global Variables**, click **Add global variables** and add both `firstName` and `lastName`.
     4. From the **Activities Library**, drag a **Play Message** node onto the canvas and connect it to the **NewPhoneContact** Start node.
 
-        ???+ Warning
-            The **NewPhoneContact** event is being renamed into **StartFlow**, so this might be the name you see in your start node.
+
 
     5. Configure the **Play Message** node:
         - **Activity Label**: `EndOfLab1`
@@ -261,9 +260,8 @@ Now create the main outbound campaign flow. This flow handles the outbound diall
     3. Name it <copy>`Outbound_DebtCollection<yourPodNumber>`</copy> and select **Voice** as the channel type.
     3. In the **Global Flow Properties** panel:
         - Under **Global Variables**, add both `firstName` and `lastName`.
-    4. The Main flow canvas starts with a **NewPhoneContact** Start node.
+    4. The Main flow canvas starts with a **NewContact** Start Flow node.
     
-        > Note the Start node might be **StartFlow** instead.
 
         Connect it to an **End Flow** node as a placeholder — the actual logic is handled in Event flows.
 
@@ -312,6 +310,7 @@ This event triggers when the dialler receives a CPA result for an outbound call 
         - Enable **Text-to-Speech**
         - **Connector**: `Cisco Cloud Text-to-Speech`
         - **Text-to-Speech Message**: `Goodbye`
+        - Remove the **Audio file** field.
     4. Drag and **End Flow** message to the canvas and connect the **Play Message** node to an **End Flow** node.
 
     <figure markdown>
@@ -417,7 +416,7 @@ The Outdial ANI is the caller ID displayed to customers when they receive the ou
 ---
 
 
-## Lab 1.6 - Campaign Manager Configuration
+## Lab 1.7 - Campaign Manager Configuration
 
 Open the **Webex Campaign Management** portal. On first login, you will see the welcome screen outlining all the administration areas to configure before launching campaigns.
 
@@ -473,7 +472,7 @@ Global variables are synced from Control Hub. They appear here for informational
 
 ???+ webex "Verify Global Variables"
 
-    1. Navigate to **Voice campaigns administration** → **Global variables**.
+    1. Navigate to **Organization config** → **Global variables**.
     2. Verify that `firstName` and `lastName` are listed with **Status: Active** and **Agent view: Yes**.
 
         If you don´t see the variables, click *Refresh from Control Hub* at the top-right of the page
@@ -711,7 +710,7 @@ Wrap-up codes defined in Control Hub are synced to Campaign Manager. You can con
 
 ---
 
-## Lab 1.7 - Campaign Management
+## Lab 1.8 - Campaign Management
 
 With all prerequisites in place, you are ready to create the campaign group, configure the campaign, and activate it.
 
@@ -929,7 +928,7 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
 
 ---
 
-## Lab 1.8 - Upload Contact List and Test
+## Lab 1.9 - Upload Contact List and Test
 
 ### Upload the Contact List
 
