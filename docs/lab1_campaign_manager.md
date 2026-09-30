@@ -392,7 +392,7 @@ The Entry Point (Channel) is the outbound telephony channel that ties together t
     3. Click **Create**.
 
 
-###  Outdial ANI
+###  Outdial ANI (Pre-Configured)
 
 The Outdial ANI is the caller ID displayed to customers when they receive the outbound call. You can configure multiple ANIs for different regions. For the purpose of this lab, all attendes will use the same Outdial ANI which will be preconfigured. If you want to check the configuration (OPIONAL) you can follow this steps.
 
@@ -401,7 +401,7 @@ The Outdial ANI is the caller ID displayed to customers when they receive the ou
     1. In Control Hub, navigate to **Contact Center** → **Outdial ANI**.
     2. Click on **OutdialANI_All** and you will see:
         - **Name**: `OudialANI_All`
-    3. Under **Configured ANIs**, click **Add More** and add your PSTN numbers
+    3. Under **Configured ANIs**, you should see the following:
         - **Name**: `Campaign`
         - **Contact Number**: `+17382033500`
         - **Default ANI**: `Campaign(+17382033500)`
@@ -638,90 +638,49 @@ P&L (Profit and Loss) meta-tags allow campaigns to be assigned to different busi
     <figcaption>P&L meta-tags list showing the debt tag created alongside the system Default tag</figcaption>
     </figure>
 
-### Suppression Rules
+### Suppression Rules (Pre-configured)
 
-Suppression rules prevent calls from being made to contacts during restricted time windows or under other compliance conditions. They are evaluated before each call attempt.
+Suppression rules prevent calls from being made to contacts during restricted time windows or under other compliance conditions. They are evaluated before each call attempt. For this lab, All the PODs will use the same supression rule set named **sr_hours**
 
-???+ webex "Create Suppression Rule Set and Rule"
+???+ webex "Verify Suppression Rule Set and Rule"
 
-    **Step 1 — Create the rule set:**
+    **Step 1 — Very the rule set and supression rule:**
 
-    1. Navigate to **Voice campaigns administration** → **Suppression rule sets**.
-    2. Click **Create suppression rule set**.
-    3. Enter the name: `LAB31207_rule`
-    4. Click **Save rule set**.
+    1. Navigate to **Compliance** → **Suppression rule sets**.
+    2. Click **sr_hours**.
+    3. Then click on supression rule **sr_after_hours**  
+    4. Verifiy the configuration, you will find that the rule has been set to avoid calls between 23rhs to 7hrs.
 
-    <figure markdown>
-    ![Suppression rule sets](./assets/lab1_p20_img2.png)
-    <figcaption>Creating the LAB31207_rule suppression rule set</figcaption>
-    </figure>
-
-    Once saved, the rule set appears in the list. Click the **⋮ Actions** menu on the `LAB31207_rule` row to access the option to create a rule within it.
+ 
 
     <figure markdown>
-    ![Suppression rule set created](./assets/lab1_p20_img3.jpeg)
-    <figcaption>LAB31207_rule suppression rule set listed with Voice channel. Use the Actions menu to select "Create suppression rule"</figcaption>
-    </figure>
-
-    **Step 2 — Create the rule under the set:**
-
-    1. Click on the **LAB31207_rule** set.
-    2. Click **Create suppression rule** and configure:
-
-        | Field | Value |
-        |---|---|
-        | **Rule name** | `LAB31207_rule1` |
-        | **Description** | `LAB31207_rule1` |
-        | **Suppression rule based on** | `Contact attempt timing window` |
-        | **Applicable channels** | `Voice` |
-
-    3. Under **Suppress contact attempts to customers who satisfy the following conditions**, add:
-        - *Current time (24hr format) in call recipient's timezone is **less than*** `7` hr(s) `0` min(s)
-        - **OR** *Current time (24hr format) in call recipient's timezone is **greater than*** `23` hr(s) `0` min(s)
-
-    4. Click **Create**.
-
-    <figure markdown>
-    ![Suppression rule conditions](./assets/lab1_p21_img1.png)
+    ![Suppression rule conditions](./assets/lab1_CM_SR.png)
     <figcaption>Suppression rule configured to prevent calls before 07:00 and after 23:00 in the recipient's timezone</figcaption>
     </figure>
 
     !!! tip
         This rule ensures the campaign never dials contacts during overnight hours, protecting both customer experience and regulatory compliance.
 
-### Telephony Outcomes
+### Telephony Outcomes (Pre-Configured)
 
 A telephony outcome set defines how each possible call result (Busy, No Answer, AMD, etc.) is treated by the campaign — including whether it counts as a contact attempt and how long to wait before retrying.
 
-The system provides a **primary (read-only) outcome set**. You must **duplicate** it to create a configurable version for your campaign.
+The system provides a **primary (read-only) outcome set**. We have **duplicated** it to create a configurable version for your campaign. All PODs will use the same telephony outcomes named **Copy_Telephony_Outcome** and we will keep the configuration as it is.
 
-???+ webex "Duplicate Telephony Outcome Set"
+???+ webex "Verify Telephony Outcome Set"
 
-    1. Navigate to **Voice campaigns administration** → **Telephony outcome sets**.
-    2. On the `Primary_telephony_outcome_set` row, click the **⋮ Actions** menu and select **Duplicate**.
-    3. Enter the new name: `LAB31207_Primary_telephony_outcome_set`
-    4. Click **Duplicate**.
-
-    <figure markdown>
-    ![Telephony outcome sets](./assets/lab1_p21_img2.png)
-    <figcaption>Telephony outcome sets list showing the system Primary set and the Duplicate action</figcaption>
-    </figure>
+    1. Navigate to **Voice outcome sets** → **Telephony outcome sets**.
+    2. Click On the `Copy_Telephony_Outcomes` 
+    3. Explore the different outcomes and options.
+   
 
     <figure markdown>
-    ![Duplicate outcome set dialog](./assets/lab1_p22_img1.png)
-    <figcaption>Duplicate dialog creating LAB31207_Primary_telephony_outcome_set from the system primary set</figcaption>
+
+    ![Telephony outcomes list](./assets/lab1_CM_TO.gif)
+    <figcaption>Copy_telephony_outcome showing all 20 telephony outcomes including AMD, ABANDONED, LIVE_VOICE, BUSY, INVALID_NUMBER, and others</figcaption>
     </figure>
 
-    The duplicated set will appear in your list. You can click on it to view all 20 telephony outcomes. For this lab, **leave all outcome values at their defaults**.
-
-    <figure markdown>
-    ![Telephony outcomes](./assets/lab1_p22_img2.jpeg)
-
-    ![Telephony outcomes list](./assets/lab1_p23_img1.png)
-    <figcaption>LAB31207_Primary_telephony_outcome_set showing all 20 telephony outcomes including AMD, ABANDONED, LIVE_VOICE, BUSY, INVALID_NUMBER, and others</figcaption>
-    </figure>
-
-### UI Users
+### UI Users (Only Informational, no configuration is required)
 
 Webex Campaign Management uses **just-in-time (JIT) provisioning** — user accounts are created automatically the first time a user logs in, based on their role in Control Hub. No manual user creation is required in Campaign Manager.
 
@@ -732,30 +691,19 @@ Webex Campaign Management uses **just-in-time (JIT) provisioning** — user acco
 
 For more information, refer to the [Campaign Management UI Users documentation](https://docs-campaign-for-contact-centers.webexcampaign.com/docs/ui-users).
 
-### Wrap-up Code Sets
+### Wrap-up Code Sets (Pre-Configured)
 
-Wrap-up codes defined in Control Hub are synced to Campaign Manager. You can configure how each code affects future campaign contact attempts (e.g. whether a contact with a given wrap-up code should be retried).
+Wrap-up codes defined in Control Hub are synced to Campaign Manager. You can configure how each code affects future campaign contact attempts (e.g. whether a contact with a given wrap-up code should be retried). For this lab, we have created a set called **Finance** which will include the **debt** wrap-up code. All the PODs will use this one to configure the campaign.
 
-???+ webex "Configure Wrap-up Code Set"
+???+ webex "Verify Wrap-up Code Set"
 
-    1. Navigate to **Voice campaigns administration** → **Wrap-up code sets**. Create a new set.
-
-        <figure markdown>
-        ![Wrap-up code set - debt](./assets/wuset_create.png)
-        </figure>
-
-        <figure markdown style="width: 60%;">
-        ![Wrap-up code set 2 - debt](./assets/wuset_create2.png)
-        </figure>
-
-    2. Click on the new set and then **Add wrap-up codes** Locate the wrap-up codes synced from Control Hub. The `debt` wrap-up code created earlier should appear, select it.
+    1. Navigate to **Voice outcome sets** → **Wrap-up code sets**.
+    2. Click on **Finance**
+    3. Verify it coints **debt** wrap-up code.
     
         <figure markdown>
-        ![Wrap-up code 1 - debt](./assets/wucode_create.png)
-        </figure>
+        ![Wrap-up code - sets](./assets/lab1_CM_WUC.gif)
 
-        <figure markdown style="width: 70%;">
-        ![Wrap-up code 2 - debt](./assets/wucode_create2.png)
         </figure>
 
 
@@ -775,13 +723,13 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
 
     1. In Campaign Manager's left navigation panel, navigate to **Campaign management** → **Campaign groups**.
     2. Click **Create campaign group** and enter:
-        - **Campaign group name**: `LAB-31207`
+        - **Campaign group name**: `cgroup_<yourPodNumber>`
         - *(All other fields are optional)*
     3. Click **Save & proceed**.
 
 
     <figure markdown>
-        ![Campaign groups list](./assets/lab1_p25_img1.jpeg)
+        ![Campaign groups list](./assets/lab1_CM_CG.png)
         <figcaption>Campaign groups list</figcaption>
     </figure>
 
@@ -793,7 +741,7 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
 
 ???+ webex "Create Campaign"
 
-    1. Click on the **LAB-31207** campaign group.
+    1. Click on the **cgroup_yourPodNumber** campaign group.
     2. Click **Create campaign** in the top-right corner.
 
         <figure markdown>
@@ -803,7 +751,7 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
     3. An untitled campaign opens with a visual node-based configuration canvas. Work through each node from left to right.
 
     <figure markdown style="width: 80%;">
-        ![Campaign flow](./assets/lab1_p26_img4.png)
+        ![Campaign flow](./assets/lab1_CM_flow.png)
     </figure>
 
 **Node 1 — Dialer configuration:**
@@ -814,8 +762,8 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
 
     | Field | Value |
     |---|---|
-    | **Control Hub channel** | `Campaign_EP` |
-    | **Outdial ANI** | `+442046200604` *(select your Outdial ANI)* |
+    | **Control Hub channel** | `Campaign_EP_<yourPodNumber>` |
+    | **Outdial ANI** | `+17382033500` *(select the common Outdial ANI)* |
     | **Dialing mode** | `Progressive IVR` |
     | **CPA parameters** | Enabled (leave defaults) |
     | **# of contacts to be sent to the dialer in each push** | `100` |
@@ -823,16 +771,16 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
     Click **Save changes** at the right-bottom of the page.
 
     <figure markdown>
-    ![Dialer configuration](./assets/lab1_p26_img2.png)
+    ![Dialer configuration](./assets/lab1_CM_FlowDC.png)
     </figure>
 
-**Node 2 — Contact list source:**
+**Node 2 — Contact list configuration:**
 
-???+ webex "Configure Contact List Source"
+???+ webex "Configure Contact List configuration"
 
-    1. Click the **Contact list source** node.
+    1. Click the **Contact list configuration** node.
     2. The **Select contact list source** is by default set to the options *File* and *API*. We will use manual file upload.
-    3. Set **Select field mapping** to the field mapping you created before: `LAB31207_field_mapping`.
+    3. Set **Select field mapping** to the field mapping you created before: `field_mapping_<yourPodNumber>`.
     4. Set the contact expiration to 10 days.
     4. Click **Save changes**.
 
@@ -845,7 +793,7 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
 
 
     <figure markdown>
-    ![Contact list source configuration](./assets/lab1_p26_img3.png)
+    ![Contact list source configuration](./assets/lab1_CM_FlowCL.png)
     </figure>
 
 **Node 3 — Daily schedule:**
@@ -853,31 +801,32 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
 ???+ webex "Configure Daily Schedule"
 
     1. Click the **Daily schedule** node.
-    2. Configure the calling window using your local timezone.
-    3. A typical lab schedule runs:
-        - **Start time**: `09:00`
-        - **End time**: `21:00`
-    4. Click **Save changes**.
+    2. Configure the **start date**
+    3. Configure the calling window using your local timezone.
+    4. A typical lab schedule runs:
+        - **Start time**: `08:00`
+        - **End time**: `23:00`
+    5. Click **Save changes**.
 
     <figure markdown>
-    ![Campaign daily schedule](./assets/lab1_p28_img1.png)
+    ![Campaign daily schedule](./assets/lab1_CM_flowDS.png)
     </figure>
 
-**Node 4 — Schedule exclusion dates:**
+**Node 4 — Campaign Holidays:**
 
-???+ webex "Configure Exclusion Dates"
+???+ webex "Configure Campaign Holidays"
 
-    1. Click the **Schedule exclusion dates** node.
-    2. Under **Organisation-level exclusion dates**, the `End of the Year (Dec 31, 2026)` date you created earlier should appear automatically.
+    1. Click the **Campaign Holidays** node.
+    2. Under **Holidays for all campaigns**, the `End of the Year (Dec 31, 2026)` date previously created  should appear automatically.
     3. Leave it checked (enabled).
     4. Click **Save changes**.
 
     !!! Note
-        Note you can define specific campaign exclusion dates that would only apply for the current campaign. We will not use it in this lab.
+        Note you can define specific campaign holidays dates that would only apply for the current campaign. We will not use it in this lab.
 
 
     <figure markdown>
-    ![Schedule exclusion dates](./assets/lab1_p28_img2.jpeg)
+    ![Schedule exclusion dates](./assets/lab1_CM_flowCH.png)
     </figure>
 
 **Node 5 — Contact attempts strategy:**
@@ -887,7 +836,7 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
     1. Click the **Contact attempts strategy** node, then click **Configure**.
 
         <figure markdown>
-        ![Contact attempts strategy](./assets/lab1_p28_img3.png)
+        ![Contact attempts strategy](./assets/lab1_CM_flowCAS1.png)
         </figure>
 
     2. Configure the following sections:
@@ -897,11 +846,12 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
     | Field | Value |
     |---|---|
     | **Wrap-up code set** | `Finance` (with 1 wrap-up code) |
-    | **Telephony outcome set** | `LAB31207_Primary_telephony_outcome_set` |
+    | **Telephony outcome set** | `Copy_telephony_outcome` |
 
 
     **Section 2 — Contact mode priority:**
 
+    **Safe calling window** will be `8:00 to 23:00`
     The `Phone` contact mode should be pre-populated from your field mapping. Leave priority at `1`.
 
     **Section 3 — Max call attempts:**
@@ -919,7 +869,10 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
     Click **Save**.
 
     <figure markdown style="width: 60%;">
-    ![Contact attempts strategy full view](./assets/lab1_p29_img1.jpeg)
+    ![Contact attempts strategy full view - part 1](./assets/lab1_CM_flowCAS2.png)
+    </figure>
+    <figure markdown style="width: 60%;">
+    ![Contact attempts strategy full view- part 2](./assets/lab1_CM_flowCAS3.png)
     </figure>
 
     Back to the campaign flow canvas, click **Save changes** in the right panel. 
@@ -929,11 +882,11 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
 ???+ webex "Configure Suppression Rules"
 
     1. Click the **Suppression rule sets** node.
-    2. Under **Suppression rule sets**, select `LAB31207_rule` (which includes `LAB31207_rule1`).
+    2. Under **Suppression rule sets**, select `sr_hours` (which includes `sr_after_hours`).
     3. Click **Save changes**.
 
     <figure markdown>
-    ![Suppression rule sets in campaign](./assets/lab1_p30_img1.png)
+    ![Suppression rule sets in campaign](./assets/lab1_CM_flowSR.png)
     </figure>
 
 ### Save and Activate the Campaign
@@ -942,14 +895,14 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
 
     1. Click **Save & exit** (top right of the campaign flow canvas).
     2. In the **Save campaign** dialog, fill in:
-        - **Campaign name**: `LAB31207_campaign`
+        - **Campaign name**: `wxone_camp_100`
         - **P&L meta-tag**: `debt`
         - **Purpose meta-tag**: `debt`
         - **Applicable DNC lists**: `None`
     3. Click **Save**.
 
     <figure markdown>
-    ![Save campaign dialog](./assets/lab1_p30_img2.jpeg)
+    ![Save campaign dialog](./assets/lab1_CM_SaveC.png)
     </figure>
 
 
@@ -961,14 +914,14 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
 
         The field mapping can be changed while the campaign is in **Draft** status.
     
-    1. Back in the Campaign group list, locate **LAB31207_campaign** (status: **Draft**).
+    1. Back in the Campaign group list, locate **wxone_camp_<yourPodNumber>** (status: **Draft**).
     2. Click the **⋮ Actions** menu and select **Activate**.
     3. In the confirmation dialog, click **Confirm**.
 
     The campaign status will change to **Pending** and then **Running**.
 
     <figure markdown>
-    ![Activate campaign](./assets/lab1_p31_img1.png)
+    ![Activate campaign](./assets/lab1_CM_Activate.png)
     </figure>
 
     ???+ tip 
@@ -984,30 +937,30 @@ Now that the campaign is active, upload your contact list CSV to trigger the out
 
 ???+ webex "Upload Contact List"
 
-    1. In the campaign list, click the **⋮ Actions** menu on **LAB31207_campaign** and select **Manage contact lists**.
+    1. In the campaign list, click the **⋮ Actions** menu on **wxone_camp_<youPodNumber>** and select **Manage contact lists**.
         
         <figure markdown>
-        ![Manage contact lists panel](./assets/lab1_p31_img3.png)
+        ![Manage contact lists panel](./assets/lab1_CM_CL1.png)
         </figure>
 
     2. Click **Upload file to create contact list**.
 
          <figure markdown>
-        ![Contact list upload dialog](./assets/lab1_p31_img4.png)
+        ![Contact list upload dialog](./assets/lab1_CM_CL2.png)
         </figure>
 
     3. In the **Contact list from file upload** dialog:
         - **Supported channels**: Voice (pre-selected)
         - **Contact list type**: Static
-        - **Field mapping**: `LAB31207_field_mapping` (pre-selected)
-        - Click **Browse** and select your `contact_list_lab31207.csv`
+        - **Field mapping**: `field_mapping_<yourPodNumber>` (pre-selected)
+        - Click **Browse** and select your `contact_list_lab31207.csv` The one you edit with your details.
         - **Automatically activate**: Immediately after upload
         - **In case of record issues**: Skip the particular record
     4. Click **Save and proceed**.
 
 
         <figure markdown style="width: 70%;">
-        ![Contact list file upload form](./assets/lab1_p32_img2.png)
+        ![Contact list file upload form](./assets/lab1_CM_CL3.png)
         <figcaption>Contact list upload form showing field mapping, file selection, and activation settings</figcaption>
         </figure>
 
@@ -1032,7 +985,7 @@ After uploading, the contact list will show a status of **Uploading**, then it w
     If your contact list fails to upload, the most likely cause is a **formatting issue** with the CSV file. Check that:
 
     - The column headers match **exactly** what was defined in the field mapping (`firstName`, `lastName`, `phoneNumber`)
-    - Phone numbers use E.164 format with the `+` prefix (e.g. `+442012345678`)
+    - Phone numbers use E.164 format with the `+` prefix (e.g. `+14085052211`)
     - All phone numbers in the file are from the **same country**
     - No spaces, hyphens, or special characters appear in the phone number field
     - The file is saved as a proper comma-separated CSV (not semicolon or tab-separated)
@@ -1050,7 +1003,7 @@ If everything is configured correctly, **you will receive a call** on the phone 
 
 > *"Congratulations, You have completed lab 1"*
 
-This confirms that the full end-to-end flow is working — from Campaign Manager initiating the call, through the CPA detection identifying a live voice, routing through the Go To node, and arriving at the `Lab1_completed` flow which plays the TTS message.
+This confirms that the full end-to-end flow is working — from Campaign Manager initiating the call, through the CPA detection identifying a live voice, routing through the Go To node, and arriving at the `AI_Agent_DebtCollection` flow which plays the TTS message.
 
 ???+ Note
     Note that the **End Flow** node does not disconnect the call, so you must hang up manually after testing. We have chosen **End Flow** over **Disconnect Contact** because the call will eventually be routed to a queue in future exercises.
@@ -1066,8 +1019,8 @@ At this point, you have successfully:
 - [x] Built the `AI_Agent_DebtCollection` test flow with a congratulatory TTS message
 - [x] Built the `Outbound_DebtCollection` campaign flow with CPA-based routing (AMD, Abandoned, Live Voice)
 - [x] Configured the outdial Entry Point (Channel) and Outdial ANI
-- [x] Completed all Campaign Manager prerequisites (, contact modes, field mappings, suppression rules, telephony outcomes, wrap-up codes, meta-tags)
-- [x] Created, configured, and activated the `LAB31207_campaign` Progressive IVR campaign
+- [x] Completed all Campaign Manager prerequisites (contact modes, field mappings, suppression rules, telephony outcomes, wrap-up codes, meta-tags)
+- [x] Created, configured, and activated the `wxone_camp_<yourPodName>` Progressive IVR campaign
 - [x] Uploaded a contact list and received a live test call
 
 **Congratulations!** You have completed Lab 1. The outbound campaign infrastructure is fully operational and ready to connect to the AI Agent in Lab 2.
