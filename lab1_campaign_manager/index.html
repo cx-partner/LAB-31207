@@ -818,15 +818,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lab-16-campaign-manager-configuration" class="md-nav__link">
+  <a href="#lab-17-campaign-manager-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Lab 1.6 - Campaign Manager Configuration
+        Lab 1.7 - Campaign Manager Configuration
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Lab 1.6 - Campaign Manager Configuration">
+    <nav class="md-nav" aria-label="Lab 1.7 - Campaign Manager Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -967,15 +967,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lab-17-campaign-management" class="md-nav__link">
+  <a href="#lab-18-campaign-management" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Lab 1.7 - Campaign Management
+        Lab 1.8 - Campaign Management
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Lab 1.7 - Campaign Management">
+    <nav class="md-nav" aria-label="Lab 1.8 - Campaign Management">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1017,15 +1017,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lab-18-upload-contact-list-and-test" class="md-nav__link">
+  <a href="#lab-19-upload-contact-list-and-test" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Lab 1.8 - Upload Contact List and Test
+        Lab 1.9 - Upload Contact List and Test
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Lab 1.8 - Upload Contact List and Test">
+    <nav class="md-nav" aria-label="Lab 1.9 - Upload Contact List and Test">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1632,10 +1632,6 @@ All PODs will use the same global variables which are already pre-configured. If
 </li>
 <li>
 <p>From the <strong>Activities Library</strong>, drag a <strong>Play Message</strong> node onto the canvas and connect it to the <strong>NewPhoneContact</strong> Start node.</p>
-<details class="warning" open="open">
-<summary>Warning</summary>
-<p>The <strong>NewPhoneContact</strong> event is being renamed into <strong>StartFlow</strong>, so this might be the name you see in your start node.</p>
-</details>
 </li>
 <li>
 <p>Configure the <strong>Play Message</strong> node:</p>
@@ -1672,10 +1668,7 @@ All PODs will use the same global variables which are already pre-configured. If
 </ul>
 </li>
 <li>
-<p>The Main flow canvas starts with a <strong>NewPhoneContact</strong> Start node.</p>
-<blockquote>
-<p>Note the Start node might be <strong>StartFlow</strong> instead.</p>
-</blockquote>
+<p>The Main flow canvas starts with a <strong>NewContact</strong> Start Flow node.</p>
 <p>Connect it to an <strong>End Flow</strong> node as a placeholder — the actual logic is handled in Event flows.</p>
 </li>
 </ol>
@@ -1743,6 +1736,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <li>Enable <strong>Text-to-Speech</strong></li>
 <li><strong>Connector</strong>: <code>Cisco Cloud Text-to-Speech</code></li>
 <li><strong>Text-to-Speech Message</strong>: <code>Goodbye</code></li>
+<li>Remove the <strong>Audio file</strong> field.</li>
 </ul>
 </li>
 <li>Drag and <strong>End Flow</strong> message to the canvas and connect the <strong>Play Message</strong> node to an <strong>End Flow</strong> node.</li>
@@ -1903,7 +1897,7 @@ All PODs will use the same global variables which are already pre-configured. If
 </div>
 </details>
 <hr>
-<h2 id="lab-16-campaign-manager-configuration">Lab 1.6 - Campaign Manager Configuration<a class="headerlink" href="#lab-16-campaign-manager-configuration" title="Permanent link">¶</a></h2>
+<h2 id="lab-17-campaign-manager-configuration">Lab 1.7 - Campaign Manager Configuration<a class="headerlink" href="#lab-17-campaign-manager-configuration" title="Permanent link">¶</a></h2>
 <p>Open the <strong>Webex Campaign Management</strong> portal. On first login, you will see the welcome screen outlining all the administration areas to configure before launching campaigns.</p>
 <figure style="width: 70%;">
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p13_img1.png" data-title="Campaign Manager welcome screen" data-desc-position="top"><img alt="Campaign Manager welcome screen" src="../assets/lab1_p13_img1.png"></a></p>
@@ -1972,7 +1966,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <details class="webex" open="open">
 <summary>Verify Global Variables</summary>
 <ol>
-<li>Navigate to <strong>Voice campaigns administration</strong> → <strong>Global variables</strong>.</li>
+<li>Navigate to <strong>Organization config</strong> → <strong>Global variables</strong>.</li>
 <li>
 <p>Verify that <code>firstName</code> and <code>lastName</code> are listed with <strong>Status: Active</strong> and <strong>Agent view: Yes</strong>.</p>
 <p>If you don´t see the variables, click <em>Refresh from Control Hub</em> at the top-right of the page</p>
@@ -2210,7 +2204,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <p>For more information, refer to the <a href="https://docs-campaign-for-contact-centers.webexcampaign.com/docs/wrap-up-code-sets">Wrap-up code sets documentation</a>.</p>
 </details>
 <hr>
-<h2 id="lab-17-campaign-management">Lab 1.7 - Campaign Management<a class="headerlink" href="#lab-17-campaign-management" title="Permanent link">¶</a></h2>
+<h2 id="lab-18-campaign-management">Lab 1.8 - Campaign Management<a class="headerlink" href="#lab-18-campaign-management" title="Permanent link">¶</a></h2>
 <p>With all prerequisites in place, you are ready to create the campaign group, configure the campaign, and activate it.</p>
 <h3 id="create-a-campaign-group">Create a Campaign Group<a class="headerlink" href="#create-a-campaign-group" title="Permanent link">¶</a></h3>
 <p>A campaign group is a container (wrapper) for one or more campaigns. You must create the group first before creating any campaigns inside it.</p>
@@ -2466,7 +2460,7 @@ The <code>Phone</code> contact mode should be pre-populated from your field mapp
 </details>
 </details>
 <hr>
-<h2 id="lab-18-upload-contact-list-and-test">Lab 1.8 - Upload Contact List and Test<a class="headerlink" href="#lab-18-upload-contact-list-and-test" title="Permanent link">¶</a></h2>
+<h2 id="lab-19-upload-contact-list-and-test">Lab 1.9 - Upload Contact List and Test<a class="headerlink" href="#lab-19-upload-contact-list-and-test" title="Permanent link">¶</a></h2>
 <h3 id="upload-the-contact-list">Upload the Contact List<a class="headerlink" href="#upload-the-contact-list" title="Permanent link">¶</a></h3>
 <p>Now that the campaign is active, upload your contact list CSV to trigger the outbound calls.</p>
 <details class="webex" open="open">
