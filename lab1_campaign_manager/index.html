@@ -802,10 +802,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#outdial-ani" class="md-nav__link">
+  <a href="#outdial-ani-pre-configured" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Outdial ANI
+        Outdial ANI (Pre-Configured)
       
     </span>
   </a>
@@ -918,10 +918,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#suppression-rules" class="md-nav__link">
+  <a href="#suppression-rules-pre-configured" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Suppression Rules
+        Suppression Rules (Pre-configured)
       
     </span>
   </a>
@@ -929,10 +929,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#telephony-outcomes" class="md-nav__link">
+  <a href="#telephony-outcomes-pre-configured" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Telephony Outcomes
+        Telephony Outcomes (Pre-Configured)
       
     </span>
   </a>
@@ -940,10 +940,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#ui-users" class="md-nav__link">
+  <a href="#ui-users-only-informational-no-configuration-is-required" class="md-nav__link">
     <span class="md-ellipsis">
       
-        UI Users
+        UI Users (Only Informational, no configuration is required)
       
     </span>
   </a>
@@ -951,10 +951,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#wrap-up-code-sets" class="md-nav__link">
+  <a href="#wrap-up-code-sets-pre-configured" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Wrap-up Code Sets
+        Wrap-up Code Sets (Pre-Configured)
       
     </span>
   </a>
@@ -1876,7 +1876,7 @@ All PODs will use the same global variables which are already pre-configured. If
 </li>
 </ol>
 </details>
-<h3 id="outdial-ani">Outdial ANI<a class="headerlink" href="#outdial-ani" title="Permanent link">¶</a></h3>
+<h3 id="outdial-ani-pre-configured">Outdial ANI (Pre-Configured)<a class="headerlink" href="#outdial-ani-pre-configured" title="Permanent link">¶</a></h3>
 <p>The Outdial ANI is the caller ID displayed to customers when they receive the outbound call. You can configure multiple ANIs for different regions. For the purpose of this lab, all attendes will use the same Outdial ANI which will be preconfigured. If you want to check the configuration (OPIONAL) you can follow this steps.</p>
 <details class="webex" open="open">
 <summary>Outdial ANI</summary>
@@ -1886,7 +1886,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <li><strong>Name</strong>: <code>OudialANI_All</code></li>
 </ul>
 </li>
-<li>Under <strong>Configured ANIs</strong>, click <strong>Add More</strong> and add your PSTN numbers<ul>
+<li>Under <strong>Configured ANIs</strong>, you should see the following:<ul>
 <li><strong>Name</strong>: <code>Campaign</code></li>
 <li><strong>Contact Number</strong>: <code>+17382033500</code></li>
 <li><strong>Default ANI</strong>: <code>Campaign(+17382033500)</code></li>
@@ -2151,71 +2151,19 @@ All PODs will use the same global variables which are already pre-configured. If
 <figcaption>P&amp;L meta-tags list showing the debt tag created alongside the system Default tag</figcaption>
 </figure><p></p>
 </details>
-<h3 id="suppression-rules">Suppression Rules<a class="headerlink" href="#suppression-rules" title="Permanent link">¶</a></h3>
-<p>Suppression rules prevent calls from being made to contacts during restricted time windows or under other compliance conditions. They are evaluated before each call attempt.</p>
+<h3 id="suppression-rules-pre-configured">Suppression Rules (Pre-configured)<a class="headerlink" href="#suppression-rules-pre-configured" title="Permanent link">¶</a></h3>
+<p>Suppression rules prevent calls from being made to contacts during restricted time windows or under other compliance conditions. They are evaluated before each call attempt. For this lab, All the PODs will use the same supression rule set named <strong>sr_hours</strong></p>
 <details class="webex" open="open">
-<summary>Create Suppression Rule Set and Rule</summary>
-<p><strong>Step 1 — Create the rule set:</strong></p>
+<summary>Verify Suppression Rule Set and Rule</summary>
+<p><strong>Step 1 — Very the rule set and supression rule:</strong></p>
 <ol>
-<li>Navigate to <strong>Voice campaigns administration</strong> → <strong>Suppression rule sets</strong>.</li>
-<li>Click <strong>Create suppression rule set</strong>.</li>
-<li>Enter the name: <code>LAB31207_rule</code></li>
-<li>Click <strong>Save rule set</strong>.</li>
+<li>Navigate to <strong>Compliance</strong> → <strong>Suppression rule sets</strong>.</li>
+<li>Click <strong>sr_hours</strong>.</li>
+<li>Then click on supression rule <strong>sr_after_hours</strong>  </li>
+<li>Verifiy the configuration, you will find that the rule has been set to avoid calls between 23rhs to 7hrs.</li>
 </ol>
 <p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p20_img2.png" data-title="Suppression rule sets" data-desc-position="top"><img alt="Suppression rule sets" src="../assets/lab1_p20_img2.png"></a>
-<figcaption>Creating the LAB31207_rule suppression rule set</figcaption>
-</figure><p></p>
-<p>Once saved, the rule set appears in the list. Click the <strong>⋮ Actions</strong> menu on the <code>LAB31207_rule</code> row to access the option to create a rule within it.</p>
-<p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p20_img3.jpeg" data-title="Suppression rule set created" data-desc-position="top"><img alt="Suppression rule set created" src="../assets/lab1_p20_img3.jpeg"></a>
-<figcaption>LAB31207_rule suppression rule set listed with Voice channel. Use the Actions menu to select "Create suppression rule"</figcaption>
-</figure><p></p>
-<p><strong>Step 2 — Create the rule under the set:</strong></p>
-<ol>
-<li>Click on the <strong>LAB31207_rule</strong> set.</li>
-<li>
-<p>Click <strong>Create suppression rule</strong> and configure:</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Rule name</strong></td>
-<td><code>LAB31207_rule1</code></td>
-</tr>
-<tr>
-<td><strong>Description</strong></td>
-<td><code>LAB31207_rule1</code></td>
-</tr>
-<tr>
-<td><strong>Suppression rule based on</strong></td>
-<td><code>Contact attempt timing window</code></td>
-</tr>
-<tr>
-<td><strong>Applicable channels</strong></td>
-<td><code>Voice</code></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p>Under <strong>Suppress contact attempts to customers who satisfy the following conditions</strong>, add:</p>
-<ul>
-<li><em>Current time (24hr format) in call recipient's timezone is </em><em>less than</em>** <code>7</code> hr(s) <code>0</code> min(s)</li>
-<li><strong>OR</strong> <em>Current time (24hr format) in call recipient's timezone is </em><em>greater than</em>** <code>23</code> hr(s) <code>0</code> min(s)</li>
-</ul>
-</li>
-<li>
-<p>Click <strong>Create</strong>.</p>
-</li>
-</ol>
-<p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p21_img1.png" data-title="Suppression rule conditions" data-desc-position="top"><img alt="Suppression rule conditions" src="../assets/lab1_p21_img1.png"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_CM_SR.png" data-title="Suppression rule conditions" data-desc-position="top"><img alt="Suppression rule conditions" src="../assets/lab1_CM_SR.png"></a>
 <figcaption>Suppression rule configured to prevent calls before 07:00 and after 23:00 in the recipient's timezone</figcaption>
 </figure><p></p>
 <div class="admonition tip">
@@ -2223,61 +2171,40 @@ All PODs will use the same global variables which are already pre-configured. If
 <p>This rule ensures the campaign never dials contacts during overnight hours, protecting both customer experience and regulatory compliance.</p>
 </div>
 </details>
-<h3 id="telephony-outcomes">Telephony Outcomes<a class="headerlink" href="#telephony-outcomes" title="Permanent link">¶</a></h3>
+<h3 id="telephony-outcomes-pre-configured">Telephony Outcomes (Pre-Configured)<a class="headerlink" href="#telephony-outcomes-pre-configured" title="Permanent link">¶</a></h3>
 <p>A telephony outcome set defines how each possible call result (Busy, No Answer, AMD, etc.) is treated by the campaign — including whether it counts as a contact attempt and how long to wait before retrying.</p>
-<p>The system provides a <strong>primary (read-only) outcome set</strong>. You must <strong>duplicate</strong> it to create a configurable version for your campaign.</p>
+<p>The system provides a <strong>primary (read-only) outcome set</strong>. We have <strong>duplicated</strong> it to create a configurable version for your campaign. All PODs will use the same telephony outcomes named <strong>Copy_Telephony_Outcome</strong> and we will keep the configuration as it is.</p>
 <details class="webex" open="open">
-<summary>Duplicate Telephony Outcome Set</summary>
+<summary>Verify Telephony Outcome Set</summary>
 <ol>
-<li>Navigate to <strong>Voice campaigns administration</strong> → <strong>Telephony outcome sets</strong>.</li>
-<li>On the <code>Primary_telephony_outcome_set</code> row, click the <strong>⋮ Actions</strong> menu and select <strong>Duplicate</strong>.</li>
-<li>Enter the new name: <code>LAB31207_Primary_telephony_outcome_set</code></li>
-<li>Click <strong>Duplicate</strong>.</li>
+<li>Navigate to <strong>Voice outcome sets</strong> → <strong>Telephony outcome sets</strong>.</li>
+<li>Click On the <code>Copy_Telephony_Outcomes</code> </li>
+<li>Explore the different outcomes and options.</li>
 </ol>
-<p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p21_img2.png" data-title="Telephony outcome sets" data-desc-position="top"><img alt="Telephony outcome sets" src="../assets/lab1_p21_img2.png"></a>
-<figcaption>Telephony outcome sets list showing the system Primary set and the Duplicate action</figcaption>
-</figure><p></p>
-<p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p22_img1.png" data-title="Duplicate outcome set dialog" data-desc-position="top"><img alt="Duplicate outcome set dialog" src="../assets/lab1_p22_img1.png"></a>
-<figcaption>Duplicate dialog creating LAB31207_Primary_telephony_outcome_set from the system primary set</figcaption>
-</figure><p></p>
-<p>The duplicated set will appear in your list. You can click on it to view all 20 telephony outcomes. For this lab, <strong>leave all outcome values at their defaults</strong>.</p>
-<p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p22_img2.jpeg" data-title="Telephony outcomes" data-desc-position="top"><img alt="Telephony outcomes" src="../assets/lab1_p22_img2.jpeg"></a><p></p>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p23_img1.png" data-title="Telephony outcomes list" data-desc-position="top"><img alt="Telephony outcomes list" src="../assets/lab1_p23_img1.png"></a>
-</p><figcaption>LAB31207_Primary_telephony_outcome_set showing all 20 telephony outcomes including AMD, ABANDONED, LIVE_VOICE, BUSY, INVALID_NUMBER, and others</figcaption>
+<figure markdown="">
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_CM_TO.gif" data-title="Telephony outcomes list" data-desc-position="top"><img alt="Telephony outcomes list" src="../assets/lab1_CM_TO.gif"></a>
+</p><figcaption>Copy_telephony_outcome showing all 20 telephony outcomes including AMD, ABANDONED, LIVE_VOICE, BUSY, INVALID_NUMBER, and others</figcaption>
 </figure><p></p>
 </details>
-<h3 id="ui-users">UI Users<a class="headerlink" href="#ui-users" title="Permanent link">¶</a></h3>
+<h3 id="ui-users-only-informational-no-configuration-is-required">UI Users (Only Informational, no configuration is required)<a class="headerlink" href="#ui-users-only-informational-no-configuration-is-required" title="Permanent link">¶</a></h3>
 <p>Webex Campaign Management uses <strong>just-in-time (JIT) provisioning</strong> — user accounts are created automatically the first time a user logs in, based on their role in Control Hub. No manual user creation is required in Campaign Manager.</p>
 <figure>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p23_img2.png" data-title="UI Users" data-desc-position="top"><img alt="UI Users" src="../assets/lab1_p23_img2.png"></a></p>
 <figcaption>UI Users list showing the admin account provisioned via JIT sync from Control Hub</figcaption>
 </figure>
 <p>For more information, refer to the <a href="https://docs-campaign-for-contact-centers.webexcampaign.com/docs/ui-users">Campaign Management UI Users documentation</a>.</p>
-<h3 id="wrap-up-code-sets">Wrap-up Code Sets<a class="headerlink" href="#wrap-up-code-sets" title="Permanent link">¶</a></h3>
-<p>Wrap-up codes defined in Control Hub are synced to Campaign Manager. You can configure how each code affects future campaign contact attempts (e.g. whether a contact with a given wrap-up code should be retried).</p>
+<h3 id="wrap-up-code-sets-pre-configured">Wrap-up Code Sets (Pre-Configured)<a class="headerlink" href="#wrap-up-code-sets-pre-configured" title="Permanent link">¶</a></h3>
+<p>Wrap-up codes defined in Control Hub are synced to Campaign Manager. You can configure how each code affects future campaign contact attempts (e.g. whether a contact with a given wrap-up code should be retried). For this lab, we have created a set called <strong>Finance</strong> which will include the <strong>debt</strong> wrap-up code. All the PODs will use this one to configure the campaign.</p>
 <details class="webex" open="open">
-<summary>Configure Wrap-up Code Set</summary>
+<summary>Verify Wrap-up Code Set</summary>
 <ol>
+<li>Navigate to <strong>Voice outcome sets</strong> → <strong>Wrap-up code sets</strong>.</li>
+<li>Click on <strong>Finance</strong></li>
 <li>
-<p>Navigate to <strong>Voice campaigns administration</strong> → <strong>Wrap-up code sets</strong>. Create a new set.</p>
+<p>Verify it coints <strong>debt</strong> wrap-up code.</p>
 <p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/wuset_create.png" data-title="Wrap-up code set - debt" data-desc-position="top"><img alt="Wrap-up code set - debt" src="../assets/wuset_create.png"></a>
-</figure><p></p>
-<p></p><figure markdown="" style="width: 60%;">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/wuset_create2.png" data-title="Wrap-up code set 2 - debt" data-desc-position="top"><img alt="Wrap-up code set 2 - debt" src="../assets/wuset_create2.png"></a>
-</figure><p></p>
-</li>
-<li>
-<p>Click on the new set and then <strong>Add wrap-up codes</strong> Locate the wrap-up codes synced from Control Hub. The <code>debt</code> wrap-up code created earlier should appear, select it.</p>
-<p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/wucode_create.png" data-title="Wrap-up code 1 - debt" data-desc-position="top"><img alt="Wrap-up code 1 - debt" src="../assets/wucode_create.png"></a>
-</figure><p></p>
-<p></p><figure markdown="" style="width: 70%;">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/wucode_create2.png" data-title="Wrap-up code 2 - debt" data-desc-position="top"><img alt="Wrap-up code 2 - debt" src="../assets/wucode_create2.png"></a>
-</figure><p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_CM_WUC.gif" data-title="Wrap-up code - sets" data-desc-position="top"><img alt="Wrap-up code - sets" src="../assets/lab1_CM_WUC.gif"></a><p></p>
+</figure>
 </li>
 </ol>
 <p>For more information, refer to the <a href="https://docs-campaign-for-contact-centers.webexcampaign.com/docs/wrap-up-code-sets">Wrap-up code sets documentation</a>.</p>
@@ -2292,14 +2219,14 @@ All PODs will use the same global variables which are already pre-configured. If
 <ol>
 <li>In Campaign Manager's left navigation panel, navigate to <strong>Campaign management</strong> → <strong>Campaign groups</strong>.</li>
 <li>Click <strong>Create campaign group</strong> and enter:<ul>
-<li><strong>Campaign group name</strong>: <code>LAB-31207</code></li>
+<li><strong>Campaign group name</strong>: <code>cgroup_&lt;yourPodNumber&gt;</code></li>
 <li><em>(All other fields are optional)</em></li>
 </ul>
 </li>
 <li>Click <strong>Save &amp; proceed</strong>.</li>
 </ol>
 <p></p><figure markdown="">
-    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p25_img1.jpeg" data-title="Campaign groups list" data-desc-position="top"><img alt="Campaign groups list" src="../assets/lab1_p25_img1.jpeg"></a>
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_CM_CG.png" data-title="Campaign groups list" data-desc-position="top"><img alt="Campaign groups list" src="../assets/lab1_CM_CG.png"></a>
     <figcaption>Campaign groups list</figcaption>
 </figure><p></p>
 <p></p><figure markdown="" style="width: 80%;">
@@ -2310,7 +2237,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <details class="webex" open="open">
 <summary>Create Campaign</summary>
 <ol>
-<li>Click on the <strong>LAB-31207</strong> campaign group.</li>
+<li>Click on the <strong>cgroup_yourPodNumber</strong> campaign group.</li>
 <li>
 <p>Click <strong>Create campaign</strong> in the top-right corner.</p>
 <p></p><figure markdown="">
@@ -2322,7 +2249,7 @@ All PODs will use the same global variables which are already pre-configured. If
 </li>
 </ol>
 <p></p><figure markdown="" style="width: 80%;">
-    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p26_img4.png" data-title="Campaign flow" data-desc-position="top"><img alt="Campaign flow" src="../assets/lab1_p26_img4.png"></a>
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_CM_flow.png" data-title="Campaign flow" data-desc-position="top"><img alt="Campaign flow" src="../assets/lab1_CM_flow.png"></a>
 </figure><p></p>
 </details>
 <p><strong>Node 1 — Dialer configuration:</strong></p>
@@ -2339,11 +2266,11 @@ All PODs will use the same global variables which are already pre-configured. If
 <tbody>
 <tr>
 <td><strong>Control Hub channel</strong></td>
-<td><code>Campaign_EP</code></td>
+<td><code>Campaign_EP_&lt;yourPodNumber&gt;</code></td>
 </tr>
 <tr>
 <td><strong>Outdial ANI</strong></td>
-<td><code>+442046200604</code> <em>(select your Outdial ANI)</em></td>
+<td><code>+17382033500</code> <em>(select the common Outdial ANI)</em></td>
 </tr>
 <tr>
 <td><strong>Dialing mode</strong></td>
@@ -2361,16 +2288,16 @@ All PODs will use the same global variables which are already pre-configured. If
 </table>
 <p>Click <strong>Save changes</strong> at the right-bottom of the page.</p>
 <p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p26_img2.png" data-title="Dialer configuration" data-desc-position="top"><img alt="Dialer configuration" src="../assets/lab1_p26_img2.png"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_CM_FlowDC.png" data-title="Dialer configuration" data-desc-position="top"><img alt="Dialer configuration" src="../assets/lab1_CM_FlowDC.png"></a>
 </figure><p></p>
 </details>
-<p><strong>Node 2 — Contact list source:</strong></p>
+<p><strong>Node 2 — Contact list configuration:</strong></p>
 <details class="webex" open="open">
-<summary>Configure Contact List Source</summary>
+<summary>Configure Contact List configuration</summary>
 <ol>
-<li>Click the <strong>Contact list source</strong> node.</li>
+<li>Click the <strong>Contact list configuration</strong> node.</li>
 <li>The <strong>Select contact list source</strong> is by default set to the options <em>File</em> and <em>API</em>. We will use manual file upload.</li>
-<li>Set <strong>Select field mapping</strong> to the field mapping you created before: <code>LAB31207_field_mapping</code>.</li>
+<li>Set <strong>Select field mapping</strong> to the field mapping you created before: <code>field_mapping_&lt;yourPodNumber&gt;</code>.</li>
 <li>Set the contact expiration to 10 days.</li>
 <li>Click <strong>Save changes</strong>.</li>
 </ol>
@@ -2383,7 +2310,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <p>The field mapping can only be changed while the campaign is in <strong>Draft</strong> status.</p>
 </div>
 <p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p26_img3.png" data-title="Contact list source configuration" data-desc-position="top"><img alt="Contact list source configuration" src="../assets/lab1_p26_img3.png"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_CM_FlowCL.png" data-title="Contact list source configuration" data-desc-position="top"><img alt="Contact list source configuration" src="../assets/lab1_CM_FlowCL.png"></a>
 </figure><p></p>
 </details>
 <p><strong>Node 3 — Daily schedule:</strong></p>
@@ -2391,33 +2318,34 @@ All PODs will use the same global variables which are already pre-configured. If
 <summary>Configure Daily Schedule</summary>
 <ol>
 <li>Click the <strong>Daily schedule</strong> node.</li>
+<li>Configure the <strong>start date</strong></li>
 <li>Configure the calling window using your local timezone.</li>
 <li>A typical lab schedule runs:<ul>
-<li><strong>Start time</strong>: <code>09:00</code></li>
-<li><strong>End time</strong>: <code>21:00</code></li>
+<li><strong>Start time</strong>: <code>08:00</code></li>
+<li><strong>End time</strong>: <code>23:00</code></li>
 </ul>
 </li>
 <li>Click <strong>Save changes</strong>.</li>
 </ol>
 <p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p28_img1.png" data-title="Campaign daily schedule" data-desc-position="top"><img alt="Campaign daily schedule" src="../assets/lab1_p28_img1.png"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_CM_flowDS.png" data-title="Campaign daily schedule" data-desc-position="top"><img alt="Campaign daily schedule" src="../assets/lab1_CM_flowDS.png"></a>
 </figure><p></p>
 </details>
-<p><strong>Node 4 — Schedule exclusion dates:</strong></p>
+<p><strong>Node 4 — Campaign Holidays:</strong></p>
 <details class="webex" open="open">
-<summary>Configure Exclusion Dates</summary>
+<summary>Configure Campaign Holidays</summary>
 <ol>
-<li>Click the <strong>Schedule exclusion dates</strong> node.</li>
-<li>Under <strong>Organisation-level exclusion dates</strong>, the <code>End of the Year (Dec 31, 2026)</code> date you created earlier should appear automatically.</li>
+<li>Click the <strong>Campaign Holidays</strong> node.</li>
+<li>Under <strong>Holidays for all campaigns</strong>, the <code>End of the Year (Dec 31, 2026)</code> date previously created  should appear automatically.</li>
 <li>Leave it checked (enabled).</li>
 <li>Click <strong>Save changes</strong>.</li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Note you can define specific campaign exclusion dates that would only apply for the current campaign. We will not use it in this lab.</p>
+<p>Note you can define specific campaign holidays dates that would only apply for the current campaign. We will not use it in this lab.</p>
 </div>
 <p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p28_img2.jpeg" data-title="Schedule exclusion dates" data-desc-position="top"><img alt="Schedule exclusion dates" src="../assets/lab1_p28_img2.jpeg"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_CM_flowCH.png" data-title="Schedule exclusion dates" data-desc-position="top"><img alt="Schedule exclusion dates" src="../assets/lab1_CM_flowCH.png"></a>
 </figure><p></p>
 </details>
 <p><strong>Node 5 — Contact attempts strategy:</strong></p>
@@ -2427,7 +2355,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <li>
 <p>Click the <strong>Contact attempts strategy</strong> node, then click <strong>Configure</strong>.</p>
 <p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p28_img3.png" data-title="Contact attempts strategy" data-desc-position="top"><img alt="Contact attempts strategy" src="../assets/lab1_p28_img3.png"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_CM_flowCAS1.png" data-title="Contact attempts strategy" data-desc-position="top"><img alt="Contact attempts strategy" src="../assets/lab1_CM_flowCAS1.png"></a>
 </figure><p></p>
 </li>
 <li>
@@ -2449,12 +2377,13 @@ All PODs will use the same global variables which are already pre-configured. If
 </tr>
 <tr>
 <td><strong>Telephony outcome set</strong></td>
-<td><code>LAB31207_Primary_telephony_outcome_set</code></td>
+<td><code>Copy_telephony_outcome</code></td>
 </tr>
 </tbody>
 </table>
 <p><strong>Section 2 — Contact mode priority:</strong></p>
-<p>The <code>Phone</code> contact mode should be pre-populated from your field mapping. Leave priority at <code>1</code>.</p>
+<p><strong>Safe calling window</strong> will be <code>8:00 to 23:00</code>
+The <code>Phone</code> contact mode should be pre-populated from your field mapping. Leave priority at <code>1</code>.</p>
 <p><strong>Section 3 — Max call attempts:</strong></p>
 <table>
 <thead>
@@ -2478,7 +2407,10 @@ All PODs will use the same global variables which are already pre-configured. If
 <p>Disable sequential dialling and set the amount of contact to <code>10</code>.</p>
 <p>Click <strong>Save</strong>.</p>
 <p></p><figure markdown="" style="width: 60%;">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p29_img1.jpeg" data-title="Contact attempts strategy full view" data-desc-position="top"><img alt="Contact attempts strategy full view" src="../assets/lab1_p29_img1.jpeg"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_CM_flowCAS2.png" data-title="Contact attempts strategy full view - part 1" data-desc-position="top"><img alt="Contact attempts strategy full view - part 1" src="../assets/lab1_CM_flowCAS2.png"></a>
+</figure>
+<figure markdown="" style="width: 60%;">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_CM_flowCAS3.png" data-title="Contact attempts strategy full view- part 2" data-desc-position="top"><img alt="Contact attempts strategy full view- part 2" src="../assets/lab1_CM_flowCAS3.png"></a>
 </figure><p></p>
 <p>Back to the campaign flow canvas, click <strong>Save changes</strong> in the right panel. </p>
 </details>
@@ -2487,11 +2419,11 @@ All PODs will use the same global variables which are already pre-configured. If
 <summary>Configure Suppression Rules</summary>
 <ol>
 <li>Click the <strong>Suppression rule sets</strong> node.</li>
-<li>Under <strong>Suppression rule sets</strong>, select <code>LAB31207_rule</code> (which includes <code>LAB31207_rule1</code>).</li>
+<li>Under <strong>Suppression rule sets</strong>, select <code>sr_hours</code> (which includes <code>sr_after_hours</code>).</li>
 <li>Click <strong>Save changes</strong>.</li>
 </ol>
 <p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p30_img1.png" data-title="Suppression rule sets in campaign" data-desc-position="top"><img alt="Suppression rule sets in campaign" src="../assets/lab1_p30_img1.png"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_CM_flowSR.png" data-title="Suppression rule sets in campaign" data-desc-position="top"><img alt="Suppression rule sets in campaign" src="../assets/lab1_CM_flowSR.png"></a>
 </figure><p></p>
 </details>
 <h3 id="save-and-activate-the-campaign">Save and Activate the Campaign<a class="headerlink" href="#save-and-activate-the-campaign" title="Permanent link">¶</a></h3>
@@ -2500,7 +2432,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <ol>
 <li>Click <strong>Save &amp; exit</strong> (top right of the campaign flow canvas).</li>
 <li>In the <strong>Save campaign</strong> dialog, fill in:<ul>
-<li><strong>Campaign name</strong>: <code>LAB31207_campaign</code></li>
+<li><strong>Campaign name</strong>: <code>wxone_camp_100</code></li>
 <li><strong>P&amp;L meta-tag</strong>: <code>debt</code></li>
 <li><strong>Purpose meta-tag</strong>: <code>debt</code></li>
 <li><strong>Applicable DNC lists</strong>: <code>None</code></li>
@@ -2509,7 +2441,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <li>Click <strong>Save</strong>.</li>
 </ol>
 <p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p30_img2.jpeg" data-title="Save campaign dialog" data-desc-position="top"><img alt="Save campaign dialog" src="../assets/lab1_p30_img2.jpeg"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_CM_SaveC.png" data-title="Save campaign dialog" data-desc-position="top"><img alt="Save campaign dialog" src="../assets/lab1_CM_SaveC.png"></a>
 </figure><p></p>
 </details>
 <details class="webex" open="open">
@@ -2520,13 +2452,13 @@ All PODs will use the same global variables which are already pre-configured. If
 <p>The field mapping can be changed while the campaign is in <strong>Draft</strong> status.</p>
 </div>
 <ol>
-<li>Back in the Campaign group list, locate <strong>LAB31207_campaign</strong> (status: <strong>Draft</strong>).</li>
+<li>Back in the Campaign group list, locate <strong>wxone_camp_<yourpodnumber></yourpodnumber></strong> (status: <strong>Draft</strong>).</li>
 <li>Click the <strong>⋮ Actions</strong> menu and select <strong>Activate</strong>.</li>
 <li>In the confirmation dialog, click <strong>Confirm</strong>.</li>
 </ol>
 <p>The campaign status will change to <strong>Pending</strong> and then <strong>Running</strong>.</p>
 <p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p31_img1.png" data-title="Activate campaign" data-desc-position="top"><img alt="Activate campaign" src="../assets/lab1_p31_img1.png"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_CM_Activate.png" data-title="Activate campaign" data-desc-position="top"><img alt="Activate campaign" src="../assets/lab1_CM_Activate.png"></a>
 </figure><p></p>
 <details class="tip" open="open">
 <summary>Tip</summary>
@@ -2541,15 +2473,15 @@ All PODs will use the same global variables which are already pre-configured. If
 <summary>Upload Contact List</summary>
 <ol>
 <li>
-<p>In the campaign list, click the <strong>⋮ Actions</strong> menu on <strong>LAB31207_campaign</strong> and select <strong>Manage contact lists</strong>.</p>
+<p>In the campaign list, click the <strong>⋮ Actions</strong> menu on <strong>wxone_camp_<youpodnumber></youpodnumber></strong> and select <strong>Manage contact lists</strong>.</p>
 <p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p31_img3.png" data-title="Manage contact lists panel" data-desc-position="top"><img alt="Manage contact lists panel" src="../assets/lab1_p31_img3.png"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_CM_CL1.png" data-title="Manage contact lists panel" data-desc-position="top"><img alt="Manage contact lists panel" src="../assets/lab1_CM_CL1.png"></a>
 </figure><p></p>
 </li>
 <li>
 <p>Click <strong>Upload file to create contact list</strong>.</p>
 <p></p><figure markdown="">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p31_img4.png" data-title="Contact list upload dialog" data-desc-position="top"><img alt="Contact list upload dialog" src="../assets/lab1_p31_img4.png"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_CM_CL2.png" data-title="Contact list upload dialog" data-desc-position="top"><img alt="Contact list upload dialog" src="../assets/lab1_CM_CL2.png"></a>
 </figure><p></p>
 </li>
 <li>
@@ -2557,8 +2489,8 @@ All PODs will use the same global variables which are already pre-configured. If
 <ul>
 <li><strong>Supported channels</strong>: Voice (pre-selected)</li>
 <li><strong>Contact list type</strong>: Static</li>
-<li><strong>Field mapping</strong>: <code>LAB31207_field_mapping</code> (pre-selected)</li>
-<li>Click <strong>Browse</strong> and select your <code>contact_list_lab31207.csv</code></li>
+<li><strong>Field mapping</strong>: <code>field_mapping_&lt;yourPodNumber&gt;</code> (pre-selected)</li>
+<li>Click <strong>Browse</strong> and select your <code>contact_list_lab31207.csv</code> The one you edit with your details.</li>
 <li><strong>Automatically activate</strong>: Immediately after upload</li>
 <li><strong>In case of record issues</strong>: Skip the particular record</li>
 </ul>
@@ -2566,7 +2498,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <li>
 <p>Click <strong>Save and proceed</strong>.</p>
 <p></p><figure markdown="" style="width: 70%;">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p32_img2.png" data-title="Contact list file upload form" data-desc-position="top"><img alt="Contact list file upload form" src="../assets/lab1_p32_img2.png"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_CM_CL3.png" data-title="Contact list file upload form" data-desc-position="top"><img alt="Contact list file upload form" src="../assets/lab1_CM_CL3.png"></a>
 <figcaption>Contact list upload form showing field mapping, file selection, and activation settings</figcaption>
 </figure><p></p>
 </li>
@@ -2585,7 +2517,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <p>If your contact list fails to upload, the most likely cause is a <strong>formatting issue</strong> with the CSV file. Check that:</p>
 <ul>
 <li>The column headers match <strong>exactly</strong> what was defined in the field mapping (<code>firstName</code>, <code>lastName</code>, <code>phoneNumber</code>)</li>
-<li>Phone numbers use E.164 format with the <code>+</code> prefix (e.g. <code>+442012345678</code>)</li>
+<li>Phone numbers use E.164 format with the <code>+</code> prefix (e.g. <code>+14085052211</code>)</li>
 <li>All phone numbers in the file are from the <strong>same country</strong></li>
 <li>No spaces, hyphens, or special characters appear in the phone number field</li>
 <li>The file is saved as a proper comma-separated CSV (not semicolon or tab-separated)</li>
@@ -2601,7 +2533,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <blockquote>
 <p><em>"Congratulations, You have completed lab 1"</em></p>
 </blockquote>
-<p>This confirms that the full end-to-end flow is working — from Campaign Manager initiating the call, through the CPA detection identifying a live voice, routing through the Go To node, and arriving at the <code>Lab1_completed</code> flow which plays the TTS message.</p>
+<p>This confirms that the full end-to-end flow is working — from Campaign Manager initiating the call, through the CPA detection identifying a live voice, routing through the Go To node, and arriving at the <code>AI_Agent_DebtCollection</code> flow which plays the TTS message.</p>
 <details class="note" open="open">
 <summary>Note</summary>
 <p>Note that the <strong>End Flow</strong> node does not disconnect the call, so you must hang up manually after testing. We have chosen <strong>End Flow</strong> over <strong>Disconnect Contact</strong> because the call will eventually be routed to a queue in future exercises.</p>
@@ -2615,8 +2547,8 @@ All PODs will use the same global variables which are already pre-configured. If
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Built the <code>AI_Agent_DebtCollection</code> test flow with a congratulatory TTS message</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Built the <code>Outbound_DebtCollection</code> campaign flow with CPA-based routing (AMD, Abandoned, Live Voice)</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Configured the outdial Entry Point (Channel) and Outdial ANI</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Completed all Campaign Manager prerequisites (, contact modes, field mappings, suppression rules, telephony outcomes, wrap-up codes, meta-tags)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Created, configured, and activated the <code>LAB31207_campaign</code> Progressive IVR campaign</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Completed all Campaign Manager prerequisites (contact modes, field mappings, suppression rules, telephony outcomes, wrap-up codes, meta-tags)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Created, configured, and activated the <code>wxone_camp_&lt;yourPodName&gt;</code> Progressive IVR campaign</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Uploaded a contact list and received a live test call</li>
 </ul>
 <p><strong>Congratulations!</strong> You have completed Lab 1. The outbound campaign infrastructure is fully operational and ready to connect to the AI Agent in Lab 2.</p>
