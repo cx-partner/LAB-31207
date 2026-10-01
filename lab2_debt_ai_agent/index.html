@@ -1065,7 +1065,7 @@
 <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p21_img3.png" data-title="KB" data-desc-position="top"><img alt="KB" src="../assets/lab2_p21_img3.png"></a>
 </figure><p></p>
 </details>
-<p>Click the <strong>Knowledge</strong> tab. A Knowledge Base supplies the autonomous AI Agent with domain-specific context—such as FAQs, product documentation, and company policies—stored in a vector database to power Retrieval-Augmented Generation (RAG). The Agent does not have a Knowledge Base configured yet; you will set this up in Review Knowledge Configuration.
+<p>Click the <strong>Knowledge</strong> tab. A Knowledge Base supplies the autonomous AI Agent with domain-specific context—such as FAQs, product documentation, and company policies—stored in a vector database to power Retrieval-Augmented Generation (RAG). The Agent does not have a Knowledge Base configured yet; you will set this up in the <a href="#lab-22---review-knowledge-configuration">Review Knowledge Configuration</a> section.
 <br><br><br><br><br><br></p>
 <details class="inline info" open="open">
 <summary>Alex Actions</summary>
@@ -1073,7 +1073,7 @@
 <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p21_img4.png" data-title="Actions" data-desc-position="top"><img alt="Actions" src="../assets/lab2_p21_img4.png"></a>
 </figure><p></p>
 </details>
-<p>Next, navigate to the <strong>Actions</strong> tab. Currently, only the default [Agent handover] action is listed. To enable the Agent to perform its tasks, you will need to create the following actions:</p>
+<p>Next, navigate to the <strong>Actions</strong> tab. Currently, only the default [Agent handover] action is listed. To enable the Agent to perform its tasks, you will need the following actions:</p>
 <div class="language-text highlight"><pre><span></span><code>[authenticate_user]
 [fetch_balance]
 [payment_session]
@@ -1113,6 +1113,7 @@
 </li>
 </ol>
 <p>In this lab we are not prescripting the conversational parameters to use. We leave you to play with them and evaluate the conversational effect they produce. </p>
+<p>Make sure you click on <strong>Save changes</strong> to update your AI Agent configuration. That will leave your AI Agent ready to <strong>Publish</strong>. Do not publish it yet. </p>
 </details>
 <hr>
 <h2 id="lab-22-review-knowledge-configuration">Lab 2.2 - Review Knowledge Configuration<a class="headerlink" href="#lab-22-review-knowledge-configuration" title="Permanent link">¶</a></h2>
@@ -1150,9 +1151,9 @@
 </details>
 <p>Now you will associate this Knowledge Base to your AI Agent.</p>
 <ol>
-<li>Open Alex in AI Agent Studio.</li>
+<li>Go back to your Alex AI Agent in the AI Agent Studio.</li>
 <li>Select the <strong>Knowledge</strong> tab. As verified when creating the AI Agent, the Knowledge Base is empty. </li>
-<li>Click on the <strong>Knowledge base</strong> drop down menu and select the ^Webex Bank Knowledge Base`.</li>
+<li>Click on the <strong>Knowledge base</strong> drop down menu and select the <code>Webex Bank Knowledge Base</code>.</li>
 <li>Click <strong>Save changes</strong></li>
 </ol>
 <p>Your AI Agent is now able to handle the customized information from Webex Bank.</p>
@@ -1166,11 +1167,28 @@
 <mark class="critic">
 This section explains how the MCP server is configured as an Agentic App in the lab tenant. <br>
 <strong>Do not perform these steps in the shared lab tenant</strong>. <br>
-This is only for your information. 
+This is only for your information. You would follow these steps if you wanted to configure the MCP server in your own tenant.
 </mark>
 </p><p></p>
 <p>To configure Agentic Apps in Control Hub, you need a <strong>Customer Administrator</strong> account; a Partner account cannot authorize Agentic Apps for the customer organization.</p>
-<p><strong>1. Register the Agentic App in the Webex Developer Portal</strong></p>
+<p><strong>1. Verify the Agentic App configuration in the Webex Developer Portal</strong></p>
+<details class="inline vidcast" open="open">
+<summary>Agentic App configuration</summary>
+<p><video controls="" width="600">
+<source src="/LAB-31207/assets/lab2_p23_vid1.mp4" type="video/mp4">
+</video>
+</p><p><a href="/LAB-31207/assets/lab2_p23_vid1.mp4" target="_blank" rel="noopener">Open video in new tab</a></p><p></p>
+</details>
+<ol>
+<li>Go to the <a href="https://developer.webex.com" rel="noopener" target="_blank">Webex Developer Portal</a> and sign in with the Webex Admin credentials.</li>
+<li>In the user icon menu at the top-right bar, click on <strong>My Webex Apps</strong></li>
+<li>You will see an app called <code>Lab_31207_Finance</code>. This is the MCP server configured as an Agentic App we will use with our AI Agent.</li>
+<li>Click in the App name. You will see how this app is configured.</li>
+</ol>
+<p><mark class="critic"> DO NOT MODIFY ANY PARAMETER IN THIS CONFIGURATION </mark></p>
+<p><br><br><br><br><br><br>
+The next section describes how would you configure the MCP Server as an Agentic App in your own tenant.</p>
+<p><strong>2. Register the Agentic App in the Webex Developer Portal</strong></p>
 <details class="inline" open="open">
 <summary>New Agentic App</summary>
 <p></p><figure markdown="" style="width: 30%;">
@@ -1178,10 +1196,9 @@ This is only for your information.
 </figure><p></p>
 </details>
 <ol>
-<li>Go to the <a href="https://developer.webex.com" rel="noopener" target="_blank">Webex Developer Portal</a> and sign in with the Webex Admin credentials.</li>
-<li>On the home page, select <strong>Start Building -&gt;</strong>, then <strong>Create an Agentic App</strong>.</li>
+<li>From the home page, select <strong>Start Building -&gt;</strong>, then <strong>Create an Agentic App</strong>.</li>
 <li>
-<p>Enter the following application details:</p>
+<p>To configure the MCP Server, you would enter the following application details:</p>
 <table>
 <thead>
 <tr>
@@ -1222,10 +1239,12 @@ This is only for your information.
 </table>
 </li>
 <li>
-<p>Select <strong>Add Agentic App</strong>. Keep the app private to your tenant unless you specifically intend to distribute it through App Hub.</p>
+<p>Then, you would select <strong>Add Agentic App</strong>. You will keep the app private to your tenant unless you specifically intend to distribute it through App Hub.</p>
 </li>
 </ol>
-<p><strong>2. Provision the Agentic App in Control Hub</strong></p>
+<p><strong>3. Provision the Agentic App in Control Hub</strong></p>
+<p>Once the MCP Server is provisioned as an Agentic APP in the Webex Developer Portal, the next step would be to configure the App in your tenant, through <strong>Control Hub</strong>. </p>
+<p><mark class="critic">  </mark></p>
 <details class="inline" open="open">
 <summary>Agentic App in Control Hub</summary>
 <p></p><figure markdown="" style="width: 30%;">
@@ -1236,7 +1255,7 @@ This is only for your information.
 <li>In <a href="https://admin.webex.com" rel="noopener" target="_blank">Control Hub</a>, go to <strong>Apps</strong> &gt; <strong>Agentic Apps</strong>.</li>
 <li>Open <code>LAB_31207_Finance</code>.</li>
 <li>
-<p>On the <strong>General</strong> tab, set access to <strong>Allowed</strong> for the organization and save and enable the <em>Authorize automatic server data updates</em> to avoid re-authorization on server updates.
+<p>On the <strong>General</strong> tab, you will see access is set to <strong>Allowed</strong> for the organization and the <em>Authorize automatic server data updates</em> toggle is enabled to avoid re-authorization on server updates.
 <br><br><br></p>
 <details class="inline end" open="open">
 <summary>Agentic App in Control Hub</summary>
@@ -1246,7 +1265,7 @@ This is only for your information.
 </details>
 </li>
 <li>
-<p>On the <strong>Authentication</strong> tab, confirm the method is <strong>API Key</strong>, enter the API key and save.</p>
+<p>On the <strong>Authentication</strong> tab, confirm the method is <strong>API Key</strong>, and the API key is set.</p>
 </li>
 </ol>
 <details class="inline" open="open">
@@ -1484,9 +1503,9 @@ This is only for your information.
 </details>
 <ol>
 <li>Go to <strong>Control Hub</strong> &gt; <strong>Contact Center</strong> &gt; <strong>Flows</strong>.</li>
-<li>Open the <code>AI_Agent_DebtCollection</code> flow.</li>
+<li>Open the <code>AI_Agent_DebtCollection_&lt;yourPODnr&gt;</code> flow.</li>
 <li>Enable editing with the top bar <strong>Edit</strong> toggle.</li>
-<li>Delete the temporary <strong>Play Message</strong> node from Lab 1.</li>
+<li>Delete the temporary <strong>EndOfLab1</strong> Play Message node from Lab 1.</li>
 <li>Drag a <strong>Virtual Agent V2</strong> node onto the canvas.</li>
 <li>Connect the <strong>NewContact</strong> node to <strong>Virtual Agent V2</strong>.</li>
 <li>
