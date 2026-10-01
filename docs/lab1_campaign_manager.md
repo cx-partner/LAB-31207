@@ -291,11 +291,11 @@ This event triggers when the dialler receives a CPA result for an outbound call 
             |---|---|
             | **AMD** | <copy>`AMD`</copy> |
             | **ABANDONED** | <copy>`ABANDONED`</copy> |
-            | **LIVE_VOICE_IVR_CAMPAIGN** | <copy>`LIVE_VOICE_IVR_CAMPAIGN`</copy> |
+            | **LIVE_VOICE** | <copy>`LIVE_VOICE`</copy> |
             | **Default** | (default fallthrough) |
 
     <figure markdown style="width: 70%;">
-    ![Event flows overview](./assets/lab1_p8_img1.png)
+    ![Event flows overview](./assets/lab1_flow_case.png)
     <figcaption>Case node configured with CPAResult variable showing AMD, ABANDONED, and LIVE_VOICE outputs</figcaption>
     </figure>
 
@@ -345,7 +345,7 @@ This event triggers when the dialler receives a CPA result for an outbound call 
 
         <figure markdown>
             <figure markdown style="width: 80%;" >
-            ![GoTo AIAgent node configuration](./assets/lab1_p10_img1.png)
+            ![GoTo AIAgent node configuration](./assets/lab1_flow_Goto.png)
             <figure markdown style="width: 30%;" >
             ![GoTo AIAgent flow variable mapping](./assets/lab1_p10_img2.png)
             <figcaption>Go To node pointing to the AI_Agent_DebtCollection flow with firstName and lastName mapped across flows</figcaption>
