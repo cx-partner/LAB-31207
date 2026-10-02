@@ -230,26 +230,7 @@ The LAB_31207_Finance MCP server is already enabled in the shared lab tenant. **
     
     To configure Agentic Apps in Control Hub, you need a **Customer Administrator** account; a Partner account cannot authorize Agentic Apps for the customer organization.
 
-    **1. Verify the Agentic App configuration in the Webex Developer Portal**
-
-    ???+ inline vidcast "Agentic App configuration"
-        <video controls width="600">
-        <source src="/LAB-31207/assets/lab2_p23_vid1.mp4" type="video/mp4">
-        </video>
-        <p><a href="/LAB-31207/assets/lab2_p23_vid1.mp4" target="_blank" rel="noopener">Open video in new tab</a></p>
-    
-    1. Go to the [Webex Developer Portal](https://developer.webex.com){:target="_blank" rel="noopener"} and sign in with the Webex Admin credentials.
-    2. In the user icon menu at the top-right bar, click on **My Webex Apps**
-    2. You will see an app called `Lab_31207_Finance`. This is the MCP server configured as an Agentic App we will use with our AI Agent.
-    3. Click in the App name. You will see how this app is configured.
-
-    {== DO NOT MODIFY ANY PARAMETER IN THIS CONFIGURATION ==}
-
-    
-    <br><br><br><br><br><br>
-    The next section describes how would you configure the MCP Server as an Agentic App in your own tenant.
-
-    **2. Register the Agentic App in the Webex Developer Portal**
+    **1. Register the Agentic App in the Webex Developer Portal**
         
     ???+ inline  "New Agentic App"
         <figure markdown style="width: 30%;">
@@ -257,9 +238,11 @@ The LAB_31207_Finance MCP server is already enabled in the shared lab tenant. **
         </figure>
 
 
-    
+    1. Go to the [Webex Developer Portal](https://developer.webex.com){:target="_blank" rel="noopener"} and sign in with the Webex Admin credentials.
     2. From the home page, select **Start Building ->**, then **Create an Agentic App**.
     3. To configure the MCP Server, you would enter the following application details:
+
+        {== THIS FOR INFORMATION ONLY. DO NOT CREATE A NEW AGENTIC APP. IT IS ALREADY CREATED. ==}
 
         | Field | Value |
         |---|---|
@@ -273,11 +256,33 @@ The LAB_31207_Finance MCP server is already enabled in the shared lab tenant. **
 
     4. Then, you would select **Add Agentic App**. You will keep the app private to your tenant unless you specifically intend to distribute it through App Hub.
     
+    **1. Verify the Agentic App configuration in the Webex Developer Portal**
+
+     {== THIS IS WHAT YOU WOULD SEE AFTER THE MCP SERVER IS CONFIGURED AS AN AGENTIC APP IN THE DEVELOPER PORTAL ==}
+
+    ???+ inline vidcast "Agentic App configuration"
+        <video controls width="600">
+        <source src="/LAB-31207/assets/lab2_p23_vid1.mp4" type="video/mp4">
+        </video>
+        <p><a href="/LAB-31207/assets/lab2_p23_vid1.mp4" target="_blank" rel="noopener">Open video in new tab</a></p>
+    
+
+    2. From the Developer Portal, in the user icon menu at the top-right bar, click on **My Webex Apps**
+    2. You WOULD see an app called `Lab_31207_Finance`. This is the MCP server configured as an Agentic App.
+    3. Clicking on the App name, you would see how this app is configured.
+
+
+    
+    <br><br><br><br><br><br><br><br><br>
+
+    The next section describes how would you configure the MCP Server as an Agentic App in your own tenant.
+
+    
     **3. Provision the Agentic App in Control Hub**
 
     Once the MCP Server is provisioned as an Agentic APP in the Webex Developer Portal, the next step would be to configure the App in your tenant, through **Control Hub**. 
 
-    {==  ==}
+    {== THIS IS FOR INFORMATION ONLY. DO NOT MODIFY ANY OF THE PARAMETERS IN THE AGENTIC APP ==}
 
     ???+ inline  "Agentic App in Control Hub"
         <figure markdown style="width: 30%;">
