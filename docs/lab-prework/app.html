@@ -337,11 +337,6 @@ const BANKING_BASE_ID = "appcyTYF3nQqgReHR";
 const CUSTOMERS_API_URL = `https://api.airtable.com/v0/${BANKING_BASE_ID}/${encodeURIComponent("Customers")}`;
 const TRANSACTIONS_API_URL = `https://api.airtable.com/v0/${BANKING_BASE_ID}/${encodeURIComponent("Transactions")}`;
 
-// Fetched live from docs/lab_tracking/Registration_emails.csv (relative to this
-// app at docs/lab-prework/app.html). CSV columns: Partner, First Name, Last Name, Email
-const REGISTRATION_LIST_PATH = "../lab_tracking/Registration_emails.csv";
-let registeredAttendeesCache = null;
-
 // Static, manually-maintained mapping of customer profile # -> Webex Calling
 // number (see fetch_customer_numbers.sh — no Webex credential is ever embedded
 // in this app; the file is just plain JSON, same pattern as the CSV above).
@@ -497,23 +492,6 @@ async function registerAttendee(email, needsCustomerProfile) {
   return { pod: created.fields.POD, customerProfile: created.fields.CustomerProfile ?? null };
 }
 
-async function loadRegisteredAttendees() {
-  if (registeredAttendeesCache) return registeredAttendeesCache;
-  const res = await fetch(REGISTRATION_LIST_PATH, { cache: "no-store" });
-  if (!res.ok) throw new Error("Could not load the registered attendee list.");
-  const text = await res.text();
-  const map = new Map();
-  text.split(/\r?\n/).forEach((line) => {
-    if (!line.trim()) return;
-    const cols = line.split(",").map((v) => v.replace(/^["']|["']$/g, "").trim());
-    const email = (cols[3] || "").toLowerCase();
-    if (!email.includes("@")) return;
-    map.set(email, { partner: cols[0] || "", firstName: cols[1] || "", lastName: cols[2] || "" });
-  });
-  registeredAttendeesCache = map;
-  return registeredAttendeesCache;
-}
-
 /* ---------- Airtable: banking base (Customers / Transactions) ---------- */
 async function bankingFetch(baseUrl, pathSuffix, options = {}) {
   const res = await fetch(`${baseUrl}${pathSuffix}`, {
@@ -641,17 +619,7 @@ document.getElementById("podForm").addEventListener("submit", async (e) => {
     return showBanner(banner, "error", "Please answer the phone number question.");
   }
 
-  let registeredAttendees;
-  try {
-    registeredAttendees = await loadRegisteredAttendees();
-  } catch (err) {
-    return showBanner(banner, "error", "Could not verify the attendee list. Please try again in a moment.");
-  }
   const normalizedEmail = normalizeEmail(email);
-  const attendee = registeredAttendees.get(normalizedEmail);
-  if (!attendee) {
-    return showBanner(banner, "error", "That email isn't on the registered attendee list — check with the proctors.");
-  }
 
   const btn = document.getElementById("podSubmitBtn");
   btn.disabled = true;
@@ -661,15 +629,15 @@ document.getElementById("podForm").addEventListener("submit", async (e) => {
     const entry = await registerAttendee(normalizedEmail, phoneChoice.value === "no");
     sessionPod = entry.pod;
     sessionCustomerProfile = entry.customerProfile;
-    sessionAttendee = attendee;
+    sessionAttendee = { firstName: "", lastName: "", partner: "" };
     sessionEmail = normalizedEmail;
     await resolveSessionCustomerProfilePhone();
 
     updateLabUserInfo({
       email: normalizedEmail,
-      firstName: attendee.firstName || "",
-      lastName: attendee.lastName || "",
-      partner: attendee.partner || "",
+      firstName: "",
+      lastName: "",
+      partner: "",
       pod: String(entry.pod),
       adminEmail: `pod${entry.pod}+admin@wxone.wbx.ai`,
       agentEmail: `pod${entry.pod}+agent@wxone.wbx.ai`,
