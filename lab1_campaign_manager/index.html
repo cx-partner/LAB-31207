@@ -1760,7 +1760,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <summary>Configure Live Voice Routing</summary>
 <ol>
 <li>Drag a <strong>Go To</strong> node onto the canvas.</li>
-<li>Connect the <strong>LIVE_VOICE_IVR_CAMPAIGN</strong> output of the <strong>Case</strong> node to the <strong>Go To</strong> node.</li>
+<li>Connect the <strong>LIVE_VOICE</strong> output of the <strong>Case</strong> node to the <strong>Go To</strong> node.</li>
 <li>Connect also the <strong>Default</strong> output of the <strong>Case</strong> node to the <strong>Go To</strong> node.</li>
 <li>Configure the <strong>Go To</strong> node:<ul>
 <li><strong>Activity Label</strong>: <code>GoTo_AIAgent</code></li>
@@ -2435,7 +2435,7 @@ The <code>Phone</code> contact mode should be pre-populated from your field mapp
 <ol>
 <li>Click <strong>Save &amp; exit</strong> (top right of the campaign flow canvas).</li>
 <li>In the <strong>Save campaign</strong> dialog, fill in:<ul>
-<li><strong>Campaign name</strong>: <code>wxone_camp_100</code></li>
+<li><strong>Campaign name</strong>: <code>wxone_camp_&lt;yourPodNumber&gt;</code></li>
 <li><strong>P&amp;L meta-tag</strong>: <code>debt</code></li>
 <li><strong>Purpose meta-tag</strong>: <code>debt</code></li>
 <li><strong>Applicable DNC lists</strong>: <code>None</code></li>
