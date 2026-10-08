@@ -1150,6 +1150,9 @@
 </details>
 </li>
 <li>
+<p>In the <strong>Activity Settings</strong> panel for the Virtual Agent V2 node, scroll to <strong>Output Variables</strong>. The <code>MetaData</code> output contains the transfer-action details that you will map in the following steps.</p>
+</li>
+<li>
 <p>Open <strong>Global Flow Properties</strong>, create the following custom flow variables, and mark the agent-viewable context values as shown.</p>
 <table>
 <thead>
@@ -1215,7 +1218,7 @@
 </details>
 </li>
 <li>
-<p>Delete the temporary <strong>Play Message</strong> node connected to the <strong>Escalated</strong> outcome.</p>
+<p>Delete the temporary <strong>Play Message</strong> node connected to the <strong>Escalated</strong> outcome. Connect the existing error <strong>Play Message</strong> node directly to <strong>End Flow</strong>.</p>
 </li>
 <li>
 <p>Drag a <strong>Parse</strong> node onto the canvas, connect it to the <strong>Escalated</strong> path, name it <copy><code>Parse_Transfer</code></copy>, and use the description <code>Collects the transfer type.</code> Configure it to extract the transfer type from the Virtual Agent V2 metadata.</p>
@@ -1251,7 +1254,32 @@
 </div>
 </li>
 <li>
-<p>Add a <strong>Case</strong> node, name it <copy><code>Transfer_Check</code></copy>, and use the description <code>Checks the transfer_type variable to route accordingly.</code> Configure it to evaluate <code>transfer_type</code>.</p>
+<p>Add a <strong>Case</strong> node, connect the output from <strong>Parse_Transfer</strong> to it, name it <copy><code>Transfer_Check</code></copy>, and use the description <code>Checks the transfer_type variable to route accordingly.</code> Configure these <strong>Case</strong> settings:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Variable</strong></td>
+<td><code>transfer_type</code></td>
+</tr>
+<tr>
+<td><strong>Case 1</strong></td>
+<td><code>agent_transfer</code></td>
+</tr>
+<tr>
+<td><strong>Case 2</strong></td>
+<td><code>fraud_transfer</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Add a <strong>Queue Contact</strong> node for the <code>agent_transfer</code> path, name it <copy><code>Generic_Queue</code></copy>, and select <copy><code>PODXX_FraudQueue</code></copy>. Connect the <code>agent_transfer</code> and default paths from <strong>Transfer_Check</strong> to this node, then connect its output to <strong>End Flow</strong>.</p>
 </li>
 <li>
 <p>Add a second <strong>Parse</strong> node named <copy><code>Fraud_Context</code></copy>. Connect the <code>fraud_transfer</code> path from <strong>Transfer_Check</strong> to this node. Use <code>DebtCollectionAgent.MetaData</code> as its input, set <strong>Content type</strong> to <code>JSON</code>, and map the <code>fraud_transfer</code> action input into the agent-viewable variables:</p>
@@ -1287,7 +1315,7 @@
 </table>
 </li>
 <li>
-<p>Connect the output from <strong>Fraud_Context</strong> to <copy><code>PODXX_FraudQueue</code></copy>. Connect the <code>agent_transfer</code> and default paths from <strong>Transfer_Check</strong> to the same queue. Keep the <strong>Errored</strong> outcome connected to a safe fallback path.</p>
+<p>Add a <strong>Queue Contact</strong> node named <copy><code>Fraud_Queue</code></copy>, select <copy><code>PODXX_FraudQueue</code></copy>, and connect the output from <strong>Fraud_Context</strong> to it. Connect the output from <strong>Fraud_Queue</strong> to <strong>End Flow</strong>.</p>
 <details class="inline end" open="open">
 <summary>Final Flow View</summary>
 <p></p><figure markdown="">
@@ -1307,18 +1335,86 @@
 </details>
 <details class="webex" open="open">
 <summary>Add the Inbound Test Path</summary>
-<p>Use the same flow for both campaign and inbound calls, so testing does not depend on waiting for Campaign Manager.</p>
+<p>Use the same flow for campaign and inbound calls, so testing does not depend on waiting for Campaign Manager. If the ANI matches the campaign outdial number, the call is outbound and the flow sends the customer's DNIS to Alex. Otherwise, the call is inbound and the flow sends the caller's ANI.</p>
 <ol>
-<li>In <strong>Global Flow Properties</strong>, create a String custom variable named <code>phone_number</code>.</li>
+<li>In <copy><code>PODXX_AI_Agent_DebtCollection</code></copy>, click <strong>Global Flow Properties</strong>.</li>
 <li>
-<p>Immediately after the <strong>New Contact</strong> start node, add a <strong>Condition</strong> node named <copy><code>Detect_Call_Direction</code></copy> with this expression.</p>
+<p>Under <strong>Custom Flow Variables</strong>, create this variable:</p>
+<table>
+<thead>
+<tr>
+<th>Variable name</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>phone_number</code></td>
+<td><code>String</code></td>
+<td><em>(empty)</em></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>On the canvas, drag a <strong>Condition</strong> node immediately after the <strong>New Contact</strong> start node.</p>
+</li>
+<li>
+<p>Rename the node <copy><code>Detect_Call_Direction</code></copy> and configure this expression:</p>
 <p><copy><code>{{NewContact.ANI=="+17382033500"}}</code></copy></p>
+<p>This is the outdial ANI configured for the campaign. A matching ANI follows the outbound path.</p>
 </li>
 <li>
-<p>On the <strong>True</strong> path, add a <strong>Set Variable</strong> node named <copy><code>Set_Outbound_Phone</code></copy>. Set <code>phone_number</code> to <code>{{NewContact.DNIS}}</code>.</p>
+<p>Configure the <strong>True</strong> path for outbound calls:</p>
+<ul>
+<li>Add a <strong>Set Variable</strong> node and connect it to the <strong>True</strong> output.</li>
+<li>Name it <copy><code>Set_Outbound_Phone</code></copy>.</li>
+<li>Set <code>phone_number</code> to <code>{{NewContact.DNIS}}</code>.</li>
+</ul>
 </li>
-<li>On the <strong>False</strong> path, add a <strong>Set Variable</strong> node named <copy><code>Set_Inbound_Phone</code></copy>. Set <code>phone_number</code> to <code>{{NewContact.ANI}}</code>, then set <code>firstName</code> and <code>lastName</code> to the first and last name of your test customer from Lab Prework.</li>
-<li>Connect both <strong>Set Variable</strong> nodes to the existing <strong>Virtual Agent V2</strong> node (<code>DebtCollectionAgent</code>).</li>
+<li>
+<p>Configure the <strong>False</strong> path for inbound calls:</p>
+<details class="inline end" open="open">
+<summary>Inbound Test Flow</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_inbound_test2.png" data-title="Complete inbound test flow" data-desc-position="top"><img alt="Complete inbound test flow" src="../assets/lab3_inbound_test2.png"></a>
+<figcaption>Complete inbound and outbound call-direction flow.</figcaption>
+</figure><p></p>
+</details>
+<ul>
+<li>Add a <strong>Set Variable</strong> node and connect it to the <strong>False</strong> output.</li>
+<li>Name it <copy><code>Set_Inbound_Phone</code></copy>.</li>
+<li>
+<p>Set the following variables:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Set value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>phone_number</code></td>
+<td><code>{{NewContact.ANI}}</code></td>
+</tr>
+<tr>
+<td><code>firstName</code></td>
+<td>First name of your test customer from Lab Prework</td>
+</tr>
+<tr>
+<td><code>lastName</code></td>
+<td>Last name of your test customer from Lab Prework</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>
+<p>Connect both <strong>Set Variable</strong> nodes to the existing <strong>Virtual Agent V2</strong> node (<code>DebtCollectionAgent</code>).</p>
+</li>
 <li>
 <p>In the <strong>State Event</strong> data for that node, use:</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
@@ -1328,12 +1424,26 @@
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">}</span>
 </span></code></pre></div>
 </li>
+</ol>
+</details>
+<details class="webex" open="open">
+<summary>Configure Real-Time Transcription</summary>
+<p>Real-Time Transcription requires media streaming to start when the human agent accepts the call.</p>
+<ol>
+<li>Go to <strong>Event Flows</strong>.</li>
+<li>Drag a <strong>Start Media Stream</strong> node onto the canvas.</li>
 <li>
-<p>Go to <strong>Event Flows</strong>. Drag a <strong>Start Media Stream</strong> node onto the canvas, connect <strong>AgentAnswered</strong> to <strong>Start Media Stream</strong>, then connect <strong>Start Media Stream</strong> to <strong>End Flow</strong>.</p>
+<p>Connect the <strong>AgentAnswered</strong> event node to <strong>Start Media Stream</strong>.</p>
 <div class="admonition info">
 <p class="admonition-title">Event Name</p>
 <p>In some tenants, <strong>AgentAnswered</strong> appears as <strong>AgentAccepted</strong>. Use the event that is available in your Flow Designer.</p>
 </div>
+</li>
+<li>
+<p>Connect <strong>Start Media Stream</strong> to <strong>End Flow</strong>.</p>
+</li>
+<li>Validate and publish the flow.</li>
+</ol>
 <details class="gif" open="open">
 <summary>Configure RTT in Event Flows</summary>
 <p></p><figure markdown="">
@@ -1341,11 +1451,6 @@
 <figcaption>Real-Time Transcription flow configuration</figcaption>
 </figure><p></p>
 </details>
-</li>
-<li>
-<p>Validate and publish the flow.</p>
-</li>
-</ol>
 </details>
 <hr>
 <h2 id="lab-34-create-the-real-time-assist-skill">Lab 3.4 - Create the Real-Time Assist Skill<a class="headerlink" href="#lab-34-create-the-real-time-assist-skill" title="Permanent link">¶</a></h2>
@@ -1394,24 +1499,43 @@
 </tr>
 <tr>
 <td><strong>Goal</strong></td>
-<td><code>Assist the human agent during a debt-resolution or fraud/dispute conversation by providing concise next-step guidance based on the live transcript.</code></td>
+<td><copy><code>You are an ai assistant working for Webex Financial Group. You will be assisting human agents that are specialized in handling fraud scenarios for our customers. Provide timely recommendations about our fraud prevention and dispute transaction policies.</code></copy></td>
 </tr>
 </tbody>
 </table>
 </li>
 <li>
 <p>Add or confirm the instructions:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>You assist the human agent, not the customer. Provide concise, timely guidance that helps the agent resolve debt, payment, and fraud/dispute conversations accurately and empathetically.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a># AI Assistant Action Orchestration
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Review the live conversation before suggesting a question. Reuse information already confirmed by the customer or agent; do not ask the agent to collect it again.
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Watch for identity-verification issues, balance questions, payment intent, dispute language, suspicious-transaction language, and requests for a specialist. Guide the agent on what to ask next, what to confirm, and what to explain. Do not phrase guidance as if you are speaking directly to the customer.
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Before asking the AGENT to collect any data from the CUSTOMER, check the conversation history. If the data was already provided, reuse it instead of asking again.
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>If the AGENT has acknowledged the CUSTOMER's intent but has not yet asked for the specific required data, do not repeat or pre-empt the suggestion. Allow the conversation to progress.
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>When calling tools: Use ONLY values the customer explicitly provided. NEVER infer, construct, extract digits from other fields, use example values, add UNKNOWN or use default/placeholder values (like "00:00", "0", etc.). Missing required parameter = ASK user. Missing optional parameter = OMIT it entirely. NO exceptions.
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>For a disputed transaction, guide the agent to confirm the Customer ID and the transaction amount, vendor, and date. Then guide the agent to retrieve recent transactions using the configured action. Once the agent and customer have identified the disputed transaction and the customer agrees to open a case, recommend the case-opening action for the agent to review.
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>The CustomerID format is CUST-001, agent only needs to collect the last 3 digits.
 </span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>Use only information stated or confirmed during the interaction and action results. Do not invent, infer, or substitute Customer IDs, Transaction IDs, amounts, dates, or case outcomes.
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>## Collect Recent Transactions
 </span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>If information is incomplete, conflicting, or an action does not return a result, guide the agent to clarify the missing detail and follow the approved manual process. Keep all recommendations short, actionable, and appropriate for a human agent to review before acting.
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>**Always follow these instructions before moving to the "Identify Fraudulent Transaction" section.**
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>1. **Fetch Recent Transactions**: Ask the AGENT to get the CUSTOMER ID at the beginning of the call. Use the CUSTOMER ID to execute [fetch_transactions] action to get the recent transactions.
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>2. **Provide Transaction Details**: Once transactions are fetched, provide the AGENT with the following details for each transaction:
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>   - Transaction Amount
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>   - Transaction Vendor
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>   - Transaction City
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>   - Transaction Date
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>3. **Error Handling**: If there are no transactions available, instruct the AGENT to check the banking system manually. If the banking system is unresponsive, advise the agent to escalate the issue.
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>## Identify Fraudulent Transaction
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>1. **Guide the AGENT**: Confirm if the transaction identified as suspicious could have been made by someone else with access to the account or if the CUSTOMER recognizes the amount but not the vendor. Prompt the agent to ask the customer if they have any recent transactions that they do recognize.
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>2. **CUSTOMER confirms the transaction is fraudulent**: Explain to the AGENT that they need to open a dispute case to investigate the transaction. Guide the agent to inform the customer that opening the case will automatically lock the CUSTOMER's credit card and ship a new one to the address on file. The AGENT needs to get confirmation from the CUSTOMER before the case is opened.
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>3. **Once the CUSTOMER confirms**: Execute the [open_case] action. **If the CUSTOMER declines**: If the CUSTOMER has a reason to decline their card getting locked, guide the agent to ask them to provide a reason and look for alternative options. Shipment of the credit card can be expedited from 5 days to 2 days in case of travel or other time sensitive activities.
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>4. **Provide Case ID**: Once the case is opened, provide the AGENT with the case ID that is returned by the action. Guide the agent to share the case ID to the customer and explain it's important to keep track of their dispute.
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>### Additional Considerations
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>- **User Experience**: Ensure that the language used is empathetic and supportive, as customers may be distressed about potential fraud.
 </span></code></pre></div>
 </li>
 <li>
@@ -1475,7 +1599,7 @@
 </table>
 </li>
 <li>
-<p>In the <strong>Webex Connect Flow Builder Fulfillment</strong> section, select the available service and the <code>fetch_transactions</code> flow. Save the action.</p>
+<p>In the <strong>Webex Connect Flow Builder Fulfillment</strong> section, select the <copy><code>LAB_31207</code></copy> service and the <code>fetch_transactions</code> flow. Save the action.</p>
 </li>
 <li>
 <p>Create the <code>open_case</code> action:</p>
@@ -1527,7 +1651,7 @@
 </table>
 </li>
 <li>
-<p>Select the same service and the <code>open_case</code> flow, then save the action.</p>
+<p>Select the <copy><code>LAB_31207</code></copy> service and the <code>open_case</code> flow, then save the action.</p>
 </li>
 <li>Publish the skill.</li>
 </ol>
@@ -1569,19 +1693,20 @@
 </details>
 <hr>
 <h2 id="lab-36-create-a-custom-generated-summary-template">Lab 3.6 - Create a Custom Generated-Summary Template<a class="headerlink" href="#lab-36-create-a-custom-generated-summary-template" title="Permanent link">¶</a></h2>
-<p>Custom Templates let you tailor the post-call summary to the fraud-handoff workflow. This feature is being introduced in phases, so first confirm that <strong>Summary Templates</strong> is available in AI Agent Studio for this tenant [VERIFY].</p>
+<p>Custom Templates let you tailor the post-call summary to the fraud-handoff workflow.</p>
 <details class="webex" open="open">
 <summary>Create and Publish the Template</summary>
 <ol>
 <li>In <strong>Webex AI Agent Studio</strong>, open <strong>Summary Templates</strong>.</li>
 <li>Select <strong>Create Template</strong> and name it <copy><code>PODXX_Fraud_Handoff_Summary</code></copy>.</li>
+<li>In <strong>Configuration summary</strong>, keep <strong>Initial contact reason</strong> and <strong>Next steps</strong> enabled. Disable <strong>Key actions taken</strong> and <strong>Additional context</strong>.</li>
 <li>
-<p>Retain two default summary sections that cover the interaction reason and outcome, and disable two default sections that are not needed for this scenario [VERIFY: exact default-section labels]. Add the following two custom sections:</p>
+<p>Add two <strong>New custom section</strong> entries. For each entry, complete <strong>Title</strong> and <strong>Instructions</strong>; leave <strong>Example (optional)</strong> blank.</p>
 <table>
 <thead>
 <tr>
-<th>Section</th>
-<th>Instruction</th>
+<th>Title</th>
+<th>Instructions</th>
 </tr>
 </thead>
 <tbody>
@@ -1600,13 +1725,10 @@
 <p>Use the preview/test experience with a sample conversation. Confirm each section is populated clearly and does not invent missing details.</p>
 </li>
 <li>Publish the template.</li>
-<li>In <strong>Collaboration Control Hub</strong> &gt; <strong>Contact Center</strong> &gt; <strong>AI Features</strong> &gt; <strong>Generated Summaries</strong>, open <strong>Templates</strong> [VERIFY: exact label] and assign <copy><code>PODXX_Fraud_Handoff_Summary</code></copy> to <copy><code>PODXX_FraudQueue</code></copy>.</li>
+<li>In <strong>Collaboration Control Hub</strong>, navigate to <strong>Contact Center</strong> &gt; <strong>AI Features</strong>, open the <strong>Queue</strong> tab, and select <copy><code>PODXX_FraudQueue</code></copy>.</li>
+<li>In <strong>Generated Summaries</strong>, enable summaries for the queue. In the <strong>Templates</strong> dropdown, select <copy><code>PODXX_Fraud_Handoff_Summary</code></copy>, then save the queue configuration.</li>
 </ol>
 </details>
-<div class="admonition note">
-<p class="admonition-title">Feature Availability</p>
-<p>If <strong>Summary Templates</strong> is not present in this tenant, stop at the existing Generated Summaries configuration and notify the instructor. Do not substitute a different feature.</p>
-</div>
 <hr>
 <h2 id="lab-37-configure-the-pre-created-inbound-entry-point">Lab 3.7 - Configure the Pre-Created Inbound Entry Point<a class="headerlink" href="#lab-37-configure-the-pre-created-inbound-entry-point" title="Permanent link">¶</a></h2>
 <p>Each POD already has an inbound telephony entry point and assigned inbound DN. Do not create a new entry point.</p>
