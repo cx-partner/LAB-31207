@@ -9,7 +9,7 @@ In this lab, you will configure an **end-to-end outbound IVR campaign** using We
 ???+ purpose "Lab Objectives"
     By the end of this lab, you will have configured the full stack required to run an outbound IVR campaign in Webex Contact Center. Key objectives include:
 
-    - **WxCC Infrastructure Setup:** Configure teams, outdial queues, global variables, and entry points on Control Hub.
+    - **WxCC Infrastructure Setup:** Configure teams, outdial queues, global variables, and entry points on Collaboration Control Hub.
     - **Flow Design:** Build an outbound campaign flow with CPA-based routing and event flows, including Answer Machine Detection (AMD) and Live Voice handling.
     - **Campaign Manager Configuration:** Complete all prerequisite campaign administration settings including business days, contact modes, field mappings, suppression rules, and telephony outcomes.
     - **Campaign Activation:** Create a campaign group, configure and activate the campaign, and upload a contact list to trigger live calls.
@@ -30,13 +30,16 @@ In this lab, you will configure an **end-to-end outbound IVR campaign** using We
 
 In order to complete this lab, you must have:
 
-* [x] Access to **Webex Control Hub** with Full Admin permissions
+* [x] Access to **Webex Collaboration Control Hub** with Full Admin permissions
 * [x] A **Webex Contact Center** tenant provisioned and licensed
 * [x] Access to the **Webex Campaign Management** portal
 
 ---
 
 ## Lab Overview 📌
+
+!!! info "POD-specific values"
+    After you complete Lab Prework, names in this guide resolve to your assigned POD, such as `POD01` or `Team01`. Select the copy icon beside a value whenever you need to enter it in Collaboration Control Hub or Campaign Manager. If a placeholder remains visible, open **Lab Prework** from this guide in the same browser and select **Get my POD**; your existing assignment is reused.
 
 The diagram below illustrates the high-level architecture and the sequence of configuration steps you will follow throughout this lab:
 
@@ -71,12 +74,12 @@ Even we won't use any agent to run the IVR campaign, the creation of a **team or
         </video>
         <p><a href="/LAB-31207/assets/create_team.mp4" target="_blank" rel="noopener">Open video in new tab</a></p>
 
-      1. In Control Hub, navigate to **Contact Center** → **Teams**.
+      1. In Collaboration Control Hub, navigate to **Contact Center** → **Teams**.
       2. Click **Create a team** and fill in the following:
 
         | Field | Value |
         |---|---|
-        | **Name** | `Team<yourpodnumber>` |
+        | **Name** | <copy>`Team<yourpodnumber>`</copy> |
         | **Parent site** | `Site-1` |
         | **Team type** | `Agent-based` |
         | **Multimedia profile** | `Default_Multimedia_Profile` |
@@ -100,7 +103,7 @@ After creating your team, we will enable and configure the contact center agent.
         </video>
         <p><a href="/LAB-31207/assets/lab1_enable_cc_user.mp4" target="_blank" rel="noopener">Open video in new tab</a></p>
 
-      1. In Control Hub, navigate to **Contact Center** → **Contact Center Users**.
+      1. In Collaboration Control Hub, navigate to **Contact Center** → **Contact Center Users**.
       2. Click on the **agent** user that belong to your pod number and fill in the following:
 
         | Field | Value |
@@ -126,12 +129,12 @@ The outdial queue is what connects your outbound campaign to the agent pool. It 
         </video>
         <p><a href="/LAB-31207/assets/lab1_outdial_queue.mp4" target="_blank" rel="noopener">Open video in new tab</a></p>
 
-    1. In Control Hub, navigate to **Contact Center** → **Queues**.
+    1. In Collaboration Control Hub, navigate to **Contact Center** → **Queues**.
     2. Click **Create a queue** and configure:
 
         | Field | Value |
         |---|---|
-        | **Name** | `OutdialQ<yourpodnumber>` |
+        | **Name** | <copy>`OutdialQ<yourpodnumber>`</copy> |
         | **Contact direction** | `Outbound queue` |
         | **Channel type** | `Telephony` |
         | **Outbound campaign** | Enabled (toggle ON) |
@@ -161,7 +164,7 @@ All PODs will use the same global variables which are already pre-configured. If
 
 ???+ webex "Check Global Variables"
 
-    1. In Control Hub, navigate to **Contact Center** → **Flows** → **Global Variables**.
+    1. In Collaboration Control Hub, navigate to **Contact Center** → **Flows** → **Global Variables**.
     2. Click on the **firstName** variable and you must see the following information:
 
         | Field | Value |
@@ -191,7 +194,7 @@ A wrap-up code is required by Campaign Manager when configuring the contact atte
 
 ???+ webex " Wrap-up Code"
 
-    1. In Control Hub, navigate to **Contact Center** → **Idle/wrap-up codes**.
+    1. In Collaboration Control Hub, navigate to **Contact Center** → **Idle/wrap-up codes**.
     2. Click **debt** wrap-ip code and check the following:
 
         | Field | Value |
@@ -205,7 +208,7 @@ A wrap-up code is required by Campaign Manager when configuring the contact atte
 
     <figure markdown>
     ![Debt wrap-up code](./assets/lab1_p6_img1.png)
-    <figcaption>The debt wrap-up code configured in Control Hub</figcaption>
+    <figcaption>The debt wrap-up code configured in Collaboration Control Hub</figcaption>
     </figure>
 
 ---
@@ -214,16 +217,16 @@ A wrap-up code is required by Campaign Manager when configuring the contact atte
 
 ### Create the "Lab2" Dummy Test Flow
 
-Before building the full outbound campaign flow, create a simple **dummy flow** to validate the end-to-end campaign configuration. This same flow will be used as the starting point for **Lab 2** so name it as **AI_Agent_DebtCollection<yourPodNumber>**
+Before building the full outbound campaign flow, create a simple **dummy flow** to validate the end-to-end campaign configuration. This same flow will be used as the starting point for **Lab 2**. Name it **PODXX_AI_Agent_DebtCollection**.
 
 The flow plays a congratulatory TTS message when a live voice contact is detected, confirming Lab 1 is fully operational.
 
 ???+ webex "Create Lab2 dummy flow"
 
-    1. In Control Hub, navigate to **Contact Center** → **Flows**.
+    1. In Collaboration Control Hub, navigate to **Contact Center** → **Flows**.
     2. Click **Manage Flows -> Create Flows** 
     3. Select **Flow** and **Start from scratch** and click **Next**
-    4. Name the flow <copy>`AI_Agent_DebtCollection<yourPodNumber>`</copy> and select **Voice** as the channel type.
+    4. Name the flow <copy>`PODXX_AI_Agent_DebtCollection`</copy> and select **Voice** as the channel type.
     3. In the **Global Flow Properties** panel on the right:
         - Under **Global Variables**, click **Add global variables** and add both `firstName` and `lastName`.
     4. From the **Activities Library**, drag a **Play Message** node onto the canvas and connect it to the **NewPhoneContact** Start node.
@@ -231,7 +234,7 @@ The flow plays a congratulatory TTS message when a live voice contact is detecte
 
 
     5. Configure the **Play Message** node:
-        - **Activity Label**: `EndOfLab1`
+        - **Activity Label**: <copy>`EndOfLab1`</copy>
         - Enable **Text-to-Speech**
         - **Connector**: `Cisco Cloud Text-to-Speech`
         - Add **Text-to-Speech Message**: <copy>`Congratulations, You have completed lab 1`</copy>
@@ -255,7 +258,7 @@ Now create the main outbound campaign flow. This flow handles the outbound diall
 
 ???+ webex "Create Outbound_DebtCollection Flow"
 
-    1. In Control Hub, navigate to **Contact Center** → **Flows**.
+    1. In Collaboration Control Hub, navigate to **Contact Center** → **Flows**.
     2. Click **Manage Flows -> Create Flows** and select **Flow** and **Start from scratch** in the next window. Click **Next**
     3. Name it <copy>`Outbound_DebtCollection<yourPodNumber>`</copy> and select **Voice** as the channel type.
     3. In the **Global Flow Properties** panel:
@@ -329,7 +332,7 @@ This event triggers when the dialler receives a CPA result for an outbound call 
         - **Activity Label**: `GoTo_AIAgent`
         - **Destination type**: `Flow`
         - **Flow type**: `Static Flow`
-        - **Flow**: `AI_Agent_DebtCollection` *(this will be used in Lab 2)*
+        - **Flow**: <copy>`PODXX_AI_Agent_DebtCollection`</copy> *(this will be used in Lab 2)*
         - **Version Label**: `Latest`
     4. Under **Flow Variable Mapping**, map the global variables from the current flow to the destination flow:
 
@@ -348,7 +351,7 @@ This event triggers when the dialler receives a CPA result for an outbound call 
             ![GoTo AIAgent node configuration](./assets/lab1_flow_Goto.png)
             <figure markdown style="width: 30%;" >
             ![GoTo AIAgent flow variable mapping](./assets/lab1_p10_img2.png)
-            <figcaption>Go To node pointing to the AI_Agent_DebtCollection flow with firstName and lastName mapped across flows</figcaption>
+            <figcaption>Go To node pointing to the POD-specific AI Agent flow with firstName and lastName mapped across flows</figcaption>
         </figure>
 
 
@@ -374,7 +377,7 @@ The Entry Point (Channel) is the outbound telephony channel that ties together t
         </video>
         <p><a href="/LAB-31207/assets/lab1_EP_Creation.mp4" target="_blank" rel="noopener">Open video in new tab</a></p>
 
-    1. In Control Hub, navigate to **Contact Center** → **Channels**.
+    1. In Collaboration Control Hub, navigate to **Contact Center** → **Channels**.
     2. Click **Create a channel** and configure:
 
         | Field | Value |
@@ -397,7 +400,7 @@ The Outdial ANI is the caller ID displayed to customers when they receive the ou
 
 ???+ webex "Outdial ANI"
 
-    1. In Control Hub, navigate to **Contact Center** → **Outdial ANI**.
+    1. In Collaboration Control Hub, navigate to **Contact Center** → **Outdial ANI**.
     2. Click on **OutdialANI_All** and you will see:
         - **Name**: `OudialANI_All`
     3. Under **Configured ANIs**, you should see the following:
@@ -434,7 +437,7 @@ Once in the Campaign Manager configuration portal, you can click on the differen
 
 ### Business Days (Only Informational, no configuration is required)
 
-Business days are used solely for the purpose of contact list expiry calculation. They have no association with 'Business hours' on the Control Hub. We won't use this option as part of this lab.
+Business days are used solely for the purpose of contact list expiry calculation. They have no association with 'Business hours' on Collaboration Control Hub. We won't use this option as part of this lab.
 
 ### Contact Modes (Pre-configured)
 
@@ -468,17 +471,17 @@ Do Not Contact (DNC) lists prevent the campaign from calling restricted numbers.
 
 ### Global Variables (Pre-loaded by the sync between WxCC and Campaign Manager)
 
-Global variables are synced from Control Hub. They appear here for informational purposes — you cannot create or modify them in Campaign Manager.
+Global variables are synced from Collaboration Control Hub. They appear here for informational purposes — you cannot create or modify them in Campaign Manager.
 
 ???+ webex "Verify Global Variables"
 
     1. Navigate to **Organization config** → **Global variables**.
     2. Verify that `firstName` and `lastName` are listed with **Status: Active** and **Agent view: Yes**.
 
-        If you don´t see the variables, click *Refresh from Control Hub* at the top-right of the page
+        If you don´t see the variables, click *Refresh from Collaboration Control Hub* at the top-right of the page
 
     ???+ note
-        Campaign Manager is case-insensitive. If variables in Control Hub differ only by character case, Campaign Manager will treat them as duplicates and only import one of them. E.g. if *lastname* and *Lastname* are global variables in Control Hub, Campaign Manager will ignore one of them. 
+        Campaign Manager is case-insensitive. If variables in Collaboration Control Hub differ only by character case, Campaign Manager will treat them as duplicates and only import one of them. E.g. if *lastname* and *Lastname* are global variables in Collaboration Control Hub, Campaign Manager will ignore one of them.
 
     !!! important
         Before you can use Global Variables in Campaign Manager, you must designate a **customer-unique-identifier** and **account-unique-identifier** for compliance with call attempt regulations. For this lab, since we are not configuring unique identifiers, this step is skipped.
@@ -681,18 +684,18 @@ The system provides a **primary (read-only) outcome set**. We have **duplicated*
 
 ### UI Users (Only Informational, no configuration is required)
 
-Webex Campaign Management uses **just-in-time (JIT) provisioning** — user accounts are created automatically the first time a user logs in, based on their role in Control Hub. No manual user creation is required in Campaign Manager.
+Webex Campaign Management uses **just-in-time (JIT) provisioning** — user accounts are created automatically the first time a user logs in, based on their role in Collaboration Control Hub. No manual user creation is required in Campaign Manager.
 
 <figure markdown>
 ![UI Users](./assets/lab1_p23_img2.png)
-<figcaption>UI Users list showing the admin account provisioned via JIT sync from Control Hub</figcaption>
+<figcaption>UI Users list showing the admin account provisioned via JIT sync from Collaboration Control Hub</figcaption>
 </figure>
 
 For more information, refer to the [Campaign Management UI Users documentation](https://docs-campaign-for-contact-centers.webexcampaign.com/docs/ui-users).
 
 ### Wrap-up Code Sets (Pre-Configured)
 
-Wrap-up codes defined in Control Hub are synced to Campaign Manager. You can configure how each code affects future campaign contact attempts (e.g. whether a contact with a given wrap-up code should be retried). For this lab, we have created a set called **Finance** which will include the **debt** wrap-up code. All the PODs will use this one to configure the campaign.
+Wrap-up codes defined in Collaboration Control Hub are synced to Campaign Manager. You can configure how each code affects future campaign contact attempts (e.g. whether a contact with a given wrap-up code should be retried). For this lab, we have created a set called **Finance** which will include the **debt** wrap-up code. All the PODs will use this one to configure the campaign.
 
 ???+ webex "Verify Wrap-up Code Set"
 
@@ -761,7 +764,7 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
 
     | Field | Value |
     |---|---|
-    | **Control Hub channel** | `Campaign_EP_<yourPodNumber>` |
+    | **Collaboration Control Hub channel** | `Campaign_EP_<yourPodNumber>` |
     | **Outdial ANI** | `+17382033500` *(select the common Outdial ANI)* |
     | **Dialing mode** | `Progressive IVR` |
     | **CPA parameters** | Enabled (leave defaults) |
@@ -1015,7 +1018,7 @@ At this point, you have successfully:
 
 - [x] Configured an agent, team, and outdial queue in Webex Contact Center
 - [x] Created `firstName` and `lastName` Global Variables for customer data propagation
-- [x] Built the `AI_Agent_DebtCollection` test flow with a congratulatory TTS message
+- [x] Built the `PODXX_AI_Agent_DebtCollection` test flow with a congratulatory TTS message
 - [x] Built the `Outbound_DebtCollection` campaign flow with CPA-based routing (AMD, Abandoned, Live Voice)
 - [x] Configured the outdial Entry Point (Channel) and Outdial ANI
 - [x] Completed all Campaign Manager prerequisites (contact modes, field mappings, suppression rules, telephony outcomes, wrap-up codes, meta-tags)
