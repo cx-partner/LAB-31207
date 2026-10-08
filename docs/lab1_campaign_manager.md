@@ -326,7 +326,7 @@ This event triggers when the dialler receives a CPA result for an outbound call 
 ???+ webex "Configure Live Voice Routing"
 
     1. Drag a **Go To** node onto the canvas.
-    2. Connect the **LIVE_VOICE_IVR_CAMPAIGN** output of the **Case** node to the **Go To** node.
+    2. Connect the **LIVE_VOICE** output of the **Case** node to the **Go To** node.
     3. Connect also the **Default** output of the **Case** node to the **Go To** node.
     3. Configure the **Go To** node:
         - **Activity Label**: `GoTo_AIAgent`
@@ -897,7 +897,7 @@ A campaign group is a container (wrapper) for one or more campaigns. You must cr
 
     1. Click **Save & exit** (top right of the campaign flow canvas).
     2. In the **Save campaign** dialog, fill in:
-        - **Campaign name**: `wxone_camp_100`
+        - **Campaign name**: `wxone_camp_<yourPodNumber>`
         - **P&L meta-tag**: `debt`
         - **Purpose meta-tag**: `debt`
         - **Applicable DNC lists**: `None`
