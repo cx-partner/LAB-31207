@@ -2,7 +2,7 @@
 
 ## Lab Purpose
 
-In Lab 1, you configured a native Campaign Manager to place outbound calls and route live-voice answers into the `AI_Agent_DebtCollection` flow. In this lab, you will configure **Alex**, a Webex AI Agent that uses tenant-provisioned **MCP tools** to retrieve customer context, support the debt-resolution conversation, and prepare the call for human escalation when needed.
+In Lab 1, you configured native Campaign Manager to place outbound calls and route live-voice answers into the `PODXX_AI_Agent_DebtCollection` flow. In this lab, you will configure **Alex**, a Webex AI Agent that uses tenant-provisioned **MCP tools** to retrieve customer context, support the debt-resolution conversation, and prepare the call for human escalation when needed.
 
 The backend actions are provided by the pre-staged MCP server. You will select available MCP tools in AI Agent Studio rather than building fulfillment flows.
 
@@ -25,7 +25,7 @@ The backend actions are provided by the pre-staged MCP server. You will select a
 In order to complete this lab, you must have:
 
 * [x] Completed [Lab 1 - Native Campaign Manager](lab1_campaign_manager.md).
-* [x] Access to **Control Hub** and **Webex AI Agent Studio**.
+* [x] Access to **Collaboration Control Hub** and **Webex AI Agent Studio**.
 * [x] MCP Agentic App already provisioned in the Webex tenant (This is preconfigured. You will verify it in Lab 2.3 section)).
 * [x] MCP tools already enabled by the tenant administrator (you will verify this in Lab 2.3 section).
 * [x] Baseline AI Agent import package available (you will import the pre-package AI Agent in Lab 2.1).
@@ -65,11 +65,11 @@ The fastest path for a 4-hour lab is to import a baseline agent and review the i
 
     
 
-    1. From [Control Hub](https://admin.webex.com), navigate to **Contact Center**.
+    1. From [Collaboration Control Hub](https://admin.webex.com), navigate to **Contact Center**.
     2. Under **Quick Links**, open **Webex AI Agent**.
     3. In AI Agent Studio, click on the **Import agent** button at the top-right and in the Import window:
         4. Click **Upload** and select the `LAB-31207_Alex_baseline` json file from your local drive. 
-        5. Set the **Agent name** field to <copy>`PODXX-LAB-31207_Alex`</copy>, replacing `XX` with your POD number.   
+        5. Set the **Agent name** field to <copy>`PODXX_Alex`</copy>.
         6. Click **Import** to create the Alex AI Agent from the baseline package.
 
     5. You will see now the Profile settings for your new agent with a status `Ready to preview`
@@ -214,7 +214,7 @@ In this lab, we will use just *File* ingestion.
 
 ## Lab 2.3 - Select MCP Tools as Actions
 
-The LAB_31207_Finance MCP server is already enabled in the shared lab tenant. **You don't need to do any configuration in Control Hub**.  The MCP Server exposes a number of tools you will be using as AI Agent actions later on. The next section is **informational** and explains how the MCP server is configured. 
+The LAB_31207_Finance MCP server is already enabled in the shared lab tenant. **You don't need to do any configuration in Collaboration Control Hub**.  The MCP Server exposes a number of tools you will be using as AI Agent actions later on. The next section is **informational** and explains how the MCP server is configured.
 
 ???+ info "Optional learning: How to register and provision the MCP server"
 
@@ -228,7 +228,7 @@ The LAB_31207_Finance MCP server is already enabled in the shared lab tenant. **
     </p>
     
     
-    To configure Agentic Apps in Control Hub, you need a **Customer Administrator** account; a Partner account cannot authorize Agentic Apps for the customer organization.
+    To configure Agentic Apps in Collaboration Control Hub, you need a **Customer Administrator** account; a Partner account cannot authorize Agentic Apps for the customer organization.
 
     **1. Register the Agentic App in the Webex Developer Portal**
         
@@ -278,31 +278,31 @@ The LAB_31207_Finance MCP server is already enabled in the shared lab tenant. **
     The next section describes how would you configure the MCP Server as an Agentic App in your own tenant.
 
     
-    **3. Provision the Agentic App in Control Hub**
+    **3. Provision the Agentic App in Collaboration Control Hub**
 
-    Once the MCP Server is provisioned as an Agentic APP in the Webex Developer Portal, the next step would be to configure the App in your tenant, through **Control Hub**. 
+    Once the MCP Server is provisioned as an Agentic APP in the Webex Developer Portal, the next step would be to configure the App in your tenant, through **Collaboration Control Hub**.
 
     {== THIS IS FOR INFORMATION ONLY. DO NOT MODIFY ANY OF THE PARAMETERS IN THE AGENTIC APP ==}
 
-    ???+ inline  "Agentic App in Control Hub"
+    ???+ inline  "Agentic App in Collaboration Control Hub"
         <figure markdown style="width: 30%;">
-        ![Agentic App in Control Hub](./assets/lab2_p23_img2.png)
+        ![Agentic App in Collaboration Control Hub](./assets/lab2_p23_img2.png)
         </figure>
 
-    1. In [Control Hub](https://admin.webex.com){:target="_blank" rel="noopener"}, go to **Apps** > **Agentic Apps**.
+    1. In [Collaboration Control Hub](https://admin.webex.com){:target="_blank" rel="noopener"}, go to **Apps** > **Agentic Apps**.
     2. Open `LAB_31207_Finance`.
     3. On the **General** tab, you will see access is set to **Allowed** for the organization and the *Authorize automatic server data updates* toggle is enabled to avoid re-authorization on server updates.
     <br><br><br>
 
-        ???+ inline end "Agentic App in Control Hub"
+        ???+ inline end "Agentic App in Collaboration Control Hub"
             <figure markdown style="width: 30%;">
-            ![Agentic App in Control Hub](./assets/lab2_p23_img3.png)
+            ![Agentic App in Collaboration Control Hub](./assets/lab2_p23_img3.png)
             </figure>
     4. On the **Authentication** tab, confirm the method is **API Key**, and the API key is set.
     
-    ???+ inline "Agentic App in Control Hub"
+    ???+ inline "Agentic App in Collaboration Control Hub"
         <figure markdown style="width: 30%;">
-        ![Agentic App in Control Hub](./assets/lab2_p23_img4.png)
+        ![Agentic App in Collaboration Control Hub](./assets/lab2_p23_img4.png)
         </figure>
     
     5. On the **Tools** tab, you will see the tools exposed by the MCP server. These five tools are enabled:
@@ -322,7 +322,7 @@ The LAB_31207_Finance MCP server is already enabled in the shared lab tenant. **
 The next step in your lab is to select the MCP tools for your AI Agent actions. 
 
 ???+ webex "Add MCP Tools to Alex"
-    1. In AI Agent Studio, open your AI Agent `PODXX-LAB-31207_Alex`.
+    1. In AI Agent Studio, open your AI Agent `PODXX_Alex`.
     2. Switch to the **Actions** tab.
     3. Click **+ Add actions**.
     4. Choose **Select available**.
@@ -353,9 +353,17 @@ Before connecting Alex to the campaign and going live, It is essential to valida
     ???+ Important "Delivery of payment link" 
         If you created the customer profile using your own US mobile number, the payment link will be sent to that number via SMS. If you created the customer using a Webex Customer profile, the payment link will be sent to the email address associated with your profile.
 
+    ???+ example "Email payment-link example"
+        If your payment link is delivered by email, look for a message from <copy>`lab31207@gmail.com`</copy> with the subject **NovaPay - our secure payment link**. Check your spam or junk folder if it does not arrive promptly.
+
+        <figure markdown style="width: 65%;">
+        ![Example NovaPay payment-link email](./assets/lab2_payment_email_example_redacted.png)
+        <figcaption>Example NovaPay payment-link email.</figcaption>
+        </figure>
+
     ???+ inline "Customer Profile"
         <figure markdown style="width: 30%;">
-        ![Agentic App in Control Hub](./assets/lab2_p24_img1.png)
+        ![Agentic App in Collaboration Control Hub](./assets/lab2_p24_img1.png)
         </figure>
 
     | Field | Usage|
@@ -367,7 +375,7 @@ Before connecting Alex to the campaign and going live, It is essential to valida
     | Transactions | You will see three generated transactions in your customer record |
 
 ???+ tool "Run the Preview Scenario"
-    1. In AI Agent Studio, open `PODXX-LAB-31207_Alex`.
+    1. In AI Agent Studio, open `PODXX_Alex`.
     2. Click **Preview**.
     3. Since Preview does not go through the Outbound Debt Collection flow, the `firstName`, `lastName`, and `phoneNumber` values are not passed to Alex automatically. Provide your name and the phone number from your test profile yourself when Alex asks.
     4. Try asking about your balance **before** authenticating — Alex should decline and ask you to verify your identity first.
@@ -381,7 +389,7 @@ Before connecting Alex to the campaign and going live, It is essential to valida
         - Personal US mobile number: text message (SMS).
         - Assigned Webex Calling customer profile: email.
 
-    8. Open the link from the applicable channel. For email delivery, check spam if it does not arrive quickly.
+    8. Open the link from the applicable channel. For email delivery, use the **Email payment-link example** note above to identify the message.
 
     9. Click the link, fill in the NovaPay payment interface, and click **Pay Now**. NovaPay returns a confirmation message.
         <figure markdown style="width: 30%;">
@@ -430,7 +438,7 @@ Before connecting Alex to the campaign and going live, It is essential to valida
 
 ## Lab 2.5 - Connect the AI Agent to the Outbound Call
 
-At the end of Lab 1, the outbound call routes to the `AI_Agent_DebtCollection` flow, which currently plays just a temporary completion message. You will now modify that flow to route the call to Alex, your AI Agent.
+At the end of Lab 1, the outbound call routes to the `PODXX_AI_Agent_DebtCollection` flow, which currently plays just a temporary completion message. You will now modify that flow to route the call to Alex, your AI Agent.
 
 ???+  "Initial flow"
     <figure markdown>
@@ -445,8 +453,8 @@ At the end of Lab 1, the outbound call routes to the `AI_Agent_DebtCollection` f
         </video>
         <p><a href="/LAB-31207/assets/lab2_p25_vid1.mp4" target="_blank" rel="noopener">Open video in new tab</a></p>
 
-    1. Go to **Control Hub** > **Contact Center** > **Flows**.
-    2. Open the `AI_Agent_DebtCollection_<yourPODnr>` flow.
+    1. Go to **Collaboration Control Hub** > **Contact Center** > **Flows**.
+    2. Open the <copy>`PODXX_AI_Agent_DebtCollection`</copy> flow.
     3. Enable editing with the top bar **Edit** toggle.
     4. Delete the temporary **EndOfLab1** Play Message node from Lab 1.
     5. Drag a **Virtual Agent V2** node onto the canvas.
@@ -459,7 +467,7 @@ At the end of Lab 1, the outbound call routes to the `AI_Agent_DebtCollection` f
         | **Activity Description** | `Optionally, provide a description`|
         | **Conversational Experience** | select `Static Contact Center AI Config`|
         | **Contact Center AI Config** | `Webex AI Agent (Autonomous)` |
-        | **Virtual Agent** | select your `PODXX-LAB-31207_Alex` |
+        | **Virtual Agent** | select your `PODXX_Alex` |
 
     8. In **State Event**, set **Event Data** to:
 

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block hero %}
+  {% if page and page.is_homepage %}
+  <style>
+    .md-container {
+      min-height: calc(100svh - 6.2rem);
+      background-color: var(--md-primary-fg-color);
+      background-image: linear-gradient(rgba(5, 28, 44, 0.32), rgba(5, 28, 44, 0.32)), url("{{ 'template_assets/wx1Background.png' | url }}");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .md-main, .md-main__inner { height: 0; }
+
+    .lab-home {
+      min-height: calc(100svh - 6.2rem);
+      display: grid;
+      place-items: center;
+      padding: 3rem 1.5rem;
+      color: var(--md-primary-bg-color);
+      text-align: center;
+    }
+
+    .lab-home__content { max-width: 48rem; }
+    .lab-home h1 { color: currentColor; font-size: clamp(2rem, 4vw, 3.6rem); margin: 0 0 1rem; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.4); }
+    .lab-home p { font-size: clamp(1rem, 1.8vw, 1.25rem); margin: 0 auto 2rem; }
+    .lab-home__event-mark { width: min(19.5rem, 80vw); height: auto; margin: 1rem auto 2.5rem; }
+    .lab-home .md-button { color: var(--md-primary-bg-color); border-color: currentColor; }
+    .lab-home .md-button--primary { background: var(--md-primary-bg-color); color: var(--md-primary-fg-color); }
+    .lab-home .md-button:hover, .lab-home .md-button:focus { background: var(--md-accent-fg-color); color: var(--md-default-bg-color); border-color: var(--md-accent-fg-color); }
+  </style>
+
+  <section class="lab-home">
+    <div class="lab-home__content">
+      <h1>LAB-31207</h1>
+      <p>Campaign Manager, Webex AI Agent with MCP, and Real-Time Assist</p>
+      <img class="lab-home__event-mark" src="https://webexcc-sa.github.io/LAB-DEMO/template_assets/wx1_26_text.svg" alt="WebexOne 2026" draggable="false">
+      <p><a class="md-button md-button--primary" href="{{ 'overview/' | url }}">Get started</a></p>
+    </div>
+  </section>
+  {% endif %}
+{% endblock %}
+
+{% block site_nav %}
+  {% if not (page and page.is_homepage) %}{{ super() }}{% endif %}
+{% endblock %}
+
+{% block container %}
+  {% if not (page and page.is_homepage) %}{{ super() }}{% endif %}
+{% endblock %}
+
+{% block footer %}
+  {% if not (page and page.is_homepage) %}{{ super() }}{% endif %}
+{% endblock %}

@@ -4,7 +4,7 @@
 
 LAB-31207 is a focused 4-hour hands-on lab for building a proactive outbound customer journey in Webex Contact Center. You will configure native Campaign Manager, connect answered calls to a Webex AI Agent, attach MCP-backed actions, and enable Real-Time Assist for the human handoff.
 
-The lab starts from a prepared tenant. The MCP server is already provisioned, so you will select available MCP tools from the AI Agent or AI Assistant configuration instead of building backend fulfillment flows.
+The lab starts from a prepared tenant. The MCP server is already provisioned, so you will select available MCP tools in the autonomous AI Agent configuration instead of building backend fulfillment flows.
 
 ???+ purpose "Lab Objectives"
     By the end of this lab, you will be able to:
@@ -42,7 +42,7 @@ The lab starts from a prepared tenant. The MCP server is already provisioned, so
 
 ## Useful Links
 
-- [Control Hub](https://admin.webex.com)
+- [Collaboration Control Hub](https://admin.webex.com)
 - [Webex Developer Portal](https://developer.webex.com)
 - [Campaign Manager portal](https://campaignmanager.wxcc-us1.cisco.com/nextgen/login?orgId=36db6df3-4ec3-4eb9-905b-d90660c2c2ea)
-- AI Agent Studio: Open from **Control Hub** > **Contact Center** > **Quick Links** > **Webex AI Agent**
+- AI Agent Studio: Open from **Collaboration Control Hub** > **Contact Center** > **Quick Links** > **Webex AI Agent**
