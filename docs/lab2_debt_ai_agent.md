@@ -273,7 +273,7 @@ The LAB_31207_Finance MCP server is already enabled in the shared lab tenant. **
 
 
     
-    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
 
     The next section describes how would you configure the MCP Server as an Agentic App in your own tenant.
 
