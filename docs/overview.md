@@ -29,12 +29,12 @@ The lab starts from a prepared tenant. The MCP server is already provisioned, so
 
 | Time | Segment | Outcome |
 |---|---:|---|
-| 0:00-0:10 | Orientation | Confirm tenant access, lab naming, test number, and MCP assumptions. |
-| 0:10-1:55 | Lab 1 - Native Campaign Manager | Build and activate the outbound campaign, upload a contact list, and receive the validation call. |
-| 1:55-2:05 | Break / catch-up | Absorb Campaign Manager processing delays. |
-| 2:05-3:00 | Lab 2 - AI Agent with MCP | Import/configure Alex, select MCP tools, and validate the AI Agent in Preview. |
-| 3:00-3:25 | Lab 2 - Campaign to AI Agent | Replace the temporary Lab 1 message flow with Virtual Agent V2 and test the outbound call to Alex. |
-| 3:25-4:00 | Lab 3 - Real-Time Assist | Enable AI Assistant features, create/assign the RTA skill, and validate guidance in Agent Desktop. |
+| 0:00-0:20 | Orientation | Lab Introduction, Lab Pre-work and Lab access. |
+| 0:20-1:50 | Lab 1 - Native Campaign Manager | Build and activate the outbound campaign, upload a contact list, and receive the validation call. |
+| 1:50-2:05 | Break / catch-up | Absorb Campaign manager processing delays. |
+| 2:05-2.45 | Lab 2 - AI Agent with MCP | Import/configure Alex, select MCP tools, and validate the AI Agent in Preview. |
+| 2:45-3:15 | Lab 2 - Campaign to AI Agent | Replace the temporary Lab 1 message flow with Virtual Agent V2 and test the outbound call to Alex. |
+| 3:15-4:00 | Lab 3 - Real-Time Assist | Enable AI Assistant features, create/assign the RTA skill, and validate guidance in Agent Desktop. |
 
 !!! warning "Time Box"
     The lab is designed to fit 4 hours. If Campaign Manager processing or tenant access delays consume the RTA window, complete Labs 1 and 2 first. RTA is valuable, but the primary success path is outbound campaign to MCP-enabled AI Agent.
