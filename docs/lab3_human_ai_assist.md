@@ -122,7 +122,8 @@ Make the Main Flow changes first, then configure Real-Time Transcription in **Ev
             <figcaption>Initial flow before configuring the escalation path.</figcaption>
             </figure>
 
-    2. Open **Global Flow Properties**, create the following custom flow variables, and mark the agent-viewable context values as shown.
+    2. In the **Activity Settings** panel for the Virtual Agent V2 node, scroll to **Output Variables**. The `MetaData` output contains the transfer-action details that you will map in the following steps.
+    3. Open **Global Flow Properties**, create the following custom flow variables, and mark the agent-viewable context values as shown.
 
         | Variable | Type | Default value | Agent viewable | Desktop label |
         |---|---|---|---|---|
@@ -139,8 +140,8 @@ Make the Main Flow changes first, then configure Real-Time Transcription in **Ev
             <figcaption>Creating the flow variables used to pass context to the human agent.</figcaption>
             </figure>
 
-    3. Delete the temporary **Play Message** node connected to the **Escalated** outcome.
-    4. Drag a **Parse** node onto the canvas, connect it to the **Escalated** path, name it <copy>`Parse_Transfer`</copy>, and use the description `Collects the transfer type.` Configure it to extract the transfer type from the Virtual Agent V2 metadata.
+    4. Delete the temporary **Play Message** node connected to the **Escalated** outcome. Connect the existing error **Play Message** node directly to **End Flow**.
+    5. Drag a **Parse** node onto the canvas, connect it to the **Escalated** path, name it <copy>`Parse_Transfer`</copy>, and use the description `Collects the transfer type.` Configure it to extract the transfer type from the Virtual Agent V2 metadata.
 
         | Setting | Value |
         |---|---|
@@ -152,8 +153,16 @@ Make the Main Flow changes first, then configure Real-Time Transcription in **Ev
         !!! info "AI Agent Metadata"
             The `MetaData` output contains the actions and values collected during the AI Agent session. The `escalation_trigger` value identifies the transfer action that Alex used.
 
-    5. Add a **Case** node, name it <copy>`Transfer_Check`</copy>, and use the description `Checks the transfer_type variable to route accordingly.` Configure it to evaluate `transfer_type`.
-    6. Add a second **Parse** node named <copy>`Fraud_Context`</copy>. Connect the `fraud_transfer` path from **Transfer_Check** to this node. Use `DebtCollectionAgent.MetaData` as its input, set **Content type** to `JSON`, and map the `fraud_transfer` action input into the agent-viewable variables:
+    6. Add a **Case** node, connect the output from **Parse_Transfer** to it, name it <copy>`Transfer_Check`</copy>, and use the description `Checks the transfer_type variable to route accordingly.` Configure these **Case** settings:
+
+        | Setting | Value |
+        |---|---|
+        | **Variable** | `transfer_type` |
+        | **Case 1** | `agent_transfer` |
+        | **Case 2** | `fraud_transfer` |
+
+    7. Add a **Queue Contact** node for the `agent_transfer` path, name it <copy>`Generic_Queue`</copy>, and select <copy>`PODXX_FraudQueue`</copy>. Connect the `agent_transfer` and default paths from **Transfer_Check** to this node, then connect its output to **End Flow**.
+    8. Add a second **Parse** node named <copy>`Fraud_Context`</copy>. Connect the `fraud_transfer` path from **Transfer_Check** to this node. Use `DebtCollectionAgent.MetaData` as its input, set **Content type** to `JSON`, and map the `fraud_transfer` action input into the agent-viewable variables:
 
         | Output variable | JSON path |
         |---|---|
@@ -163,7 +172,7 @@ Make the Main Flow changes first, then configure Real-Time Transcription in **Ev
         | `susp_vendor` | `$.actions.fraud_transfer[0].input.susp_vendor` |
         | `susp_date` | `$.actions.fraud_transfer[0].input.susp_date` |
 
-    7. Connect the output from **Fraud_Context** to <copy>`PODXX_FraudQueue`</copy>. Connect the `agent_transfer` and default paths from **Transfer_Check** to the same queue. Keep the **Errored** outcome connected to a safe fallback path.
+    9. Add a **Queue Contact** node named <copy>`Fraud_Queue`</copy>, select <copy>`PODXX_FraudQueue`</copy>, and connect the output from **Fraud_Context** to it. Connect the output from **Fraud_Queue** to **End Flow**.
 
         ???+ inline end "Final Flow View"
             <figure markdown>
@@ -178,17 +187,48 @@ Make the Main Flow changes first, then configure Real-Time Transcription in **Ev
             </figure>
 
 ???+ webex "Add the Inbound Test Path"
-    Use the same flow for both campaign and inbound calls, so testing does not depend on waiting for Campaign Manager.
+    Use the same flow for campaign and inbound calls, so testing does not depend on waiting for Campaign Manager. If the ANI matches the campaign outdial number, the call is outbound and the flow sends the customer's DNIS to Alex. Otherwise, the call is inbound and the flow sends the caller's ANI.
 
-    1. In **Global Flow Properties**, create a String custom variable named `phone_number`.
-    2. Immediately after the **New Contact** start node, add a **Condition** node named <copy>`Detect_Call_Direction`</copy> with this expression.
+    1. In <copy>`PODXX_AI_Agent_DebtCollection`</copy>, click **Global Flow Properties**.
+    2. Under **Custom Flow Variables**, create this variable:
+
+        | Variable name | Type | Default value |
+        |---|---|---|
+        | `phone_number` | `String` | *(empty)* |
+
+    3. On the canvas, drag a **Condition** node immediately after the **New Contact** start node.
+    4. Rename the node <copy>`Detect_Call_Direction`</copy> and configure this expression:
 
         <copy>`{{NewContact.ANI=="+17382033500"}}`</copy>
 
-    3. On the **True** path, add a **Set Variable** node named <copy>`Set_Outbound_Phone`</copy>. Set `phone_number` to `{{NewContact.DNIS}}`.
-    4. On the **False** path, add a **Set Variable** node named <copy>`Set_Inbound_Phone`</copy>. Set `phone_number` to `{{NewContact.ANI}}`, then set `firstName` and `lastName` to the first and last name of your test customer from Lab Prework.
-    5. Connect both **Set Variable** nodes to the existing **Virtual Agent V2** node (`DebtCollectionAgent`).
-    6. In the **State Event** data for that node, use:
+        This is the outdial ANI configured for the campaign. A matching ANI follows the outbound path.
+
+    5. Configure the **True** path for outbound calls:
+
+        - Add a **Set Variable** node and connect it to the **True** output.
+        - Name it <copy>`Set_Outbound_Phone`</copy>.
+        - Set `phone_number` to `{{NewContact.DNIS}}`.
+
+    6. Configure the **False** path for inbound calls:
+
+        ???+ inline end "Inbound Test Flow"
+            <figure markdown>
+            ![Complete inbound test flow](./assets/lab3_inbound_test2.png)
+            <figcaption>Complete inbound and outbound call-direction flow.</figcaption>
+            </figure>
+
+        - Add a **Set Variable** node and connect it to the **False** output.
+        - Name it <copy>`Set_Inbound_Phone`</copy>.
+        - Set the following variables:
+
+            | Variable | Set value |
+            |---|---|
+            | `phone_number` | `{{NewContact.ANI}}` |
+            | `firstName` | First name of your test customer from Lab Prework |
+            | `lastName` | Last name of your test customer from Lab Prework |
+
+    7. Connect both **Set Variable** nodes to the existing **Virtual Agent V2** node (`DebtCollectionAgent`).
+    8. In the **State Event** data for that node, use:
 
         ```json
         {
@@ -198,18 +238,24 @@ Make the Main Flow changes first, then configure Real-Time Transcription in **Ev
         }
         ```
 
-    7. Go to **Event Flows**. Drag a **Start Media Stream** node onto the canvas, connect **AgentAnswered** to **Start Media Stream**, then connect **Start Media Stream** to **End Flow**.
+???+ webex "Configure Real-Time Transcription"
+    Real-Time Transcription requires media streaming to start when the human agent accepts the call.
+
+    1. Go to **Event Flows**.
+    2. Drag a **Start Media Stream** node onto the canvas.
+    3. Connect the **AgentAnswered** event node to **Start Media Stream**.
 
         !!! info "Event Name"
             In some tenants, **AgentAnswered** appears as **AgentAccepted**. Use the event that is available in your Flow Designer.
 
-        ???+ gif "Configure RTT in Event Flows"
-            <figure markdown>
-            ![Real-Time Transcription flow configuration](./assets/lab3_flow_RTT.gif)
-            <figcaption>Real-Time Transcription flow configuration</figcaption>
-            </figure>
+    4. Connect **Start Media Stream** to **End Flow**.
+    5. Validate and publish the flow.
 
-    8. Validate and publish the flow.
+    ???+ gif "Configure RTT in Event Flows"
+        <figure markdown>
+        ![Real-Time Transcription flow configuration](./assets/lab3_flow_RTT.gif)
+        <figcaption>Real-Time Transcription flow configuration</figcaption>
+        </figure>
 
 ---
 
@@ -243,22 +289,41 @@ Make the Main Flow changes first, then configure Real-Time Transcription in **Ev
         | Field | Value |
         |---|---|
         | **Skill name** | <copy>`PODXX_RTA_Assistant`</copy> |
-        | **Goal** | `Assist the human agent during a debt-resolution or fraud/dispute conversation by providing concise next-step guidance based on the live transcript.` |
+        | **Goal** | <copy>`You are an ai assistant working for Webex Financial Group. You will be assisting human agents that are specialized in handling fraud scenarios for our customers. Provide timely recommendations about our fraud prevention and dispute transaction policies.`</copy> |
 
     5. Add or confirm the instructions:
 
         ```text
-        You assist the human agent, not the customer. Provide concise, timely guidance that helps the agent resolve debt, payment, and fraud/dispute conversations accurately and empathetically.
+        # AI Assistant Action Orchestration
 
-        Review the live conversation before suggesting a question. Reuse information already confirmed by the customer or agent; do not ask the agent to collect it again.
+        Before asking the AGENT to collect any data from the CUSTOMER, check the conversation history. If the data was already provided, reuse it instead of asking again.
+        If the AGENT has acknowledged the CUSTOMER's intent but has not yet asked for the specific required data, do not repeat or pre-empt the suggestion. Allow the conversation to progress.
+        When calling tools: Use ONLY values the customer explicitly provided. NEVER infer, construct, extract digits from other fields, use example values, add UNKNOWN or use default/placeholder values (like "00:00", "0", etc.). Missing required parameter = ASK user. Missing optional parameter = OMIT it entirely. NO exceptions.
 
-        Watch for identity-verification issues, balance questions, payment intent, dispute language, suspicious-transaction language, and requests for a specialist. Guide the agent on what to ask next, what to confirm, and what to explain. Do not phrase guidance as if you are speaking directly to the customer.
+        The CustomerID format is CUST-001, agent only needs to collect the last 3 digits.
 
-        For a disputed transaction, guide the agent to confirm the Customer ID and the transaction amount, vendor, and date. Then guide the agent to retrieve recent transactions using the configured action. Once the agent and customer have identified the disputed transaction and the customer agrees to open a case, recommend the case-opening action for the agent to review.
+        ## Collect Recent Transactions
 
-        Use only information stated or confirmed during the interaction and action results. Do not invent, infer, or substitute Customer IDs, Transaction IDs, amounts, dates, or case outcomes.
+        **Always follow these instructions before moving to the "Identify Fraudulent Transaction" section.**
 
-        If information is incomplete, conflicting, or an action does not return a result, guide the agent to clarify the missing detail and follow the approved manual process. Keep all recommendations short, actionable, and appropriate for a human agent to review before acting.
+        1. **Fetch Recent Transactions**: Ask the AGENT to get the CUSTOMER ID at the beginning of the call. Use the CUSTOMER ID to execute [fetch_transactions] action to get the recent transactions.
+        2. **Provide Transaction Details**: Once transactions are fetched, provide the AGENT with the following details for each transaction:
+           - Transaction Amount
+           - Transaction Vendor
+           - Transaction City
+           - Transaction Date
+        3. **Error Handling**: If there are no transactions available, instruct the AGENT to check the banking system manually. If the banking system is unresponsive, advise the agent to escalate the issue.
+
+        ## Identify Fraudulent Transaction
+
+        1. **Guide the AGENT**: Confirm if the transaction identified as suspicious could have been made by someone else with access to the account or if the CUSTOMER recognizes the amount but not the vendor. Prompt the agent to ask the customer if they have any recent transactions that they do recognize.
+        2. **CUSTOMER confirms the transaction is fraudulent**: Explain to the AGENT that they need to open a dispute case to investigate the transaction. Guide the agent to inform the customer that opening the case will automatically lock the CUSTOMER's credit card and ship a new one to the address on file. The AGENT needs to get confirmation from the CUSTOMER before the case is opened.
+        3. **Once the CUSTOMER confirms**: Execute the [open_case] action. **If the CUSTOMER declines**: If the CUSTOMER has a reason to decline their card getting locked, guide the agent to ask them to provide a reason and look for alternative options. Shipment of the credit card can be expedited from 5 days to 2 days in case of travel or other time sensitive activities.
+        4. **Provide Case ID**: Once the case is opened, provide the AGENT with the case ID that is returned by the action. Guide the agent to share the case ID to the customer and explain it's important to keep track of their dispute.
+
+        ### Additional Considerations
+
+        - **User Experience**: Ensure that the language used is empathetic and supportive, as customers may be distressed about potential fraud.
         ```
 
     6. Attach the `Fraud_KB` Knowledge Base you just created.
@@ -284,7 +349,7 @@ Make the Main Flow changes first, then configure Real-Time Transcription in **Ev
         |---|---|---|---|
         | `CustomerID` | `Regex` | `CUST-\d{3}` | `Yes` |
 
-    4. In the **Webex Connect Flow Builder Fulfillment** section, select the available service and the `fetch_transactions` flow. Save the action.
+    4. In the **Webex Connect Flow Builder Fulfillment** section, select the <copy>`LAB_31207`</copy> service and the `fetch_transactions` flow. Save the action.
     5. Create the `open_case` action:
 
         | Field | Value |
@@ -300,7 +365,7 @@ Make the Main Flow changes first, then configure Real-Time Transcription in **Ev
         | `CustomerID` | `Regex` (`CUST-\d{3}`) | Confirmed customer identifier. |
         | `TransactionID` | `String` | Identifier returned by `fetch_transactions`; do not ask the customer for it. |
 
-    7. Select the same service and the `open_case` flow, then save the action.
+    7. Select the <copy>`LAB_31207`</copy> service and the `open_case` flow, then save the action.
     8. Publish the skill.
 
     !!! tip "Action Design"
@@ -337,24 +402,23 @@ Make the Main Flow changes first, then configure Real-Time Transcription in **Ev
 
 ## Lab 3.6 - Create a Custom Generated-Summary Template
 
-Custom Templates let you tailor the post-call summary to the fraud-handoff workflow. This feature is being introduced in phases, so first confirm that **Summary Templates** is available in AI Agent Studio for this tenant [VERIFY].
+Custom Templates let you tailor the post-call summary to the fraud-handoff workflow.
 
 ???+ webex "Create and Publish the Template"
     1. In **Webex AI Agent Studio**, open **Summary Templates**.
     2. Select **Create Template** and name it <copy>`PODXX_Fraud_Handoff_Summary`</copy>.
-    3. Retain two default summary sections that cover the interaction reason and outcome, and disable two default sections that are not needed for this scenario [VERIFY: exact default-section labels]. Add the following two custom sections:
+    3. In **Configuration summary**, keep **Initial contact reason** and **Next steps** enabled. Disable **Key actions taken** and **Additional context**.
+    4. Add two **New custom section** entries. For each entry, complete **Title** and **Instructions**; leave **Example (optional)** blank.
 
-        | Section | Instruction |
+        | Title | Instructions |
         |---|---|
         | **Financial account details** | Capture the confirmed balance, payment intent, and payment outcome when discussed. |
         | **Fraud case details** | Capture the disputed transaction's amount, vendor, and date, plus the returned Case ID or result when a case is opened. |
 
-    4. Use the preview/test experience with a sample conversation. Confirm each section is populated clearly and does not invent missing details.
-    5. Publish the template.
-    6. In **Collaboration Control Hub** > **Contact Center** > **AI Features** > **Generated Summaries**, open **Templates** [VERIFY: exact label] and assign <copy>`PODXX_Fraud_Handoff_Summary`</copy> to <copy>`PODXX_FraudQueue`</copy>.
-
-!!! note "Feature Availability"
-    If **Summary Templates** is not present in this tenant, stop at the existing Generated Summaries configuration and notify the instructor. Do not substitute a different feature.
+    5. Use the preview/test experience with a sample conversation. Confirm each section is populated clearly and does not invent missing details.
+    6. Publish the template.
+    7. In **Collaboration Control Hub**, navigate to **Contact Center** > **AI Features**, open the **Queue** tab, and select <copy>`PODXX_FraudQueue`</copy>.
+    8. In **Generated Summaries**, enable summaries for the queue. In the **Templates** dropdown, select <copy>`PODXX_Fraud_Handoff_Summary`</copy>, then save the queue configuration.
 
 ---
 
