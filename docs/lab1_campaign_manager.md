@@ -418,7 +418,7 @@ The Outdial ANI is the caller ID displayed to customers when they receive the ou
 
 ## Lab 1.7 - Campaign Manager Configuration
 
-Open the **Webex Campaign Management** portal. On first login, you will see the welcome screen outlining all the administration areas to configure before launching campaigns.
+Open the [Webex Campaign Management portal](https://campaignmanager.wxcc-us1.cisco.com/nextgen/login?orgId=36db6df3-4ec3-4eb9-905b-d90660c2c2ea). On first login, you will see the welcome screen outlining all the administration areas to configure before launching campaigns.
 
 <figure markdown style="width: 70%;">
 ![Campaign Manager welcome screen](./assets/lab1_p13_img1.png)
