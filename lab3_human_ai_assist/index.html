@@ -313,12 +313,15 @@
     
     <div class="md-container" data-md-component="container">
       
+  
+
       
         
       
       <main class="md-main" data-md-component="main">
         <div class="md-main__inner md-grid">
           
+  
             
               
               <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
@@ -804,10 +807,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lab-31-enable-ai-assistant-features" class="md-nav__link">
+  <a href="#lab-31-configure-the-fraud-transfer" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Lab 3.1 - Enable AI Assistant Features
+        Lab 3.1 - Configure the Fraud Transfer
       
     </span>
   </a>
@@ -815,10 +818,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lab-32-confirm-real-time-transcription-in-the-flow" class="md-nav__link">
+  <a href="#lab-32-create-the-fraud-queue-and-route-the-handoff" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Lab 3.2 - Confirm Real-Time Transcription in the Flow
+        Lab 3.2 - Create the Fraud Queue and Route the Handoff
       
     </span>
   </a>
@@ -826,10 +829,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lab-33-confirm-desktop-layout" class="md-nav__link">
+  <a href="#lab-33-configure-the-ai-agent-flow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Lab 3.3 - Confirm Desktop Layout
+        Lab 3.3 - Configure the AI Agent Flow
       
     </span>
   </a>
@@ -837,10 +840,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lab-34-create-or-import-the-real-time-assist-skill" class="md-nav__link">
+  <a href="#lab-34-create-the-real-time-assist-skill" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Lab 3.4 - Create or Import the Real-Time Assist Skill
+        Lab 3.4 - Create the Real-Time Assist Skill
       
     </span>
   </a>
@@ -859,10 +862,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lab-36-test-rta" class="md-nav__link">
+  <a href="#lab-36-create-a-custom-generated-summary-template" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Lab 3.6 - Test RTA
+        Lab 3.6 - Create a Custom Generated-Summary Template
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-37-configure-the-pre-created-inbound-entry-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 3.7 - Configure the Pre-Created Inbound Entry Point
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-38-test-rta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 3.8 - Test RTA
       
     </span>
   </a>
@@ -912,7 +937,9 @@
             
             
           
+
           
+  
             <div class="md-content" data-md-component="content">
               
               <article class="md-content__inner md-typeset">
@@ -923,130 +950,436 @@
 
 <h1 id="lab-3-real-time-assist">Lab 3 - Real-Time Assist<a class="headerlink" href="#lab-3-real-time-assist" title="Permanent link">¶</a></h1>
 <h2 id="lab-purpose">Lab Purpose<a class="headerlink" href="#lab-purpose" title="Permanent link">¶</a></h2>
-<p>In Lab 2, you connected the outbound campaign to Alex, an MCP-enabled Webex AI Agent. In this lab, you will add a short human-assist path using <strong>Webex Contact Center AI Assistant</strong>, <strong>Real-Time Transcription</strong>, <strong>Generated Summaries</strong>, and <strong>Real-Time Assist</strong>.</p>
-<p>Because the MCP server is already provisioned, this lab focuses on enabling the feature, assigning the skill, and validating that the human agent receives useful guidance during a live call.</p>
+<p>In Lab 2, you connected the outbound campaign to Alex, a Webex AI Agent. In this lab, you will add a human-assist path using <strong>Webex Contact Center AI Assistant</strong>, <strong>Real-Time Transcription</strong>, <strong>Generated Summaries</strong>, and <strong>Real-Time Assist</strong>.</p>
+<p>This lab focuses on building the human-assist path and validating that the human agent receives useful guidance and can run the approved fraud-resolution actions during a live call.</p>
 <details class="purpose" open="open">
 <summary>Lab Objectives</summary>
 <p>By the end of this lab, you will be able to:</p>
 <ul>
-<li>Enable AI Assistant features needed for RTA.</li>
-<li>Confirm the Agent Desktop layout exposes AI Assistant and Real-Time Transcript components.</li>
-<li>Create or import a compact Real-Time Assist skill.</li>
-<li>Optionally attach MCP-backed actions to the skill [VERIFY].</li>
-<li>Assign the skill to the target queue.</li>
+<li>Configure Alex to transfer fraud scenarios with context.</li>
+<li>Route the human handoff and enable Real-Time Transcription in the flow.</li>
+<li>Create a fraud Knowledge Base, then create a Real-Time Assist skill and configure its fulfillment actions.</li>
+<li>Assign the skill to the Fraud Queue.</li>
+<li>Create and assign a custom generated-summary template.</li>
+<li>Update the routing flow on the POD-specific inbound entry point for direct testing.</li>
 <li>Validate transcript, summary, and guidance during a human escalation scenario.</li>
 </ul>
 </details>
 <details class="challenge" open="open">
 <summary>Lab Outcome</summary>
-<p>A human agent receives the call after Alex escalates or after the lab facilitator routes the test to the queue. The Agent Desktop shows Real-Time Transcript, AI Assistant guidance, and a generated summary.</p>
+<p>A human agent receives the call after Alex escalates. The Agent Desktop shows Real-Time Transcript, AI Assistant guidance, and a generated summary.</p>
 </details>
 <hr>
 <h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permanent link">¶</a></h2>
 <p>In order to complete this lab, you must have:</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Completed <a href="../lab2_debt_ai_agent/">Lab 2 - AI Agent with MCP</a>.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> A queue and agent available for the human-assist scenario.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> AI Assistant features enabled or admin access to enable them.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Desktop layout with AI Assistant and Real-Time Transcript components, or the provided template.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> RTA baseline skill import package [VERIFY: add exact filename], or permission to create the skill manually.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Completed <a href="../lab2_debt_ai_agent/">Lab 2 - AI Agent</a>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> The AI Assistant features have been enabled for the shared lab tenant.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> The <code>fetch_transactions</code> and <code>open_case</code> Webex Connect flows are available in the lab tenant.</li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">RTA Time Box</p>
-<p>This lab is designed to fit the final 35-40 minutes of LAB-31207. If the core outbound-to-AI-Agent path took longer than expected, complete only the AI Assistant feature enablement and queue assignment, then use the remaining time for validation.</p>
-</div>
-<hr>
 <h2 id="lab-overview">Lab Overview<a class="headerlink" href="#lab-overview" title="Permanent link">¶</a></h2>
 <p>In this lab you will perform the following tasks:</p>
 <ol>
-<li>Enable AI Assistant features in Control Hub.</li>
-<li>Confirm the flow supports Real-Time Transcription.</li>
-<li>Confirm or update the Desktop Layout.</li>
-<li>Create or import the Real-Time Assist skill.</li>
+<li>Configure Alex to transfer fraud scenarios with context.</li>
+<li>Configure the Fraud Queue and complete the handoff, transcription, and inbound test-path changes in Flow Designer.</li>
+<li>Create a fraud Knowledge Base, then create the Real-Time Assist skill and configure its fulfillment actions.</li>
 <li>Assign the skill to the queue.</li>
-<li>Test the assisted handoff.</li>
+<li>Create and assign a custom generated-summary template.</li>
+<li>Configure the inbound test path, update the pre-created inbound entry point, and test the assisted handoff.</li>
 </ol>
 <hr>
-<h2 id="lab-31-enable-ai-assistant-features">Lab 3.1 - Enable AI Assistant Features<a class="headerlink" href="#lab-31-enable-ai-assistant-features" title="Permanent link">¶</a></h2>
+<h2 id="lab-31-configure-the-fraud-transfer">Lab 3.1 - Configure the Fraud Transfer<a class="headerlink" href="#lab-31-configure-the-fraud-transfer" title="Permanent link">¶</a></h2>
+<p>Lab 2 leaves the <strong>Escalated</strong> outcome on a temporary path. Create a native transfer action so Alex can hand the fraud scenario to a human agent with the relevant context.</p>
 <details class="webex" open="open">
-<summary>Configure AI Assistant Features</summary>
+<summary>Create the Transfer Action</summary>
 <ol>
-<li>Open <a href="https://admin.webex.com">Control Hub</a>.</li>
-<li>Navigate to <strong>Contact Center</strong> &gt; <strong>AI Features</strong>. In some tenants, this menu may appear as <strong>AI Assistant</strong>.</li>
-<li>Enable <strong>Generated Summaries</strong>.</li>
-<li>Select the summarization types required for the lab. For a shared lab tenant, selecting <strong>All queues</strong> is the fastest option [VERIFY: tenant policy].</li>
-<li>Enable <strong>Real-Time Transcription</strong>.</li>
-<li>Enable <strong>Real-Time Assist</strong>.</li>
-<li>Save the configuration.</li>
+<li>Open Alex in <strong>Webex AI Agent Studio</strong> and select the <strong>Actions</strong> tab.</li>
+<li>Select <strong>Add Actions</strong> &gt; <strong>Transfer</strong>.</li>
+<li>
+<p>Use the following action details:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Action name</strong></td>
+<td><code>fraud_transfer</code></td>
+</tr>
+<tr>
+<td><strong>Description</strong></td>
+<td><code>Transfer the call to a fraud specialist when the customer reports a suspicious transaction.</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Add these input entities to carry the handoff context:</p>
+<table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ivr_verified</code></td>
+<td>String</td>
+<td>Yes</td>
+<td>Whether the customer completed authentication.</td>
+</tr>
+<tr>
+<td><code>debt_balance</code></td>
+<td>Number</td>
+<td>No</td>
+<td>Confirmed debt balance.</td>
+</tr>
+<tr>
+<td><code>susp_transaction</code></td>
+<td>Number</td>
+<td>No</td>
+<td>Amount of the suspicious transaction.</td>
+</tr>
+<tr>
+<td><code>susp_vendor</code></td>
+<td>String</td>
+<td>No</td>
+<td>Vendor for the suspicious transaction.</td>
+</tr>
+<tr>
+<td><code>susp_date</code></td>
+<td>Date</td>
+<td>No</td>
+<td>Date of the suspicious transaction.</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>In Alex's instructions, add this escalation rule:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>If fraud is suspected, retrieve recent transactions when needed and attempt to identify the suspicious transaction. Then use [fraud_transfer] to transfer the customer to a Fraud Specialist.
+</span></code></pre></div>
+</li>
+<li>
+<p>Save and publish Alex.</p>
+</li>
+</ol>
+<details class="gif" open="open">
+<summary>Transfer Action Setup</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_transfer_action.gif" data-title="Transfer Action Configuration" data-desc-position="top"><img alt="Transfer Action Configuration" src="../assets/lab3_transfer_action.gif"></a>
+<figcaption>Transfer Action Configuration</figcaption>
+</figure><p></p>
+</details>
+</details>
+<hr>
+<h2 id="lab-32-create-the-fraud-queue-and-route-the-handoff">Lab 3.2 - Create the Fraud Queue and Route the Handoff<a class="headerlink" href="#lab-32-create-the-fraud-queue-and-route-the-handoff" title="Permanent link">¶</a></h2>
+<p>Lab 1.1 creates the team and Lab 1.2 creates an <strong>outbound-only</strong> queue. Create a separate inbound queue for the human escalation, using the team that contains your POD agent.</p>
+<details class="webex" open="open">
+<summary>Create the Fraud Queue</summary>
+<ol>
+<li>In Collaboration Control Hub, navigate to <strong>Contact Center</strong> &gt; <strong>Queues</strong>.</li>
+<li>
+<p>Click <strong>Create a queue</strong> and configure:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td><copy><code>PODXX_FraudQueue</code></copy></td>
+</tr>
+<tr>
+<td><strong>Contact direction</strong></td>
+<td><code>Inbound queue</code></td>
+</tr>
+<tr>
+<td><strong>Channel type</strong></td>
+<td><code>Telephony</code></td>
+</tr>
+<tr>
+<td><strong>Skills-based routing</strong></td>
+<td>Disabled</td>
+</tr>
+<tr>
+<td><strong>Agent assignment</strong></td>
+<td><code>Teams</code></td>
+</tr>
+<tr>
+<td><strong>Routing pattern</strong></td>
+<td><code>Longest available</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Under <strong>Call distribution</strong>, click <strong>Create a group</strong>.</p>
+</li>
+<li>In <strong>Group 1</strong>, select the Lab 1 team that contains your POD agent.</li>
+<li>Complete the required queue settings, then create the queue.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Team Setup</p>
+<p>Lab 1.1 creates the team. Before testing this lab, confirm that your POD agent is assigned to that team and is available in Agent Desktop.</p>
+</div>
+</details>
+<hr>
+<h2 id="lab-33-configure-the-ai-agent-flow">Lab 3.3 - Configure the AI Agent Flow<a class="headerlink" href="#lab-33-configure-the-ai-agent-flow" title="Permanent link">¶</a></h2>
+<p>Make the Main Flow changes first, then configure Real-Time Transcription in <strong>Event Flows</strong> and publish once after the complete update.</p>
+<details class="webex" open="open">
+<summary>Route Escalation to the Queue</summary>
+<ol>
+<li>
+<p>Open the <copy><code>PODXX_AI_Agent_DebtCollection</code></copy> flow in <strong>Collaboration Control Hub</strong> &gt; <strong>Contact Center</strong> &gt; <strong>Flows</strong>. In the <strong>Main Flow</strong>, locate the <strong>Virtual Agent V2</strong> node used for Alex.</p>
+<details class="inline end" open="open">
+<summary>Initial Flow View</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_before_flow.png" data-title="Initial flow before the escalation path is configured" data-desc-position="top"><img alt="Initial flow before the escalation path is configured" src="../assets/lab3_before_flow.png"></a>
+<figcaption>Initial flow before configuring the escalation path.</figcaption>
+</figure><p></p>
+</details>
+</li>
+<li>
+<p>Open <strong>Global Flow Properties</strong>, create the following custom flow variables, and mark the agent-viewable context values as shown.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Default value</th>
+<th>Agent viewable</th>
+<th>Desktop label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>transfer_type</code></td>
+<td>String</td>
+<td><code>agent_transfer</code></td>
+<td>No</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><code>ivr_verified</code></td>
+<td>String</td>
+<td><code>False</code></td>
+<td>Yes</td>
+<td><code>IVR Verified</code></td>
+</tr>
+<tr>
+<td><code>debt_balance</code></td>
+<td>Decimal</td>
+<td><code>0.0</code></td>
+<td>Yes</td>
+<td><code>Debt Balance</code></td>
+</tr>
+<tr>
+<td><code>susp_transaction</code></td>
+<td>Decimal</td>
+<td><code>0.0</code></td>
+<td>Yes</td>
+<td><code>Transaction Amount</code></td>
+</tr>
+<tr>
+<td><code>susp_vendor</code></td>
+<td>String</td>
+<td><code>Unknown</code></td>
+<td>Yes</td>
+<td><code>Transaction Vendor</code></td>
+</tr>
+<tr>
+<td><code>susp_date</code></td>
+<td>String</td>
+<td><code>N/A</code></td>
+<td>Yes</td>
+<td><code>Transaction Date</code></td>
+</tr>
+</tbody>
+</table>
+<details class="gif" open="open">
+<summary>Create Flow Variables</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_flow_variable.gif" data-title="Creating flow variables" data-desc-position="top"><img alt="Creating flow variables" src="../assets/lab3_flow_variable.gif"></a>
+<figcaption>Creating the flow variables used to pass context to the human agent.</figcaption>
+</figure><p></p>
+</details>
+</li>
+<li>
+<p>Delete the temporary <strong>Play Message</strong> node connected to the <strong>Escalated</strong> outcome.</p>
+</li>
+<li>
+<p>Drag a <strong>Parse</strong> node onto the canvas, connect it to the <strong>Escalated</strong> path, name it <copy><code>Parse_Transfer</code></copy>, and use the description <code>Collects the transfer type.</code> Configure it to extract the transfer type from the Virtual Agent V2 metadata.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Input</strong></td>
+<td><code>DebtCollectionAgent.MetaData</code></td>
+</tr>
+<tr>
+<td><strong>Content type</strong></td>
+<td>JSON</td>
+</tr>
+<tr>
+<td><strong>Output variable</strong></td>
+<td><code>transfer_type</code></td>
+</tr>
+<tr>
+<td><strong>Path</strong></td>
+<td><code>$.escalation_trigger</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">AI Agent Metadata</p>
+<p>The <code>MetaData</code> output contains the actions and values collected during the AI Agent session. The <code>escalation_trigger</code> value identifies the transfer action that Alex used.</p>
+</div>
+</li>
+<li>
+<p>Add a <strong>Case</strong> node, name it <copy><code>Transfer_Check</code></copy>, and use the description <code>Checks the transfer_type variable to route accordingly.</code> Configure it to evaluate <code>transfer_type</code>.</p>
+</li>
+<li>
+<p>Add a second <strong>Parse</strong> node named <copy><code>Fraud_Context</code></copy>. Connect the <code>fraud_transfer</code> path from <strong>Transfer_Check</strong> to this node. Use <code>DebtCollectionAgent.MetaData</code> as its input, set <strong>Content type</strong> to <code>JSON</code>, and map the <code>fraud_transfer</code> action input into the agent-viewable variables:</p>
+<table>
+<thead>
+<tr>
+<th>Output variable</th>
+<th>JSON path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ivr_verified</code></td>
+<td><code>$.actions.fraud_transfer[0].input.ivr_verified</code></td>
+</tr>
+<tr>
+<td><code>debt_balance</code></td>
+<td><code>$.actions.fraud_transfer[0].input.debt_balance</code></td>
+</tr>
+<tr>
+<td><code>susp_transaction</code></td>
+<td><code>$.actions.fraud_transfer[0].input.susp_transaction</code></td>
+</tr>
+<tr>
+<td><code>susp_vendor</code></td>
+<td><code>$.actions.fraud_transfer[0].input.susp_vendor</code></td>
+</tr>
+<tr>
+<td><code>susp_date</code></td>
+<td><code>$.actions.fraud_transfer[0].input.susp_date</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Connect the output from <strong>Fraud_Context</strong> to <copy><code>PODXX_FraudQueue</code></copy>. Connect the <code>agent_transfer</code> and default paths from <strong>Transfer_Check</strong> to the same queue. Keep the <strong>Errored</strong> outcome connected to a safe fallback path.</p>
+<details class="inline end" open="open">
+<summary>Final Flow View</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_after_flow.png" data-title="Final flow with the escalation path configured" data-desc-position="top"><img alt="Final flow with the escalation path configured" src="../assets/lab3_after_flow.png"></a>
+<figcaption>Final flow with context extraction and queue routing configured.</figcaption>
+</figure><p></p>
+</details>
+<details class="gif" open="open">
+<summary>Extract AI Agent Context</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_ai_context.gif" data-title="Extracting AI Agent context from the Virtual Agent metadata" data-desc-position="top"><img alt="Extracting AI Agent context from the Virtual Agent metadata" src="../assets/lab3_ai_context.gif"></a>
+<figcaption>Configuring the escalation path and extracting AI Agent context.</figcaption>
+</figure><p></p>
+</details>
+</li>
 </ol>
 </details>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In production, these features are usually scoped by queue. For this lab, use the assigned queue for the exercise.</p>
-</div>
-<hr>
-<h2 id="lab-32-confirm-real-time-transcription-in-the-flow">Lab 3.2 - Confirm Real-Time Transcription in the Flow<a class="headerlink" href="#lab-32-confirm-real-time-transcription-in-the-flow" title="Permanent link">¶</a></h2>
-<p>Real-Time Transcription requires media streaming to start when the human agent accepts the call.</p>
 <details class="webex" open="open">
-<summary>Add Start Media Stream</summary>
+<summary>Add the Inbound Test Path</summary>
+<p>Use the same flow for both campaign and inbound calls, so testing does not depend on waiting for Campaign Manager.</p>
 <ol>
-<li>Open the <code>AI_Agent_DebtCollection</code> flow in <strong>Control Hub</strong> &gt; <strong>Contact Center</strong> &gt; <strong>Flows</strong>.</li>
-<li>Go to <strong>Event Flows</strong>.</li>
-<li>Drag a <strong>Start Media Stream</strong> node onto the canvas.</li>
+<li>In <strong>Global Flow Properties</strong>, create a String custom variable named <code>phone_number</code>.</li>
 <li>
-<p>Connect the <strong>AgentAnswered</strong> event node to <strong>Start Media Stream</strong>.</p>
+<p>Immediately after the <strong>New Contact</strong> start node, add a <strong>Condition</strong> node named <copy><code>Detect_Call_Direction</code></copy> with this expression.</p>
+<p><copy><code>{{NewContact.ANI=="+17382033500"}}</code></copy></p>
+</li>
+<li>
+<p>On the <strong>True</strong> path, add a <strong>Set Variable</strong> node named <copy><code>Set_Outbound_Phone</code></copy>. Set <code>phone_number</code> to <code>{{NewContact.DNIS}}</code>.</p>
+</li>
+<li>On the <strong>False</strong> path, add a <strong>Set Variable</strong> node named <copy><code>Set_Inbound_Phone</code></copy>. Set <code>phone_number</code> to <code>{{NewContact.ANI}}</code>, then set <code>firstName</code> and <code>lastName</code> to the first and last name of your test customer from Lab Prework.</li>
+<li>Connect both <strong>Set Variable</strong> nodes to the existing <strong>Virtual Agent V2</strong> node (<code>DebtCollectionAgent</code>).</li>
+<li>
+<p>In the <strong>State Event</strong> data for that node, use:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{phone_number}}"</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{firstName}}"</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{lastName}}"</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">}</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Go to <strong>Event Flows</strong>. Drag a <strong>Start Media Stream</strong> node onto the canvas, connect <strong>AgentAnswered</strong> to <strong>Start Media Stream</strong>, then connect <strong>Start Media Stream</strong> to <strong>End Flow</strong>.</p>
 <div class="admonition info">
 <p class="admonition-title">Event Name</p>
 <p>In some tenants, <strong>AgentAnswered</strong> appears as <strong>AgentAccepted</strong>. Use the event that is available in your Flow Designer.</p>
 </div>
+<details class="gif" open="open">
+<summary>Configure RTT in Event Flows</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_flow_RTT.gif" data-title="Real-Time Transcription flow configuration" data-desc-position="top"><img alt="Real-Time Transcription flow configuration" src="../assets/lab3_flow_RTT.gif"></a>
+<figcaption>Real-Time Transcription flow configuration</figcaption>
+</figure><p></p>
+</details>
 </li>
 <li>
-<p>Connect <strong>Start Media Stream</strong> to <strong>End Flow</strong>.</p>
+<p>Validate and publish the flow.</p>
 </li>
-<li>Validate and publish the flow.</li>
 </ol>
 </details>
-<details class="webex" open="open">
-<summary>Route Escalation to the Queue</summary>
-<ol>
-<li>In the <strong>Main Flow</strong>, locate the <strong>Virtual Agent V2</strong> node used for Alex.</li>
-<li>Connect the <strong>Escalated</strong> outcome to the queue used by the human agent [VERIFY: exact queue node and queue name].</li>
-<li>Keep the <strong>Errored</strong> outcome connected to a safe fallback path.</li>
-<li>Publish the flow.</li>
-</ol>
-</details>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The exact escalation routing depends on the tenant's existing queue and flow design. If the baseline flow already includes the queue route, verify the path and continue.</p>
-</div>
 <hr>
-<h2 id="lab-33-confirm-desktop-layout">Lab 3.3 - Confirm Desktop Layout<a class="headerlink" href="#lab-33-confirm-desktop-layout" title="Permanent link">¶</a></h2>
-<p>The Agent Desktop must expose the AI Assistant and Real-Time Transcript surfaces.</p>
+<h2 id="lab-34-create-the-real-time-assist-skill">Lab 3.4 - Create the Real-Time Assist Skill<a class="headerlink" href="#lab-34-create-the-real-time-assist-skill" title="Permanent link">¶</a></h2>
 <details class="webex" open="open">
-<summary>Desktop Layout Check</summary>
-<ol>
-<li>In Control Hub, navigate to <strong>Contact Center</strong> &gt; <strong>Desktop Layouts</strong> [VERIFY: exact path].</li>
-<li>Open the layout assigned to the lab agent's team.</li>
-<li>Confirm the layout includes the AI Assistant component.</li>
-<li>Confirm the layout includes Real-Time Transcript tab/panel support.</li>
-<li>Assign the layout to the team used by the human agent.</li>
-</ol>
-</details>
+<summary>Create the Fraud Knowledge Base</summary>
+<p>Create a dedicated Knowledge Base for your RTA skill. A Knowledge Base can be associated with only one AI Assistant skill, so do not select a Knowledge Base already in use by another attendee's skill.</p>
 <div class="admonition download">
-<p class="admonition-title">Desktop Layout Template</p>
-<p>If a template is needed, use <code>docs/bcamp_files/Finance_Desktop.json</code> [VERIFY: replace with LAB-31207-specific desktop layout if provided].</p>
+<p class="admonition-title">Knowledge Base document</p>
+<p><a download="Fraud_KB.docx" href="../bcamp_files/Fraud_KB.docx">Download <code>Fraud_KB.docx</code></a>.</p>
 </div>
-<hr>
-<h2 id="lab-34-create-or-import-the-real-time-assist-skill">Lab 3.4 - Create or Import the Real-Time Assist Skill<a class="headerlink" href="#lab-34-create-or-import-the-real-time-assist-skill" title="Permanent link">¶</a></h2>
-<p>Use an import package if one is provided. If not, create a compact skill manually.</p>
-<details class="webex" open="open">
-<summary>Import or Create the RTA Skill</summary>
 <ol>
-<li>Open <strong>Webex AI Agent Studio</strong> from Control Hub.</li>
-<li>Select the <strong>AI Assistant Skill</strong> area [VERIFY: exact icon/label].</li>
-<li>Import the baseline skill package [VERIFY: exact filename], or click <strong>Create Skill</strong> &gt; <strong>Start from scratch</strong>.</li>
+<li>In <strong>Webex AI Agent Studio</strong>, select <strong>Knowledge</strong> in the left navigation.</li>
+<li>Click <strong>Create Knowledge Base</strong>.</li>
+<li>Enter <copy><code>Fraud_KB</code></copy> as the name and provide a brief description.</li>
+<li>Select <strong>Add source</strong> &gt; <strong>Files</strong>, then upload the downloaded <code>Fraud_KB.docx</code> document.</li>
+<li>Click <strong>Process Files</strong>. You can select <strong>Close and keep processing</strong> while the file is processed.</li>
+<li>Wait until the source status is <strong>Processed</strong> before creating the RTA skill.</li>
+</ol>
+<details class="gif" open="open">
+<summary>Configure Fraud Knowledge Base</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_ai_assistant_kb.gif" data-title="Creating the Fraud Knowledge Base" data-desc-position="top"><img alt="Creating the Fraud Knowledge Base" src="../assets/lab3_ai_assistant_kb.gif"></a>
+<figcaption>Creating and processing the Fraud Knowledge Base.</figcaption>
+</figure><p></p>
+</details>
+</details>
+<details class="webex" open="open">
+<summary>Create the RTA Skill</summary>
+<ol>
+<li>Open <strong>Webex AI Agent Studio</strong> from Collaboration Control Hub.</li>
+<li>Select the <strong>AI Assistant Skill</strong> icon in the left navigation.</li>
+<li>Click <strong>+ Create Skill</strong>, select <strong>Start from scratch</strong>, then click <strong>Next</strong>.</li>
 <li>
-<p>Use the following values if creating manually:</p>
+<p>Use the following values:</p>
 <table>
 <thead>
 <tr>
@@ -1057,7 +1390,7 @@
 <tbody>
 <tr>
 <td><strong>Skill name</strong></td>
-<td><code>LAB31207_RTA_Assistant</code></td>
+<td><copy><code>PODXX_RTA_Assistant</code></copy></td>
 </tr>
 <tr>
 <td><strong>Goal</strong></td>
@@ -1068,96 +1401,242 @@
 </li>
 <li>
 <p>Add or confirm the instructions:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>You assist the human agent, not the customer.
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Watch the live conversation for identity verification issues, balance questions, payment intent, dispute language, suspicious transaction language, and requests for a human specialist.
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Keep guidance short and actionable. Tell the agent what to ask next, what to confirm, and what to avoid saying.
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>If MCP tools are available to this AI Assistant skill, use them only when the required values were explicitly provided in the conversation or confirmed by the human agent [VERIFY]. Do not invent customer IDs, transaction IDs, payment amounts, or case IDs.
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>If the customer disputes a transaction, guide the agent to confirm the transaction details, explain the next step, and create or prepare the case using the configured MCP action [VERIFY: exact action name].
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>You assist the human agent, not the customer. Provide concise, timely guidance that helps the agent resolve debt, payment, and fraud/dispute conversations accurately and empathetically.
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Review the live conversation before suggesting a question. Reuse information already confirmed by the customer or agent; do not ask the agent to collect it again.
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Watch for identity-verification issues, balance questions, payment intent, dispute language, suspicious-transaction language, and requests for a specialist. Guide the agent on what to ask next, what to confirm, and what to explain. Do not phrase guidance as if you are speaking directly to the customer.
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>For a disputed transaction, guide the agent to confirm the Customer ID and the transaction amount, vendor, and date. Then guide the agent to retrieve recent transactions using the configured action. Once the agent and customer have identified the disputed transaction and the customer agrees to open a case, recommend the case-opening action for the agent to review.
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>Use only information stated or confirmed during the interaction and action results. Do not invent, infer, or substitute Customer IDs, Transaction IDs, amounts, dates, or case outcomes.
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>If information is incomplete, conflicting, or an action does not return a result, guide the agent to clarify the missing detail and follow the approved manual process. Keep all recommendations short, actionable, and appropriate for a human agent to review before acting.
 </span></code></pre></div>
 </li>
 <li>
-<p>Attach the fraud or policy Knowledge Base if provided.</p>
-<div class="admonition download">
-<p class="admonition-title">Fraud Knowledge Base</p>
-<p>Use <code>docs/bcamp_files/Fraud_KB.docx</code> [VERIFY: keep or replace with LAB-31207-specific RTA KB].</p>
+<p>Attach the <code>Fraud_KB</code> Knowledge Base you just created.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Select the Knowledge Base that you created for this skill. Do not attach a Knowledge Base already associated with another AI Assistant skill.</p>
 </div>
 </li>
 </ol>
 </details>
 <details class="webex" open="open">
-<summary>Optional: Add MCP Actions to the RTA Skill</summary>
+<summary>Configure Fulfillment Actions</summary>
+<p>Create two actions in the skill and associate each with its matching Webex Connect flow. Do not open or modify Webex Connect.</p>
 <ol>
-<li>Open the skill's <strong>Actions</strong> tab.</li>
-<li>Click <strong>Add action</strong> or <strong>Select Available</strong> [VERIFY: exact UI label].</li>
+<li>In the skill, open the <strong>Actions</strong> tab and select <strong>+ New Action</strong>.</li>
 <li>
-<p>Select the MCP tools intended for human-agent assistance [VERIFY: exact tool list].</p>
+<p>Create the <code>fetch_transactions</code> action:</p>
 <table>
 <thead>
 <tr>
-<th>Tool</th>
-<th>Purpose</th>
+<th>Field</th>
+<th>Value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>[VERIFY: get_recent_transactions]</code></td>
-<td>Retrieve recent transactions when the customer disputes a charge.</td>
+<td><strong>Action name</strong></td>
+<td><code>fetch_transactions</code></td>
 </tr>
 <tr>
-<td><code>[VERIFY: create_case]</code></td>
-<td>Create or prepare a dispute/fraud case after agent confirmation.</td>
+<td><strong>Description</strong></td>
+<td><code>Retrieve recent account transactions using the confirmed Customer ID.</code></td>
 </tr>
 <tr>
-<td><code>[VERIFY: get_customer_summary]</code></td>
-<td>Retrieve customer context for the agent.</td>
+<td><strong>Action scope</strong></td>
+<td><code>Slot filling and fulfillment</code></td>
 </tr>
 </tbody>
 </table>
 </li>
 <li>
-<p>Mark agent review/confirmation as required where the UI supports it [VERIFY].</p>
+<p>Add one required input entity:</p>
+<table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>Type</th>
+<th>Value</th>
+<th>Agent review</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CustomerID</code></td>
+<td><code>Regex</code></td>
+<td><code>CUST-\d{3}</code></td>
+<td><code>Yes</code></td>
+</tr>
+</tbody>
+</table>
 </li>
-<li>Save and publish the skill.</li>
+<li>
+<p>In the <strong>Webex Connect Flow Builder Fulfillment</strong> section, select the available service and the <code>fetch_transactions</code> flow. Save the action.</p>
+</li>
+<li>
+<p>Create the <code>open_case</code> action:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Action name</strong></td>
+<td><code>open_case</code></td>
+</tr>
+<tr>
+<td><strong>Description</strong></td>
+<td><code>Open a fraud case for a confirmed Customer ID and disputed Transaction ID.</code></td>
+</tr>
+<tr>
+<td><strong>Action scope</strong></td>
+<td><code>Slot filling and fulfillment</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Add the following required input entities. Select <strong>Agent review</strong> for both, so the human agent verifies the case details before the action runs.</p>
+<table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CustomerID</code></td>
+<td><code>Regex</code> (<code>CUST-\d{3}</code>)</td>
+<td>Confirmed customer identifier.</td>
+</tr>
+<tr>
+<td><code>TransactionID</code></td>
+<td><code>String</code></td>
+<td>Identifier returned by <code>fetch_transactions</code>; do not ask the customer for it.</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Select the same service and the <code>open_case</code> flow, then save the action.</p>
+</li>
+<li>Publish the skill.</li>
 </ol>
-</details>
-<div class="admonition important">
-<p class="admonition-title">MCP-Backed RTA Actions</p>
-<p>If RTA needs an action, use the MCP tool selected from the pre-provisioned Agentic App.</p>
+<div class="admonition tip">
+<p class="admonition-title">Action Design</p>
+<p>Use a precise entity description and an example for each predictable value. A fulfillment action that opens a case should always be reviewed by the human agent before execution. The case action returns either its Case ID or its completion result to the AI Assistant; attendees do not need access to Airtable to validate it.</p>
 </div>
+<details class="gif" open="open">
+<summary>AI Assistant Skill Configuration</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_ai_assistant_skill.gif" data-title="AI Assistant skill configuration" data-desc-position="top"><img alt="AI Assistant skill configuration" src="../assets/lab3_ai_assistant_skill.gif"></a>
+<figcaption>Creating the AI Assistant skill and its fulfillment actions.</figcaption>
+</figure><p></p>
+</details>
+</details>
 <hr>
 <h2 id="lab-35-assign-the-skill-to-the-queue">Lab 3.5 - Assign the Skill to the Queue<a class="headerlink" href="#lab-35-assign-the-skill-to-the-queue" title="Permanent link">¶</a></h2>
 <details class="webex" open="open">
 <summary>Assign RTA Skill</summary>
 <ol>
-<li>Go to <strong>Control Hub</strong> &gt; <strong>Contact Center</strong> &gt; <strong>AI Features</strong>.</li>
-<li>Open the <strong>Queue</strong> tab [VERIFY: exact UI label].</li>
-<li>Select the queue used by the lab's human agent.</li>
+<li>Go to <strong>Collaboration Control Hub</strong> &gt; <strong>Contact Center</strong> &gt; <strong>AI Features</strong>.</li>
+<li>Open the <strong>Queue</strong> tab.</li>
+<li>Select <copy><code>PODXX_FraudQueue</code></copy>.</li>
 <li>In the <strong>Real-Time Assist</strong> section, enable <strong>Apply Real-Time Assist</strong>.</li>
-<li>Select <code>LAB31207_RTA_Assistant</code>.</li>
+<li>Select <copy><code>PODXX_RTA_Assistant</code></copy>.</li>
 <li>Save the queue configuration.</li>
 </ol>
+<details class="gif" open="open">
+<summary>Assign Skill to Queue</summary>
+<p></p><figure markdown="">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab3_assistant_skill_queue_new.gif" data-title="Assigning the AI Assistant skill to a queue" data-desc-position="top"><img alt="Assigning the AI Assistant skill to a queue" src="../assets/lab3_assistant_skill_queue_new.gif"></a>
+<figcaption>Assigning an AI Assistant skill to the fraud queue.</figcaption>
+</figure><p></p>
+</details>
 </details>
 <details class="info" open="open">
 <summary>Skill-to-Queue Mapping</summary>
 <p>RTA skills are assigned to queues. Any agent receiving a call from the assigned queue should receive the skill's guidance for that interaction.</p>
 </details>
 <hr>
-<h2 id="lab-36-test-rta">Lab 3.6 - Test RTA<a class="headerlink" href="#lab-36-test-rta" title="Permanent link">¶</a></h2>
+<h2 id="lab-36-create-a-custom-generated-summary-template">Lab 3.6 - Create a Custom Generated-Summary Template<a class="headerlink" href="#lab-36-create-a-custom-generated-summary-template" title="Permanent link">¶</a></h2>
+<p>Custom Templates let you tailor the post-call summary to the fraud-handoff workflow. This feature is being introduced in phases, so first confirm that <strong>Summary Templates</strong> is available in AI Agent Studio for this tenant [VERIFY].</p>
+<details class="webex" open="open">
+<summary>Create and Publish the Template</summary>
+<ol>
+<li>In <strong>Webex AI Agent Studio</strong>, open <strong>Summary Templates</strong>.</li>
+<li>Select <strong>Create Template</strong> and name it <copy><code>PODXX_Fraud_Handoff_Summary</code></copy>.</li>
+<li>
+<p>Retain two default summary sections that cover the interaction reason and outcome, and disable two default sections that are not needed for this scenario [VERIFY: exact default-section labels]. Add the following two custom sections:</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Instruction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Financial account details</strong></td>
+<td>Capture the confirmed balance, payment intent, and payment outcome when discussed.</td>
+</tr>
+<tr>
+<td><strong>Fraud case details</strong></td>
+<td>Capture the disputed transaction's amount, vendor, and date, plus the returned Case ID or result when a case is opened.</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Use the preview/test experience with a sample conversation. Confirm each section is populated clearly and does not invent missing details.</p>
+</li>
+<li>Publish the template.</li>
+<li>In <strong>Collaboration Control Hub</strong> &gt; <strong>Contact Center</strong> &gt; <strong>AI Features</strong> &gt; <strong>Generated Summaries</strong>, open <strong>Templates</strong> [VERIFY: exact label] and assign <copy><code>PODXX_Fraud_Handoff_Summary</code></copy> to <copy><code>PODXX_FraudQueue</code></copy>.</li>
+</ol>
+</details>
+<div class="admonition note">
+<p class="admonition-title">Feature Availability</p>
+<p>If <strong>Summary Templates</strong> is not present in this tenant, stop at the existing Generated Summaries configuration and notify the instructor. Do not substitute a different feature.</p>
+</div>
+<hr>
+<h2 id="lab-37-configure-the-pre-created-inbound-entry-point">Lab 3.7 - Configure the Pre-Created Inbound Entry Point<a class="headerlink" href="#lab-37-configure-the-pre-created-inbound-entry-point" title="Permanent link">¶</a></h2>
+<p>Each POD already has an inbound telephony entry point and assigned inbound DN. Do not create a new entry point.</p>
+<details class="webex" open="open">
+<summary>Update the Inbound Entry Point Routing</summary>
+<ol>
+<li>In Collaboration Control Hub, navigate to <strong>Contact Center</strong> &gt; <strong>Channels</strong> &gt; <strong>Entry Points</strong>.</li>
+<li>Find and open your pre-created inbound entry point: <copy><code>Inbound_EP_&lt;yourpodnumber&gt;</code></copy>.</li>
+<li>In <strong>Routing flow</strong>, replace <copy><code>To_be_replaced</code></copy> with your published <copy><code>PODXX_AI_Agent_DebtCollection</code></copy> flow. Select the <strong>Latest</strong> version label.</li>
+<li>Save the entry point.</li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Keep the Pre-Created Inbound Settings</p>
+<p>Do not change the entry point name, inbound DN, channel type, timezone, music on hold, or any other pre-created setting. Only replace the <strong>Routing flow</strong> value.</p>
+</div>
+</details>
+<hr>
+<h2 id="lab-38-test-rta">Lab 3.8 - Test RTA<a class="headerlink" href="#lab-38-test-rta" title="Permanent link">¶</a></h2>
 <details class="webex" open="open">
 <summary>Execute the Test</summary>
 <ol>
-<li>Start the outbound call from Campaign Manager or use the provided inbound shortcut [VERIFY].</li>
+<li>Place a call to the inbound DN already assigned to your POD's entry point, or start the outbound call from Campaign Manager.</li>
 <li>
-<p>Speak with Alex and trigger the escalation path by saying something like:</p>
-<p><copy><code>I do not recognize one of these transactions and want to speak with someone.</code></copy></p>
+<p>Complete Alex's authentication flow, then ask to review your recent transactions. When Alex presents them, trigger the escalation path by saying:</p>
+<p><copy><code>I don't recognize that transaction.</code></copy></p>
 </li>
 <li>
-<p>Accept the call as the human agent.</p>
+<p>Confirm that Alex collects the suspicious transaction details and transfers the call to the fraud specialist.</p>
 </li>
+<li>Accept the call as the human agent.</li>
 <li>
 <p>Confirm the Agent Desktop shows:</p>
 <table>
@@ -1181,12 +1660,12 @@
 <td>Guidance matches the dispute/fraud scenario.</td>
 </tr>
 <tr>
-<td>MCP Action [VERIFY]</td>
-<td>If configured, action suggestions require confirmed values before execution.</td>
+<td>Fulfillment actions</td>
+<td>The agent can review and run the configured <code>fetch_transactions</code> and <code>open_case</code> actions when the conversation requires them.</td>
 </tr>
 <tr>
 <td>Generated Summary</td>
-<td>Summary appears during wrap-up or after call completion [VERIFY].</td>
+<td>Summary appears in the wrap-up panel after call completion.</td>
 </tr>
 </tbody>
 </table>
@@ -1196,26 +1675,42 @@
 </li>
 </ol>
 </details>
+<details class="tip" open="open">
+<summary>Suggested Test Conversation</summary>
+<p>Use this conversation after the call reaches the human agent to exercise the RTA guidance and fulfillment actions. Adapt the transaction details to the information Alex and the customer already discussed.</p>
+<ol>
+<li>As the human agent, acknowledge the concern and say: <copy><code>I can help with that. Let me review the recent transactions with you.</code></copy></li>
+<li>Review the <code>fetch_transactions</code> recommendation, confirm the Customer ID when prompted, and run the action.</li>
+<li>Confirm the disputed transaction with the customer by restating its amount, merchant, and date. Then ask: <copy><code>Would you like me to open a fraud case for this transaction?</code></copy></li>
+<li>After the customer agrees, review the <code>open_case</code> recommendation, confirm the Customer ID and Transaction ID, and run the action.</li>
+<li>Share the returned Case ID or completion result with the customer, then end the call and inspect the generated summary.</li>
+</ol>
+</details>
 <details class="failure" open="open">
 <summary>Troubleshooting</summary>
 <ul>
 <li><strong>No transcript</strong>: Confirm <strong>Start Media Stream</strong> is connected from <strong>AgentAnswered</strong> or <strong>AgentAccepted</strong>.</li>
 <li><strong>No RTA guidance</strong>: Confirm the skill is published and assigned to the queue receiving the call.</li>
-<li><strong>No AI Assistant widget</strong>: Confirm the Desktop Layout includes the AI Assistant component and is assigned to the agent's team.</li>
-<li><strong>MCP action unavailable</strong>: Confirm MCP actions are supported for the RTA skill in this tenant [VERIFY]. Use guidance-only RTA if not.</li>
+<li><strong>Fulfillment action is unavailable</strong>: Confirm the corresponding Webex Connect flow is live and selected in the action configuration.</li>
 </ul>
 </details>
 <hr>
 <h2 id="lab-completion">Lab Completion<a class="headerlink" href="#lab-completion" title="Permanent link">¶</a></h2>
 <p>At this point, you have successfully:</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Enabled AI Assistant, RTT, summaries, and RTA.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Created the <code>fraud_transfer</code> action and routed its context to the human agent.<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Created the POD-specific Fraud Queue.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Confirmed the flow can start media streaming for RTT.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Created or imported an RTA skill.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Assigned the skill to the queue.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Tested human-agent guidance during the escalation scenario.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Created the <code>Fraud_KB</code> Knowledge Base and associated it with the RTA skill.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Created an RTA skill and configured its fulfillment actions.</li>
 </ul>
-<p><strong>Congratulations!</strong> You have completed the LAB-31207 core journey: native Campaign Manager to MCP-enabled AI Agent, with Real-Time Assist for the human handoff.</p>
+</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Assigned the skill to the queue.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Created and assigned a custom generated-summary template.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Updated the routing flow on the POD-specific pre-created inbound entry point for direct testing.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Tested human-agent guidance and the fulfillment actions during the escalation scenario.</li>
+</ul>
+<p><strong>Congratulations!</strong> You have completed the LAB-31207 core journey: native Campaign Manager to AI Agent, with Real-Time Assist for the human handoff.</p>
 
 
 
@@ -1232,6 +1727,7 @@
               </article>
             </div>
           
+
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
@@ -1244,6 +1740,7 @@
         
       </main>
       
+  
         <footer class="md-footer">
   
     
@@ -1285,6 +1782,7 @@
   </div>
 </footer>
       
+
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>

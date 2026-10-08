@@ -315,12 +315,15 @@
     
     <div class="md-container" data-md-component="container">
       
+  
+
       
         
       
       <main class="md-main" data-md-component="main">
         <div class="md-main__inner md-grid">
           
+  
             
               
               <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
@@ -925,7 +928,9 @@
             
             
           
+
           
+  
             <div class="md-content" data-md-component="content">
               
               <article class="md-content__inner md-typeset">
@@ -936,7 +941,7 @@
 
 <h1 id="lab-2-ai-agent-with-mcp">Lab 2 - AI Agent with MCP<a class="headerlink" href="#lab-2-ai-agent-with-mcp" title="Permanent link">¶</a></h1>
 <h2 id="lab-purpose">Lab Purpose<a class="headerlink" href="#lab-purpose" title="Permanent link">¶</a></h2>
-<p>In Lab 1, you configured a native Campaign Manager to place outbound calls and route live-voice answers into the <code>AI_Agent_DebtCollection</code> flow. In this lab, you will configure <strong>Alex</strong>, a Webex AI Agent that uses tenant-provisioned <strong>MCP tools</strong> to retrieve customer context, support the debt-resolution conversation, and prepare the call for human escalation when needed.</p>
+<p>In Lab 1, you configured native Campaign Manager to place outbound calls and route live-voice answers into the <code>PODXX_AI_Agent_DebtCollection</code> flow. In this lab, you will configure <strong>Alex</strong>, a Webex AI Agent that uses tenant-provisioned <strong>MCP tools</strong> to retrieve customer context, support the debt-resolution conversation, and prepare the call for human escalation when needed.</p>
 <p>The backend actions are provided by the pre-staged MCP server. You will select available MCP tools in AI Agent Studio rather than building fulfillment flows.</p>
 <details class="purpose" open="open">
 <summary>Lab Objectives</summary>
@@ -958,7 +963,7 @@
 <p>In order to complete this lab, you must have:</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Completed <a href="../lab1_campaign_manager/">Lab 1 - Native Campaign Manager</a>.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Access to <strong>Control Hub</strong> and <strong>Webex AI Agent Studio</strong>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Access to <strong>Collaboration Control Hub</strong> and <strong>Webex AI Agent Studio</strong>.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> MCP Agentic App already provisioned in the Webex tenant (This is preconfigured. You will verify it in Lab 2.3 section)).</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> MCP tools already enabled by the tenant administrator (you will verify this in Lab 2.3 section).</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Baseline AI Agent import package available (you will import the pre-package AI Agent in Lab 2.1).</li>
@@ -995,13 +1000,13 @@
 </p><p><a href="/LAB-31207/assets/lab2_p21_vid1.mp4" target="_blank" rel="noopener">Open video in new tab</a></p><p></p>
 </details>
 <ol>
-<li>From <a href="https://admin.webex.com">Control Hub</a>, navigate to <strong>Contact Center</strong>.</li>
+<li>From <a href="https://admin.webex.com">Collaboration Control Hub</a>, navigate to <strong>Contact Center</strong>.</li>
 <li>Under <strong>Quick Links</strong>, open <strong>Webex AI Agent</strong>.</li>
 <li>
 <p>In AI Agent Studio, click on the <strong>Import agent</strong> button at the top-right and in the Import window:</p>
 <ol>
 <li>Click <strong>Upload</strong> and select the <code>LAB-31207_Alex_baseline</code> json file from your local drive. </li>
-<li>Set the <strong>Agent name</strong> field to <copy><code>PODXX-LAB-31207_Alex</code></copy>, replacing <code>XX</code> with your POD number.   </li>
+<li>Set the <strong>Agent name</strong> field to <copy><code>PODXX_Alex</code></copy>.</li>
 <li>Click <strong>Import</strong> to create the Alex AI Agent from the baseline package.</li>
 </ol>
 </li>
@@ -1160,7 +1165,7 @@
 </details>
 <hr>
 <h2 id="lab-23-select-mcp-tools-as-actions">Lab 2.3 - Select MCP Tools as Actions<a class="headerlink" href="#lab-23-select-mcp-tools-as-actions" title="Permanent link">¶</a></h2>
-<p>The LAB_31207_Finance MCP server is already enabled in the shared lab tenant. <strong>You don't need to do any configuration in Control Hub</strong>.  The MCP Server exposes a number of tools you will be using as AI Agent actions later on. The next section is <strong>informational</strong> and explains how the MCP server is configured. </p>
+<p>The LAB_31207_Finance MCP server is already enabled in the shared lab tenant. <strong>You don't need to do any configuration in Collaboration Control Hub</strong>.  The MCP Server exposes a number of tools you will be using as AI Agent actions later on. The next section is <strong>informational</strong> and explains how the MCP server is configured.</p>
 <details class="info" open="open">
 <summary>Optional learning: How to register and provision the MCP server</summary>
 <p></p><p align="center" style="font-size: 24px;">
@@ -1170,7 +1175,7 @@ This section explains how the MCP server is configured as an Agentic App in the 
 This is only for your information. You would follow these steps if you wanted to configure the MCP server in your own tenant.
 </mark>
 </p><p></p>
-<p>To configure Agentic Apps in Control Hub, you need a <strong>Customer Administrator</strong> account; a Partner account cannot authorize Agentic Apps for the customer organization.</p>
+<p>To configure Agentic Apps in Collaboration Control Hub, you need a <strong>Customer Administrator</strong> account; a Partner account cannot authorize Agentic Apps for the customer organization.</p>
 <p><strong>1. Register the Agentic App in the Webex Developer Portal</strong></p>
 <details class="inline" open="open">
 <summary>New Agentic App</summary>
@@ -1243,25 +1248,25 @@ This is only for your information. You would follow these steps if you wanted to
 </ol>
 <p><br><br><br><br><br><br><br><br><br></p>
 <p>The next section describes how would you configure the MCP Server as an Agentic App in your own tenant.</p>
-<p><strong>3. Provision the Agentic App in Control Hub</strong></p>
-<p>Once the MCP Server is provisioned as an Agentic APP in the Webex Developer Portal, the next step would be to configure the App in your tenant, through <strong>Control Hub</strong>. </p>
+<p><strong>3. Provision the Agentic App in Collaboration Control Hub</strong></p>
+<p>Once the MCP Server is provisioned as an Agentic APP in the Webex Developer Portal, the next step would be to configure the App in your tenant, through <strong>Collaboration Control Hub</strong>.</p>
 <p><mark class="critic"> THIS IS FOR INFORMATION ONLY. DO NOT MODIFY ANY OF THE PARAMETERS IN THE AGENTIC APP </mark></p>
 <details class="inline" open="open">
-<summary>Agentic App in Control Hub</summary>
+<summary>Agentic App in Collaboration Control Hub</summary>
 <p></p><figure markdown="" style="width: 30%;">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p23_img2.png" data-title="Agentic App in Control Hub" data-desc-position="top"><img alt="Agentic App in Control Hub" src="../assets/lab2_p23_img2.png"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p23_img2.png" data-title="Agentic App in Collaboration Control Hub" data-desc-position="top"><img alt="Agentic App in Collaboration Control Hub" src="../assets/lab2_p23_img2.png"></a>
 </figure><p></p>
 </details>
 <ol>
-<li>In <a href="https://admin.webex.com" rel="noopener" target="_blank">Control Hub</a>, go to <strong>Apps</strong> &gt; <strong>Agentic Apps</strong>.</li>
+<li>In <a href="https://admin.webex.com" rel="noopener" target="_blank">Collaboration Control Hub</a>, go to <strong>Apps</strong> &gt; <strong>Agentic Apps</strong>.</li>
 <li>Open <code>LAB_31207_Finance</code>.</li>
 <li>
 <p>On the <strong>General</strong> tab, you will see access is set to <strong>Allowed</strong> for the organization and the <em>Authorize automatic server data updates</em> toggle is enabled to avoid re-authorization on server updates.
 <br><br><br></p>
 <details class="inline end" open="open">
-<summary>Agentic App in Control Hub</summary>
+<summary>Agentic App in Collaboration Control Hub</summary>
 <p></p><figure markdown="" style="width: 30%;">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p23_img3.png" data-title="Agentic App in Control Hub" data-desc-position="top"><img alt="Agentic App in Control Hub" src="../assets/lab2_p23_img3.png"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p23_img3.png" data-title="Agentic App in Collaboration Control Hub" data-desc-position="top"><img alt="Agentic App in Collaboration Control Hub" src="../assets/lab2_p23_img3.png"></a>
 </figure><p></p>
 </details>
 </li>
@@ -1270,9 +1275,9 @@ This is only for your information. You would follow these steps if you wanted to
 </li>
 </ol>
 <details class="inline" open="open">
-<summary>Agentic App in Control Hub</summary>
+<summary>Agentic App in Collaboration Control Hub</summary>
 <p></p><figure markdown="" style="width: 30%;">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p23_img4.png" data-title="Agentic App in Control Hub" data-desc-position="top"><img alt="Agentic App in Control Hub" src="../assets/lab2_p23_img4.png"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p23_img4.png" data-title="Agentic App in Collaboration Control Hub" data-desc-position="top"><img alt="Agentic App in Collaboration Control Hub" src="../assets/lab2_p23_img4.png"></a>
 </figure><p></p>
 </details>
 <ol>
@@ -1316,7 +1321,7 @@ This is only for your information. You would follow these steps if you wanted to
 <details class="webex" open="open">
 <summary>Add MCP Tools to Alex</summary>
 <ol>
-<li>In AI Agent Studio, open your AI Agent <code>PODXX-LAB-31207_Alex</code>.</li>
+<li>In AI Agent Studio, open your AI Agent <code>PODXX_Alex</code>.</li>
 <li>Switch to the <strong>Actions</strong> tab.</li>
 <li>Click <strong>+ Add actions</strong>.</li>
 <li>Choose <strong>Select available</strong>.</li>
@@ -1375,10 +1380,18 @@ This is only for your information. You would follow these steps if you wanted to
 <summary>Delivery of payment link</summary>
 <p>If you created the customer profile using your own US mobile number, the payment link will be sent to that number via SMS. If you created the customer using a Webex Customer profile, the payment link will be sent to the email address associated with your profile.</p>
 </details>
+<details class="example" open="open">
+<summary>Email payment-link example</summary>
+<p>If your payment link is delivered by email, look for a message from <copy><code>lab31207@gmail.com</code></copy> with the subject <strong>NovaPay - our secure payment link</strong>. Check your spam or junk folder if it does not arrive promptly.</p>
+<p></p><figure markdown="" style="width: 65%;">
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_payment_email_example_redacted.png" data-title="Example NovaPay payment-link email" data-desc-position="top"><img alt="Example NovaPay payment-link email" src="../assets/lab2_payment_email_example_redacted.png"></a>
+<figcaption>Example NovaPay payment-link email.</figcaption>
+</figure><p></p>
+</details>
 <details class="inline" open="open">
 <summary>Customer Profile</summary>
 <p></p><figure markdown="" style="width: 30%;">
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p24_img1.png" data-title="Agentic App in Control Hub" data-desc-position="top"><img alt="Agentic App in Control Hub" src="../assets/lab2_p24_img1.png"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab2_p24_img1.png" data-title="Agentic App in Collaboration Control Hub" data-desc-position="top"><img alt="Agentic App in Collaboration Control Hub" src="../assets/lab2_p24_img1.png"></a>
 </figure><p></p>
 </details>
 <table>
@@ -1415,7 +1428,7 @@ This is only for your information. You would follow these steps if you wanted to
 <details class="tool" open="open">
 <summary>Run the Preview Scenario</summary>
 <ol>
-<li>In AI Agent Studio, open <code>PODXX-LAB-31207_Alex</code>.</li>
+<li>In AI Agent Studio, open <code>PODXX_Alex</code>.</li>
 <li>Click <strong>Preview</strong>.</li>
 <li>Since Preview does not go through the Outbound Debt Collection flow, the <code>firstName</code>, <code>lastName</code>, and <code>phoneNumber</code> values are not passed to Alex automatically. Provide your name and the phone number from your test profile yourself when Alex asks.</li>
 <li>Try asking about your balance <strong>before</strong> authenticating — Alex should decline and ask you to verify your identity first.</li>
@@ -1433,7 +1446,7 @@ This is only for your information. You would follow these steps if you wanted to
 </ul>
 </li>
 <li>
-<p>Open the link from the applicable channel. For email delivery, check spam if it does not arrive quickly.</p>
+<p>Open the link from the applicable channel. For email delivery, use the <strong>Email payment-link example</strong> note above to identify the message.</p>
 </li>
 <li>
 <p>Click the link, fill in the NovaPay payment interface, and click <strong>Pay Now</strong>. NovaPay returns a confirmation message.
@@ -1486,7 +1499,7 @@ This is only for your information. You would follow these steps if you wanted to
 </div>
 <hr>
 <h2 id="lab-25-connect-the-ai-agent-to-the-outbound-call">Lab 2.5 - Connect the AI Agent to the Outbound Call<a class="headerlink" href="#lab-25-connect-the-ai-agent-to-the-outbound-call" title="Permanent link">¶</a></h2>
-<p>At the end of Lab 1, the outbound call routes to the <code>AI_Agent_DebtCollection</code> flow, which currently plays just a temporary completion message. You will now modify that flow to route the call to Alex, your AI Agent.</p>
+<p>At the end of Lab 1, the outbound call routes to the <code>PODXX_AI_Agent_DebtCollection</code> flow, which currently plays just a temporary completion message. You will now modify that flow to route the call to Alex, your AI Agent.</p>
 <details open="open">
 <summary>Initial flow</summary>
 <p></p><figure markdown="">
@@ -1503,8 +1516,8 @@ This is only for your information. You would follow these steps if you wanted to
 </p><p><a href="/LAB-31207/assets/lab2_p25_vid1.mp4" target="_blank" rel="noopener">Open video in new tab</a></p><p></p>
 </details>
 <ol>
-<li>Go to <strong>Control Hub</strong> &gt; <strong>Contact Center</strong> &gt; <strong>Flows</strong>.</li>
-<li>Open the <code>AI_Agent_DebtCollection_&lt;yourPODnr&gt;</code> flow.</li>
+<li>Go to <strong>Collaboration Control Hub</strong> &gt; <strong>Contact Center</strong> &gt; <strong>Flows</strong>.</li>
+<li>Open the <copy><code>PODXX_AI_Agent_DebtCollection</code></copy> flow.</li>
 <li>Enable editing with the top bar <strong>Edit</strong> toggle.</li>
 <li>Delete the temporary <strong>EndOfLab1</strong> Play Message node from Lab 1.</li>
 <li>Drag a <strong>Virtual Agent V2</strong> node onto the canvas.</li>
@@ -1537,7 +1550,7 @@ This is only for your information. You would follow these steps if you wanted to
 </tr>
 <tr>
 <td><strong>Virtual Agent</strong></td>
-<td>select your <code>PODXX-LAB-31207_Alex</code></td>
+<td>select your <code>PODXX_Alex</code></td>
 </tr>
 </tbody>
 </table>
@@ -1660,6 +1673,7 @@ You have successfully completed Lab 2. You are now ready to move on to the next 
               </article>
             </div>
           
+
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
@@ -1672,6 +1686,7 @@ You have successfully completed Lab 2. You are now ready to move on to the next 
         
       </main>
       
+  
         <footer class="md-footer">
   
     
@@ -1729,6 +1744,7 @@ You have successfully completed Lab 2. You are now ready to move on to the next 
   </div>
 </footer>
       
+
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>

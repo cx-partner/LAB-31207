@@ -315,12 +315,15 @@
     
     <div class="md-container" data-md-component="container">
       
+  
+
       
         
       
       <main class="md-main" data-md-component="main">
         <div class="md-main__inner md-grid">
           
+  
             
               
               <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
@@ -1281,7 +1284,9 @@
             
             
           
+
           
+  
             <div class="md-content" data-md-component="content">
               
               <article class="md-content__inner md-typeset">
@@ -1298,7 +1303,7 @@
 <summary>Lab Objectives</summary>
 <p>By the end of this lab, you will have configured the full stack required to run an outbound IVR campaign in Webex Contact Center. Key objectives include:</p>
 <ul>
-<li><strong>WxCC Infrastructure Setup:</strong> Configure teams, outdial queues, global variables, and entry points on Control Hub.</li>
+<li><strong>WxCC Infrastructure Setup:</strong> Configure teams, outdial queues, global variables, and entry points on Collaboration Control Hub.</li>
 <li><strong>Flow Design:</strong> Build an outbound campaign flow with CPA-based routing and event flows, including Answer Machine Detection (AMD) and Live Voice handling.</li>
 <li><strong>Campaign Manager Configuration:</strong> Complete all prerequisite campaign administration settings including business days, contact modes, field mappings, suppression rules, and telephony outcomes.</li>
 <li><strong>Campaign Activation:</strong> Create a campaign group, configure and activate the campaign, and upload a contact list to trigger live calls.</li>
@@ -1319,12 +1324,16 @@
 <h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permanent link">¶</a></h2>
 <p>In order to complete this lab, you must have:</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Access to <strong>Webex Control Hub</strong> with Full Admin permissions</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Access to <strong>Webex Collaboration Control Hub</strong> with Full Admin permissions</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> A <strong>Webex Contact Center</strong> tenant provisioned and licensed</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Access to the <strong>Webex Campaign Management</strong> portal</li>
 </ul>
 <hr>
 <h2 id="lab-overview">Lab Overview 📌<a class="headerlink" href="#lab-overview" title="Permanent link">¶</a></h2>
+<div class="admonition info">
+<p class="admonition-title">POD-specific values</p>
+<p>After you complete Lab Prework, names in this guide resolve to your assigned POD, such as <code>POD01</code> or <code>Team01</code>. Select the copy icon beside a value whenever you need to enter it in Collaboration Control Hub or Campaign Manager. If a placeholder remains visible, open <strong>Lab Prework</strong> from this guide in the same browser and select <strong>Get my POD</strong>; your existing assignment is reused.</p>
+</div>
 <p>The diagram below illustrates the high-level architecture and the sequence of configuration steps you will follow throughout this lab:</p>
 <figure>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/outbound-campaign-flow.png" data-title="Lab 1 Architecture Overview" data-desc-position="top"><img alt="Lab 1 Architecture Overview" src="../assets/outbound-campaign-flow.png"></a></p>
@@ -1354,7 +1363,7 @@
 </p><p><a href="/LAB-31207/assets/create_team.mp4" target="_blank" rel="noopener">Open video in new tab</a></p><p></p>
 </details>
 <ol>
-<li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Teams</strong>.</li>
+<li>In Collaboration Control Hub, navigate to <strong>Contact Center</strong> → <strong>Teams</strong>.</li>
 <li>
 <p>Click <strong>Create a team</strong> and fill in the following:</p>
 <table>
@@ -1367,7 +1376,7 @@
 <tbody>
 <tr>
 <td><strong>Name</strong></td>
-<td><code>Team&lt;yourpodnumber&gt;</code></td>
+<td><copy><code>Team&lt;yourpodnumber&gt;</code></copy></td>
 </tr>
 <tr>
 <td><strong>Parent site</strong></td>
@@ -1407,7 +1416,7 @@
 </p><p><a href="/LAB-31207/assets/lab1_enable_cc_user.mp4" target="_blank" rel="noopener">Open video in new tab</a></p><p></p>
 </details>
 <ol>
-<li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Contact Center Users</strong>.</li>
+<li>In Collaboration Control Hub, navigate to <strong>Contact Center</strong> → <strong>Contact Center Users</strong>.</li>
 <li>
 <p>Click on the <strong>agent</strong> user that belong to your pod number and fill in the following:</p>
 <table>
@@ -1455,7 +1464,7 @@
 </p><p><a href="/LAB-31207/assets/lab1_outdial_queue.mp4" target="_blank" rel="noopener">Open video in new tab</a></p><p></p>
 </details>
 <ol>
-<li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Queues</strong>.</li>
+<li>In Collaboration Control Hub, navigate to <strong>Contact Center</strong> → <strong>Queues</strong>.</li>
 <li>
 <p>Click <strong>Create a queue</strong> and configure:</p>
 <table>
@@ -1468,7 +1477,7 @@
 <tbody>
 <tr>
 <td><strong>Name</strong></td>
-<td><code>OutdialQ&lt;yourpodnumber&gt;</code></td>
+<td><copy><code>OutdialQ&lt;yourpodnumber&gt;</code></copy></td>
 </tr>
 <tr>
 <td><strong>Contact direction</strong></td>
@@ -1517,7 +1526,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <details class="webex" open="open">
 <summary>Check Global Variables</summary>
 <ol>
-<li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Flows</strong> → <strong>Global Variables</strong>.</li>
+<li>In Collaboration Control Hub, navigate to <strong>Contact Center</strong> → <strong>Flows</strong> → <strong>Global Variables</strong>.</li>
 <li>
 <p>Click on the <strong>firstName</strong> variable and you must see the following information:</p>
 <table>
@@ -1578,7 +1587,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <details class="webex" open="open">
 <summary> Wrap-up Code</summary>
 <ol>
-<li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Idle/wrap-up codes</strong>.</li>
+<li>In Collaboration Control Hub, navigate to <strong>Contact Center</strong> → <strong>Idle/wrap-up codes</strong>.</li>
 <li>
 <p>Click <strong>debt</strong> wrap-ip code and check the following:</p>
 <table>
@@ -1611,21 +1620,21 @@ All PODs will use the same global variables which are already pre-configured. If
 </ol>
 <p></p><figure markdown="">
 <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p6_img1.png" data-title="Debt wrap-up code" data-desc-position="top"><img alt="Debt wrap-up code" src="../assets/lab1_p6_img1.png"></a>
-<figcaption>The debt wrap-up code configured in Control Hub</figcaption>
+<figcaption>The debt wrap-up code configured in Collaboration Control Hub</figcaption>
 </figure><p></p>
 </details>
 <hr>
 <h2 id="lab-15-build-the-flows">Lab 1.5 - Build the Flows<a class="headerlink" href="#lab-15-build-the-flows" title="Permanent link">¶</a></h2>
 <h3 id="create-the-lab2-dummy-test-flow">Create the "Lab2" Dummy Test Flow<a class="headerlink" href="#create-the-lab2-dummy-test-flow" title="Permanent link">¶</a></h3>
-<p>Before building the full outbound campaign flow, create a simple <strong>dummy flow</strong> to validate the end-to-end campaign configuration. This same flow will be used as the starting point for <strong>Lab 2</strong> so name it as <strong>AI_Agent_DebtCollection<yourpodnumber></yourpodnumber></strong></p>
+<p>Before building the full outbound campaign flow, create a simple <strong>dummy flow</strong> to validate the end-to-end campaign configuration. This same flow will be used as the starting point for <strong>Lab 2</strong>. Name it <strong>PODXX_AI_Agent_DebtCollection</strong>.</p>
 <p>The flow plays a congratulatory TTS message when a live voice contact is detected, confirming Lab 1 is fully operational.</p>
 <details class="webex" open="open">
 <summary>Create Lab2 dummy flow</summary>
 <ol>
-<li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Flows</strong>.</li>
+<li>In Collaboration Control Hub, navigate to <strong>Contact Center</strong> → <strong>Flows</strong>.</li>
 <li>Click <strong>Manage Flows -&gt; Create Flows</strong> </li>
 <li>Select <strong>Flow</strong> and <strong>Start from scratch</strong> and click <strong>Next</strong></li>
-<li>Name the flow <copy><code>AI_Agent_DebtCollection&lt;yourPodNumber&gt;</code></copy> and select <strong>Voice</strong> as the channel type.</li>
+<li>Name the flow <copy><code>PODXX_AI_Agent_DebtCollection</code></copy> and select <strong>Voice</strong> as the channel type.</li>
 <li>In the <strong>Global Flow Properties</strong> panel on the right:<ul>
 <li>Under <strong>Global Variables</strong>, click <strong>Add global variables</strong> and add both <code>firstName</code> and <code>lastName</code>.</li>
 </ul>
@@ -1636,7 +1645,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <li>
 <p>Configure the <strong>Play Message</strong> node:</p>
 <ul>
-<li><strong>Activity Label</strong>: <code>EndOfLab1</code></li>
+<li><strong>Activity Label</strong>: <copy><code>EndOfLab1</code></copy></li>
 <li>Enable <strong>Text-to-Speech</strong></li>
 <li><strong>Connector</strong>: <code>Cisco Cloud Text-to-Speech</code></li>
 <li>Add <strong>Text-to-Speech Message</strong>: <copy><code>Congratulations, You have completed lab 1</code></copy></li>
@@ -1660,7 +1669,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <details class="webex" open="open">
 <summary>Create Outbound_DebtCollection Flow</summary>
 <ol>
-<li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Flows</strong>.</li>
+<li>In Collaboration Control Hub, navigate to <strong>Contact Center</strong> → <strong>Flows</strong>.</li>
 <li>Click <strong>Manage Flows -&gt; Create Flows</strong> and select <strong>Flow</strong> and <strong>Start from scratch</strong> in the next window. Click <strong>Next</strong></li>
 <li>Name it <copy><code>Outbound_DebtCollection&lt;yourPodNumber&gt;</code></copy> and select <strong>Voice</strong> as the channel type.</li>
 <li>In the <strong>Global Flow Properties</strong> panel:<ul>
@@ -1757,7 +1766,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <li><strong>Activity Label</strong>: <code>GoTo_AIAgent</code></li>
 <li><strong>Destination type</strong>: <code>Flow</code></li>
 <li><strong>Flow type</strong>: <code>Static Flow</code></li>
-<li><strong>Flow</strong>: <code>AI_Agent_DebtCollection</code> <em>(this will be used in Lab 2)</em></li>
+<li><strong>Flow</strong>: <copy><code>PODXX_AI_Agent_DebtCollection</code></copy> <em>(this will be used in Lab 2)</em></li>
 <li><strong>Version Label</strong>: <code>Latest</code></li>
 </ul>
 </li>
@@ -1793,7 +1802,7 @@ All PODs will use the same global variables which are already pre-configured. If
     <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_flow_Goto.png" data-title="GoTo AIAgent node configuration" data-desc-position="top"><img alt="GoTo AIAgent node configuration" src="../assets/lab1_flow_Goto.png"></a>
     <figure markdown="" style="width: 30%;">
     <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p10_img2.png" data-title="GoTo AIAgent flow variable mapping" data-desc-position="top"><img alt="GoTo AIAgent flow variable mapping" src="../assets/lab1_p10_img2.png"></a>
-    <figcaption>Go To node pointing to the AI_Agent_DebtCollection flow with firstName and lastName mapped across flows</figcaption>
+    <figcaption>Go To node pointing to the POD-specific AI Agent flow with firstName and lastName mapped across flows</figcaption>
 </figure><p></p>
 </figure></figure></li>
 <li>
@@ -1819,7 +1828,7 @@ All PODs will use the same global variables which are already pre-configured. If
 </p><p><a href="/LAB-31207/assets/lab1_EP_Creation.mp4" target="_blank" rel="noopener">Open video in new tab</a></p><p></p>
 </details>
 <ol>
-<li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Channels</strong>.</li>
+<li>In Collaboration Control Hub, navigate to <strong>Contact Center</strong> → <strong>Channels</strong>.</li>
 <li>
 <p>Click <strong>Create a channel</strong> and configure:</p>
 <table>
@@ -1875,7 +1884,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <details class="webex" open="open">
 <summary>Outdial ANI</summary>
 <ol>
-<li>In Control Hub, navigate to <strong>Contact Center</strong> → <strong>Outdial ANI</strong>.</li>
+<li>In Collaboration Control Hub, navigate to <strong>Contact Center</strong> → <strong>Outdial ANI</strong>.</li>
 <li>Click on <strong>OutdialANI_All</strong> and you will see:<ul>
 <li><strong>Name</strong>: <code>OudialANI_All</code></li>
 </ul>
@@ -1909,7 +1918,7 @@ All PODs will use the same global variables which are already pre-configured. If
 <figcaption>Welcome to Webex Campaign Management — Configuration Options</figcaption>
 </figure>
 <h3 id="business-days-only-informational-no-configuration-is-required">Business Days (Only Informational, no configuration is required)<a class="headerlink" href="#business-days-only-informational-no-configuration-is-required" title="Permanent link">¶</a></h3>
-<p>Business days are used solely for the purpose of contact list expiry calculation. They have no association with 'Business hours' on the Control Hub. We won't use this option as part of this lab.</p>
+<p>Business days are used solely for the purpose of contact list expiry calculation. They have no association with 'Business hours' on Collaboration Control Hub. We won't use this option as part of this lab.</p>
 <h3 id="contact-modes-pre-configured">Contact Modes (Pre-configured)<a class="headerlink" href="#contact-modes-pre-configured" title="Permanent link">¶</a></h3>
 <p>Contact modes define the type of phone number in your contact list (e.g. Home, Office, Mobile). For this lab, we use a single contact mode mapped to the <code>phoneNumber</code> column in the CSV. All the PODs will use the same pre-configured contact mode called <strong>phone</strong></p>
 <details class="webex" open="open">
@@ -1962,19 +1971,19 @@ All PODs will use the same global variables which are already pre-configured. If
 <p>In production environments, you would upload DNC lists here to comply with regulatory requirements (e.g., national DNC registries). The campaign engine automatically suppresses any contacts matched against active DNC lists.</p>
 </div>
 <h3 id="global-variables-pre-loaded-by-the-sync-between-wxcc-and-campaign-manager">Global Variables (Pre-loaded by the sync between WxCC and Campaign Manager)<a class="headerlink" href="#global-variables-pre-loaded-by-the-sync-between-wxcc-and-campaign-manager" title="Permanent link">¶</a></h3>
-<p>Global variables are synced from Control Hub. They appear here for informational purposes — you cannot create or modify them in Campaign Manager.</p>
+<p>Global variables are synced from Collaboration Control Hub. They appear here for informational purposes — you cannot create or modify them in Campaign Manager.</p>
 <details class="webex" open="open">
 <summary>Verify Global Variables</summary>
 <ol>
 <li>Navigate to <strong>Organization config</strong> → <strong>Global variables</strong>.</li>
 <li>
 <p>Verify that <code>firstName</code> and <code>lastName</code> are listed with <strong>Status: Active</strong> and <strong>Agent view: Yes</strong>.</p>
-<p>If you don´t see the variables, click <em>Refresh from Control Hub</em> at the top-right of the page</p>
+<p>If you don´t see the variables, click <em>Refresh from Collaboration Control Hub</em> at the top-right of the page</p>
 </li>
 </ol>
 <details class="note" open="open">
 <summary>Note</summary>
-<p>Campaign Manager is case-insensitive. If variables in Control Hub differ only by character case, Campaign Manager will treat them as duplicates and only import one of them. E.g. if <em>lastname</em> and <em>Lastname</em> are global variables in Control Hub, Campaign Manager will ignore one of them. </p>
+<p>Campaign Manager is case-insensitive. If variables in Collaboration Control Hub differ only by character case, Campaign Manager will treat them as duplicates and only import one of them. E.g. if <em>lastname</em> and <em>Lastname</em> are global variables in Collaboration Control Hub, Campaign Manager will ignore one of them.</p>
 </details>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
@@ -2181,14 +2190,14 @@ All PODs will use the same global variables which are already pre-configured. If
 </figure><p></p>
 </details>
 <h3 id="ui-users-only-informational-no-configuration-is-required">UI Users (Only Informational, no configuration is required)<a class="headerlink" href="#ui-users-only-informational-no-configuration-is-required" title="Permanent link">¶</a></h3>
-<p>Webex Campaign Management uses <strong>just-in-time (JIT) provisioning</strong> — user accounts are created automatically the first time a user logs in, based on their role in Control Hub. No manual user creation is required in Campaign Manager.</p>
+<p>Webex Campaign Management uses <strong>just-in-time (JIT) provisioning</strong> — user accounts are created automatically the first time a user logs in, based on their role in Collaboration Control Hub. No manual user creation is required in Campaign Manager.</p>
 <figure>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/lab1_p23_img2.png" data-title="UI Users" data-desc-position="top"><img alt="UI Users" src="../assets/lab1_p23_img2.png"></a></p>
-<figcaption>UI Users list showing the admin account provisioned via JIT sync from Control Hub</figcaption>
+<figcaption>UI Users list showing the admin account provisioned via JIT sync from Collaboration Control Hub</figcaption>
 </figure>
 <p>For more information, refer to the <a href="https://docs-campaign-for-contact-centers.webexcampaign.com/docs/ui-users">Campaign Management UI Users documentation</a>.</p>
 <h3 id="wrap-up-code-sets-pre-configured">Wrap-up Code Sets (Pre-Configured)<a class="headerlink" href="#wrap-up-code-sets-pre-configured" title="Permanent link">¶</a></h3>
-<p>Wrap-up codes defined in Control Hub are synced to Campaign Manager. You can configure how each code affects future campaign contact attempts (e.g. whether a contact with a given wrap-up code should be retried). For this lab, we have created a set called <strong>Finance</strong> which will include the <strong>debt</strong> wrap-up code. All the PODs will use this one to configure the campaign.</p>
+<p>Wrap-up codes defined in Collaboration Control Hub are synced to Campaign Manager. You can configure how each code affects future campaign contact attempts (e.g. whether a contact with a given wrap-up code should be retried). For this lab, we have created a set called <strong>Finance</strong> which will include the <strong>debt</strong> wrap-up code. All the PODs will use this one to configure the campaign.</p>
 <details class="webex" open="open">
 <summary>Verify Wrap-up Code Set</summary>
 <ol>
@@ -2259,7 +2268,7 @@ All PODs will use the same global variables which are already pre-configured. If
 </thead>
 <tbody>
 <tr>
-<td><strong>Control Hub channel</strong></td>
+<td><strong>Collaboration Control Hub channel</strong></td>
 <td><code>Campaign_EP_&lt;yourPodNumber&gt;</code></td>
 </tr>
 <tr>
@@ -2538,7 +2547,7 @@ The <code>Phone</code> contact mode should be pre-populated from your field mapp
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Configured an agent, team, and outdial queue in Webex Contact Center</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Created <code>firstName</code> and <code>lastName</code> Global Variables for customer data propagation</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Built the <code>AI_Agent_DebtCollection</code> test flow with a congratulatory TTS message</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Built the <code>PODXX_AI_Agent_DebtCollection</code> test flow with a congratulatory TTS message</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Built the <code>Outbound_DebtCollection</code> campaign flow with CPA-based routing (AMD, Abandoned, Live Voice)</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Configured the outdial Entry Point (Channel) and Outdial ANI</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Completed all Campaign Manager prerequisites (contact modes, field mappings, suppression rules, telephony outcomes, wrap-up codes, meta-tags)</li>
@@ -2563,6 +2572,7 @@ The <code>Phone</code> contact mode should be pre-populated from your field mapp
               </article>
             </div>
           
+
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
@@ -2575,6 +2585,7 @@ The <code>Phone</code> contact mode should be pre-populated from your field mapp
         
       </main>
       
+  
         <footer class="md-footer">
   
     
@@ -2632,6 +2643,7 @@ The <code>Phone</code> contact mode should be pre-populated from your field mapp
   </div>
 </footer>
       
+
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
