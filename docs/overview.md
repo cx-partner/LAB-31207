@@ -21,8 +21,8 @@ The lab starts from a prepared tenant. The MCP server is already provisioned, so
     - Webex Contact Center tenant with Campaign Manager enabled.
     - Webex AI Agent and AI Assistant features enabled.
     - Tenant-provisioned MCP Agentic App and tools.
-    - Baseline AI Agent import package [VERIFY: add exact filename and location].
-    - Test customer data available through the MCP server [VERIFY: confirm test records and phone numbers].
+    - Baseline AI Agent import package.
+    - Test customer data available through the MCP server.
     - An agent queue and desktop layout suitable for RTA, or a provided desktop layout template.
 
 ## 4-Hour Agenda
